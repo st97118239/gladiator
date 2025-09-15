@@ -1,0 +1,20 @@
+public enum EnemyTypes
+{
+    Lion,
+    Prisoner,
+    Gladiator,
+    Minotaur,
+    Wolf,
+    Bear,
+    Treant,
+    Nymph,
+    Hawk,
+    SlingUser,
+    StoneGolem,
+    Griffon,
+    FallenWarrior,
+    PrometheusHawk,
+    Siren,
+    Prometheus,
+    Zeus
+}
