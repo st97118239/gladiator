@@ -322,11 +322,16 @@ MonoBehaviour:
   levelManager: {fileID: 1718733408}
   playerObj: {fileID: 0}
   enemies: []
+  currentWave: {fileID: 0}
   emptyEnemyPrefab: {fileID: 127359938022708900, guid: 15e0db7888fbe5142b1e892e8959014d, type: 3}
   enemyParent: {fileID: 763560087}
   enemySpawnIdx: 0
   enemyCount: 0
   maxEnemyCount: 5
+  spawnPositions:
+  - {x: 0, y: 1, z: 0}
+  - {x: 2, y: -1, z: 0}
+  spawnDelay: 1
 --- !u!4 &763560087
 Transform:
   m_ObjectHideFlags: 0
