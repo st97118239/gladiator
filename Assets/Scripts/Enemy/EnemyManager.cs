@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +7,17 @@ public class EnemyManager : MonoBehaviour
     public LevelManager levelManager;
     public GameObject playerObj;
     public List<EnemyController> enemies;
+    public Wave currentWave;
     public GameObject emptyEnemyPrefab;
     public Transform enemyParent;
     public int enemySpawnIdx;
     public int enemyCount;
     public int maxEnemyCount;
+
+    [SerializeField] private List<Vector3> spawnPositions;
+    [SerializeField] private float spawnDelay;
+
+    private int spawnPosIdx;
 
     public void EmptyEnemySpawn()
     {
@@ -24,15 +31,35 @@ public class EnemyManager : MonoBehaviour
 
     public void SpawnEnemy(Wave givenWave)
     {
-        enemyCount = givenWave.enemies.Count;
+        currentWave = givenWave;
+
+        enemyCount = currentWave.enemies.Count;
+
+        StartCoroutine(SpawnEnemies());
+    }
+
+    private IEnumerator SpawnEnemies()
+    {
+        WaitForSeconds wait = new(spawnDelay);
 
         for (int i = 0; i < enemyCount; i++)
         {
             EnemyController enemy = enemies[i];
-            enemy.Load(givenWave.enemies[enemySpawnIdx]);
+            enemy.Load(currentWave.enemies[enemySpawnIdx]);
+            enemy.transform.position = spawnPositions[spawnPosIdx];
             enemy.gameObject.SetActive(true);
 
             enemySpawnIdx++;
+            SetSpawnPosIdx();
+            yield return wait;
         }
+    }
+
+    private void SetSpawnPosIdx()
+    {
+        spawnPosIdx++;
+
+        if (spawnPosIdx > spawnPositions.Count - 1)
+            spawnPosIdx = 0;
     }
 }
