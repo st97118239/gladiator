@@ -5,7 +5,7 @@ public enum Abilities
     AbilityNet,
     AbilityCrossbow,
     AbilityDash,
-    AbilityBersekerRage,
+    AbilityBerserkerRage,
     AbilityThrow,
     AbilitySiphon,
     AbilitySteadyStance,
