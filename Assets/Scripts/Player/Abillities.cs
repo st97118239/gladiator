@@ -1,13 +1,13 @@
 public enum Abilities
 {
     None,
-    AbilityShield,
-    AbilityNet,
-    AbilityCrossbow,
-    AbilityDash,
-    AbilityBerserkerRage,
-    AbilityThrow,
-    AbilitySiphon,
-    AbilitySteadyStance,
-    AbilityMarathonRunner,
+    Shield,
+    Net,
+    Crossbow,
+    Dash,
+    BerserkerRage,
+    Throw,
+    Siphon,
+    SteadyStance,
+    MarathonRunner,
 }
