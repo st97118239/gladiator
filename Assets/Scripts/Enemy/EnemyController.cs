@@ -6,7 +6,6 @@ public class EnemyController : MonoBehaviour
     public int health;
     public int damage;
     public float speed;
-    public Vector3 playerLocation;
 
     [SerializeField] private string spritePath;
     [SerializeField] private SpriteRenderer spriteRenderer;
