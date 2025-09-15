@@ -7,12 +7,15 @@ public class EnemyController : MonoBehaviour
     public int damage;
     public float speed;
     public Vector3 playerLocation;
-    public GameObject playerObj;
+
+    [SerializeField] private string spritePath;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     public void Load(Enemy givenEnemy)
     {
         enemyType = givenEnemy.enemyType;
         health = givenEnemy.health;
         damage = givenEnemy.damage;
+        spriteRenderer.sprite = Resources.Load<Sprite>(spritePath + enemyType);
     }
 }
