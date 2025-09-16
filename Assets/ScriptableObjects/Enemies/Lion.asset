@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Lion
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   enemyType: 0
-  attackType: 0
+  attackType: 1
   health: 5
   damage: 2
   speed: 3
   attackRadius: 1
   attackSpeed: 2
+  rangedFleeRadius: 0

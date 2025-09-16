@@ -7,6 +7,7 @@ public class EnemyManager : MonoBehaviour
     public LevelManager levelManager;
     public Player player;
     public List<EnemyController> enemies;
+    public List<Vector3> rangedPositions;
     public Wave currentWave;
     public GameObject emptyEnemyPrefab;
     public Transform enemyParent;

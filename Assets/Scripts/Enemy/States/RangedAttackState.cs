@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class AttackState : IEnemyState
+public class RangedAttackState : IEnemyState
 {
+    // Should grab first unused projectile in storage that moves towards player, when the player is hit it'll deal damage
+
     public void UpdateState(EnemyStateMachine controller)
     {
         
@@ -14,7 +16,7 @@ public class AttackState : IEnemyState
 
     private static void Attack(Player player, EnemyController enemyController, EnemyStateMachine controller)
     {
-        Debug.Log("Attack");
+        Debug.Log("Shoot");
         player.PlayerHit(enemyController.enemy.damage);
         controller.StartAttackDelay();
     }

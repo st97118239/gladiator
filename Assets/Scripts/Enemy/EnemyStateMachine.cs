@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class EnemyStateMachine : MonoBehaviour
 
     public IdleState idleState = new();
     public WalkState walkState = new();
+    public RangedWalkState rangedWalkState = new();
+    public RangedAttackState rangedAttackState = new();
     public AttackState attackState = new();
 
     public AttackType attackType;
@@ -42,6 +45,21 @@ public class EnemyStateMachine : MonoBehaviour
 
         yield return wait;
 
-        ChangeState(walkState);
+        switch (enemyController.enemy.attackType)
+        {
+            case AttackType.Melee:
+                ChangeState(walkState);
+                break;
+            case AttackType.ProjectileRanged:
+                ChangeState(rangedWalkState);
+                break;
+            case AttackType.None:
+            case AttackType.Jump:
+            case AttackType.Sing:
+                break;
+            default:
+                Debug.LogWarning("Enemy has no attack type. Please fix!");
+                break;
+        }
     }
 }

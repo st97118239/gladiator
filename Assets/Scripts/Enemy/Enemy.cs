@@ -10,4 +10,5 @@ public class Enemy : ScriptableObject
     public float speed;
     public float attackRadius;
     public float attackSpeed;
+    public float rangedFleeRadius;
 }

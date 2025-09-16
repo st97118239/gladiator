@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class IdleState : IEnemyState
@@ -11,7 +12,22 @@ public class IdleState : IEnemyState
     {
         if (!controller.enemyController.enemyManager.player.isDead)
         {
-            controller.ChangeState(controller.walkState);
+            switch (controller.enemyController.enemy.attackType)
+            {
+                case AttackType.Melee:
+                    controller.ChangeState(controller.walkState);
+                    break;
+                case AttackType.ProjectileRanged:
+                    controller.ChangeState(controller.rangedWalkState);
+                    break;
+                case AttackType.Jump:
+                case AttackType.Sing:
+                    break;
+                case AttackType.None:
+                default:
+                    Debug.LogWarning("Enemy has no attack type. Please fix!!");
+                    break;
+            }
         }
         else
         {
