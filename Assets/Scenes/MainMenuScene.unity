@@ -648,7 +648,7 @@ GameObject:
   - component: {fileID: 390357725}
   - component: {fileID: 390357726}
   m_Layer: 5
-  m_Name: MusicVolumeSlider
+  m_Name: SFXVolumeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2224,7 +2224,7 @@ GameObject:
   - component: {fileID: 1305558987}
   - component: {fileID: 1305558986}
   m_Layer: 5
-  m_Name: MusicVolumeText
+  m_Name: SFXVolumeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2269,7 +2269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Music volume
+  m_text: SFX volume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ffe5590abcff22048813900e26de0584, type: 2}
   m_sharedMaterial: {fileID: 511541274476773058, guid: ffe5590abcff22048813900e26de0584, type: 2}
