@@ -6,17 +6,13 @@ public class Player : MonoBehaviour
 {
     public int health;
     public float speed;
-    public bool isdead;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public float movementSpeed;
+    public bool isDead;
 
     // Update is called once per frame
     void Update()
     {
-        
+        speed = (movementSpeed * Time.deltaTime);
     }
     public void PlayerHit(int damage)
     {
