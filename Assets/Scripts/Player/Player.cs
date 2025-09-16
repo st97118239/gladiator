@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     public int health;
     public float speed;
-    
+    public bool isdead;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     {
         
     }
-    public void PlayerHit(int Damage)
+    public void PlayerHit(int damage)
     {
        
     }
