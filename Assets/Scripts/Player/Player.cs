@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -9,11 +7,11 @@ public class Player : MonoBehaviour
     public float movementSpeed;
     public bool isDead;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        speed = (movementSpeed * Time.deltaTime);
+        speed = movementSpeed * Time.deltaTime;
     }
+
     public void PlayerHit(int damage)
     {
         health -= damage;

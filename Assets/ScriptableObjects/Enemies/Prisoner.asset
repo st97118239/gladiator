@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: Prisoner
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   enemyType: 1
+  attackType: 0
   health: 10
   damage: 5
+  speed: 1
+  attackRadius: 0.5
+  attackSpeed: 5

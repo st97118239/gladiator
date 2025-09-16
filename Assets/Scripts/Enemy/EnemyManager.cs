@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     public LevelManager levelManager;
-    public GameObject playerObj;
+    public Player player;
     public List<EnemyController> enemies;
     public Wave currentWave;
     public GameObject emptyEnemyPrefab;
@@ -45,7 +45,7 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < enemyCount; i++)
         {
             EnemyController enemy = enemies[i];
-            enemy.Load(currentWave.enemies[enemySpawnIdx]);
+            enemy.Load(currentWave.enemies[enemySpawnIdx], this);
             enemy.transform.position = spawnPositions[spawnPosIdx];
             enemy.gameObject.SetActive(true);
 

@@ -2,19 +2,18 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public EnemyTypes enemyType;
+    public EnemyManager enemyManager { get; private set; }
+    public Enemy enemy;
     public int health;
-    public int damage;
-    public float speed;
 
     [SerializeField] private string spritePath;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    public void Load(Enemy givenEnemy)
+    public void Load(Enemy givenEnemy, EnemyManager givenManager)
     {
-        enemyType = givenEnemy.enemyType;
-        health = givenEnemy.health;
-        damage = givenEnemy.damage;
-        spriteRenderer.sprite = Resources.Load<Sprite>(spritePath + enemyType);
+        enemyManager = givenManager;
+        enemy = givenEnemy;
+        health = enemy.health;
+        spriteRenderer.sprite = Resources.Load<Sprite>(spritePath + enemy.enemyType);
     }
 }
