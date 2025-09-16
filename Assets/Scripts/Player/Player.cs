@@ -16,6 +16,10 @@ public class Player : MonoBehaviour
     }
     public void PlayerHit(int damage)
     {
-       
+        health -= damage;
+        if(health <= 0)
+        {
+            isDead = true;
+        }
     }
 }
