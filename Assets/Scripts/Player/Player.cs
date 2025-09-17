@@ -6,13 +6,18 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public PlayerMovement movementScript;
     public InputAction meleeAction;
     public int health;
     public float movementSpeed;
     public bool isDead;
     public int meleeDamage;
     public float meleeAtkSpeed;
+    public float atkKnockback;
 
+    public bool canAttack;
+
+    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform meleeWeaponHitbox;
     [SerializeField] private Transform aimTransform;
     [SerializeField] private float meleeHitboxDistanceFromPlayer;
@@ -22,8 +27,6 @@ public class Player : MonoBehaviour
     [SerializeField] private Slider hpSlider;
     [SerializeField] private Camera cam;
 
-    private bool canAttack;
-
     private void Start()
     {
         meleeAction.Enable();
@@ -31,6 +34,7 @@ public class Player : MonoBehaviour
         hpSlider.value = health;
         meleeWeaponHitbox.position += Vector3.up * meleeHitboxDistanceFromPlayer;
         canAttack = true;
+        movementScript.canMove = true;
     }
 
     private void Update()
@@ -71,9 +75,11 @@ public class Player : MonoBehaviour
     {
         canAttack = false;
 
-        WaitForSeconds wait = new(meleeAtkSpeed);
+        spriteRenderer.color = Color.gray4;
 
-        yield return wait;
+        yield return new WaitForSeconds(meleeAtkSpeed);
+
+        spriteRenderer.color = Color.white;
 
         canAttack = true;
     }

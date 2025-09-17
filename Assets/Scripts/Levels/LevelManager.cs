@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private int levelStartDelay;
     [SerializeField] private int waveStartDelay;
+    [SerializeField] private float gameEndDelay;
     [SerializeField] private GameObject countdownBox;
     [SerializeField] private TMP_Text countdownText;
     [SerializeField] private GameObject gameFinishedPanel;
@@ -69,27 +70,37 @@ public class LevelManager : MonoBehaviour
         if (level.waves.Count > currentWave)
             StartCoroutine(NextWave());
         else
-        {
-            Debug.Log("Game finished.");
-            gameFinishedPanel.SetActive(true);
-        }
+            GameEnd();
     }
 
     private IEnumerator NextWave()
     {
         Debug.Log("Countdown for new wave.");
 
-        WaitForSeconds wait1Second = new(1);
-
-        countdown = waveStartDelay;
-
-        while (countdown > 0)
-        {
-            yield return wait1Second;
-
-            countdown -= 1;
-        }
+        yield return new WaitForSeconds(waveStartDelay);
 
         StartWave();
+    }
+
+    public void GameEnd()
+    {
+        Debug.Log("Game finished.");
+        gameFinishedPanel.SetActive(true);
+        player.movementScript.canMove = false;
+        player.canAttack = true;
+        StartCoroutine(StopGame());
+    }
+
+    private IEnumerator StopGame()
+    {
+        Debug.Log("Exiting game.");
+
+        yield return new WaitForSeconds(gameEndDelay);
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
     }
 }

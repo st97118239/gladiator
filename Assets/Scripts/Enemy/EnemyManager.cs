@@ -74,6 +74,7 @@ public class EnemyManager : MonoBehaviour
         enemyCount--;
         killedEnemy.gameObject.SetActive(false);
         killedEnemy.transform.position = Vector3.zero;
+        killedEnemy.spriteRenderer.color = Color.white;
 
         if (enemyCount != 0) return;
         levelManager.WaveEnd();

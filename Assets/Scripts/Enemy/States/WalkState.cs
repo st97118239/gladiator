@@ -21,7 +21,7 @@ public class WalkState : IEnemyState
 
         controller.gameObject.transform.position = Vector3.MoveTowards(controller.gameObject.transform.position, player.transform.position, speed * Time.deltaTime);
     }
-
+    
     public void OnEnter(EnemyStateMachine controller)
     {
         player = controller.enemyController.enemyManager.player;

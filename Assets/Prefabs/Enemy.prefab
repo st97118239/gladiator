@@ -108,7 +108,7 @@ MonoBehaviour:
   enemy: {fileID: 0}
   health: 0
   spriteRenderer: {fileID: 8208541899940622705}
-  hitColorTime: 0.5
+  hitColorTime: 1
   spritePath: Enemies/
   enemyStateMachine: {fileID: 8364674737212972923}
 --- !u!114 &8364674737212972923

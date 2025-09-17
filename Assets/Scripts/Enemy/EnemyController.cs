@@ -25,6 +25,9 @@ public class EnemyController : MonoBehaviour
     public void Hit(int damage)
     {
         health -= damage;
+
+        // Knockback code hier
+
         StartCoroutine(HitEffect());
 
         if (health > 0) return;

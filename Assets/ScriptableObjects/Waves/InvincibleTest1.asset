@@ -9,14 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1cb0c2e1aa06d44aa652cadaea1b264, type: 3}
-  m_Name: Lion
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  enemyType: 0
-  attackType: 1
-  health: 5
-  damage: 3
-  speed: 3
-  attackRadius: 1
-  attackSpeed: 0.7
-  rangedFleeRadius: 0
+  m_Script: {fileID: 11500000, guid: 2b4fb03fcd02cdb4f9fc78eb9e651f60, type: 3}
+  m_Name: InvincibleTest1
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyWave
+  enemies:
+  - {fileID: 11400000, guid: 92839ef09b711fd478979b92a86433ae, type: 2}

@@ -4,11 +4,14 @@ public class PlayerMovement : MonoBehaviour
 {
     public Player player;
     public Rigidbody2D rb2d;
+    public bool canMove;
 
     private float speed;
 
     private void Update()
     {
+        if (!canMove) return;
+
         speed = player.movementSpeed * Time.deltaTime;
 
         if (Input.GetKey(KeyCode.W))
