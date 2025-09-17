@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 90be4227ba56f6148ac3891d40d6561f
+guid: e16e8755f3f403046932cfc1300b0a42
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3471534310836184372
-    second: Dash Ability Sprite_0
+      213: 6881615016373617851
+    second: Lifesteal Ability Sprite_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dash Ability Sprite_0
+      name: Lifesteal Ability Sprite_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cca5701ffe1a2dfc0800000000000000
-      internalID: -3471534310836184372
+      spriteID: bb481f3a568608f50800000000000000
+      internalID: 6881615016373617851
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Dash Ability Sprite_0: -3471534310836184372
+      Lifesteal Ability Sprite_0: 6881615016373617851
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
