@@ -47,7 +47,7 @@ public class RangedWalkState : IEnemyState
         speed = controller.enemyController.enemy.speed;
         posIdx = Random.Range(0, controller.enemyController.enemyManager.rangedPositions.Count - 1);
         Debug.Log(posIdx);
-        posToGoTo = controller.enemyController.enemyManager.rangedPositions[posIdx];
+        posToGoTo = controller.enemyController.enemyManager.rangedPositions[posIdx].position;
     }
 
     public void OnExit(EnemyStateMachine controller)

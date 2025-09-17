@@ -7,7 +7,7 @@ public class EnemyManager : MonoBehaviour
     public LevelManager levelManager;
     public Player player;
     public List<EnemyController> enemies;
-    public List<Vector3> rangedPositions;
+    public List<Transform> rangedPositions;
     public Wave currentWave;
     public GameObject emptyEnemyPrefab;
     public Transform enemyParent;
@@ -15,7 +15,7 @@ public class EnemyManager : MonoBehaviour
     public int enemyCount;
     public int maxEnemyCount;
 
-    [SerializeField] private List<Vector3> spawnPositions;
+    [SerializeField] private List<Transform> spawnPositions;
     [SerializeField] private float spawnDelay;
 
     private int spawnPosIdx;
@@ -52,7 +52,7 @@ public class EnemyManager : MonoBehaviour
         {
             EnemyController enemy = enemies[i];
             enemy.Load(currentWave.enemies[enemySpawnIdx], this);
-            enemy.transform.position = spawnPositions[spawnPosIdx];
+            enemy.transform.position = spawnPositions[spawnPosIdx].position;
             enemy.gameObject.SetActive(true);
 
             enemySpawnIdx++;

@@ -1,15 +1,17 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    // When an enemy dies, it'll check if all enemies are dead. If so, start next wave. If no next waves, you win
-
     public Level level;
     public int currentWave;
 
     public EnemyManager enemyManger;
+    public Player player;
+
+    [SerializeField] private List<Transform> spawnpoints;
 
     [SerializeField] private int levelStartDelay;
     [SerializeField] private int waveStartDelay;
@@ -21,6 +23,9 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        int pos = Random.Range(0, spawnpoints.Count);
+        player.transform.position = spawnpoints[pos].position;
+
         gameFinishedPanel.SetActive(false);
         StartLevel();
     }

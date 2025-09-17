@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -6,9 +7,10 @@ public class EnemyController : MonoBehaviour
     public Enemy enemy;
     public int health;
 
-    [SerializeField] private string spritePath;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
+    public float hitColorTime;
 
+    [SerializeField] private string spritePath;
     [SerializeField] private EnemyStateMachine enemyStateMachine;
 
     public void Load(Enemy givenEnemy, EnemyManager givenManager)
@@ -23,9 +25,19 @@ public class EnemyController : MonoBehaviour
     public void Hit(int damage)
     {
         health -= damage;
+        StartCoroutine(HitEffect());
 
         if (health > 0) return;
         Debug.Log("Killed enemy.");
         enemyManager.CheckIfEnd(this);
+    }
+
+    private IEnumerator HitEffect()
+    {
+        spriteRenderer.color = Color.red;
+
+        yield return new WaitForSeconds(hitColorTime);
+
+        spriteRenderer.color = Color.white;
     }
 }

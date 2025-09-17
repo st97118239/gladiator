@@ -41,9 +41,11 @@ public class EnemyStateMachine : MonoBehaviour
 
     private IEnumerator AttackAnim()
     {
-        WaitForSeconds wait = new(enemyController.enemy.attackSpeed);
+        enemyController.spriteRenderer.color = Color.gray4;
 
-        yield return wait;
+        yield return new WaitForSeconds(enemyController.enemy.attackSpeed);
+
+        enemyController.spriteRenderer.color = Color.white;
 
         switch (enemyController.enemy.attackType)
         {

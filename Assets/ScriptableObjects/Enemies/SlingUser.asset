@@ -15,8 +15,8 @@ MonoBehaviour:
   enemyType: 9
   attackType: 2
   health: 10
-  damage: 1
-  speed: 6
+  damage: 3
+  speed: 5
   attackRadius: 10
   attackSpeed: 2
   rangedFleeRadius: 7

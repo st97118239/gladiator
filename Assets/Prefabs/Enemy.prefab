@@ -107,8 +107,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   enemy: {fileID: 0}
   health: 0
-  spritePath: Enemies/
   spriteRenderer: {fileID: 8208541899940622705}
+  hitColorTime: 0.5
+  spritePath: Enemies/
   enemyStateMachine: {fileID: 8364674737212972923}
 --- !u!114 &8364674737212972923
 MonoBehaviour:

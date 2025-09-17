@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyType: 0
   attackType: 1
   health: 5
-  damage: 2
+  damage: 3
   speed: 3
   attackRadius: 1
   attackSpeed: 2
