@@ -468,6 +468,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1013117963668258421, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013117963668258421, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013117963668258421, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3356284463525228826, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
       propertyPath: m_LocalScale.x
       value: 4.0635
@@ -516,10 +528,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
-      propertyPath: isDead
-      value: 0
+    - target: {fileID: 5011344584744067260, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: m_Size.x
+      value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 5011344584744067260, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 730426162}
     - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
       propertyPath: hpSlider
       value: 
@@ -529,6 +549,14 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: aimTransform
+      value: 
+      objectReference: {fileID: 1432130403}
+    - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: meleeAtkSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
       propertyPath: filter.useLayerMask
       value: 1
       objectReference: {fileID: 0}
@@ -536,10 +564,10 @@ PrefabInstance:
       propertyPath: filter.layerMask.m_Bits
       value: 128
       objectReference: {fileID: 0}
-    - target: {fileID: 8738978570264309918, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -2207236230058056998, guid: 402bf02f92e90b14093e47ed14b13da6, type: 3}
+    - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: meleeHitboxDistanceFromPlayer
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1198,6 +1226,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69393eec2f33e2b418e744d394ea946b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+--- !u!4 &1432130403 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4365072424774354997, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+  m_PrefabInstance: {fileID: 592514610}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1502260900
 PrefabInstance:
   m_ObjectHideFlags: 0
