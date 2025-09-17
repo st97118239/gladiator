@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c5e38adc56182c645a62f5d9bd1d157d
+guid: c4680fdc2d73b8942866877980b40e91
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8815360228472845799
-    second: HP bar sprite 1_0
+      213: -3011886095343409806
+    second: Ability Slot Sprite 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,9 +40,9 @@ TextureImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
-  spriteBorder: {x: 7, y: 6, z: 7, w: 6}
+  spriteBorder: {x: 8, y: 8, z: 8, w: 8}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HP bar sprite 1_0
+      name: Ability Slot Sprite 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 91a05c6f39c89a580800000000000000
-      internalID: -8815360228472845799
+      spriteID: 2752e1fcd81a336d0800000000000000
+      internalID: -3011886095343409806
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HP bar sprite 1_0: -8815360228472845799
+      Ability Slot Sprite 1_0: -3011886095343409806
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
