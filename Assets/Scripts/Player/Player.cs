@@ -98,8 +98,13 @@ public class Player : MonoBehaviour
         hpSlider.value = health;
 
         if (health <= 0)
-        {
-            isDead = true;
-        }
+            PlayerDead();
+    }
+
+    private void PlayerDead()
+    {
+        isDead = true;
+        canAttack = false;
+        movementScript.canMove = false;
     }
 }
