@@ -469,12 +469,20 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3356284463525228826, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4.0635
+      objectReference: {fileID: 0}
+    - target: {fileID: 3356284463525228826, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.8839998
+      objectReference: {fileID: 0}
+    - target: {fileID: 3356284463525228826, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.34
+      value: -2.5226
       objectReference: {fileID: 0}
     - target: {fileID: 3356284463525228826, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.03
+      value: 0.7622
       objectReference: {fileID: 0}
     - target: {fileID: 3356284463525228826, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -509,6 +517,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: isDead
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
       propertyPath: hpSlider
       value: 
       objectReference: {fileID: 1750582080}
@@ -524,6 +536,10 @@ PrefabInstance:
       propertyPath: filter.layerMask.m_Bits
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 8738978570264309918, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2207236230058056998, guid: 402bf02f92e90b14093e47ed14b13da6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
