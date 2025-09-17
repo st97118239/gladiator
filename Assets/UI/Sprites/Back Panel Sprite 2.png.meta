@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e6f3133866c46fb43b3c651f3807b373
+guid: 19c7c26bd62eae24d9cb902aa56fab05
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -15301233679776948
-    second: Back Panel Sprite 1_0
+      213: -8796154348227374262
+    second: Back Panel Sprite 2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
-  spriteBorder: {x: 12, y: 6, z: 12, w: 9}
+  spriteBorder: {x: 13, y: 13, z: 13, w: 13}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Back Panel Sprite 1_0
+      name: Back Panel Sprite 2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c4344e9eb93a9cff0800000000000000
-      internalID: -15301233679776948
+      spriteID: a43566c6938cde580800000000000000
+      internalID: -8796154348227374262
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Back Panel Sprite 1_0: -15301233679776948
+      Back Panel Sprite 2_0: -8796154348227374262
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

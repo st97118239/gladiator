@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e6f3133866c46fb43b3c651f3807b373
+guid: c5e38adc56182c645a62f5d9bd1d157d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -15301233679776948
-    second: Back Panel Sprite 1_0
+      213: -8815360228472845799
+    second: HP bar sprite 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
-  spriteBorder: {x: 12, y: 6, z: 12, w: 9}
+  spriteBorder: {x: 7, y: 2, z: 7, w: 2}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Back Panel Sprite 1_0
+      name: HP bar sprite 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c4344e9eb93a9cff0800000000000000
-      internalID: -15301233679776948
+      spriteID: 91a05c6f39c89a580800000000000000
+      internalID: -8815360228472845799
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Back Panel Sprite 1_0: -15301233679776948
+      HP bar sprite 1_0: -8815360228472845799
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
