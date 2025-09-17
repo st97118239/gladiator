@@ -3,8 +3,8 @@ guid: 942e102d9599b7742b8174539ccffd20
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3471534310836184372
-    second: Dash Ability Sprite_0
+      213: -3854537851087845700
+    second: Marathon runner Ability Sprite_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dash Ability Sprite_0
+      name: Marathon runner Ability Sprite_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cca5701ffe1a2dfc0800000000000000
-      internalID: -3471534310836184372
+      spriteID: cb68c942f3ee18ac0800000000000000
+      internalID: -3854537851087845700
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Dash Ability Sprite_0: -3471534310836184372
+      Marathon runner Ability Sprite_0: -3854537851087845700
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
