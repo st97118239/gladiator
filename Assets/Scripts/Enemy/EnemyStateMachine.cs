@@ -16,15 +16,15 @@ public class EnemyStateMachine : MonoBehaviour
     public AttackType attackType;
     public float attackDelay;
 
-    private void Start()
-    {
-        ChangeState(idleState);
-        attackType = enemyController.enemy.attackType;
-    }
-
     private void Update()
     {
         currentState?.UpdateState(this);
+    }
+
+    public void Load()
+    {
+        ChangeState(idleState);
+        attackType = enemyController.enemy.attackType;
     }
 
     public void ChangeState(IEnemyState newState)

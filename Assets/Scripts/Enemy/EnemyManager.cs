@@ -41,9 +41,14 @@ public class EnemyManager : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
+        Debug.Log("Spawning enemies.");
+
         WaitForSeconds wait = new(spawnDelay);
 
-        for (int i = 0; i < enemyCount; i++)
+        enemySpawnIdx = 0;
+        int enemyCountToSpawn = enemyCount;
+
+        for (int i = 0; i < enemyCountToSpawn; i++)
         {
             EnemyController enemy = enemies[i];
             enemy.Load(currentWave.enemies[enemySpawnIdx], this);
@@ -62,5 +67,15 @@ public class EnemyManager : MonoBehaviour
 
         if (spawnPosIdx > spawnPositions.Count - 1)
             spawnPosIdx = 0;
+    }
+
+    public void CheckIfEnd(EnemyController killedEnemy)
+    {
+        enemyCount--;
+        killedEnemy.gameObject.SetActive(false);
+        killedEnemy.transform.position = Vector3.zero;
+
+        if (enemyCount != 0) return;
+        levelManager.WaveEnd();
     }
 }
