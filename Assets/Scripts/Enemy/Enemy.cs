@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Enemy")]
 public class Enemy : ScriptableObject
 {
+    public Sprite sprite;
     public EnemyTypes enemyType;
     public AttackType attackType;
     public int health;
@@ -11,4 +12,5 @@ public class Enemy : ScriptableObject
     public float attackRadius;
     public float attackSpeed;
     public float rangedFleeRadius;
+    public Projectile projectile;
 }

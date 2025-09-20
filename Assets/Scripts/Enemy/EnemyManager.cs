@@ -7,13 +7,17 @@ public class EnemyManager : MonoBehaviour
     public LevelManager levelManager;
     public Player player;
     public List<EnemyController> enemies;
+    public List<ProjectileObj> projectiles;
     public List<Transform> rangedPositions;
     public Wave currentWave;
     public GameObject emptyEnemyPrefab;
+    public GameObject emptyProjectilePrefab;
     public Transform enemyParent;
+    public Transform projectileParent;
     public int enemySpawnIdx;
     public int enemyCount;
     public int maxEnemyCount;
+    public int maxProjectileCount;
 
     [SerializeField] private List<Transform> spawnPositions;
     [SerializeField] private float spawnDelay;
@@ -27,6 +31,16 @@ public class EnemyManager : MonoBehaviour
             GameObject enemyObj = Instantiate(emptyEnemyPrefab, Vector3.zero, Quaternion.identity, enemyParent);
             enemyObj.SetActive(false);
             enemies.Add(enemyObj.GetComponent<EnemyController>());
+        }
+    }
+
+    public void EmptyProjectileSpawn()
+    {
+        for (int i = 0; i < maxProjectileCount; i++)
+        {
+            GameObject projObj = Instantiate(emptyProjectilePrefab, Vector3.zero, Quaternion.identity, projectileParent);
+            projObj.SetActive(false);
+            projectiles.Add(projObj.GetComponent<ProjectileObj>());
         }
     }
 
@@ -50,6 +64,12 @@ public class EnemyManager : MonoBehaviour
 
         for (int i = 0; i < enemyCountToSpawn; i++)
         {
+            if (i >= maxEnemyCount)
+            {
+                Debug.LogWarning("Not enough enemy slots available.");
+                break;
+            }
+
             EnemyController enemy = enemies[i];
             enemy.Load(currentWave.enemies[enemySpawnIdx], this);
             enemy.transform.position = spawnPositions[spawnPosIdx].position;

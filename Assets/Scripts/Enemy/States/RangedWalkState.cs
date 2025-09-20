@@ -22,7 +22,7 @@ public class RangedWalkState : IEnemyState
 
         if (playerDistance <= controller.enemyController.enemy.attackRadius && playerDistance > controller.enemyController.enemy.rangedFleeRadius)
         {
-            controller.ChangeState(controller.attackState);
+            controller.ChangeState(controller.rangedAttackState);
             return;
         }
 

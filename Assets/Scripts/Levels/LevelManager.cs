@@ -20,10 +20,12 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private TMP_Text countdownText;
     [SerializeField] private GameObject gameFinishedPanel;
 
+    private WaitForSeconds waveWait;
     private float countdown;
 
     private void Start()
     {
+        waveWait = new(waveStartDelay);
         int pos = Random.Range(0, spawnpoints.Count);
         player.transform.position = spawnpoints[pos].position;
 
@@ -34,6 +36,7 @@ public class LevelManager : MonoBehaviour
     private void StartLevel()
     {
         enemyManger.EmptyEnemySpawn();
+        enemyManger.EmptyProjectileSpawn();
         StartCoroutine(LevelCountdown());
     }
 
@@ -49,7 +52,7 @@ public class LevelManager : MonoBehaviour
 
             yield return wait1Second;
 
-            levelStartDelay -= 1;
+            levelStartDelay--;
         }
 
         countdownBox.SetActive(false);
@@ -77,7 +80,7 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("Countdown for new wave.");
 
-        yield return new WaitForSeconds(waveStartDelay);
+        yield return waveWait;
 
         StartWave();
     }

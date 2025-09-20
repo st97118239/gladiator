@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class RangedAttackState : IEnemyState
 {
@@ -17,7 +18,21 @@ public class RangedAttackState : IEnemyState
     private static void Attack(Player player, EnemyController enemyController, EnemyStateMachine controller)
     {
         Debug.Log("Shoot");
-        player.PlayerHit(enemyController.enemy.damage);
+
+        Vector3 aimDir = (player.transform.position - controller.transform.position).normalized;
+        float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+        angle -= 90;
+
+        ProjectileObj proj = controller.GetProjectile();
+
+        if (!proj)
+        {
+            controller.ChangeState(controller.rangedWalkState);
+            return;
+        }
+
+        proj.Load(enemyController.enemy.projectile, player.transform.position, enemyController, angle);
+
         controller.StartAttackDelay();
     }
 

@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2176017582455613439}
   - component: {fileID: 8208541899940622705}
-  - component: {fileID: 992925831548727312}
-  - component: {fileID: 8364674737212972923}
+  - component: {fileID: -5332476710501480144}
+  - component: {fileID: 5817432547344322974}
   - component: {fileID: 340753586850306276}
-  m_Layer: 8
-  m_Name: Enemy
-  m_TagString: Enemy
+  m_Layer: 7
+  m_Name: Projectile
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1ef8aba66fab9aa478a2302d42171bf2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 34604190081589a408aa1c72788def87, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,7 +93,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &992925831548727312
+--- !u!114 &-5332476710501480144
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,30 +102,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 127359938022708900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 639c9e19143f7084dad866e94cc045e8, type: 3}
+  m_Script: {fileID: 11500000, guid: c567a7fd80cc6554bab2d7c696b7a918, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileObj
+  isOn: 0
+  isPlayerProj: 0
+  dmg: 0
+  speed: 0
+  target: {x: 0, y: 0, z: 0}
   enemy: {fileID: 0}
-  health: 0
   spriteRenderer: {fileID: 8208541899940622705}
-  hitColorTime: 1
-  spritePath: Enemies/
-  enemyStateMachine: {fileID: 8364674737212972923}
---- !u!114 &8364674737212972923
-MonoBehaviour:
+  rigid: {fileID: 5817432547344322974}
+--- !u!50 &5817432547344322974
+Rigidbody2D:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127359938022708900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd006f9164fbd77458904233f696a2dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyStateMachine
-  enemyController: {fileID: 992925831548727312}
-  attackType: 0
-  attackDelay: 0
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!61 &340753586850306276
 BoxCollider2D:
   m_ObjectHideFlags: 0

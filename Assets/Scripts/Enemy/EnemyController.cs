@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
         enemyManager = givenManager;
         enemy = givenEnemy;
         health = enemy.health;
-        spriteRenderer.sprite = Resources.Load<Sprite>(spritePath + enemy.enemyType);
+        spriteRenderer.sprite = enemy.sprite;
         enemyStateMachine.Load();
     }
 

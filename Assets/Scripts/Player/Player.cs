@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform meleeWeaponHitbox;
     [SerializeField] private Transform aimTransform;
     [SerializeField] private float meleeHitboxDistanceFromPlayer;
-    [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private ContactFilter2D filter;
 
     [SerializeField] private Slider hpSlider;

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1cb0c2e1aa06d44aa652cadaea1b264, type: 3}
   m_Name: InvincibleTest
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  enemyType: 0
+  sprite: {fileID: 21300000, guid: 807e2d39994c8c44cb3f8933e69cb569, type: 3}
+  enemyType: 1
   attackType: 1
   health: 50000
   damage: 0
@@ -20,3 +21,4 @@ MonoBehaviour:
   attackRadius: 1
   attackSpeed: 2
   rangedFleeRadius: 0
+  projectile: {fileID: 0}

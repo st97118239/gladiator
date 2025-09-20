@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyStateMachine : MonoBehaviour
@@ -32,6 +33,11 @@ public class EnemyStateMachine : MonoBehaviour
         currentState?.OnExit(this);
         currentState = newState;
         currentState.OnEnter(this);
+    }
+
+    public ProjectileObj GetProjectile()
+    {
+        return enemyController.enemyManager.projectiles.FirstOrDefault(proj => !proj.isOn);
     }
 
     public void StartAttackDelay()
