@@ -1,9 +1,8 @@
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class RangedAttackState : IEnemyState
 {
-    // Should grab first unused projectile in storage that moves towards player, when the player is hit it'll deal damage
+    // To-Do: Should grab first unused projectile in storage that moves towards player, when the player is hit it'll deal damage
 
     public void UpdateState(EnemyStateMachine controller)
     {
@@ -17,8 +16,6 @@ public class RangedAttackState : IEnemyState
 
     private static void Attack(Player player, EnemyController enemyController, EnemyStateMachine controller)
     {
-        Debug.Log("Shoot");
-
         Vector3 aimDir = (player.transform.position - controller.transform.position).normalized;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         angle -= 90;

@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
 
     public bool canAttack;
 
+    [SerializeField] private LevelManager levelManager;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform meleeWeaponHitbox;
     [SerializeField] private Transform aimTransform;
@@ -89,10 +90,13 @@ public class Player : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawLine(cam.ScreenToWorldPoint(Input.mousePosition), transform.position);
+        Gizmos.DrawWireCube(meleeWeaponHitbox.position, meleeWeaponHitbox.localScale);
     }
 
     public void PlayerHit(int damage)
     {
+        if (isDead) return;
+
         health -= damage;
         hpSlider.value = health;
 
@@ -105,5 +109,7 @@ public class Player : MonoBehaviour
         isDead = true;
         canAttack = false;
         movementScript.canMove = false;
+        Debug.Log("Player died.");
+        levelManager.GameEnd(true);
     }
 }

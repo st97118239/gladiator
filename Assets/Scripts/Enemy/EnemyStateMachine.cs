@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -9,13 +8,18 @@ public class EnemyStateMachine : MonoBehaviour
     public IEnemyState currentState { get; private set; }
 
     public IdleState idleState = new();
+    public SirenIdleState sirenIdleState = new();
+    public SirenSingState sirenSingState = new();
     public WalkState walkState = new();
     public RangedWalkState rangedWalkState = new();
-    public RangedAttackState rangedAttackState = new();
     public AttackState attackState = new();
+    public RangedAttackState rangedAttackState = new();
+    public SirenAttackState sirenAttackState = new();
 
     public AttackType attackType;
     public float attackDelay;
+
+    public Puddle puddle;
 
     private void Update()
     {
@@ -64,10 +68,42 @@ public class EnemyStateMachine : MonoBehaviour
             case AttackType.None:
             case AttackType.Jump:
             case AttackType.Sing:
+                ChangeState(sirenSingState);
                 break;
             default:
                 Debug.LogWarning("Enemy has no attack type. Please fix!");
                 break;
         }
+    }
+
+    public void FindPuddle()
+    {
+        if (enemyController.enemyManager.levelManager.availablePuddles.Count == 0)
+        {
+            Debug.LogError("Not enough puddles. Please fix!");
+            enemyController.enemyManager.levelManager.Quit();
+        }
+
+        puddle = enemyController.enemyManager.levelManager.availablePuddles[Random.Range(0, enemyController.enemyManager.levelManager.availablePuddles.Count)];
+        enemyController.enemyManager.levelManager.availablePuddles.Remove(puddle);
+
+        if (!puddle)
+        {
+            Debug.LogError("Not enough puddles. Please fix!");
+            enemyController.enemyManager.levelManager.Quit();
+        }
+
+        puddle.occupied = true;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!Application.isPlaying) return;
+
+        Gizmos.color = Color.blueViolet;
+        Gizmos.DrawWireSphere(transform.position, enemyController.enemy.attackRadius);
+
+        Gizmos.color = Color.darkBlue;
+        Gizmos.DrawLine(transform.position, enemyController.enemyManager.player.transform.position);
     }
 }

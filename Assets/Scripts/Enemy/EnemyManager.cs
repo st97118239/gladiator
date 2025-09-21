@@ -19,7 +19,6 @@ public class EnemyManager : MonoBehaviour
     public int maxEnemyCount;
     public int maxProjectileCount;
 
-    [SerializeField] private List<Transform> spawnPositions;
     [SerializeField] private float spawnDelay;
 
     private int spawnPosIdx;
@@ -72,7 +71,9 @@ public class EnemyManager : MonoBehaviour
 
             EnemyController enemy = enemies[i];
             enemy.Load(currentWave.enemies[enemySpawnIdx], this);
-            enemy.transform.position = spawnPositions[spawnPosIdx].position;
+            enemy.transform.position = enemy.enemy.attackType == AttackType.Sing ? 
+                enemy.enemyStateMachine.puddle.transform.position : levelManager.spawnpoints[spawnPosIdx].position;
+
             enemy.gameObject.SetActive(true);
 
             enemySpawnIdx++;
@@ -85,7 +86,7 @@ public class EnemyManager : MonoBehaviour
     {
         spawnPosIdx++;
 
-        if (spawnPosIdx > spawnPositions.Count - 1)
+        if (spawnPosIdx > levelManager.spawnpoints.Count - 1)
             spawnPosIdx = 0;
     }
 

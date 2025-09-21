@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1cb0c2e1aa06d44aa652cadaea1b264, type: 3}
-  m_Name: SlingUser
+  m_Name: Siren
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  sprite: {fileID: 21300000, guid: a488f16a617dbfa40bbfca0fed11a315, type: 3}
-  enemyType: 9
-  attackType: 2
-  health: 7
+  sprite: {fileID: 21300000, guid: 807e2d39994c8c44cb3f8933e69cb569, type: 3}
+  enemyType: 14
+  attackType: 4
+  health: 12
   damage: 3
-  speed: 5
-  attackRadius: 10
-  attackSpeed: 2
-  rangedFleeRadius: 7
-  projectile: {fileID: 11400000, guid: 09480273132878349af4011b042f16d6, type: 2}
-  singDrawSpeed: 0
+  speed: 3
+  attackRadius: 1.1
+  attackSpeed: 0.7
+  rangedFleeRadius: 0
+  projectile: {fileID: 0}
+  singDrawSpeed: 3

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AttackState : IEnemyState
+public class SirenAttackState : IEnemyState
 {
     public void UpdateState(EnemyStateMachine controller)
     {

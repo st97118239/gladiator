@@ -11,7 +11,11 @@ public class LevelManager : MonoBehaviour
     public EnemyManager enemyManger;
     public Player player;
 
-    [SerializeField] private List<Transform> spawnpoints;
+    public List<Transform> spawnpoints;
+    public List<Puddle> puddles;
+    public List<Platform> platforms;
+
+    public List<Puddle> availablePuddles;
 
     [SerializeField] private int levelStartDelay;
     [SerializeField] private int waveStartDelay;
@@ -35,9 +39,19 @@ public class LevelManager : MonoBehaviour
 
     private void StartLevel()
     {
+        SetPuddles();
         enemyManger.EmptyEnemySpawn();
         enemyManger.EmptyProjectileSpawn();
         StartCoroutine(LevelCountdown());
+    }
+
+    private void SetPuddles()
+    {
+        availablePuddles.Clear();
+        foreach (Puddle puddle in puddles)
+        {
+            availablePuddles.Add(puddle);
+        }
     }
 
     private IEnumerator LevelCountdown()
@@ -62,6 +76,7 @@ public class LevelManager : MonoBehaviour
 
     private void StartWave()
     {
+        SetPuddles();
         enemyManger.SpawnEnemy(level.waves[currentWave]);
         currentWave++;
     }
@@ -73,7 +88,7 @@ public class LevelManager : MonoBehaviour
         if (level.waves.Count > currentWave)
             StartCoroutine(NextWave());
         else
-            GameEnd();
+            GameEnd(false);
     }
 
     private IEnumerator NextWave()
@@ -85,12 +100,15 @@ public class LevelManager : MonoBehaviour
         StartWave();
     }
 
-    public void GameEnd()
+    public void GameEnd(bool died)
     {
         Debug.Log("Game finished.");
-        gameFinishedPanel.SetActive(true);
+
+        if (!died)
+            gameFinishedPanel.SetActive(true);
+
         player.movementScript.canMove = false;
-        player.canAttack = true;
+        player.canAttack = false;
         StartCoroutine(StopGame());
     }
 
@@ -99,6 +117,17 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Exiting game.");
 
         yield return new WaitForSeconds(gameEndDelay);
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+    }
+
+    public void Quit()
+    {
+        Debug.Log("Quiting game.");
 
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

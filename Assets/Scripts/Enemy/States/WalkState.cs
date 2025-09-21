@@ -25,7 +25,6 @@ public class WalkState : IEnemyState
     public void OnEnter(EnemyStateMachine controller)
     {
         player = controller.enemyController.enemyManager.player;
-        Debug.Log("Walk");
         speed = controller.enemyController.enemy.speed;
     }
 

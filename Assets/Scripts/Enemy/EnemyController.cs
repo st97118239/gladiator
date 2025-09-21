@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public EnemyManager enemyManager { get; private set; }
+    public EnemyStateMachine enemyStateMachine;
     public Enemy enemy;
     public int health;
 
@@ -11,7 +12,6 @@ public class EnemyController : MonoBehaviour
     public float hitColorTime;
 
     [SerializeField] private string spritePath;
-    [SerializeField] private EnemyStateMachine enemyStateMachine;
 
     public void Load(Enemy givenEnemy, EnemyManager givenManager)
     {
@@ -26,7 +26,8 @@ public class EnemyController : MonoBehaviour
     {
         health -= damage;
 
-        // Knockback code hier
+        // To-Do: Knockback code here
+        // We can use rigidbody for knockback maybe
 
         StartCoroutine(HitEffect());
 

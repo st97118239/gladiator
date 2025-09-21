@@ -10,28 +10,25 @@ public class IdleState : IEnemyState
 
     public void OnEnter(EnemyStateMachine controller)
     {
-        if (!controller.enemyController.enemyManager.player.isDead)
+        if (controller.enemyController.enemyManager.player.isDead) return;
+        switch (controller.enemyController.enemy.attackType)
         {
-            switch (controller.enemyController.enemy.attackType)
-            {
-                case AttackType.Melee:
-                    controller.ChangeState(controller.walkState);
-                    break;
-                case AttackType.ProjectileRanged:
-                    controller.ChangeState(controller.rangedWalkState);
-                    break;
-                case AttackType.Jump:
-                case AttackType.Sing:
-                    break;
-                case AttackType.None:
-                default:
-                    Debug.LogWarning("Enemy has no attack type. Please fix!!");
-                    break;
-            }
-        }
-        else
-        {
-            Debug.Log("Player is fucking dead;");
+            case AttackType.Melee:
+                controller.ChangeState(controller.walkState);
+                break;
+            case AttackType.ProjectileRanged:
+                controller.ChangeState(controller.rangedWalkState);
+                break;
+            case AttackType.Jump:
+                Debug.Log("Attack hasn't been coded yet.");
+                break;
+            case AttackType.Sing:
+                controller.ChangeState(controller.sirenIdleState);
+                break;
+            case AttackType.None:
+            default:
+                Debug.LogWarning("Enemy has no attack type. Please fix!!");
+                break;
         }
     }
 
