@@ -597,7 +597,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.5707547, g: 0.9421277, b: 1, a: 1}
+  m_Color: {r: 0.62352943, g: 1, b: 1, a: 0.5176471}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -809,7 +809,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.5707547, g: 0.9421277, b: 1, a: 1}
+  m_Color: {r: 0.62352943, g: 1, b: 1, a: 0.5176471}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1105,6 +1105,7 @@ MonoBehaviour:
   levelManager: {fileID: 1718733408}
   player: {fileID: 1349421769}
   enemies: []
+  sirens: []
   projectiles: []
   rangedPositions:
   - {fileID: 567097403}
@@ -1989,7 +1990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a218a493865c0a849a8f779b57acb785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  level: {fileID: 11400000, guid: 9457e15af00b2be4ba9e88f02a486aed, type: 2}
+  level: {fileID: 11400000, guid: 693772c23d884864e8d3da2334796bed, type: 2}
   currentWave: 0
   enemyManger: {fileID: 763560086}
   player: {fileID: 1349421769}
@@ -2292,7 +2293,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.5707547, g: 0.9421277, b: 1, a: 1}
+  m_Color: {r: 0.62352943, g: 1, b: 1, a: 0.5176471}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

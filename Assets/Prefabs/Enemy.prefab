@@ -105,12 +105,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639c9e19143f7084dad866e94cc045e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
+  enemyStateMachine: {fileID: 8364674737212972923}
   enemy: {fileID: 0}
   health: 0
   spriteRenderer: {fileID: 8208541899940622705}
   hitColorTime: 1
   spritePath: Enemies/
-  enemyStateMachine: {fileID: 8364674737212972923}
 --- !u!114 &8364674737212972923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +126,8 @@ MonoBehaviour:
   enemyController: {fileID: 992925831548727312}
   attackType: 0
   attackDelay: 0
+  puddle: {fileID: 0}
+  enemyCollider: {fileID: 340753586850306276}
 --- !u!61 &340753586850306276
 BoxCollider2D:
   m_ObjectHideFlags: 0

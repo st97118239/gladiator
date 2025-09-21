@@ -40,13 +40,13 @@ public class Player : MonoBehaviour
     private void Update()
     {
         meleeAction.started += ctx => { MeleeAttack(); };
+
+        levelManager.enemyManger.SetClosest();
     }
 
     private void MeleeAttack()
     {
         if (!canAttack) return;
-
-        Debug.Log("LMB");
 
         Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         mousePos = new Vector3(mousePos.x, mousePos.y, 0);
@@ -55,7 +55,6 @@ public class Player : MonoBehaviour
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         angle -= 90;
         aimTransform.eulerAngles = new Vector3(0, 0, angle);
-        Debug.Log(angle);
 
         List<Collider2D> hitColliders = new();
         Physics2D.OverlapBox(meleeWeaponHitbox.position, meleeWeaponHitbox.localScale / 2, meleeWeaponHitbox.rotation.z, filter, hitColliders);
@@ -63,7 +62,6 @@ public class Player : MonoBehaviour
         int i = 0;
         while (i < hitColliders.Count)
         {
-            Debug.Log("Hit : " + hitColliders[i].name + i);
             hitColliders[i].GetComponent<EnemyController>().Hit(meleeDamage);
             i++;
         }

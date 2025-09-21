@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public float hitColorTime;
 
+    public bool isClosestSiren;
+
     [SerializeField] private string spritePath;
 
     public void Load(Enemy givenEnemy, EnemyManager givenManager)
@@ -32,7 +34,6 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(HitEffect());
 
         if (health > 0) return;
-        Debug.Log("Killed enemy.");
         enemyManager.CheckIfEnd(this);
     }
 

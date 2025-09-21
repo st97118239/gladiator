@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
 public class ProjectileObj : MonoBehaviour
 {
@@ -15,9 +12,17 @@ public class ProjectileObj : MonoBehaviour
 
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Rigidbody2D rigid;
+    [SerializeField] private BoxCollider2D projCollider;
 
     private Vector3 moveTo;
     private WaitForSeconds despawnDelay;
+    private Vector3 gizmoHitboxScale;
+
+    private void Awake()
+    {
+        if (Application.isPlaying)
+            gizmoHitboxScale = projCollider.size * transform.localScale;
+    }
 
     public void Load(Projectile givenProj, Vector3 givenTarget, EnemyController givenEnemy, float angle)
     {
@@ -47,19 +52,20 @@ public class ProjectileObj : MonoBehaviour
         Reset();
     }
 
-    private IEnumerator MoveToTarget()
-    {
-        while (true)
-        {
-            transform.position += moveTo * (Time.deltaTime * speed);
-            yield return null;
-        }
-    }
+    //private IEnumerator MoveToTarget()
+    //{
+    //    while (true)
+    //    {
+    //        transform.position += moveTo * (Time.deltaTime * speed);
+    //        yield return null;
+    //    }
+    //}
 
     private void OnCollisionEnter2D(Collision2D hit)
     {
         if (hit.gameObject.CompareTag("Enemy") && isPlayerProj)
         {
+            Debug.Log("Hit enemy.");
             hit.gameObject.GetComponent<EnemyController>().Hit(dmg);
             Reset();
         }
@@ -75,5 +81,16 @@ public class ProjectileObj : MonoBehaviour
         gameObject.SetActive(false);
         isOn = false;
         transform.position = Vector3.zero;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!Application.isPlaying) return;
+
+        //Gizmos.color = Color.darkBlue;
+        //Gizmos.DrawLine(transform.position, enemyController.enemyManager.player.transform.position);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(transform.position, gizmoHitboxScale);
     }
 }

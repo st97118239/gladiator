@@ -11,7 +11,7 @@ public class IdleState : IEnemyState
     public void OnEnter(EnemyStateMachine controller)
     {
         if (controller.enemyController.enemyManager.player.isDead) return;
-        switch (controller.enemyController.enemy.attackType)
+        switch (controller.attackType)
         {
             case AttackType.Melee:
                 controller.ChangeState(controller.walkState);
@@ -23,7 +23,7 @@ public class IdleState : IEnemyState
                 Debug.Log("Attack hasn't been coded yet.");
                 break;
             case AttackType.Sing:
-                controller.ChangeState(controller.sirenIdleState);
+                controller.ChangeState(controller.sirenSingState);
                 break;
             case AttackType.None:
             default:

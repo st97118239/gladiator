@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyStateMachine : MonoBehaviour
 {
@@ -8,18 +10,26 @@ public class EnemyStateMachine : MonoBehaviour
     public IEnemyState currentState { get; private set; }
 
     public IdleState idleState = new();
-    public SirenIdleState sirenIdleState = new();
     public SirenSingState sirenSingState = new();
     public WalkState walkState = new();
     public RangedWalkState rangedWalkState = new();
     public AttackState attackState = new();
     public RangedAttackState rangedAttackState = new();
-    public SirenAttackState sirenAttackState = new();
 
     public AttackType attackType;
     public float attackDelay;
 
     public Puddle puddle;
+
+    [SerializeField] private BoxCollider2D enemyCollider;
+
+    private Vector3 gizmoHitboxScale;
+
+    private void Awake()
+    {
+        if (Application.isPlaying)
+            gizmoHitboxScale = enemyCollider.size * transform.localScale;
+    }
 
     private void Update()
     {
@@ -28,8 +38,10 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void Load()
     {
-        ChangeState(idleState);
         attackType = enemyController.enemy.attackType;
+        if (attackType == AttackType.Sing)
+            FindPuddle();
+        ChangeState(idleState);
     }
 
     public void ChangeState(IEnemyState newState)
@@ -105,5 +117,8 @@ public class EnemyStateMachine : MonoBehaviour
 
         Gizmos.color = Color.darkBlue;
         Gizmos.DrawLine(transform.position, enemyController.enemyManager.player.transform.position);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(transform.position, gizmoHitboxScale);
     }
 }

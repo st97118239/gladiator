@@ -14,10 +14,11 @@ public class SirenSingState : IEnemyState
             return;
         }
 
+        if (!controller.enemyController.isClosestSiren) return;
 
         if (Vector3.Distance(playerTransform.position, controller.transform.position) <= controller.enemyController.enemy.attackRadius)
         {
-            controller.ChangeState(controller.sirenAttackState);
+            controller.ChangeState(controller.attackState);
             return;
         }
 

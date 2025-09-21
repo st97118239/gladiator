@@ -113,6 +113,7 @@ MonoBehaviour:
   enemy: {fileID: 0}
   spriteRenderer: {fileID: 8208541899940622705}
   rigid: {fileID: 5817432547344322974}
+  projCollider: {fileID: 340753586850306276}
 --- !u!50 &5817432547344322974
 Rigidbody2D:
   serializedVersion: 5

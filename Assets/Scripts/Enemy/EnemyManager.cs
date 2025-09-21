@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class EnemyManager : MonoBehaviour
 {
     public LevelManager levelManager;
     public Player player;
     public List<EnemyController> enemies;
+    public List<EnemyController> sirens;
     public List<ProjectileObj> projectiles;
     public List<Transform> rangedPositions;
     public Wave currentWave;
@@ -54,6 +57,8 @@ public class EnemyManager : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
+        sirens.Clear();
+
         Debug.Log("Spawning enemies.");
 
         WaitForSeconds wait = new(spawnDelay);
@@ -71,8 +76,13 @@ public class EnemyManager : MonoBehaviour
 
             EnemyController enemy = enemies[i];
             enemy.Load(currentWave.enemies[enemySpawnIdx], this);
-            enemy.transform.position = enemy.enemy.attackType == AttackType.Sing ? 
-                enemy.enemyStateMachine.puddle.transform.position : levelManager.spawnpoints[spawnPosIdx].position;
+            if (enemy.enemy.attackType == AttackType.Sing)
+            {
+                sirens.Add(enemy);
+                enemy.transform.position = enemy.enemyStateMachine.puddle.transform.position;
+            }
+            else
+                enemy.transform.position = levelManager.spawnpoints[spawnPosIdx].position;
 
             enemy.gameObject.SetActive(true);
 
@@ -96,8 +106,23 @@ public class EnemyManager : MonoBehaviour
         killedEnemy.gameObject.SetActive(false);
         killedEnemy.transform.position = Vector3.zero;
         killedEnemy.spriteRenderer.color = Color.white;
+        if (killedEnemy.enemy.attackType == AttackType.Sing)
+        {
+            sirens.Remove(killedEnemy);
+            killedEnemy.isClosestSiren = false;
+        }
 
         if (enemyCount != 0) return;
         levelManager.WaveEnd();
+    }
+
+    public void SetClosest()
+    {
+        bool isClosest = true;
+        foreach (EnemyController enemy in sirens.OrderBy(e => Vector3.Distance(player.transform.position, e.transform.position)))
+        {
+            enemy.isClosestSiren = isClosest;
+            isClosest = false;
+        }
     }
 }
