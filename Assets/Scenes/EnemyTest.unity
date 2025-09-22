@@ -919,6 +919,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1750582080}
     - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: abilities
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 1718733408}
@@ -927,8 +931,36 @@ PrefabInstance:
       value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: secondaryAction.m_Name
+      value: Secondary
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
       propertyPath: filter.layerMask.m_Bits
       value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: secondairyAction.m_Name
+      value: Secondairy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: activeAbilities.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: secondaryAction.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: secondaryAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 884c8fe4-bc8e-4442-abed-24b2e17de614
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: secondaryAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Mouse>/rightButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: secondaryAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Secondary
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5011344584744067260, guid: 571033310cb871a45a7f95311f981d4e, type: 3}

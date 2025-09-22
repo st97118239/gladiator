@@ -7,12 +7,13 @@ public class PlayerMovement : MonoBehaviour
     public bool canMove;
 
     private float speed;
+    private float speedMultiplier = 1f;
 
     private void Update()
     {
         if (!canMove) return;
 
-        speed = player.movementSpeed * Time.deltaTime;
+        speed = player.movementSpeed * Time.deltaTime * speedMultiplier;
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -30,5 +31,9 @@ public class PlayerMovement : MonoBehaviour
         {
             rb2d.AddForce(transform.right * speed, ForceMode2D.Force);
         }
+    }
+    public void SpeedChange(float change)
+    {
+        speedMultiplier += change;
     }
 }

@@ -133,6 +133,9 @@ MonoBehaviour:
   meleeAtkSpeed: 1
   atkKnockback: 1
   canAttack: 0
+  abilities: 0
+  activeAbilities: 
+  levelManager: {fileID: 0}
   spriteRenderer: {fileID: 8738978570264309918}
   meleeWeaponHitbox: {fileID: 1013117963668258421}
   aimTransform: {fileID: 4365072424774354997}

@@ -319,6 +319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   player: {fileID: 1398572573}
   rb2d: {fileID: 1398572570}
+  canMove: 0
 --- !u!114 &1398572573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,10 +332,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69393eec2f33e2b418e744d394ea946b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  movementScript: {fileID: 1398572572}
+  meleeAction:
+    m_Name: Melee
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 71e4214b-860c-45f0-ac5c-3f3b1a86e434
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   health: 0
-  speed: 0
   movementSpeed: 50
   isDead: 0
+  meleeDamage: 0
+  meleeAtkSpeed: 0
+  atkKnockback: 0
+  canAttack: 0
+  abilities: 1
+  activeAbilities: 
+  levelManager: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  meleeWeaponHitbox: {fileID: 0}
+  aimTransform: {fileID: 0}
+  meleeHitboxDistanceFromPlayer: 0
+  filter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  hpSlider: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!212 &1398572574
 SpriteRenderer:
   m_ObjectHideFlags: 0

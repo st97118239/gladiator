@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,14 +9,20 @@ public class Player : MonoBehaviour
 {
     public PlayerMovement movementScript;
     public InputAction meleeAction;
+    public InputAction secondaryAction;
     public int health;
     public float movementSpeed;
     public bool isDead;
     public int meleeDamage;
     public float meleeAtkSpeed;
+    private float meleeAtkSpeedMultiplier = 1f;
     public float atkKnockback;
 
     public bool canAttack;
+
+    public Abilities abilities;
+    public Abilities[] activeAbilities = new Abilities[] {};
+    private int currentAbilitiySlot = 0;
 
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -28,7 +35,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Camera cam;
 
     private void Start()
-    {
+    { 
         meleeAction.Enable();
         hpSlider.maxValue = health;
         hpSlider.value = health;
@@ -40,8 +47,13 @@ public class Player : MonoBehaviour
     private void Update()
     {
         meleeAction.started += ctx => { MeleeAttack(); };
+        secondaryAction.started += ctx => { SecondaryAction(); };
 
         levelManager.enemyManger.SetClosest();
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            AbilityGotten();
+        }
     }
 
     private void MeleeAttack()
@@ -78,11 +90,16 @@ public class Player : MonoBehaviour
 
         spriteRenderer.color = Color.gray4;
 
-        yield return new WaitForSeconds(meleeAtkSpeed);
+        yield return new WaitForSeconds(meleeAtkSpeed * meleeAtkSpeedMultiplier);
 
         spriteRenderer.color = Color.white;
 
         canAttack = true;
+    }
+    
+    private void SecondaryAction()
+    {
+
     }
 
     private void OnDrawGizmos()
@@ -112,5 +129,14 @@ public class Player : MonoBehaviour
         movementScript.canMove = false;
         Debug.Log("Player died.");
         levelManager.GameEnd(true);
+    }
+    public void AbilityGotten()
+    {
+        activeAbilities[currentAbilitiySlot] = abilities;
+        currentAbilitiySlot += 1;
+    }
+    public void MeleeAtkSpeedChange(float change)
+    {
+        meleeAtkSpeedMultiplier += change;
     }
 }
