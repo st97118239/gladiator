@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 695f53f935e5d3e46908db68ebbbb862, type: 3}
+  m_Name: Nymph
+  m_EditorClassIdentifier: Assembly-CSharp::Boss
+  sprite: {fileID: 21300000, guid: ebeca22b56d528b41990689fcac2378b, type: 3}
+  enemyType: 7
+  attackType: 5
+  abilityType: 0
+  health: 150
+  damage: 10
+  speed: 3
+  attackRadius: 10
+  attackSpeed: 5
+  abilityRadius: 0
+  abilitySpeed: 0
+  rangedFleeRadius: 0
+  projectile: {fileID: 0}
+  singDrawSpeed: 0

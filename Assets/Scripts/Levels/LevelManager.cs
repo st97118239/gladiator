@@ -42,6 +42,7 @@ public class LevelManager : MonoBehaviour
         SetPuddles();
         enemyManger.EmptyEnemySpawn();
         enemyManger.EmptyProjectileSpawn();
+        enemyManger.EmptyRootSpawn();
         StartCoroutine(LevelCountdown());
     }
 

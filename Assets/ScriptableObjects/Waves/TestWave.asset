@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b4fb03fcd02cdb4f9fc78eb9e651f60, type: 3}
   m_Name: TestWave
   m_EditorClassIdentifier: Assembly-CSharp::Wave
-  puddleCount: 3
-  enemies:
-  - {fileID: 11400000, guid: 893bf793d93871d4bb6c29ed16259d2c, type: 2}
-  - {fileID: 11400000, guid: 893bf793d93871d4bb6c29ed16259d2c, type: 2}
+  enemies: []
+  boss: {fileID: 11400000, guid: 6f66848e1b2f6db40864025dfa45d345, type: 2}

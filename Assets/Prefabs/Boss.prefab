@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2176017582455613439}
   - component: {fileID: 8208541899940622705}
-  - component: {fileID: 992925831548727312}
-  - component: {fileID: 8364674737212972923}
+  - component: {fileID: -359099630463156172}
+  - component: {fileID: 9168182095947676320}
   - component: {fileID: 340753586850306276}
   m_Layer: 8
-  m_Name: Enemy
-  m_TagString: Enemy
+  m_Name: Boss
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +93,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &992925831548727312
+--- !u!114 &-359099630463156172
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,16 +102,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 127359938022708900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 639c9e19143f7084dad866e94cc045e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 237d68b25fb1a5640baf7a16bdc120de, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  enemyStateMachine: {fileID: 8364674737212972923}
-  enemy: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::BossController
+  bossStateMachine: {fileID: 9168182095947676320}
+  boss: {fileID: 0}
   health: 0
   spriteRenderer: {fileID: 8208541899940622705}
   hitColorTime: 0.5
   isClosestSiren: 0
---- !u!114 &8364674737212972923
+--- !u!114 &9168182095947676320
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,11 +120,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 127359938022708900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd006f9164fbd77458904233f696a2dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 22219ca8b8363d0479c8ca47ca776d8e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyStateMachine
-  enemyController: {fileID: 992925831548727312}
+  m_EditorClassIdentifier: Assembly-CSharp::BossStateMachine
+  bossController: {fileID: -359099630463156172}
   attackType: 0
+  abilityType: 0
   attackDelay: 0
   puddle: {fileID: 0}
   enemyCollider: {fileID: 340753586850306276}

@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class BossController : MonoBehaviour
 {
     public EnemyManager enemyManager { get; private set; }
-    public EnemyStateMachine enemyStateMachine;
-    public Enemy enemy;
+    public BossStateMachine bossStateMachine;
+    public Boss boss;
     public int health;
 
     public SpriteRenderer spriteRenderer;
@@ -13,13 +13,13 @@ public class EnemyController : MonoBehaviour
 
     public bool isClosestSiren;
 
-    public void Load(Enemy givenEnemy, EnemyManager givenManager)
+    public void Load(Boss givenBoss, EnemyManager givenManager)
     {
         enemyManager = givenManager;
-        enemy = givenEnemy;
-        health = enemy.health;
-        spriteRenderer.sprite = enemy.sprite;
-        enemyStateMachine.Load();
+        boss = givenBoss;
+        health = boss.health;
+        spriteRenderer.sprite = boss.sprite;
+        bossStateMachine.Load();
     }
 
     public void Hit(int damage)
@@ -36,11 +36,6 @@ public class EnemyController : MonoBehaviour
         gameObject.SetActive(false);
         transform.position = Vector3.zero;
         spriteRenderer.color = Color.white;
-        if (enemy.attackType == AttackType.Sing)
-        {
-            enemyManager.sirens.Remove(this);
-            isClosestSiren = false;
-        }
 
         enemyManager.CheckIfEnd();
     }
@@ -51,7 +46,7 @@ public class EnemyController : MonoBehaviour
 
         yield return new WaitForSeconds(hitColorTime);
 
-        switch (enemyStateMachine.isReloading)
+        switch (bossStateMachine.isReloading)
         {
             case true:
                 spriteRenderer.color = Color.gray4;

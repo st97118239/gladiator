@@ -1105,8 +1105,10 @@ MonoBehaviour:
   levelManager: {fileID: 1718733408}
   player: {fileID: 1349421769}
   enemies: []
+  boss: {fileID: 0}
   sirens: []
   projectiles: []
+  roots: []
   rangedPositions:
   - {fileID: 567097403}
   - {fileID: 395987962}
@@ -1119,13 +1121,16 @@ MonoBehaviour:
   - {fileID: 1586060591}
   currentWave: {fileID: 0}
   emptyEnemyPrefab: {fileID: 127359938022708900, guid: 15e0db7888fbe5142b1e892e8959014d, type: 3}
+  emptyBossPrefab: {fileID: 127359938022708900, guid: f0f0b1dcad72eb848a74e2563ee7b25e, type: 3}
   emptyProjectilePrefab: {fileID: 127359938022708900, guid: 955a5e66db05eed4a9de4b3046a4dca7, type: 3}
+  emptyRootPrefab: {fileID: 8327271448520034645, guid: f1fd9ce7d542e1846948b884669aecc0, type: 3}
   enemyParent: {fileID: 1175587519}
   projectileParent: {fileID: 766475201}
   enemySpawnIdx: 0
   enemyCount: 0
   maxEnemyCount: 15
   maxProjectileCount: 10
+  maxRootCount: 3
   spawnDelay: 0.3
 --- !u!4 &763560087
 Transform:
@@ -1990,7 +1995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a218a493865c0a849a8f779b57acb785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  level: {fileID: 11400000, guid: 693772c23d884864e8d3da2334796bed, type: 2}
+  level: {fileID: 11400000, guid: 9457e15af00b2be4ba9e88f02a486aed, type: 2}
   currentWave: 0
   enemyManger: {fileID: 763560086}
   player: {fileID: 1349421769}

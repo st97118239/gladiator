@@ -3,19 +3,20 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class EnemyStateMachine : MonoBehaviour
+public class BossStateMachine : MonoBehaviour
 {
-    public EnemyController enemyController;
-    public IEnemyState currentState { get; private set; }
+    public BossController bossController;
+    public IBossState currentState { get; private set; }
 
-    public IdleState idleState = new();
-    public SirenSingState sirenSingState = new();
-    public WalkState walkState = new();
-    public RangedWalkState rangedWalkState = new();
-    public AttackState attackState = new();
-    public RangedAttackState rangedAttackState = new();
+    public BossIdle idleState = new();
+    public NymphIdle nymphIdleState = new();
+    public BossWalk walkState = new();
+    public BossMelee meleeState = new();
+    public NymphAttack nymphAttackState = new();
+    public BossDash dashState = new();
 
     public AttackType attackType;
+    public BossAbility abilityType;
     public float attackDelay;
 
     public Puddle puddle;
@@ -39,13 +40,14 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void Load()
     {
-        attackType = enemyController.enemy.attackType;
+        attackType = bossController.boss.attackType;
+        abilityType = bossController.boss.abilityType;
         if (attackType == AttackType.Sing)
             FindPuddle();
         ChangeState(idleState);
     }
 
-    public void ChangeState(IEnemyState newState)
+    public void ChangeState(IBossState newState)
     {
         currentState?.OnExit(this);
         currentState = newState;
@@ -54,7 +56,7 @@ public class EnemyStateMachine : MonoBehaviour
 
     public ProjectileObj GetProjectile()
     {
-        return enemyController.enemyManager.projectiles.FirstOrDefault(proj => !proj.isOn);
+        return bossController.enemyManager.projectiles.FirstOrDefault(proj => !proj.isOn);
     }
 
     public void StartAttackDelay()
@@ -65,11 +67,11 @@ public class EnemyStateMachine : MonoBehaviour
     private IEnumerator AttackAnim()
     {
         isReloading = true;
-        enemyController.spriteRenderer.color = Color.gray4;
+        bossController.spriteRenderer.color = Color.gray4;
 
-        yield return new WaitForSeconds(enemyController.enemy.attackSpeed);
+        yield return new WaitForSeconds(bossController.boss.attackSpeed);
 
-        enemyController.spriteRenderer.color = Color.white;
+        bossController.spriteRenderer.color = Color.white;
         isReloading = false;
 
         ChangeState(idleState);
@@ -77,19 +79,19 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void FindPuddle()
     {
-        if (enemyController.enemyManager.levelManager.availablePuddles.Count == 0)
+        if (bossController.enemyManager.levelManager.availablePuddles.Count == 0)
         {
             Debug.LogError("Not enough puddles. Please fix!");
-            enemyController.enemyManager.levelManager.Quit();
+            bossController.enemyManager.levelManager.Quit();
         }
 
-        puddle = enemyController.enemyManager.levelManager.availablePuddles[Random.Range(0, enemyController.enemyManager.levelManager.availablePuddles.Count)];
-        enemyController.enemyManager.levelManager.availablePuddles.Remove(puddle);
+        puddle = bossController.enemyManager.levelManager.availablePuddles[Random.Range(0, bossController.enemyManager.levelManager.availablePuddles.Count)];
+        bossController.enemyManager.levelManager.availablePuddles.Remove(puddle);
 
         if (!puddle)
         {
             Debug.LogError("Not enough puddles. Please fix!");
-            enemyController.enemyManager.levelManager.Quit();
+            bossController.enemyManager.levelManager.Quit();
         }
 
         puddle.occupied = true;
@@ -100,10 +102,10 @@ public class EnemyStateMachine : MonoBehaviour
         if (!Application.isPlaying) return;
 
         Gizmos.color = Color.blueViolet;
-        Gizmos.DrawWireSphere(transform.position, enemyController.enemy.attackRadius);
+        Gizmos.DrawWireSphere(transform.position, bossController.boss.attackRadius);
 
         Gizmos.color = Color.darkBlue;
-        Gizmos.DrawLine(transform.position, enemyController.enemyManager.player.transform.position);
+        Gizmos.DrawLine(transform.position, bossController.enemyManager.player.transform.position);
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position, gizmoHitboxScale);

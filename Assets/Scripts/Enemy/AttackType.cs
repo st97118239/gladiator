@@ -4,5 +4,6 @@
     Melee,
     ProjectileRanged,
     Jump,
-    Sing
+    Sing,
+    Nymph
 }
