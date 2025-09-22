@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1cb0c2e1aa06d44aa652cadaea1b264, type: 3}
   m_Name: Siren
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  sprite: {fileID: 21300000, guid: 807e2d39994c8c44cb3f8933e69cb569, type: 3}
+  sprite: {fileID: 21300000, guid: f7b82dbe6d0c0e74fa5aed94a9386d95, type: 3}
   enemyType: 14
   attackType: 4
   health: 7

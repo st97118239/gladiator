@@ -22,8 +22,6 @@ public class NymphAttack : IBossState
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         angle -= 90;
 
-        Debug.Log(angle); // DEBUGGING
-
         controller.bossController.enemyManager.SummonRoot(controller.bossController, angle);
 
         controller.StartAttackDelay();

@@ -44,8 +44,6 @@ public class Root : MonoBehaviour
 
     public void Load(int givenDamage, float givenAngle)
     {
-        Debug.Log("Root loaded."); // DEBUGGING
-
         angle = givenAngle;
         transform.eulerAngles = new Vector3(0, 0, angle);
         transform.localScale = defaultScale;

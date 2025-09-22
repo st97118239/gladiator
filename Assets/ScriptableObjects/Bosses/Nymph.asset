@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695f53f935e5d3e46908db68ebbbb862, type: 3}
   m_Name: Nymph
   m_EditorClassIdentifier: Assembly-CSharp::Boss
-  sprite: {fileID: 21300000, guid: ebeca22b56d528b41990689fcac2378b, type: 3}
+  sprite: {fileID: 21300000, guid: 5226f28755f131349b1ea02d732b017c, type: 3}
   enemyType: 7
   attackType: 5
   abilityType: 0

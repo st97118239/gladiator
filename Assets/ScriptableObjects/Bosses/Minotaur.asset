@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695f53f935e5d3e46908db68ebbbb862, type: 3}
   m_Name: Minotaur
   m_EditorClassIdentifier: Assembly-CSharp::Boss
-  sprite: {fileID: 21300000, guid: 22aa2fee5275c0743baaaf3cc36aac2d, type: 3}
+  sprite: {fileID: 21300000, guid: d6d32779becef98478991aedd2e6fe5a, type: 3}
   enemyType: 3
   attackType: 1
   abilityType: 1

@@ -45,5 +45,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Puddles
+    uniqueID: 2292118167
+    locked: 0
+  - name: Roots
+    uniqueID: 37631127
+    locked: 0
+  - name: Enemies
+    uniqueID: 2060264603
+    locked: 0
+  - name: Projectiles
+    uniqueID: 417027277
+    locked: 0
+  - name: Player
+    uniqueID: 3102221897
+    locked: 0
   m_RenderingLayers:
   - Default

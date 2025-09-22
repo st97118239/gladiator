@@ -157,13 +157,9 @@ public class EnemyManager : MonoBehaviour
 
     public void SummonRoot(BossController controller, float angle)
     {
-        Debug.Log("Finding root."); // DEBUGGING
-
         Root root = roots.FirstOrDefault(r => !r.isOn);
         if (!root) return;
         
-        Debug.Log("Root found."); // DEBUGGING
-
         root.transform.position = controller.transform.position;
         root.Load(controller.boss.damage, angle);
     }
