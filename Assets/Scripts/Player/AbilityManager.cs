@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class AbilityManager : MonoBehaviour
@@ -11,6 +12,12 @@ public class AbilityManager : MonoBehaviour
     public Ability[] powers;
     public Ability[] passives;
 
+    public float rageAtkSpdMultiplier;
+    public int lifestealDrainMultiplier;
+    public int steadyStanceArmorPoints;
+    public float marathonRunnerMovementSpeedMultiplier;
+
+    public int passivesUnlocked;
     public bool hasLifesteal;
 
     [SerializeField] private Player player;
@@ -21,6 +28,8 @@ public class AbilityManager : MonoBehaviour
     public void NewPower(Ability newAbility)
     {
         if (currentAbilitySlot >= abilities.Length) return;
+
+        SetAbility(newAbility);
 
         switch (newAbility.abilityType)
         {
@@ -34,7 +43,6 @@ public class AbilityManager : MonoBehaviour
             case AbilityType.Dash:
             case AbilityType.BerserkerRage:
             case AbilityType.Throw:
-                 SetAbility(newAbility);
                 break;
             case AbilityType.Lifesteal:
                 Lifesteal();
@@ -60,20 +68,16 @@ public class AbilityManager : MonoBehaviour
                 ability1 = newAbility;
                 player.ability1Action.Enable();
                 break;
-            case AbilitySort.Power:
-            {
-                if (!ability2)
-                {
-                    ability2 = newAbility;
-                    player.ability2Action.Enable();
-                }
+            case AbilitySort.Power when !ability2:
+                ability2 = newAbility;
+                player.ability2Action.Enable();
                 break;
-            }
-            case AbilitySort.Secondary when secondary:
-                return;
-            case AbilitySort.Secondary:
+            case AbilitySort.Secondary when !secondary:
                 secondary = newAbility;
                 player.secondaryAction.Enable();
+                break;
+            case AbilitySort.Passive:
+                passivesUnlocked++;
                 break;
         }
     }
@@ -171,10 +175,12 @@ public class AbilityManager : MonoBehaviour
     private void SteadyStance()
     {
         Debug.Log("Steady");
+        player.ArmorPointsChange(steadyStanceArmorPoints);
     }
 
     private void MarathonRunner()
     {
         Debug.Log("Run");
+        player.movementScript.SpeedChange(marathonRunnerMovementSpeedMultiplier);
     }
 }

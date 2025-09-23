@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -9,13 +8,13 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 {
     public bool isSelected;
 
-    public Color defaultColor;
-    public Color defaultTextColor;
-    public Color hoverColor;
-    public Color hoverTextColor;
-    public Vector3 defaultScale;
-    public Vector3 selectScale;
-    public float fadeTime;
+    public Color defaultColor = Color.white;
+    public Color defaultTextColor = Color.black;
+    public Color hoverColor = Color.white;
+    public Color hoverTextColor = Color.black;
+    public Vector3 defaultScale = Vector3.one;
+    public Vector3 selectScale = Vector3.one;
+    public float fadeTime = 0.3f;
     public float scaleTime;
 
     public Image image1;
@@ -29,6 +28,8 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     public bool hasText;
     public bool shouldFade;
     public bool shouldScale;
+    public bool lmbScale;
+    public bool rmbScale;
 
     [SerializeField] private Button.ButtonClickedEvent onLeftClick = new();
     [SerializeField] private Button.ButtonClickedEvent onRightClick = new();
@@ -59,7 +60,8 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     public void Reset()
     {
         isSelected = false;
-        transform.localScale = defaultScale;
+        if (shouldScale)
+            transform.localScale = defaultScale;
         if (hasImage1)
             image1.color = defaultColor;
         if (hasImage2)
@@ -88,12 +90,12 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         {
             case PointerEventData.InputButton.Left:
                 onLeftClick?.Invoke();
-                if (shouldScale)
+                if (shouldScale && lmbScale)
                     StartCoroutine(Scale(false));
                 break;
             case PointerEventData.InputButton.Right:
                 onRightClick?.Invoke();
-                if (shouldScale)
+                if (shouldScale && rmbScale)
                     StartCoroutine(Scale(false));
                 break;
         }
@@ -126,7 +128,7 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         Color endColor = shouldReverse ? defaultColor : hoverColor;
         Color endTextColor = shouldReverse ? defaultTextColor : hoverTextColor;
 
-        for (float i = 0; i <= fadeTime + Time.deltaTime; i += Time.deltaTime)
+        for (float i = 0; i <= fadeTime + 0.02f; i += 0.02f)
         {
             if (i > fadeTime) i = fadeTime;
 
@@ -157,7 +159,7 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
         Vector3 endScale = shouldReverse ? defaultScale : selectScale;
 
-        for (float i = 0; i <= scaleTime + Time.deltaTime; i += Time.deltaTime)
+        for (float i = 0; i <= scaleTime + 0.02f; i += 0.02f)
         {
             if (i > scaleTime) i = scaleTime;
 

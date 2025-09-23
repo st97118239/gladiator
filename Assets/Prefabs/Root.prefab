@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 37631127
-  m_SortingLayer: 4
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.6509434, g: 0.53069556, b: 0.38995194, a: 1}
@@ -110,8 +110,8 @@ MonoBehaviour:
   defaultScale: {x: 0.5, y: 0.1, z: 1}
   maxDistance: 13
   distanceToDisable: 0.2
-  spawnSpeed: 2
-  disableSpeed: 2
+  spawnSpeed: 1
+  disableSpeed: 1
 --- !u!61 &-4956862550865205126
 BoxCollider2D:
   m_ObjectHideFlags: 0

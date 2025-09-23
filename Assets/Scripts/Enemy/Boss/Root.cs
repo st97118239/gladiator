@@ -56,7 +56,7 @@ public class Root : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D hit)
     {
         if (hit.gameObject.CompareTag("Player"))
-            hit.gameObject.GetComponent<Player>().PlayerHit(dmg);
+            hit.gameObject.GetComponent<Player>().PlayerHit(dmg, true);
         else if (hit.gameObject.CompareTag("Enemy"))
             hit.gameObject.GetComponent<EnemyController>().Hit(dmg);
     }

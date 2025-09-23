@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!canMove) return;
 
-        speed = player.movementSpeed * Time.deltaTime * speedMultiplier;
+        speed = player.movementSpeed * speedMultiplier * Time.deltaTime;
 
         if (Input.GetKey(KeyCode.W))
         {

@@ -17,7 +17,6 @@ public class Player : MonoBehaviour
     public bool isDead;
     public int meleeDamage;
     public float meleeAtkSpeed;
-    private float meleeAtkSpeedMultiplier = 1f;
     public float atkKnockback;
 
     public bool canAttack;
@@ -33,9 +32,14 @@ public class Player : MonoBehaviour
     [SerializeField] private Slider hpSlider;
     [SerializeField] private Camera cam;
 
+    private float atkSpeedMultiplier = 1f;
+    private int lifestealDrainMultiplier;
+    private int armor;
+
     private void Start()
     { 
         meleeAction.Enable();
+        lifestealDrainMultiplier = abilityManager.lifestealDrainMultiplier;
         health = maxHealth;
         hpSlider.maxValue = maxHealth;
         hpSlider.value = health;
@@ -90,7 +94,7 @@ public class Player : MonoBehaviour
 
         spriteRenderer.color = Color.gray4;
 
-        yield return new WaitForSeconds(meleeAtkSpeed * meleeAtkSpeedMultiplier);
+        yield return new WaitForSeconds(meleeAtkSpeed * atkSpeedMultiplier);
 
         spriteRenderer.color = Color.white;
 
@@ -106,11 +110,12 @@ public class Player : MonoBehaviour
         Gizmos.DrawWireCube(meleeWeaponHitbox.position, meleeWeaponHitbox.localScale);
     }
 
-    public void PlayerHit(int damage)
+    public void PlayerHit(int damage, bool fromEnemy)
     {
         if (isDead) return;
 
-        health -= damage;
+        health -= fromEnemy ? damage - armor : damage;
+
         if (health > maxHealth) health = maxHealth;
 
         hpSlider.value = health;
@@ -130,15 +135,19 @@ public class Player : MonoBehaviour
 
     public void MeleeAtkSpeedChange(float change)
     {
-        meleeAtkSpeedMultiplier += change;
+        atkSpeedMultiplier += change;
+    }
+
+    public void ArmorPointsChange(int change)
+    {
+        armor += change;
     }
 
     public void Lifesteal(int healthStolen)
     {
-        Debug.Log(healthStolen + " becomes " + healthStolen / 2);
-        healthStolen /= 2;
+        healthStolen /= lifestealDrainMultiplier;
 
-        PlayerHit(-healthStolen);
+        PlayerHit(-healthStolen, false);
         
     }
 }

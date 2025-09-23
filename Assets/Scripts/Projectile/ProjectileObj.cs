@@ -27,12 +27,12 @@ public class ProjectileObj : MonoBehaviour
     public void Load(Projectile givenProj, Vector3 givenTarget, EnemyController givenEnemy, float angle)
     {
         isOn = true;
-        isPlayerProj = givenProj.playerProj;
-        dmg = givenProj.damage;
-        speed = givenProj.speed;
-        spriteRenderer.sprite = givenProj.sprite;
         target = givenTarget;
         enemy = givenEnemy;
+        isPlayerProj = givenProj.playerProj;
+        dmg = enemy.enemy.damage;
+        speed = givenProj.speed;
+        spriteRenderer.sprite = givenProj.sprite;
         despawnDelay = new WaitForSeconds(givenProj.despawnDelay);
         transform.position = enemy.transform.position;
         transform.eulerAngles = new Vector3(0, 0, angle);
@@ -71,7 +71,7 @@ public class ProjectileObj : MonoBehaviour
         }
         else if (hit.gameObject.CompareTag("Player") && !isPlayerProj)
         {
-            hit.gameObject.GetComponent<Player>().PlayerHit(dmg);
+            hit.gameObject.GetComponent<Player>().PlayerHit(dmg, true);
             Reset();
         }
     }
