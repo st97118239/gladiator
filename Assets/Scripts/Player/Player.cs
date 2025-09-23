@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +9,8 @@ public class Player : MonoBehaviour
     public PlayerMovement movementScript;
     public InputAction meleeAction;
     public InputAction secondaryAction;
+    public InputAction ability1Action;
+    public InputAction ability2Action;
     public int health;
     public float movementSpeed;
     public bool isDead;
@@ -20,11 +21,8 @@ public class Player : MonoBehaviour
 
     public bool canAttack;
 
-    public Abilities abilities;
-    public Abilities[] activeAbilities = new Abilities[] {};
-    private int currentAbilitiySlot = 0;
-
     [SerializeField] private LevelManager levelManager;
+    [SerializeField] private AbilityManager abilityManager;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform meleeWeaponHitbox;
     [SerializeField] private Transform aimTransform;
@@ -46,14 +44,14 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (isDead) return;
+
         meleeAction.started += ctx => { MeleeAttack(); };
-        secondaryAction.started += ctx => { SecondaryAction(); };
+        secondaryAction.started += ctx => { abilityManager.UseSecondary(); };
+        ability1Action.started += ctx => { abilityManager.UseAbility1(); };
+        ability2Action.started += ctx => { abilityManager.UseAbility2(); };
 
         levelManager.enemyManger.SetClosest();
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            AbilityGotten();
-        }
     }
 
     private void MeleeAttack()
@@ -96,11 +94,6 @@ public class Player : MonoBehaviour
 
         canAttack = true;
     }
-    
-    private void SecondaryAction()
-    {
-
-    }
 
     private void OnDrawGizmos()
     {
@@ -130,11 +123,7 @@ public class Player : MonoBehaviour
         Debug.Log("Player died.");
         levelManager.GameEnd(true);
     }
-    public void AbilityGotten()
-    {
-        activeAbilities[currentAbilitiySlot] = abilities;
-        currentAbilitiySlot += 1;
-    }
+
     public void MeleeAtkSpeedChange(float change)
     {
         meleeAtkSpeedMultiplier += change;

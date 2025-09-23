@@ -13,9 +13,6 @@ public class NymphAttack : IBossState
     {
         //controller.bossController.enemyManager.player.PlayerHit(controller.bossController.boss.damage);
 
-        // Nymph creates a line from itself to +Y of itself
-        // That line hits the player on impact
-
         playerTransform = controller.bossController.enemyManager.player.transform;
 
         Vector3 aimDir = (playerTransform.position - controller.transform.position).normalized;

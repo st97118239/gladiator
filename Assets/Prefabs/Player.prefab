@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3356284463525228826}
   - component: {fileID: 8738978570264309918}
   - component: {fileID: 6138312183256452214}
+  - component: {fileID: 5799873494410771425}
   - component: {fileID: 5928797679792064197}
   - component: {fileID: 1325672466525981746}
   - component: {fileID: 5331712625960726167}
@@ -83,7 +84,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1192745399
-  m_SortingLayer: 1
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a93502f04c8a91948afa41bee5a965e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -143,6 +144,40 @@ MonoBehaviour:
       m_Action: Secondary
       m_Flags: 0
     m_Flags: 0
+  ability1Action:
+    m_Name: Ability 1
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 5402c4da-e138-4d7c-8206-23cdc6b65a05
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: de7cc06e-4021-4855-b9c9-43de00d39bee
+      m_Path: <Keyboard>/#(Q)
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Ability 1
+      m_Flags: 0
+    m_Flags: 0
+  ability2Action:
+    m_Name: Ability 2
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: aa385ff0-adf7-4603-9464-2bf64ee5d286
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: b01ebad8-4dd5-4992-a270-9309b1f81b5e
+      m_Path: <Keyboard>/#(E)
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Ability 2
+      m_Flags: 0
+    m_Flags: 0
   health: 100
   movementSpeed: 2000
   isDead: 0
@@ -150,9 +185,8 @@ MonoBehaviour:
   meleeAtkSpeed: 1
   atkKnockback: 1
   canAttack: 0
-  abilities: 1
-  activeAbilities: 00000000000000000000000000000000
   levelManager: {fileID: 0}
+  abilityManager: {fileID: 5799873494410771425}
   spriteRenderer: {fileID: 8738978570264309918}
   meleeWeaponHitbox: {fileID: 1013117963668258421}
   aimTransform: {fileID: 4365072424774354997}
@@ -173,6 +207,22 @@ MonoBehaviour:
     maxNormalAngle: 0
   hpSlider: {fileID: 0}
   cam: {fileID: 0}
+--- !u!114 &5799873494410771425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676582975853013370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ac20f43586a4f499151530d2b4b38e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityManager
+  abilities: 00000000000000000000000000000000
+  ability1: 0
+  ability2: 0
+  player: {fileID: 6138312183256452214}
 --- !u!114 &5928797679792064197
 MonoBehaviour:
   m_ObjectHideFlags: 0

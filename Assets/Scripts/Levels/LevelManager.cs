@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     public int currentWave;
 
     public EnemyManager enemyManger;
+    public UIManager uiManager;
     public Player player;
 
     public List<Transform> spawnpoints;
@@ -82,10 +83,21 @@ public class LevelManager : MonoBehaviour
         currentWave++;
     }
 
-    public void WaveEnd()
+    public void WaveFinish()
     {
         Debug.Log("Wave ended.");
 
+        if (level.waves[currentWave].hasAbilityRoll)
+        {
+            uiManager.ShowAbilityMenu();
+            return;
+        }
+
+        WaveEnd();
+    }
+
+    public void WaveEnd()
+    {
         if (level.waves.Count > currentWave)
             StartCoroutine(NextWave());
         else

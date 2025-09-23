@@ -142,7 +142,7 @@ public class EnemyManager : MonoBehaviour
         enemyCount--;
 
         if (enemyCount != 0) return;
-        levelManager.WaveEnd();
+        levelManager.WaveFinish();
     }
 
     public void SetClosest()
