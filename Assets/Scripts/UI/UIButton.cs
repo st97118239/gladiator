@@ -18,10 +18,17 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     public float fadeTime;
     public float scaleTime;
 
-    public Image image;
+    public Image image1;
     public Image image2;
     public Image image3;
     public TMP_Text text;
+
+    public bool hasImage1;
+    public bool hasImage2;
+    public bool hasImage3;
+    public bool hasText;
+    public bool shouldFade;
+    public bool shouldScale;
 
     [SerializeField] private Button.ButtonClickedEvent onLeftClick = new();
     [SerializeField] private Button.ButtonClickedEvent onRightClick = new();
@@ -53,18 +60,24 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     {
         isSelected = false;
         transform.localScale = defaultScale;
-        image.color = defaultColor;
-        image2.color = defaultColor;
-        image3.color = defaultColor;
-        text.color = defaultTextColor;
+        if (hasImage1)
+            image1.color = defaultColor;
+        if (hasImage2)
+            image2.color = defaultColor;
+        if (hasImage3)
+            image3.color = defaultColor;
+        if (hasText)
+            text.color = defaultTextColor;
     }
 
     public void Deselect()
     {
         if (!isSelected) return;
 
-        StartCoroutine(Scale(true));
-        StartCoroutine(Fade(true));
+        if (shouldScale)
+            StartCoroutine(Scale(true));
+        if (shouldFade)
+            StartCoroutine(Fade(true));
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -75,11 +88,13 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         {
             case PointerEventData.InputButton.Left:
                 onLeftClick?.Invoke();
-                StartCoroutine(Scale(false));
+                if (shouldScale)
+                    StartCoroutine(Scale(false));
                 break;
             case PointerEventData.InputButton.Right:
                 onRightClick?.Invoke();
-                StartCoroutine(Scale(false));
+                if (shouldScale)
+                    StartCoroutine(Scale(false));
                 break;
         }
     }
@@ -89,7 +104,8 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         if (isSelected) return;
 
         onHoverEnter?.Invoke();
-        StartCoroutine(Fade(false));
+        if (shouldFade)
+            StartCoroutine(Fade(false));
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -97,16 +113,17 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         if (isSelected) return;
 
         onHoverExit?.Invoke();
-        StartCoroutine(Fade(true));
+        if (shouldFade)
+            StartCoroutine(Fade(true));
     }
 
     private IEnumerator Fade(bool shouldReverse)
     {
+        if (!shouldFade) yield break;
+
         yield return null;
 
-        Color startColor = shouldReverse ? hoverColor : defaultColor;
         Color endColor = shouldReverse ? defaultColor : hoverColor;
-        Color startTextColor = shouldReverse ? hoverTextColor : defaultTextColor;
         Color endTextColor = shouldReverse ? defaultTextColor : hoverTextColor;
 
         for (float i = 0; i <= fadeTime + Time.deltaTime; i += Time.deltaTime)
@@ -115,10 +132,16 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
             float fillAmount = i / fadeTime;
 
-            image.color = Color.Lerp(startColor, endColor, fillAmount);
-            image2.color = Color.Lerp(startColor, endColor, fillAmount);
-            image3.color = Color.Lerp(startColor, endColor, fillAmount);
-            text.color = Color.Lerp(startTextColor, endTextColor, fillAmount);
+            Color imageColor = Color.Lerp(image1.color, endColor, fillAmount);
+
+            if (hasImage1)
+                image1.color = imageColor;
+            if (hasImage2)
+                image2.color = imageColor;
+            if (hasImage3)
+                image3.color = imageColor;
+            if (hasText)
+                text.color = Color.Lerp(text.color, endTextColor, fillAmount);
 
             yield return null;
         }
@@ -126,11 +149,12 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     private IEnumerator Scale(bool shouldReverse)
     {
+        if (!shouldScale) yield break;
+
         isSelected = !shouldReverse;
 
         yield return null;
 
-        Vector3 startScale = shouldReverse ? selectScale : defaultScale;
         Vector3 endScale = shouldReverse ? defaultScale : selectScale;
 
         for (float i = 0; i <= scaleTime + Time.deltaTime; i += Time.deltaTime)
@@ -139,7 +163,8 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
             float scaleAmount = i / scaleTime;
 
-            image.transform.localScale = Vector3.Lerp(startScale, endScale, scaleAmount);
+            if (hasImage1)
+                image1.transform.localScale = Vector3.Lerp(image1.transform.localScale, endScale, scaleAmount);
 
             yield return null;
         }
