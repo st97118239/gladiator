@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     public LevelManager levelManager;
+    public AbilityManager abilityManager;
     public Player player;
     public List<EnemyController> enemies;
     public BossController boss;

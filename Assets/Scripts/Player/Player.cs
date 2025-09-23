@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public InputAction secondaryAction;
     public InputAction ability1Action;
     public InputAction ability2Action;
+    public int maxHealth;
     public int health;
     public float movementSpeed;
     public bool isDead;
@@ -35,7 +36,8 @@ public class Player : MonoBehaviour
     private void Start()
     { 
         meleeAction.Enable();
-        hpSlider.maxValue = health;
+        health = maxHealth;
+        hpSlider.maxValue = maxHealth;
         hpSlider.value = health;
         meleeWeaponHitbox.position += Vector3.up * meleeHitboxDistanceFromPlayer;
         canAttack = true;
@@ -109,6 +111,8 @@ public class Player : MonoBehaviour
         if (isDead) return;
 
         health -= damage;
+        if (health > maxHealth) health = maxHealth;
+
         hpSlider.value = health;
 
         if (health <= 0)
@@ -127,5 +131,14 @@ public class Player : MonoBehaviour
     public void MeleeAtkSpeedChange(float change)
     {
         meleeAtkSpeedMultiplier += change;
+    }
+
+    public void Lifesteal(int healthStolen)
+    {
+        Debug.Log(healthStolen + " becomes " + healthStolen / 2);
+        healthStolen /= 2;
+
+        PlayerHit(-healthStolen);
+        
     }
 }

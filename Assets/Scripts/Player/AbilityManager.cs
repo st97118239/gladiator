@@ -3,8 +3,15 @@ using UnityEngine;
 public class AbilityManager : MonoBehaviour
 {
     public Ability[] abilities;
+    public Ability secondary;
     public Ability ability1;
     public Ability ability2;
+
+    public Ability[] secondaries;
+    public Ability[] powers;
+    public Ability[] passives;
+
+    public bool hasLifesteal;
 
     [SerializeField] private Player player;
     [SerializeField] private UIManager uiManager;
@@ -30,6 +37,7 @@ public class AbilityManager : MonoBehaviour
                  SetAbility(newAbility);
                 break;
             case AbilityType.Lifesteal:
+                Lifesteal();
                 break;
             case AbilityType.SteadyStance:
                 SteadyStance();
@@ -46,25 +54,52 @@ public class AbilityManager : MonoBehaviour
 
     private void SetAbility(Ability newAbility)
     {
-        if (ability1.abilityType == AbilityType.None)
+        switch (newAbility.abilitySort)
         {
-            ability1 = newAbility;
-            player.ability1Action.Enable();
-        }
-        else if (ability2.abilityType == AbilityType.None)
-        {
-            ability2 = newAbility;
-            player.ability2Action.Enable();
+            case AbilitySort.Power when !ability1:
+                ability1 = newAbility;
+                player.ability1Action.Enable();
+                break;
+            case AbilitySort.Power:
+            {
+                if (!ability2)
+                {
+                    ability2 = newAbility;
+                    player.ability2Action.Enable();
+                }
+                break;
+            }
+            case AbilitySort.Secondary when secondary:
+                return;
+            case AbilitySort.Secondary:
+                secondary = newAbility;
+                player.secondaryAction.Enable();
+                break;
         }
     }
 
     public void UseSecondary()
     {
+        if (!secondary) return;
 
+        switch (secondary.abilityType)
+        {
+            case AbilityType.Shield:
+                Shield();
+                break;
+            case AbilityType.Crossbow:
+                Crossbow();
+                break;
+            case AbilityType.Net:
+                Net();
+                break;
+        }
     }
 
     public void UseAbility1()
     {
+        if (!ability1) return;
+
         switch (ability1.abilityType)
         {
             case AbilityType.Dash:
@@ -81,51 +116,65 @@ public class AbilityManager : MonoBehaviour
 
     public void UseAbility2()
     {
+        if (!ability2) return;
 
+        switch (ability2.abilityType)
+        {
+            case AbilityType.Dash:
+                Dash();
+                break;
+            case AbilityType.BerserkerRage:
+                BerserkerRage();
+                break;
+            case AbilityType.Throw:
+                Throw();
+                break;
+        }
     }
 
     private void Shield()
     {
-
+        Debug.Log("Block");
     }
 
     private void Net()
     {
-
+        Debug.Log("Catch");
     }
 
     private void Crossbow()
     {
-
+        Debug.Log("Shoot");
     }
 
     private void Dash()
     {
-
+        Debug.Log("Dash");
     }
 
     private void BerserkerRage()
     {
-
+        Debug.Log("Rage");
     }
 
     private void Throw()
     {
-        
+        Debug.Log("Throw");
     }
 
     private void Lifesteal()
     {
-
+        Debug.Log("Steal health");
+        hasLifesteal = true;
     }
 
     private void SteadyStance()
     {
-
+        Debug.Log("Steady");
     }
 
     private void MarathonRunner()
     {
-
+        Debug.Log("Run");
     }
 }

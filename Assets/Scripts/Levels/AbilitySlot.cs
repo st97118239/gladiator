@@ -7,15 +7,11 @@ public class AbilitySlot : MonoBehaviour
 
     private Image image;
 
-    private void Awake()
-    {
-        image = GetComponent<Image>();
-    }
-
     public void Activate(Ability givenAbility)
     {
+        image = GetComponent<Image>();
+        gameObject.SetActive(true);
         ability = givenAbility;
         image.sprite = ability.abilityIcon;
-        gameObject.SetActive(true);
     }
 }

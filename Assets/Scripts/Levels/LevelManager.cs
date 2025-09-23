@@ -87,8 +87,9 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("Wave ended.");
 
-        if (level.waves[currentWave].hasAbilityRoll)
+        if (level.waves[currentWave - 1].hasAbilityRoll)
         {
+            Debug.Log("Showing ability menu");
             uiManager.ShowAbilityMenu();
             return;
         }
