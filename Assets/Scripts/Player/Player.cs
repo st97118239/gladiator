@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform aimTransform;
     [SerializeField] private float meleeHitboxDistanceFromPlayer;
     [SerializeField] private ContactFilter2D filter;
+    [SerializeField] private BoxCollider2D cd2d;
 
     [SerializeField] private Slider hpSlider;
     [SerializeField] private Camera cam;
@@ -33,10 +34,13 @@ public class Player : MonoBehaviour
     private int lifestealDrainMultiplier;
     private int armor;
     private InputAction aimAction;
+    private Vector3 gizmoHitboxScale;
 
     private void Awake()
     {
         aimAction = inputActions.FindAction("Aim");
+        if (Application.isPlaying)
+            gizmoHitboxScale = cd2d.size * transform.localScale;
     }
 
     private void Start()
@@ -105,6 +109,9 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         if (!Application.isPlaying) return;
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(transform.position, gizmoHitboxScale);
 
         Gizmos.color = Color.red;
         Gizmos.DrawLine(cam.ScreenToWorldPoint(Input.mousePosition), transform.position);

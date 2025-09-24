@@ -110,74 +110,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   movementScript: {fileID: 5928797679792064197}
-  meleeAction:
-    m_Name: Melee
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 8850fc8a-623b-4027-9372-a36538ee07fa
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: d13d3f10-8b3d-40a4-b6f5-8bd6d7711ddd
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Melee
-      m_Flags: 0
-    m_Flags: 0
-  secondaryAction:
-    m_Name: Secondary
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 4893cd34-0aa7-420d-ade2-62766a019783
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 884c8fe4-bc8e-4442-abed-24b2e17de614
-      m_Path: <Mouse>/rightButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Secondary
-      m_Flags: 0
-    m_Flags: 0
-  ability1Action:
-    m_Name: Ability 1
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 5402c4da-e138-4d7c-8206-23cdc6b65a05
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: de7cc06e-4021-4855-b9c9-43de00d39bee
-      m_Path: <Keyboard>/#(Q)
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Ability 1
-      m_Flags: 0
-    m_Flags: 0
-  ability2Action:
-    m_Name: Ability 2
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: aa385ff0-adf7-4603-9464-2bf64ee5d286
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: b01ebad8-4dd5-4992-a270-9309b1f81b5e
-      m_Path: <Keyboard>/#(E)
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Ability 2
-      m_Flags: 0
-    m_Flags: 0
   maxHealth: 100
   health: 100
   movementSpeed: 2000
@@ -186,6 +118,7 @@ MonoBehaviour:
   meleeAtkSpeed: 1
   atkKnockback: 1
   canAttack: 0
+  inputActions: {fileID: 0}
   levelManager: {fileID: 0}
   abilityManager: {fileID: 5799873494410771425}
   spriteRenderer: {fileID: 8738978570264309918}
@@ -206,6 +139,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  cd2d: {fileID: 5331712625960726167}
   hpSlider: {fileID: 0}
   cam: {fileID: 0}
 --- !u!114 &5799873494410771425
@@ -261,8 +195,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   player: {fileID: 6138312183256452214}
+  inputActions: {fileID: 0}
   rb2d: {fileID: 1325672466525981746}
   canMove: 0
+  moveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c7d88779-4f13-4a52-876b-4e66c25288ad
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  speed: 5
 --- !u!50 &1325672466525981746
 Rigidbody2D:
   serializedVersion: 5

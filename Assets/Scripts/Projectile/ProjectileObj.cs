@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ProjectileObj : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class ProjectileObj : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Rigidbody2D rigid;
     [SerializeField] private BoxCollider2D projCollider;
+    [SerializeField] private Vector3 spinSpeed;
 
     private Vector3 moveTo;
     private WaitForSeconds despawnDelay;
@@ -24,6 +27,11 @@ public class ProjectileObj : MonoBehaviour
             gizmoHitboxScale = projCollider.size * transform.localScale;
     }
 
+    private void Update()
+    {
+        transform.eulerAngles += spinSpeed;
+    }
+
     public void Load(Projectile givenProj, Vector3 givenTarget, EnemyController givenEnemy, float angle)
     {
         isOn = true;
@@ -32,11 +40,11 @@ public class ProjectileObj : MonoBehaviour
         isPlayerProj = givenProj.playerProj;
         dmg = enemy.enemy.damage;
         speed = givenProj.speed;
+        spinSpeed = new Vector3(0, 0, givenProj.spinSpeed);
         spriteRenderer.sprite = givenProj.sprite;
         despawnDelay = new WaitForSeconds(givenProj.despawnDelay);
         transform.position = enemy.transform.position;
         transform.eulerAngles = new Vector3(0, 0, angle);
-        moveTo = Quaternion.Euler(0, 0, angle) * Vector3.up;
 
         gameObject.SetActive(true);
         Vector3 aimDir = (givenTarget - transform.position).normalized;
