@@ -123,15 +123,6 @@ public class LevelManager : MonoBehaviour
 
         player.movementScript.canMove = false;
         player.canAttack = false;
-        StartCoroutine(StopGame());
-    }
-
-    private IEnumerator StopGame()
-    {
-        Debug.Log("Exiting game.");
-
-        yield return new WaitForSeconds(gameEndDelay);
-
-        uiManager.Exit();
+        uiManager.LoadSceneFade(0);
     }
 }

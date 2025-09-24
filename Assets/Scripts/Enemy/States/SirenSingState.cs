@@ -28,7 +28,7 @@ public class SirenSingState : IEnemyState
     public void OnEnter(EnemyStateMachine controller)
     {
         playerTransform = controller.enemyController.enemyManager.player.transform;
-        singDrawSpeed = controller.enemyController.enemy.singDrawSpeed;
+        singDrawSpeed = controller.enemyController.enemyManager.player.movementSpeed;
     }
 
     public void OnExit(EnemyStateMachine controller)
