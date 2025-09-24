@@ -132,21 +132,6 @@ public class LevelManager : MonoBehaviour
 
         yield return new WaitForSeconds(gameEndDelay);
 
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
-    }
-
-    public void Quit()
-    {
-        Debug.Log("Quiting game.");
-
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
+        uiManager.Exit();
     }
 }

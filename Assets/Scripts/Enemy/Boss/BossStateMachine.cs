@@ -82,7 +82,7 @@ public class BossStateMachine : MonoBehaviour
         if (bossController.enemyManager.levelManager.availablePuddles.Count == 0)
         {
             Debug.LogError("Not enough puddles. Please fix!");
-            bossController.enemyManager.levelManager.Quit();
+            bossController.enemyManager.levelManager.uiManager.Quit();
         }
 
         puddle = bossController.enemyManager.levelManager.availablePuddles[Random.Range(0, bossController.enemyManager.levelManager.availablePuddles.Count)];
@@ -91,7 +91,7 @@ public class BossStateMachine : MonoBehaviour
         if (!puddle)
         {
             Debug.LogError("Not enough puddles. Please fix!");
-            bossController.enemyManager.levelManager.Quit();
+            bossController.enemyManager.levelManager.uiManager.Quit();
         }
 
         puddle.occupied = true;

@@ -80,7 +80,7 @@ public class EnemyStateMachine : MonoBehaviour
         if (enemyController.enemyManager.levelManager.availablePuddles.Count == 0)
         {
             Debug.LogError("Not enough puddles. Please fix!");
-            enemyController.enemyManager.levelManager.Quit();
+            enemyController.enemyManager.levelManager.uiManager.Quit();
         }
 
         puddle = enemyController.enemyManager.levelManager.availablePuddles[Random.Range(0, enemyController.enemyManager.levelManager.availablePuddles.Count)];
@@ -89,7 +89,7 @@ public class EnemyStateMachine : MonoBehaviour
         if (!puddle)
         {
             Debug.LogError("Not enough puddles. Please fix!");
-            enemyController.enemyManager.levelManager.Quit();
+            enemyController.enemyManager.levelManager.uiManager.Quit();
         }
 
         puddle.occupied = true;

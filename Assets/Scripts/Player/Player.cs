@@ -57,6 +57,11 @@ public class Player : MonoBehaviour
         levelManager.enemyManger.SetClosest();
     }
 
+    private void OnPause()
+    {
+        levelManager.uiManager.PauseMenu();
+    }
+
     private void OnMelee()
     {
         if (!canAttack || isDead) return;
