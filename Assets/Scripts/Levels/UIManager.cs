@@ -136,7 +136,7 @@ public class UIManager : MonoBehaviour
         Color startColor = shouldReverse ? Color.gray2 : Color.clear;
         Color endColor = shouldReverse ? Color.clear : Color.gray2;
 
-        for (float i = 0; i <= fadePanelTime; i += 0.02f)
+        for (float i = 0; i <= fadePanelTime + Time.unscaledDeltaTime; i += Time.unscaledDeltaTime)
         {
             if (i > fadePanelTime) i = fadePanelTime;
 

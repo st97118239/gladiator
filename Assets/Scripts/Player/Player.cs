@@ -7,10 +7,6 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public PlayerMovement movementScript;
-    public InputAction meleeAction;
-    public InputAction secondaryAction;
-    public InputAction ability1Action;
-    public InputAction ability2Action;
     public int maxHealth;
     public int health;
     public float movementSpeed;
@@ -21,6 +17,7 @@ public class Player : MonoBehaviour
 
     public bool canAttack;
 
+    [SerializeField] private InputActionAsset inputActions;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private AbilityManager abilityManager;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -35,10 +32,15 @@ public class Player : MonoBehaviour
     private float atkSpeedMultiplier = 1f;
     private int lifestealDrainMultiplier;
     private int armor;
+    private InputAction aimAction;
+
+    private void Awake()
+    {
+        aimAction = inputActions.FindAction("Aim");
+    }
 
     private void Start()
     { 
-        meleeAction.Enable();
         lifestealDrainMultiplier = abilityManager.lifestealDrainMultiplier;
         health = maxHealth;
         hpSlider.maxValue = maxHealth;
@@ -52,21 +54,15 @@ public class Player : MonoBehaviour
     {
         if (isDead) return;
 
-        meleeAction.started += ctx => { MeleeAttack(); };
-        secondaryAction.started += ctx => { abilityManager.UseSecondary(); };
-        ability1Action.started += ctx => { abilityManager.UseAbility1(); };
-        ability2Action.started += ctx => { abilityManager.UseAbility2(); };
-
         levelManager.enemyManger.SetClosest();
     }
 
-    private void MeleeAttack()
+    private void OnMelee()
     {
-        if (!canAttack) return;
+        if (!canAttack || isDead) return;
 
         Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         mousePos = new Vector3(mousePos.x, mousePos.y, 0);
-
         Vector3 aimDir = (mousePos - transform.position).normalized;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         angle -= 90;

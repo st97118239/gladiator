@@ -128,7 +128,7 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         Color endColor = shouldReverse ? defaultColor : hoverColor;
         Color endTextColor = shouldReverse ? defaultTextColor : hoverTextColor;
 
-        for (float i = 0; i <= fadeTime + 0.02f; i += 0.02f)
+        for (float i = 0; i <= fadeTime + Time.unscaledDeltaTime; i += Time.unscaledDeltaTime)
         {
             if (i > fadeTime) i = fadeTime;
 
@@ -159,7 +159,7 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
         Vector3 endScale = shouldReverse ? defaultScale : selectScale;
 
-        for (float i = 0; i <= scaleTime + 0.02f; i += 0.02f)
+        for (float i = 0; i <= scaleTime + Time.unscaledDeltaTime; i += Time.unscaledDeltaTime)
         {
             if (i > scaleTime) i = scaleTime;
 

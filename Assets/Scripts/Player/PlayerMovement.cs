@@ -1,39 +1,39 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     public Player player;
+    public InputActionAsset inputActions;
     public Rigidbody2D rb2d;
     public bool canMove;
 
-    private float speed;
+    public InputAction moveAction;
+
+    [SerializeField] private float speed = 5;
+
     private float speedMultiplier = 1f;
+    private Vector2 moveAmount; 
+
+    private void Start()
+    {
+        moveAction = InputSystem.actions.FindAction("Move");
+    }
 
     private void Update()
     {
-        if (!canMove) return;
-
-        speed = player.movementSpeed * speedMultiplier * Time.deltaTime;
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            rb2d.AddForce(transform.up * speed, ForceMode2D.Force);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            rb2d.AddForce(transform.right * (speed * -1), ForceMode2D.Force);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            rb2d.AddForce(transform.up * (speed * -1), ForceMode2D.Force);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            rb2d.AddForce(transform.right * speed, ForceMode2D.Force);
-        }
+        moveAmount = moveAction.ReadValue<Vector2>();
     }
+
+    private void FixedUpdate()
+    {
+        rb2d.MovePosition(rb2d.position + Vector2.one * moveAmount * (speed * Time.deltaTime));
+    }
+
     public void SpeedChange(float change)
     {
         speedMultiplier += change;
+        speed *= speedMultiplier;
     }
 }

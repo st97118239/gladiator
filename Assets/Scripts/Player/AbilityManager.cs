@@ -66,15 +66,12 @@ public class AbilityManager : MonoBehaviour
         {
             case AbilitySort.Power when !ability1:
                 ability1 = newAbility;
-                player.ability1Action.Enable();
                 break;
             case AbilitySort.Power when !ability2:
                 ability2 = newAbility;
-                player.ability2Action.Enable();
                 break;
             case AbilitySort.Secondary when !secondary:
                 secondary = newAbility;
-                player.secondaryAction.Enable();
                 break;
             case AbilitySort.Passive:
                 passivesUnlocked++;
@@ -82,7 +79,7 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    public void UseSecondary()
+    public void OnSecondary()
     {
         if (!secondary) return;
 
@@ -100,7 +97,7 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    public void UseAbility1()
+    public void OnAbility1()
     {
         if (!ability1) return;
 
@@ -118,7 +115,7 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    public void UseAbility2()
+    public void OnAbility2()
     {
         if (!ability2) return;
 
