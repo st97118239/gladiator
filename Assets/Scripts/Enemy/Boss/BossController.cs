@@ -26,6 +26,9 @@ public class BossController : MonoBehaviour
     {
         health -= damage;
 
+        if (enemyManager.abilityManager.hasLifesteal)
+            enemyManager.player.Lifesteal(damage);
+
         // To-Do: Knockback code here
         // We can use rigidbody for knockback maybe
 

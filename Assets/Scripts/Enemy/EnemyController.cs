@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour
         enemy = givenEnemy;
         health = enemy.health;
         spriteRenderer.sprite = enemy.sprite;
+        enemyStateMachine.isReloading = false;
         enemyStateMachine.Load();
     }
 

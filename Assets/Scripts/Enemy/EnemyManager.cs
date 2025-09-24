@@ -94,18 +94,20 @@ public class EnemyManager : MonoBehaviour
             }
 
             EnemyController enemy = enemies[i];
-            enemy.Load(currentWave.enemies[enemySpawnIdx], this);
+            enemy.Load(currentWave.enemies[i], this);
             if (enemy.enemy.attackType == AttackType.Sing)
             {
                 sirens.Add(enemy);
                 enemy.transform.position = enemy.enemyStateMachine.puddle.transform.position;
             }
             else
+            {
                 enemy.transform.position = levelManager.spawnpoints[spawnPosIdx].position;
+                enemySpawnIdx++;
+            }
 
             enemy.gameObject.SetActive(true);
 
-            enemySpawnIdx++;
             SetSpawnPosIdx();
             yield return wait;
         }
