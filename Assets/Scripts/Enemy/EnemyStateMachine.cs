@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -21,6 +20,8 @@ public class EnemyStateMachine : MonoBehaviour
 
     public Puddle puddle;
 
+    public bool isReloading;
+
     [SerializeField] private BoxCollider2D enemyCollider;
 
     private Vector3 gizmoHitboxScale;
@@ -32,7 +33,7 @@ public class EnemyStateMachine : MonoBehaviour
     }
 
     private void Update()
-    {
+    { 
         currentState?.UpdateState(this);
     }
 
@@ -63,29 +64,15 @@ public class EnemyStateMachine : MonoBehaviour
 
     private IEnumerator AttackAnim()
     {
+        isReloading = true;
         enemyController.spriteRenderer.color = Color.gray4;
 
         yield return new WaitForSeconds(enemyController.enemy.attackSpeed);
 
         enemyController.spriteRenderer.color = Color.white;
+        isReloading = false;
 
-        switch (enemyController.enemy.attackType)
-        {
-            case AttackType.Melee:
-                ChangeState(walkState);
-                break;
-            case AttackType.ProjectileRanged:
-                ChangeState(rangedWalkState);
-                break;
-            case AttackType.None:
-            case AttackType.Jump:
-            case AttackType.Sing:
-                ChangeState(sirenSingState);
-                break;
-            default:
-                Debug.LogWarning("Enemy has no attack type. Please fix!");
-                break;
-        }
+        ChangeState(idleState);
     }
 
     public void FindPuddle()
@@ -93,7 +80,7 @@ public class EnemyStateMachine : MonoBehaviour
         if (enemyController.enemyManager.levelManager.availablePuddles.Count == 0)
         {
             Debug.LogError("Not enough puddles. Please fix!");
-            enemyController.enemyManager.levelManager.Quit();
+            enemyController.enemyManager.levelManager.uiManager.Quit();
         }
 
         puddle = enemyController.enemyManager.levelManager.availablePuddles[Random.Range(0, enemyController.enemyManager.levelManager.availablePuddles.Count)];
@@ -102,7 +89,7 @@ public class EnemyStateMachine : MonoBehaviour
         if (!puddle)
         {
             Debug.LogError("Not enough puddles. Please fix!");
-            enemyController.enemyManager.levelManager.Quit();
+            enemyController.enemyManager.levelManager.uiManager.Quit();
         }
 
         puddle.occupied = true;

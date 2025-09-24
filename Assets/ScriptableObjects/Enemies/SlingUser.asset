@@ -16,10 +16,10 @@ MonoBehaviour:
   enemyType: 9
   attackType: 2
   health: 7
-  damage: 3
+  damage: 5
   speed: 5
   attackRadius: 10
   attackSpeed: 2
   rangedFleeRadius: 7
-  projectile: {fileID: 11400000, guid: 09480273132878349af4011b042f16d6, type: 2}
+  projectile: {fileID: 11400000, guid: 0e8866987755c324cba0c9e8ea9b508a, type: 2}
   singDrawSpeed: 0

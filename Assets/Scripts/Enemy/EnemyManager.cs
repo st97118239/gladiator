@@ -2,25 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
 public class EnemyManager : MonoBehaviour
 {
     public LevelManager levelManager;
+    public AbilityManager abilityManager;
     public Player player;
     public List<EnemyController> enemies;
+    public BossController boss;
     public List<EnemyController> sirens;
     public List<ProjectileObj> projectiles;
+    public List<Root> roots;
     public List<Transform> rangedPositions;
     public Wave currentWave;
     public GameObject emptyEnemyPrefab;
+    public GameObject emptyBossPrefab;
     public GameObject emptyProjectilePrefab;
+    public GameObject emptyRootPrefab;
     public Transform enemyParent;
     public Transform projectileParent;
     public int enemySpawnIdx;
     public int enemyCount;
     public int maxEnemyCount;
     public int maxProjectileCount;
+    public int maxRootCount;
 
     [SerializeField] private float spawnDelay;
 
@@ -28,6 +33,10 @@ public class EnemyManager : MonoBehaviour
 
     public void EmptyEnemySpawn()
     {
+        GameObject bossObj = Instantiate(emptyBossPrefab, Vector3.zero, Quaternion.identity, enemyParent);
+        bossObj.SetActive(false);
+        boss = bossObj.GetComponent<BossController>();
+
         for (int i = 0; i < maxEnemyCount; i++)
         {
             GameObject enemyObj = Instantiate(emptyEnemyPrefab, Vector3.zero, Quaternion.identity, enemyParent);
@@ -43,6 +52,16 @@ public class EnemyManager : MonoBehaviour
             GameObject projObj = Instantiate(emptyProjectilePrefab, Vector3.zero, Quaternion.identity, projectileParent);
             projObj.SetActive(false);
             projectiles.Add(projObj.GetComponent<ProjectileObj>());
+        }
+    }
+
+    public void EmptyRootSpawn()
+    {
+        for (int i = 0; i < maxRootCount; i++)
+        {
+            GameObject rootObj = Instantiate(emptyRootPrefab, Vector3.zero, Quaternion.identity, projectileParent);
+            rootObj.SetActive(false);
+            roots.Add(rootObj.GetComponent<Root>());
         }
     }
 
@@ -75,20 +94,41 @@ public class EnemyManager : MonoBehaviour
             }
 
             EnemyController enemy = enemies[i];
-            enemy.Load(currentWave.enemies[enemySpawnIdx], this);
+            enemy.Load(currentWave.enemies[i], this);
             if (enemy.enemy.attackType == AttackType.Sing)
             {
                 sirens.Add(enemy);
                 enemy.transform.position = enemy.enemyStateMachine.puddle.transform.position;
             }
             else
+            {
                 enemy.transform.position = levelManager.spawnpoints[spawnPosIdx].position;
+                enemySpawnIdx++;
+            }
 
+            enemy.gameObject.SetActive(true);
+
+            SetSpawnPosIdx();
+            yield return wait;
+        }
+
+        if (!currentWave.boss) yield break;
+        {
+            enemyCount++;
+
+            if (enemySpawnIdx >= maxEnemyCount)
+            {
+                Debug.LogWarning("Not enough enemy slots available.");
+                yield break;
+            }
+
+            BossController enemy = boss;
+            enemy.Load(currentWave.boss, this);
+            enemy.transform.position = boss.boss.enemyType == EnemyTypes.Nymph ? Vector3.zero : levelManager.spawnpoints[spawnPosIdx].position;
             enemy.gameObject.SetActive(true);
 
             enemySpawnIdx++;
             SetSpawnPosIdx();
-            yield return wait;
         }
     }
 
@@ -100,20 +140,12 @@ public class EnemyManager : MonoBehaviour
             spawnPosIdx = 0;
     }
 
-    public void CheckIfEnd(EnemyController killedEnemy)
+    public void CheckIfEnd()
     {
         enemyCount--;
-        killedEnemy.gameObject.SetActive(false);
-        killedEnemy.transform.position = Vector3.zero;
-        killedEnemy.spriteRenderer.color = Color.white;
-        if (killedEnemy.enemy.attackType == AttackType.Sing)
-        {
-            sirens.Remove(killedEnemy);
-            killedEnemy.isClosestSiren = false;
-        }
 
         if (enemyCount != 0) return;
-        levelManager.WaveEnd();
+        levelManager.WaveFinish();
     }
 
     public void SetClosest()
@@ -124,5 +156,14 @@ public class EnemyManager : MonoBehaviour
             enemy.isClosestSiren = isClosest;
             isClosest = false;
         }
+    }
+
+    public void SummonRoot(BossController controller, float angle)
+    {
+        Root root = roots.FirstOrDefault(r => !r.isOn);
+        if (!root) return;
+        
+        root.transform.position = controller.transform.position;
+        root.Load(controller.boss.damage, angle);
     }
 }

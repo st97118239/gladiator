@@ -79,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2060264603
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1ef8aba66fab9aa478a2302d42171bf2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -109,8 +109,8 @@ MonoBehaviour:
   enemy: {fileID: 0}
   health: 0
   spriteRenderer: {fileID: 8208541899940622705}
-  hitColorTime: 1
-  spritePath: Enemies/
+  hitColorTime: 0.5
+  isClosestSiren: 0
 --- !u!114 &8364674737212972923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +127,7 @@ MonoBehaviour:
   attackType: 0
   attackDelay: 0
   puddle: {fileID: 0}
+  isReloading: 0
   enemyCollider: {fileID: 340753586850306276}
 --- !u!61 &340753586850306276
 BoxCollider2D:

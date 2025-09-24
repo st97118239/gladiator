@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     public int currentWave;
 
     public EnemyManager enemyManger;
+    public UIManager uiManager;
     public Player player;
 
     public List<Transform> spawnpoints;
@@ -42,6 +43,7 @@ public class LevelManager : MonoBehaviour
         SetPuddles();
         enemyManger.EmptyEnemySpawn();
         enemyManger.EmptyProjectileSpawn();
+        enemyManger.EmptyRootSpawn();
         StartCoroutine(LevelCountdown());
     }
 
@@ -81,10 +83,22 @@ public class LevelManager : MonoBehaviour
         currentWave++;
     }
 
-    public void WaveEnd()
+    public void WaveFinish()
     {
         Debug.Log("Wave ended.");
 
+        if (level.waves[currentWave - 1].hasAbilityRoll)
+        {
+            Debug.Log("Showing ability menu");
+            uiManager.ShowAbilityMenu();
+            return;
+        }
+
+        WaveEnd();
+    }
+
+    public void WaveEnd()
+    {
         if (level.waves.Count > currentWave)
             StartCoroutine(NextWave());
         else
@@ -109,30 +123,6 @@ public class LevelManager : MonoBehaviour
 
         player.movementScript.canMove = false;
         player.canAttack = false;
-        StartCoroutine(StopGame());
-    }
-
-    private IEnumerator StopGame()
-    {
-        Debug.Log("Exiting game.");
-
-        yield return new WaitForSeconds(gameEndDelay);
-
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
-    }
-
-    public void Quit()
-    {
-        Debug.Log("Quiting game.");
-
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
+        uiManager.LoadSceneFade(0);
     }
 }

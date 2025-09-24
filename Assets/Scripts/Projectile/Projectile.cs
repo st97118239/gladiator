@@ -4,8 +4,8 @@ using UnityEngine;
 public class Projectile : ScriptableObject
 {
     public bool playerProj;
-    public int damage;
     public float speed;
     public float despawnDelay;
+    public float spinSpeed;
     public Sprite sprite;
 }

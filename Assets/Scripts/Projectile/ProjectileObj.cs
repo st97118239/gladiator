@@ -13,6 +13,7 @@ public class ProjectileObj : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Rigidbody2D rigid;
     [SerializeField] private BoxCollider2D projCollider;
+    [SerializeField] private Vector3 spinSpeed;
 
     private Vector3 moveTo;
     private WaitForSeconds despawnDelay;
@@ -24,19 +25,24 @@ public class ProjectileObj : MonoBehaviour
             gizmoHitboxScale = projCollider.size * transform.localScale;
     }
 
+    private void Update()
+    {
+        transform.eulerAngles += spinSpeed;
+    }
+
     public void Load(Projectile givenProj, Vector3 givenTarget, EnemyController givenEnemy, float angle)
     {
         isOn = true;
-        isPlayerProj = givenProj.playerProj;
-        dmg = givenProj.damage;
-        speed = givenProj.speed;
-        spriteRenderer.sprite = givenProj.sprite;
         target = givenTarget;
         enemy = givenEnemy;
+        isPlayerProj = givenProj.playerProj;
+        dmg = enemy.enemy.damage;
+        speed = givenProj.speed;
+        spinSpeed = new Vector3(0, 0, givenProj.spinSpeed);
+        spriteRenderer.sprite = givenProj.sprite;
         despawnDelay = new WaitForSeconds(givenProj.despawnDelay);
         transform.position = enemy.transform.position;
         transform.eulerAngles = new Vector3(0, 0, angle);
-        moveTo = Quaternion.Euler(0, 0, angle) * Vector3.up;
 
         gameObject.SetActive(true);
         Vector3 aimDir = (givenTarget - transform.position).normalized;
@@ -71,9 +77,11 @@ public class ProjectileObj : MonoBehaviour
         }
         else if (hit.gameObject.CompareTag("Player") && !isPlayerProj)
         {
-            hit.gameObject.GetComponent<Player>().PlayerHit(dmg);
+            hit.gameObject.GetComponent<Player>().PlayerHit(dmg, true);
             Reset();
         }
+        else if (hit.gameObject.CompareTag("Wall"))
+            Reset();
     }
 
     private void Reset()

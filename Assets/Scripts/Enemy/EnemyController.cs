@@ -13,14 +13,13 @@ public class EnemyController : MonoBehaviour
 
     public bool isClosestSiren;
 
-    [SerializeField] private string spritePath;
-
     public void Load(Enemy givenEnemy, EnemyManager givenManager)
     {
         enemyManager = givenManager;
         enemy = givenEnemy;
         health = enemy.health;
         spriteRenderer.sprite = enemy.sprite;
+        enemyStateMachine.isReloading = false;
         enemyStateMachine.Load();
     }
 
@@ -28,13 +27,26 @@ public class EnemyController : MonoBehaviour
     {
         health -= damage;
 
+        if (enemyManager.abilityManager.hasLifesteal)
+            enemyManager.player.Lifesteal(damage);
+
         // To-Do: Knockback code here
         // We can use rigidbody for knockback maybe
 
         StartCoroutine(HitEffect());
 
         if (health > 0) return;
-        enemyManager.CheckIfEnd(this);
+
+        gameObject.SetActive(false);
+        transform.position = Vector3.zero;
+        spriteRenderer.color = Color.white;
+        if (enemy.attackType == AttackType.Sing)
+        {
+            enemyManager.sirens.Remove(this);
+            isClosestSiren = false;
+        }
+
+        enemyManager.CheckIfEnd();
     }
 
     private IEnumerator HitEffect()
@@ -43,6 +55,14 @@ public class EnemyController : MonoBehaviour
 
         yield return new WaitForSeconds(hitColorTime);
 
-        spriteRenderer.color = Color.white;
+        switch (enemyStateMachine.isReloading)
+        {
+            case true:
+                spriteRenderer.color = Color.gray4;
+                break;
+            case false:
+                spriteRenderer.color = Color.white;
+                break;
+        }
     }
 }

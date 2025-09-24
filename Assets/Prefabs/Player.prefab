@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3356284463525228826}
   - component: {fileID: 8738978570264309918}
   - component: {fileID: 6138312183256452214}
+  - component: {fileID: 5799873494410771425}
   - component: {fileID: 5928797679792064197}
   - component: {fileID: 1325672466525981746}
   - component: {fileID: 5331712625960726167}
@@ -82,8 +83,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1192745399
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a93502f04c8a91948afa41bee5a965e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -109,23 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   movementScript: {fileID: 5928797679792064197}
-  meleeAction:
-    m_Name: Melee
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 8850fc8a-623b-4027-9372-a36538ee07fa
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: d13d3f10-8b3d-40a4-b6f5-8bd6d7711ddd
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Melee
-      m_Flags: 0
-    m_Flags: 0
+  maxHealth: 100
   health: 100
   movementSpeed: 2000
   isDead: 0
@@ -133,6 +118,9 @@ MonoBehaviour:
   meleeAtkSpeed: 1
   atkKnockback: 1
   canAttack: 0
+  inputActions: {fileID: 0}
+  levelManager: {fileID: 0}
+  abilityManager: {fileID: 5799873494410771425}
   spriteRenderer: {fileID: 8738978570264309918}
   meleeWeaponHitbox: {fileID: 1013117963668258421}
   aimTransform: {fileID: 4365072424774354997}
@@ -146,13 +134,54 @@ MonoBehaviour:
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 128
+      m_Bits: 256
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  cd2d: {fileID: 5331712625960726167}
   hpSlider: {fileID: 0}
   cam: {fileID: 0}
+--- !u!114 &5799873494410771425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676582975853013370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ac20f43586a4f499151530d2b4b38e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityManager
+  abilities:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  secondary: {fileID: 0}
+  ability1: {fileID: 0}
+  ability2: {fileID: 0}
+  secondaries:
+  - {fileID: 11400000, guid: dc0da6b5971b7a74383499ea977b4899, type: 2}
+  - {fileID: 11400000, guid: a7242e62424805e458c7e5116b3b3ac3, type: 2}
+  - {fileID: 11400000, guid: d8d2efc590080c2449b6fb6f23932a95, type: 2}
+  powers:
+  - {fileID: 11400000, guid: 1684bc99ad084bd46a4a208494a74b85, type: 2}
+  - {fileID: 11400000, guid: 450c5f850f68d0c4483c281e0d3581dd, type: 2}
+  - {fileID: 11400000, guid: 9a99d85057dae434db8034a81592bfa3, type: 2}
+  passives:
+  - {fileID: 11400000, guid: f9a2921c7ce89c549a830d947192e25d, type: 2}
+  - {fileID: 11400000, guid: f8b9b18524476df43a36365a2fa1febb, type: 2}
+  - {fileID: 11400000, guid: 92b8b2cf46ff78f458d5edb8b2893fd5, type: 2}
+  rageAtkSpdMultiplier: 0.5
+  lifestealDrainMultiplier: 2
+  steadyStanceArmorPoints: 3
+  marathonRunnerMovementSpeedMultiplier: 0.15
+  passivesUnlocked: 0
+  hasLifesteal: 0
+  player: {fileID: 6138312183256452214}
+  uiManager: {fileID: 0}
 --- !u!114 &5928797679792064197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,8 +195,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   player: {fileID: 6138312183256452214}
+  inputActions: {fileID: 0}
   rb2d: {fileID: 1325672466525981746}
   canMove: 0
+  moveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c7d88779-4f13-4a52-876b-4e66c25288ad
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  cam: {fileID: 0}
+  camClampMin: {x: 1, y: 1}
+  camClampMax: {x: 1, y: 1}
+  speed: 5
 --- !u!50 &1325672466525981746
 Rigidbody2D:
   serializedVersion: 5
@@ -229,7 +272,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.027897947, y: -0.01656574}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -239,7 +282,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.3, y: 0.3}
+  m_Size: {x: 0.24420412, y: 0.26686853}
   m_EdgeRadius: 0
 --- !u!61 &7231804849861089844
 BoxCollider2D:
@@ -275,7 +318,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.027897947, y: -0.017354589}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -285,7 +328,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.3, y: 0.3}
+  m_Size: {x: 0.24420412, y: 0.26529083}
   m_EdgeRadius: 0
 --- !u!1 &3102798475219999294
 GameObject:
@@ -296,7 +339,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1013117963668258421}
-  - component: {fileID: 5011344584744067260}
   m_Layer: 6
   m_Name: MeleeHitbox
   m_TagString: Untagged
@@ -319,52 +361,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4365072424774354997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &5011344584744067260
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3102798475219999294}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.2, y: 0.3}
-  m_EdgeRadius: 0
 --- !u!1 &8615637262533067832
 GameObject:
   m_ObjectHideFlags: 0

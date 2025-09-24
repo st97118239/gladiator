@@ -14,7 +14,7 @@ public class AttackState : IEnemyState
 
     private static void Attack(Player player, EnemyController enemyController, EnemyStateMachine controller)
     {
-        player.PlayerHit(enemyController.enemy.damage);
+        player.PlayerHit(enemyController.enemy.damage, true);
         controller.StartAttackDelay();
     }
 

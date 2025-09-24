@@ -1,4 +1,4 @@
-public enum Abilities
+public enum AbilityType
 {
     None,
     Shield,
@@ -7,7 +7,7 @@ public enum Abilities
     Dash,
     BerserkerRage,
     Throw,
-    Siphon,
+    Lifesteal,
     SteadyStance,
     MarathonRunner,
 }

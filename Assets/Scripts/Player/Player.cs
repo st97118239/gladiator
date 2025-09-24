@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public PlayerMovement movementScript;
-    public InputAction meleeAction;
+    public int maxHealth;
     public int health;
     public float movementSpeed;
     public bool isDead;
@@ -17,20 +17,37 @@ public class Player : MonoBehaviour
 
     public bool canAttack;
 
+    [SerializeField] private InputActionAsset inputActions;
     [SerializeField] private LevelManager levelManager;
+    [SerializeField] private AbilityManager abilityManager;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform meleeWeaponHitbox;
     [SerializeField] private Transform aimTransform;
     [SerializeField] private float meleeHitboxDistanceFromPlayer;
     [SerializeField] private ContactFilter2D filter;
+    [SerializeField] private BoxCollider2D cd2d;
 
     [SerializeField] private Slider hpSlider;
     [SerializeField] private Camera cam;
 
-    private void Start()
+    private float atkSpeedMultiplier = 1f;
+    private int lifestealDrainMultiplier;
+    private int armor;
+    private InputAction aimAction;
+    private Vector3 gizmoHitboxScale;
+
+    private void Awake()
     {
-        meleeAction.Enable();
-        hpSlider.maxValue = health;
+        aimAction = inputActions.FindAction("Aim");
+        if (Application.isPlaying)
+            gizmoHitboxScale = cd2d.size * transform.localScale;
+    }
+
+    private void Start()
+    { 
+        lifestealDrainMultiplier = abilityManager.lifestealDrainMultiplier;
+        health = maxHealth;
+        hpSlider.maxValue = maxHealth;
         hpSlider.value = health;
         meleeWeaponHitbox.position += Vector3.up * meleeHitboxDistanceFromPlayer;
         canAttack = true;
@@ -39,18 +56,22 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        meleeAction.started += ctx => { MeleeAttack(); };
+        if (isDead) return;
 
         levelManager.enemyManger.SetClosest();
     }
 
-    private void MeleeAttack()
+    private void OnPause()
     {
-        if (!canAttack) return;
+        levelManager.uiManager.PauseMenu();
+    }
+
+    private void OnMelee()
+    {
+        if (!canAttack || isDead) return;
 
         Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         mousePos = new Vector3(mousePos.x, mousePos.y, 0);
-
         Vector3 aimDir = (mousePos - transform.position).normalized;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         angle -= 90;
@@ -62,7 +83,10 @@ public class Player : MonoBehaviour
         int i = 0;
         while (i < hitColliders.Count)
         {
-            hitColliders[i].GetComponent<EnemyController>().Hit(meleeDamage);
+            if (hitColliders[i].CompareTag("Enemy"))
+                hitColliders[i].GetComponent<EnemyController>().Hit(meleeDamage);
+            else if (hitColliders[i].CompareTag("Boss"))
+                hitColliders[i].GetComponent<BossController>().Hit(meleeDamage);
             i++;
         }
 
@@ -75,7 +99,7 @@ public class Player : MonoBehaviour
 
         spriteRenderer.color = Color.gray4;
 
-        yield return new WaitForSeconds(meleeAtkSpeed);
+        yield return new WaitForSeconds(meleeAtkSpeed * atkSpeedMultiplier);
 
         spriteRenderer.color = Color.white;
 
@@ -86,16 +110,22 @@ public class Player : MonoBehaviour
     {
         if (!Application.isPlaying) return;
 
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(transform.position, gizmoHitboxScale);
+
         Gizmos.color = Color.red;
         Gizmos.DrawLine(cam.ScreenToWorldPoint(Input.mousePosition), transform.position);
         Gizmos.DrawWireCube(meleeWeaponHitbox.position, meleeWeaponHitbox.localScale);
     }
 
-    public void PlayerHit(int damage)
+    public void PlayerHit(int damage, bool fromEnemy)
     {
         if (isDead) return;
 
-        health -= damage;
+        health -= fromEnemy ? damage - armor : damage;
+
+        if (health > maxHealth) health = maxHealth;
+
         hpSlider.value = health;
 
         if (health <= 0)
@@ -109,5 +139,23 @@ public class Player : MonoBehaviour
         movementScript.canMove = false;
         Debug.Log("Player died.");
         levelManager.GameEnd(true);
+    }
+
+    public void MeleeAtkSpeedChange(float change)
+    {
+        atkSpeedMultiplier += change;
+    }
+
+    public void ArmorPointsChange(int change)
+    {
+        armor += change;
+    }
+
+    public void Lifesteal(int healthStolen)
+    {
+        healthStolen /= lifestealDrainMultiplier;
+
+        PlayerHit(-healthStolen, false);
+        
     }
 }
