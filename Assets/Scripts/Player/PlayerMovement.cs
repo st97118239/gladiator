@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
 
     public InputAction moveAction;
 
+    [SerializeField] private Camera cam;
+    [SerializeField] private Vector2 camClampMin = Vector2.one;
+    [SerializeField] private Vector2 camClampMax = Vector2.one;
     [SerializeField] private float speed = 5;
 
     private float speedMultiplier = 1f;
@@ -30,6 +32,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canMove)
             rb2d.MovePosition(rb2d.position + Vector2.one * moveAmount * (speed * Time.deltaTime));
+
+        Vector3 clampedPosition = transform.position;
+
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, camClampMin.x, camClampMax.x);
+        clampedPosition.y = Mathf.Clamp(clampedPosition.y, camClampMin.y, camClampMax.y);
+        clampedPosition.z = -10;
+
+        cam.transform.position = clampedPosition;
     }
 
     public void SpeedChange(float change)
