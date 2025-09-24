@@ -16,7 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed = 5;
 
     private float speedMultiplier = 1f;
-    private Vector2 moveAmount; 
+    private float moveSpeed;
+    private Vector3 moveAmount;
 
     private void Start()
     {
@@ -25,13 +26,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        moveSpeed = player.movementSpeed * Time.deltaTime;
         moveAmount = moveAction.ReadValue<Vector2>();
+
+        if (canMove)
+            //rb2d.MovePosition(rb2d.position + Vector2.one * moveAmount * (speed * Time.deltaTime));
+            rb2d.AddForce(moveAmount * moveSpeed, ForceMode2D.Force);
     }
 
     private void FixedUpdate()
     {
-        if (canMove)
-            rb2d.MovePosition(rb2d.position + Vector2.one * moveAmount * (speed * Time.deltaTime));
+        
 
         Vector3 clampedPosition = transform.position;
 

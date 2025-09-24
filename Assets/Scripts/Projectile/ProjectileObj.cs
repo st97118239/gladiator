@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class ProjectileObj : MonoBehaviour
 {
@@ -82,6 +80,8 @@ public class ProjectileObj : MonoBehaviour
             hit.gameObject.GetComponent<Player>().PlayerHit(dmg, true);
             Reset();
         }
+        else if (hit.gameObject.CompareTag("Wall"))
+            Reset();
     }
 
     private void Reset()

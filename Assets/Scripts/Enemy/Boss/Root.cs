@@ -18,22 +18,22 @@ public class Root : MonoBehaviour
     private float angle;
     private bool shouldReverse;
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (!isOn) return;
 
         if (!shouldReverse && transform.localScale.y < maxDistance)
         {
-            transform.localScale += scaleExtend;
-            transform.localPosition += transform.up * (moveTo.x / spawnSpeed);
+            transform.localScale += scaleExtend * Time.deltaTime;
+            transform.localPosition += transform.up * ((moveTo.x / spawnSpeed) * Time.deltaTime);
         }
         else
         {
             if (!shouldReverse)
                 shouldReverse = true;
 
-            transform.localScale -= scaleExtend / disableSpeed;
-            transform.localPosition += transform.up * (moveTo.x / disableSpeed);
+            transform.localScale -= scaleExtend / disableSpeed * Time.deltaTime;
+            transform.localPosition += transform.up * ((moveTo.x / disableSpeed) * Time.deltaTime);
 
             if (!(transform.localScale.y < distanceToDisable)) return;
 
@@ -59,5 +59,7 @@ public class Root : MonoBehaviour
             hit.gameObject.GetComponent<Player>().PlayerHit(dmg, true);
         else if (hit.gameObject.CompareTag("Enemy"))
             hit.gameObject.GetComponent<EnemyController>().Hit(dmg);
+        else if (hit.gameObject.CompareTag("Wall"))
+            shouldReverse = true;
     }
 }

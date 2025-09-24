@@ -614,7 +614,7 @@ GameObject:
   - component: {fileID: 156987707}
   m_Layer: 0
   m_Name: Wall (7)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1086,7 +1086,7 @@ GameObject:
   - component: {fileID: 419216471}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1831,7 +1831,7 @@ GameObject:
   - component: {fileID: 565853397}
   m_Layer: 0
   m_Name: Wall (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1940,7 +1940,7 @@ GameObject:
   - component: {fileID: 571163752}
   m_Layer: 0
   m_Name: Wall (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2018,7 +2018,7 @@ GameObject:
   - component: {fileID: 574893774}
   m_Layer: 0
   m_Name: Wall (5)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2145,6 +2145,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 730426162}
     - target: {fileID: 5928797679792064197, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5928797679792064197, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
       propertyPath: inputActions
       value: 
       objectReference: {fileID: -944628639613478452, guid: b91c654db24ba1845af790f7fb38f74e, type: 3}
@@ -2227,7 +2231,7 @@ GameObject:
   - component: {fileID: 595802581}
   m_Layer: 0
   m_Name: Wall (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9053,7 +9057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a218a493865c0a849a8f779b57acb785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  level: {fileID: 11400000, guid: 9457e15af00b2be4ba9e88f02a486aed, type: 2}
+  level: {fileID: 11400000, guid: 33142e5db136d824eab1c80d009a2b47, type: 2}
   currentWave: 0
   enemyManger: {fileID: 763560086}
   uiManager: {fileID: 1885806525}
@@ -9197,7 +9201,7 @@ GameObject:
   - component: {fileID: 1875375583}
   m_Layer: 0
   m_Name: Wall (6)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9341,7 +9345,7 @@ GameObject:
   - component: {fileID: 1904428581}
   m_Layer: 0
   m_Name: Wall (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
