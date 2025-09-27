@@ -166,4 +166,9 @@ public class EnemyManager : MonoBehaviour
         root.transform.position = controller.transform.position;
         root.Load(controller.boss.damage, angle);
     }
+
+    public ProjectileObj GetProjectile()
+    {
+        return projectiles.FirstOrDefault(proj => !proj.isOn);
+    }
 }

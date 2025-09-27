@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ProjectileObj : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class ProjectileObj : MonoBehaviour
     private Vector3 moveTo;
     private WaitForSeconds despawnDelay;
     private Vector3 gizmoHitboxScale;
+    private Collider2D colliderToIgnore;
 
     private void Awake()
     {
@@ -30,19 +32,31 @@ public class ProjectileObj : MonoBehaviour
         transform.eulerAngles += spinSpeed;
     }
 
-    public void Load(Projectile givenProj, Vector3 givenTarget, EnemyController givenEnemy, float angle)
+    public void Load(Projectile givenProj, Vector3 givenTarget, EnemyController givenEnemy, AbilityManager givenAbilityManager, float angle, Collider2D givenColliderToIgnore)
     {
         isOn = true;
         target = givenTarget;
-        enemy = givenEnemy;
-        isPlayerProj = givenProj.playerProj;
-        dmg = enemy.enemy.damage;
+        if (givenEnemy)
+        {
+            enemy = givenEnemy;
+            dmg = enemy.enemy.damage;
+            transform.position = enemy.transform.position;
+            isPlayerProj = false;
+        }
+        else
+        {
+            enemy = null;
+            isPlayerProj = true;
+            dmg = givenAbilityManager.crossbowDamage;
+            transform.position = givenAbilityManager.transform.position;
+        }
         speed = givenProj.speed;
         spinSpeed = new Vector3(0, 0, givenProj.spinSpeed);
         spriteRenderer.sprite = givenProj.sprite;
         despawnDelay = new WaitForSeconds(givenProj.despawnDelay);
-        transform.position = enemy.transform.position;
         transform.eulerAngles = new Vector3(0, 0, angle);
+        colliderToIgnore = givenColliderToIgnore;
+        Physics2D.IgnoreCollision(projCollider, colliderToIgnore, true);
 
         gameObject.SetActive(true);
         Vector3 aimDir = (givenTarget - transform.position).normalized;
@@ -58,21 +72,18 @@ public class ProjectileObj : MonoBehaviour
         Reset();
     }
 
-    //private IEnumerator MoveToTarget()
-    //{
-    //    while (true)
-    //    {
-    //        transform.position += moveTo * (Time.deltaTime * speed);
-    //        yield return null;
-    //    }
-    //}
-
     private void OnCollisionEnter2D(Collision2D hit)
     {
         if (hit.gameObject.CompareTag("Enemy") && isPlayerProj)
         {
             Debug.Log("Hit enemy.");
             hit.gameObject.GetComponent<EnemyController>().Hit(dmg);
+            Reset();
+        }
+        else if (hit.gameObject.CompareTag("Boss") && isPlayerProj)
+        {
+            Debug.Log("Hit boss.");
+            hit.gameObject.GetComponent<BossController>().Hit(dmg);
             Reset();
         }
         else if (hit.gameObject.CompareTag("Player") && !isPlayerProj)
@@ -89,6 +100,7 @@ public class ProjectileObj : MonoBehaviour
         gameObject.SetActive(false);
         isOn = false;
         transform.position = Vector3.zero;
+        Physics2D.IgnoreCollision(projCollider, colliderToIgnore, false);
     }
 
     private void OnDrawGizmos()

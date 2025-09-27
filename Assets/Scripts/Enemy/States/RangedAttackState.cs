@@ -20,7 +20,7 @@ public class RangedAttackState : IEnemyState
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         angle -= 90;
 
-        ProjectileObj proj = controller.GetProjectile();
+        ProjectileObj proj = controller.enemyController.enemyManager.GetProjectile();
 
         if (!proj)
         {
@@ -28,7 +28,7 @@ public class RangedAttackState : IEnemyState
             return;
         }
 
-        proj.Load(enemyController.enemy.projectile, player.transform.position, enemyController, angle);
+        proj.Load(enemyController.enemy.projectile, player.transform.position, enemyController, null, angle, controller.enemyCollider);
 
         controller.StartAttackDelay();
     }

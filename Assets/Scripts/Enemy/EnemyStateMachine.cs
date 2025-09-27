@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -22,7 +21,7 @@ public class EnemyStateMachine : MonoBehaviour
 
     public bool isReloading;
 
-    [SerializeField] private BoxCollider2D enemyCollider;
+    public BoxCollider2D enemyCollider;
 
     private Vector3 gizmoHitboxScale;
 
@@ -50,11 +49,6 @@ public class EnemyStateMachine : MonoBehaviour
         currentState?.OnExit(this);
         currentState = newState;
         currentState.OnEnter(this);
-    }
-
-    public ProjectileObj GetProjectile()
-    {
-        return enemyController.enemyManager.projectiles.FirstOrDefault(proj => !proj.isOn);
     }
 
     public void StartAttackDelay()

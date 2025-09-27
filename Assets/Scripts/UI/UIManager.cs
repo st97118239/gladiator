@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
     public Canvas quitConfirmCanvas;
     public bool isMainGame;
 
-    [SerializeField] private AbilitySlot[] abilitySlots;
+    public AbilitySlot[] abilitySlots;
     [SerializeField] private AbilityCard[] abilityCards;
     [SerializeField] private Button confirmButton;
 
@@ -41,7 +41,7 @@ public class UIManager : MonoBehaviour
 
         List<Ability> possibleAbilities = new();
 
-        foreach (AbilitySort sort in levelManager.enemyManger.currentWave.abilitySortsToRoll)
+        foreach (AbilitySort sort in levelManager.enemyManager.currentWave.abilitySortsToRoll)
         {
             switch (sort)
             {
@@ -59,9 +59,9 @@ public class UIManager : MonoBehaviour
                     possibleAbilities.AddRange(abilityManager.passives);
                     break;
                 case AbilitySort.Random:
-                    if (!abilityManager.secondary)
+                    if (abilityManager.secondary == -1)
                         possibleAbilities.AddRange(abilityManager.secondaries);
-                    if (!abilityManager.ability1 || !abilityManager.ability2)
+                    if (abilityManager.ability1 == -1 || abilityManager.ability2 == -1)
                         possibleAbilities.AddRange(abilityManager.powers);
                     if (abilityManager.passivesUnlocked < abilityManager.passives.Length)
                         possibleAbilities.AddRange(abilityManager.passives);

@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class LevelManager : MonoBehaviour
 {
     public Level level;
     public int currentWave;
 
-    public EnemyManager enemyManger;
+    public EnemyManager enemyManager;
     public UIManager uiManager;
     public Player player;
 
@@ -41,9 +42,9 @@ public class LevelManager : MonoBehaviour
     private void StartLevel()
     {
         SetPuddles();
-        enemyManger.EmptyEnemySpawn();
-        enemyManger.EmptyProjectileSpawn();
-        enemyManger.EmptyRootSpawn();
+        enemyManager.EmptyEnemySpawn();
+        enemyManager.EmptyProjectileSpawn();
+        enemyManager.EmptyRootSpawn();
         StartCoroutine(LevelCountdown());
     }
 
@@ -79,7 +80,7 @@ public class LevelManager : MonoBehaviour
     private void StartWave()
     {
         SetPuddles();
-        enemyManger.SpawnEnemy(level.waves[currentWave]);
+        enemyManager.SpawnEnemy(level.waves[currentWave]);
         currentWave++;
     }
 

@@ -1,29 +1,57 @@
-using System;
+using System.Collections;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AbilityManager : MonoBehaviour
 {
     public Ability[] abilities;
-    public Ability secondary;
-    public Ability ability1;
-    public Ability ability2;
+    public int secondary = -1;
+    public int ability1 = -1;
+    public int ability2 = -1;
 
     public Ability[] secondaries;
     public Ability[] powers;
     public Ability[] passives;
 
+    public bool isBlocking;
+    public float shieldBlockAmt;
+    [SerializeField] private Projectile crossbowProjectile;
+    public int crossbowDamage;
+    public float crossbowCooldown;
+    public float dashSpeed;
+    public float dashCooldown;
     public float rageAtkSpdMultiplier;
     public int lifestealDrainMultiplier;
     public int steadyStanceArmorPoints;
     public float marathonRunnerMovementSpeedMultiplier;
 
+    public bool hasDash;
+    public int dashSlot;
     public int passivesUnlocked;
     public bool hasLifesteal;
 
     [SerializeField] private Player player;
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private LevelManager levelManager;
     [SerializeField] private UIManager uiManager;
+    [SerializeField] private InputActionAsset inputActions;
 
     private int currentAbilitySlot;
+    private float secondaryDelay;
+    private float dashDelay;
+    private InputAction secondaryAction;
+
+    private void Awake()
+    {
+        secondary = -1;
+        ability1 = -1;
+        ability2 = -1;
+
+        if (shieldBlockAmt > 100)
+            Debug.LogWarning("ShieldBlockAmt in AbilityManager should not be above 100.");
+        shieldBlockAmt /= 100;
+    }
 
     public void NewPower(Ability newAbility)
     {
@@ -38,9 +66,17 @@ public class AbilityManager : MonoBehaviour
                 Debug.LogError("No ability selected.");
                 break;
             case AbilityType.Shield:
+                secondaryAction = inputActions.FindAction("Secondary");
+                secondaryAction.performed += ctx => { Shield(); };
+                secondaryAction.canceled += ctx => { ShieldCancel(); };
+                break;
             case AbilityType.Net:
             case AbilityType.Crossbow:
+                break;
             case AbilityType.Dash:
+                hasDash = true;
+                dashSlot = currentAbilitySlot;
+                break;
             case AbilityType.BerserkerRage:
             case AbilityType.Throw:
                 break;
@@ -58,20 +94,22 @@ public class AbilityManager : MonoBehaviour
         abilities[currentAbilitySlot] = newAbility;
         uiManager.NewAbility(newAbility, currentAbilitySlot);
         currentAbilitySlot++;
+        secondaryDelay = -1;
+        dashDelay = -1;
     }
 
     private void SetAbility(Ability newAbility)
     {
         switch (newAbility.abilitySort)
         {
-            case AbilitySort.Power when !ability1:
-                ability1 = newAbility;
+            case AbilitySort.Power when ability1 == -1:
+                ability1 = currentAbilitySlot;
                 break;
-            case AbilitySort.Power when !ability2:
-                ability2 = newAbility;
+            case AbilitySort.Power when ability2 == -1:
+                ability2 = currentAbilitySlot;
                 break;
-            case AbilitySort.Secondary when !secondary:
-                secondary = newAbility;
+            case AbilitySort.Secondary when secondary == -1:
+                secondary = currentAbilitySlot;
                 break;
             case AbilitySort.Passive:
                 passivesUnlocked++;
@@ -81,12 +119,12 @@ public class AbilityManager : MonoBehaviour
 
     public void OnSecondary()
     {
-        if (!secondary) return;
+        if (secondary == -1 || secondaryDelay >= 0) return;
 
-        switch (secondary.abilityType)
+        switch (abilities[secondary].abilityType)
         {
             case AbilityType.Shield:
-                Shield();
+                //Shield();
                 break;
             case AbilityType.Crossbow:
                 Crossbow();
@@ -99,13 +137,10 @@ public class AbilityManager : MonoBehaviour
 
     public void OnAbility1()
     {
-        if (!ability1) return;
+        if (ability1 == -1) return;
 
-        switch (ability1.abilityType)
+        switch (abilities[ability1].abilityType)
         {
-            case AbilityType.Dash:
-                Dash();
-                break;
             case AbilityType.BerserkerRage:
                 BerserkerRage();
                 break;
@@ -117,13 +152,10 @@ public class AbilityManager : MonoBehaviour
 
     public void OnAbility2()
     {
-        if (!ability2) return;
+        if (ability2 == -1) return;
 
-        switch (ability2.abilityType)
+        switch (abilities[ability2].abilityType)
         {
-            case AbilityType.Dash:
-                Dash();
-                break;
             case AbilityType.BerserkerRage:
                 BerserkerRage();
                 break;
@@ -136,6 +168,20 @@ public class AbilityManager : MonoBehaviour
     private void Shield()
     {
         Debug.Log("Block");
+        isBlocking = true;
+        playerMovement.canMove = false;
+        player.canAttack = false;
+        player.spriteRenderer.color = Color.gray4;
+    }
+
+    private void ShieldCancel()
+    {
+        isBlocking = false;
+        playerMovement.canMove = true;
+
+        if (player.hasAttackCooldown) return;
+        player.canAttack = true;
+        player.spriteRenderer.color = Color.white;
     }
 
     private void Net()
@@ -146,11 +192,74 @@ public class AbilityManager : MonoBehaviour
     private void Crossbow()
     {
         Debug.Log("Shoot");
+        ProjectileObj proj = levelManager.enemyManager.GetProjectile();
+        if (!proj)
+        {
+            Debug.LogError("No projectile object available.");
+            return;
+        }
+
+        Vector3 mousePos = player.cam.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = new Vector3(mousePos.x, mousePos.y, 0);
+        Vector3 aimDir = (mousePos - transform.position).normalized;
+        float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+        angle -= 90;
+
+        proj.Load(crossbowProjectile, mousePos, null, this, angle, player.cd2d);
+        StartCoroutine(CrossbowCooldown());
+
     }
 
-    private void Dash()
+    private IEnumerator CrossbowCooldown()
     {
+        secondaryDelay = crossbowCooldown;
+        uiManager.abilitySlots[secondary].cooldownSlider.value = secondaryDelay / crossbowCooldown;
+
+        while (dashDelay > 0)
+        {
+            yield return null;
+            secondaryDelay -= Time.deltaTime;
+            uiManager.abilitySlots[secondary].cooldownSlider.value = secondaryDelay / crossbowCooldown;
+        }
+
+        secondaryDelay = -1;
+    }
+
+    private void OnDash()
+    {
+        if (!hasDash || dashDelay >= 0) return;
+
         Debug.Log("Dash");
+        Vector2 moveAmount = playerMovement.moveAction.ReadValue<Vector2>();
+
+        if (playerMovement.canMove)
+        {
+            playerMovement.rb2d.AddForce(moveAmount * dashSpeed, ForceMode2D.Force);
+            playerMovement.rb2d.linearDamping = 5;
+        }
+
+        Invoke(nameof(ResetRigidbody), 1);
+        StartCoroutine(DashCooldown());
+    }
+
+    private void ResetRigidbody()
+    {
+        playerMovement.rb2d.linearDamping = 10;
+    }
+
+    private IEnumerator DashCooldown()
+    {
+        dashDelay = dashCooldown;
+        uiManager.abilitySlots[dashSlot].cooldownSlider.value = dashDelay / dashCooldown;
+
+        while (dashDelay > 0)
+        {
+            yield return null;
+            dashDelay -= Time.deltaTime;
+            uiManager.abilitySlots[dashSlot].cooldownSlider.value = dashDelay / dashCooldown;
+        }
+
+        dashDelay = -1;
     }
 
     private void BerserkerRage()

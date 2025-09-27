@@ -52,6 +52,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "ed7ac97a-7606-44f4-9464-a6d14a2ba553",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Aim",
                     "type": "Value",
                     "id": "5a40b3b9-d1f3-4467-b946-852aba574bcc",
@@ -266,6 +275,28 @@
                     "processors": "",
                     "groups": ";Controller",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b594973b-373a-4b50-aaf5-1f8f2825c988",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardMouse",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d3a899d8-8a60-416c-8fca-fc09b311c0fe",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

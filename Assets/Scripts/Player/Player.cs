@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public Camera cam;
     public PlayerMovement movementScript;
+    public SpriteRenderer spriteRenderer;
+    public BoxCollider2D cd2d;
     public int maxHealth;
     public int health;
     public float movementSpeed;
@@ -16,19 +20,17 @@ public class Player : MonoBehaviour
     public float atkKnockback;
 
     public bool canAttack;
+    public bool hasAttackCooldown;
 
     [SerializeField] private InputActionAsset inputActions;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private AbilityManager abilityManager;
-    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform meleeWeaponHitbox;
     [SerializeField] private Transform aimTransform;
     [SerializeField] private float meleeHitboxDistanceFromPlayer;
     [SerializeField] private ContactFilter2D filter;
-    [SerializeField] private BoxCollider2D cd2d;
 
     [SerializeField] private Slider hpSlider;
-    [SerializeField] private Camera cam;
 
     private float atkSpeedMultiplier = 1f;
     private int lifestealDrainMultiplier;
@@ -58,7 +60,7 @@ public class Player : MonoBehaviour
     {
         if (isDead) return;
 
-        levelManager.enemyManger.SetClosest();
+        levelManager.enemyManager.SetClosest();
     }
 
     private void OnPause()
@@ -69,6 +71,16 @@ public class Player : MonoBehaviour
     private void OnMelee()
     {
         if (!canAttack || isDead) return;
+
+        //if (inputActions.devices.HasValue)
+        //{
+        //    var device = inputActions.devices.Value[0];
+
+        //    if (device.name == "Keyboard")
+        //    {
+        //        Debug.Log("AAAAA");
+        //    }
+        //}
 
         Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         mousePos = new Vector3(mousePos.x, mousePos.y, 0);
@@ -96,14 +108,18 @@ public class Player : MonoBehaviour
     private IEnumerator AttackDelay()
     {
         canAttack = false;
+        hasAttackCooldown = true;
 
         spriteRenderer.color = Color.gray4;
 
         yield return new WaitForSeconds(meleeAtkSpeed * atkSpeedMultiplier);
 
-        spriteRenderer.color = Color.white;
+        hasAttackCooldown = false;
+
+        if (abilityManager.isBlocking) yield break;
 
         canAttack = true;
+        spriteRenderer.color = Color.white;
     }
 
     private void OnDrawGizmos()
@@ -122,7 +138,24 @@ public class Player : MonoBehaviour
     {
         if (isDead) return;
 
-        health -= fromEnemy ? damage - armor : damage;
+        float dmgToDo = damage;
+
+        if (fromEnemy)
+        {
+            if (abilityManager.isBlocking)
+                dmgToDo -= dmgToDo * abilityManager.shieldBlockAmt;
+
+            dmgToDo -= armor;
+        }
+
+        if (dmgToDo < 0)
+            dmgToDo = 0;
+
+        damage = Mathf.RoundToInt(dmgToDo);
+
+        health -= damage;
+
+        Debug.Log(damage + ", " + health);
 
         if (health > maxHealth) health = maxHealth;
 

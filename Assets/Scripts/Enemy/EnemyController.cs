@@ -33,7 +33,8 @@ public class EnemyController : MonoBehaviour
         // To-Do: Knockback code here
         // We can use rigidbody for knockback maybe
 
-        StartCoroutine(HitEffect());
+        if (gameObject.activeSelf)
+            StartCoroutine(HitEffect());
 
         if (health > 0) return;
 
