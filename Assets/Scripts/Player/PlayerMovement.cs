@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (canMove)
             //rb2d.MovePosition(rb2d.position + Vector2.one * moveAmount * (speed * Time.deltaTime));
-            rb2d.AddForce(moveAmount * moveSpeed, ForceMode2D.Force);
+            rb2d.AddForce(moveAmount * (moveSpeed * speed), ForceMode2D.Force);
     }
 
     private void FixedUpdate()

@@ -20,12 +20,15 @@ public class Player : MonoBehaviour
 
     public bool canAttack;
     public bool hasAttackCooldown;
+    public bool hasAttackPreview;
 
     [SerializeField] private InputActionAsset inputActions;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private AbilityManager abilityManager;
     [SerializeField] private Transform meleeWeaponHitbox;
     [SerializeField] private Transform aimTransform;
+    [SerializeField] private SpriteRenderer aimPreview;
+    [SerializeField] private Color aimPreviewColor;
     [SerializeField] private float meleeHitboxDistanceFromPlayer;
     [SerializeField] private ContactFilter2D filter;
 
@@ -55,6 +58,7 @@ public class Player : MonoBehaviour
         hpSlider.value = health;
         meleeWeaponHitbox.position += Vector3.up * meleeHitboxDistanceFromPlayer;
         canAttack = true;
+        hasAttackPreview = true;
         movementScript.canMove = true;
     }
 
@@ -63,6 +67,39 @@ public class Player : MonoBehaviour
         if (isDead) return;
 
         levelManager.enemyManager.SetClosest();
+
+        if (!hasAttackPreview) return;
+
+        Vector3 aimDir = Vector3.zero;
+
+        if (inputActions.devices.HasValue)
+        {
+            var device = inputActions.devices.Value[0];
+
+            if (device.name == "Keyboard")
+            {
+                Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+                mousePos = new Vector3(mousePos.x, mousePos.y, 0);
+                aimDir = (mousePos - transform.position).normalized;
+            }
+            else
+            {
+                aimDir = aimAction.ReadValue<Vector2>();
+            }
+        }
+
+        float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+        angle -= 90;
+
+        if (aimDir == Vector3.zero)
+        {
+            aimPreview.color = Color.clear;
+        }
+        else
+        {
+            aimPreview.color = aimPreviewColor;
+            aimTransform.eulerAngles = new Vector3(0, 0, angle);
+        }
     }
 
     private void OnPause()
@@ -117,6 +154,8 @@ public class Player : MonoBehaviour
     {
         canAttack = false;
         hasAttackCooldown = true;
+        hasAttackPreview = false;
+        aimPreview.color = Color.clear;
 
         spriteRenderer.color = Color.gray4;
 
@@ -127,6 +166,7 @@ public class Player : MonoBehaviour
         if (abilityManager.isBlocking) yield break;
 
         canAttack = true;
+        hasAttackPreview = true;
         spriteRenderer.color = Color.white;
     }
 

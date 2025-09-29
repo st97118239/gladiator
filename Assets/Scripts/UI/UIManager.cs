@@ -44,7 +44,16 @@ public class UIManager : MonoBehaviour
         StartCoroutine(LoadFade(true, -1, false));
 
         if (!isMainGame)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             eventSystem.SetSelectedGameObject(mainMenuSelectedObj);
+        }
+        else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
     }
 
     public void ShowAbilityMenu()
@@ -95,6 +104,8 @@ public class UIManager : MonoBehaviour
         abilityCanvas.gameObject.SetActive(true);
         eventSystem.SetSelectedGameObject(abilityMenuSelectedObj);
         abilityMenuSelectedObj.GetComponent<UIButton>().OnSelect(null);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void DifferentAbilitySelected()
@@ -114,6 +125,8 @@ public class UIManager : MonoBehaviour
 
         abilityCanvas.gameObject.SetActive(false);
         eventSystem.SetSelectedGameObject(null);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
 
         foreach (AbilityCard card in abilityCards)
         {
@@ -144,6 +157,8 @@ public class UIManager : MonoBehaviour
         player.movementScript.canMove = isPaused;
         Time.timeScale = isPaused ? 1 : 0;
         eventSystem.SetSelectedGameObject(isPaused ? null : pauseMenuSelectedObj);
+        Cursor.visible = !isPaused;
+        Cursor.lockState = !isPaused ? CursorLockMode.Confined : CursorLockMode.None;
 
         isPaused = !isPaused;
     }
@@ -155,6 +170,8 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator LoadFade(bool shouldReverse, int sceneToLoad, bool shouldQuit)
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
         fadePanel.gameObject.SetActive(true);
 
         yield return null;
@@ -206,6 +223,8 @@ public class UIManager : MonoBehaviour
 
         settingsCanvas.gameObject.SetActive(true);
         eventSystem.SetSelectedGameObject(settingsMenuSelectedObj);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void CloseSettings()
@@ -213,7 +232,11 @@ public class UIManager : MonoBehaviour
         settingsCanvas.gameObject.SetActive(false);
 
         if (isMainGame)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Confined;
             pauseCanvas.gameObject.SetActive(true);
+        }
         else
             mainMenuCanvas.gameObject.SetActive(true);
 
