@@ -22,7 +22,7 @@ public class BossIdle : IBossState
                 Debug.LogWarning("Attack hasn't been coded yet.");
                 break;
             case AttackType.Nymph:
-                controller.ChangeState(controller.nymphIdleState);
+                controller.ChangeState(controller.nymphWalkState);
                 break;
             case AttackType.None:
             default:

@@ -3,7 +3,6 @@ using UnityEngine;
 public class NymphIdle : IBossState
 {
     private Player player;
-    private float speed;
 
     public void UpdateState(BossStateMachine controller)
     {
@@ -15,18 +14,23 @@ public class NymphIdle : IBossState
 
         float distance = Vector3.Distance(controller.gameObject.transform.position, player.transform.position);
 
-        if (distance > controller.bossController.boss.attackRadius) return;
+        if (distance < controller.bossController.boss.rangedFleeRadius)
+        {
+            controller.ChangeState(controller.nymphWalkState);
+            return;
+        }
 
-        controller.ChangeState(controller.nymphAttackState);
-
-        //controller.gameObject.transform.position = Vector3.MoveTowards(controller.gameObject.transform.position, player.transform.position, speed * Time.deltaTime);
+        //if (distance <= controller.bossController.boss.attackRadius)
+        //{
+        //    controller.ChangeState(controller.nymphAttackState);
+        //    return;
+        //}
     }
     
     public void OnEnter(BossStateMachine controller)
     {
         controller.transform.position = Vector3.zero;
         player = controller.bossController.enemyManager.player;
-        speed = controller.bossController.boss.speed;
     }
 
     public void OnExit(BossStateMachine controller)

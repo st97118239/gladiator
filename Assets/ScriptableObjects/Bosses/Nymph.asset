@@ -18,11 +18,11 @@ MonoBehaviour:
   abilityType: 0
   health: 150
   damage: 10
-  speed: 3
+  speed: 2
   attackRadius: 10
   attackSpeed: 5
   abilityRadius: 0
   abilitySpeed: 0
-  rangedFleeRadius: 0
+  rangedFleeRadius: 5
   projectile: {fileID: 0}
   singDrawSpeed: 0

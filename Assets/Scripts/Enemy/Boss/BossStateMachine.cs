@@ -10,6 +10,7 @@ public class BossStateMachine : MonoBehaviour
 
     public BossIdle idleState = new();
     public NymphIdle nymphIdleState = new();
+    public NymphWalk nymphWalkState = new();
     public BossWalk walkState = new();
     public BossMelee meleeState = new();
     public NymphAttack nymphAttackState = new();
