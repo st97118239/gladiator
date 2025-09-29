@@ -114,6 +114,16 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8208541899940622705}
   rigid: {fileID: 5817432547344322974}
   projCollider: {fileID: 340753586850306276}
+  spinSpeed: {x: 0, y: 0, z: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  bossLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!50 &5817432547344322974
 Rigidbody2D:
   serializedVersion: 5

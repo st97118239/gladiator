@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, ISubmitHandler, ISelectHandler, IDeselectHandler
 {
     public bool isSelected;
 
@@ -82,6 +82,24 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
             StartCoroutine(Fade(true));
     }
 
+    public void OnSelect(BaseEventData eventData)
+    {
+        if (isSelected) return;
+
+        onHoverEnter?.Invoke();
+        if (shouldFade)
+            StartCoroutine(Fade(false));
+    }
+
+    public void OnDeselect(BaseEventData eventData)
+    {
+        if (isSelected) return;
+
+        onHoverExit?.Invoke();
+        if (shouldFade)
+            StartCoroutine(Fade(true));
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (isSelected) return;
@@ -99,6 +117,15 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
                     StartCoroutine(Scale(false));
                 break;
         }
+    }
+
+    public void OnSubmit(BaseEventData eventData)
+    {
+        if (isSelected) return;
+
+        onLeftClick?.Invoke();
+        if (shouldScale && lmbScale)
+            StartCoroutine(Scale(false));
     }
 
     public void OnPointerEnter(PointerEventData eventData)

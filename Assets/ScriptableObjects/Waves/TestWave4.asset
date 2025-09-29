@@ -22,4 +22,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6f453b9abb5b9774cabb00fc4ba55a88, type: 2}
   boss: {fileID: 11400000, guid: 4fc5b18dcc106ab4b84faff86eb4d7d3, type: 2}
   hasAbilityRoll: 1
-  abilitySortsToRoll: 03000000
+  abilitySortsToRoll: 01000000

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -75,19 +74,24 @@ public class Player : MonoBehaviour
     {
         if (!canAttack || isDead) return;
 
-        //if (inputActions.devices.HasValue)
-        //{
-        //    var device = inputActions.devices.Value[0];
+        Vector3 aimDir = Vector3.zero;
 
-        //    if (device.name == "Keyboard")
-        //    {
-        //        Debug.Log("AAAAA");
-        //    }
-        //}
+        if (inputActions.devices.HasValue)
+        {
+            var device = inputActions.devices.Value[0];
 
-        Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        mousePos = new Vector3(mousePos.x, mousePos.y, 0);
-        Vector3 aimDir = (mousePos - transform.position).normalized;
+            if (device.name == "Keyboard")
+            {
+                Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+                mousePos = new Vector3(mousePos.x, mousePos.y, 0);
+                aimDir = (mousePos - transform.position).normalized;
+            }
+            else
+            {
+                aimDir = aimAction.ReadValue<Vector2>();
+            }
+        }
+
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         angle -= 90;
         aimTransform.eulerAngles = new Vector3(0, 0, angle);

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -10,14 +10,22 @@ public class UIManager : MonoBehaviour
 {
     public Player player;
     public AbilityManager abilityManager;
+    public EventSystem eventSystem;
     public LevelManager levelManager;
     public EnemyManager enemyManager;
     public Image fadePanel;
     public Canvas abilityCanvas;
+    public GameObject abilityMenuSelectedObj;
     public Canvas pauseCanvas;
+    public GameObject pauseMenuSelectedObj;
     public Canvas settingsCanvas;
+    public GameObject settingsMenuSelectedObj;
+    public GameObject settingsMenuBackSelectedObj;
     public Canvas mainMenuCanvas;
+    public GameObject mainMenuSelectedObj;
     public Canvas quitConfirmCanvas;
+    public GameObject quitMenuSelectedObj;
+    public GameObject quitMenuBackSelectedObj;
     public bool isMainGame;
 
     public AbilitySlot[] abilitySlots;
@@ -27,17 +35,24 @@ public class UIManager : MonoBehaviour
     [SerializeField] private float fadePanelTime;
 
     private bool isPaused;
+    private bool hasChosenAbility;
 
     private void Start()
     {
         fadePanel.color = Color.gray2;
         Time.timeScale = 1;
         StartCoroutine(LoadFade(true, -1, false));
+
+        if (!isMainGame)
+            eventSystem.SetSelectedGameObject(mainMenuSelectedObj);
     }
 
     public void ShowAbilityMenu()
     {
-        confirmButton.interactable = false;
+        player.canAttack = false;
+        player.movementScript.canMove = false;
+
+        hasChosenAbility = false;
 
         List<Ability> possibleAbilities = new();
 
@@ -78,6 +93,8 @@ public class UIManager : MonoBehaviour
         }
 
         abilityCanvas.gameObject.SetActive(true);
+        eventSystem.SetSelectedGameObject(abilityMenuSelectedObj);
+        abilityMenuSelectedObj.GetComponent<UIButton>().OnSelect(null);
     }
 
     public void DifferentAbilitySelected()
@@ -87,12 +104,16 @@ public class UIManager : MonoBehaviour
             card.Deselect();
         }
 
+        hasChosenAbility = true;
         confirmButton.interactable = true;
     }
 
     public void ConfirmAbility()
     {
+        if (!hasChosenAbility) return;
+
         abilityCanvas.gameObject.SetActive(false);
+        eventSystem.SetSelectedGameObject(null);
 
         foreach (AbilityCard card in abilityCards)
         {
@@ -101,6 +122,9 @@ public class UIManager : MonoBehaviour
 
             card.Reset();
         }
+
+        player.canAttack = true;
+        player.movementScript.canMove = true;
     }
 
     public void NewAbility(Ability givenAbility, int idx)
@@ -119,6 +143,8 @@ public class UIManager : MonoBehaviour
         player.canAttack = isPaused;
         player.movementScript.canMove = isPaused;
         Time.timeScale = isPaused ? 1 : 0;
+        eventSystem.SetSelectedGameObject(isPaused ? null : pauseMenuSelectedObj);
+
         isPaused = !isPaused;
     }
 
@@ -179,6 +205,7 @@ public class UIManager : MonoBehaviour
             mainMenuCanvas.gameObject.SetActive(false);
 
         settingsCanvas.gameObject.SetActive(true);
+        eventSystem.SetSelectedGameObject(settingsMenuSelectedObj);
     }
 
     public void CloseSettings()
@@ -189,18 +216,22 @@ public class UIManager : MonoBehaviour
             pauseCanvas.gameObject.SetActive(true);
         else
             mainMenuCanvas.gameObject.SetActive(true);
+
+        eventSystem.SetSelectedGameObject(settingsMenuBackSelectedObj);
     }
 
     public void QuitButton()
     {
         mainMenuCanvas.gameObject.SetActive(false);
         quitConfirmCanvas.gameObject.SetActive(true);
+        eventSystem.SetSelectedGameObject(quitMenuSelectedObj);
     }
 
     public void CancelQuit()
     {
         mainMenuCanvas.gameObject.SetActive(true);
         quitConfirmCanvas.gameObject.SetActive(false);
+        eventSystem.SetSelectedGameObject(quitMenuBackSelectedObj);
     }
 
     public void Exit()

@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class ProjectileObj : MonoBehaviour
 {
@@ -15,6 +14,8 @@ public class ProjectileObj : MonoBehaviour
     [SerializeField] private Rigidbody2D rigid;
     [SerializeField] private BoxCollider2D projCollider;
     [SerializeField] private Vector3 spinSpeed;
+    [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private LayerMask enemyLayer;
 
     private Vector3 moveTo;
     private WaitForSeconds despawnDelay;
@@ -29,19 +30,22 @@ public class ProjectileObj : MonoBehaviour
 
     private void Update()
     {
-        transform.eulerAngles += spinSpeed;
+        transform.eulerAngles += spinSpeed * Time.deltaTime;
     }
 
     public void Load(Projectile givenProj, Vector3 givenTarget, EnemyController givenEnemy, AbilityManager givenAbilityManager, float angle, Collider2D givenColliderToIgnore)
     {
         isOn = true;
-        target = givenTarget;
+        Vector3 aimDir;
         if (givenEnemy)
         {
             enemy = givenEnemy;
             dmg = enemy.enemy.damage;
             transform.position = enemy.transform.position;
             isPlayerProj = false;
+            rigid.excludeLayers = enemyLayer;
+            target = givenTarget;
+            aimDir = (givenTarget - transform.position).normalized;
         }
         else
         {
@@ -49,6 +53,8 @@ public class ProjectileObj : MonoBehaviour
             isPlayerProj = true;
             dmg = givenAbilityManager.crossbowDamage;
             transform.position = givenAbilityManager.transform.position;
+            rigid.excludeLayers = playerLayer;
+            aimDir = givenTarget;
         }
         speed = givenProj.speed;
         spinSpeed = new Vector3(0, 0, givenProj.spinSpeed);
@@ -59,7 +65,7 @@ public class ProjectileObj : MonoBehaviour
         Physics2D.IgnoreCollision(projCollider, colliderToIgnore, true);
 
         gameObject.SetActive(true);
-        Vector3 aimDir = (givenTarget - transform.position).normalized;
+       
         rigid.AddForce(aimDir * speed);
 
         StartCoroutine(Despawn());
@@ -74,6 +80,8 @@ public class ProjectileObj : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D hit)
     {
+        Debug.Log(hit.collider.name);
+
         if (hit.gameObject.CompareTag("Enemy") && isPlayerProj)
         {
             Debug.Log("Hit enemy.");

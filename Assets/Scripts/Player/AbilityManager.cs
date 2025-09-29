@@ -41,6 +41,7 @@ public class AbilityManager : MonoBehaviour
     private float secondaryDelay;
     private float dashDelay;
     private InputAction secondaryAction;
+    private InputAction aimAction;
 
     private void Awake()
     {
@@ -72,6 +73,8 @@ public class AbilityManager : MonoBehaviour
                 break;
             case AbilityType.Net:
             case AbilityType.Crossbow:
+                secondaryAction = inputActions.FindAction("Secondary");
+                aimAction = inputActions.FindAction("Aim");
                 break;
             case AbilityType.Dash:
                 hasDash = true;
@@ -191,6 +194,8 @@ public class AbilityManager : MonoBehaviour
 
     private void Crossbow()
     {
+        if (secondaryDelay >= 0) return;
+
         Debug.Log("Shoot");
         ProjectileObj proj = levelManager.enemyManager.GetProjectile();
         if (!proj)
@@ -199,13 +204,28 @@ public class AbilityManager : MonoBehaviour
             return;
         }
 
-        Vector3 mousePos = player.cam.ScreenToWorldPoint(Input.mousePosition);
-        mousePos = new Vector3(mousePos.x, mousePos.y, 0);
-        Vector3 aimDir = (mousePos - transform.position).normalized;
+        Vector3 aimDir = Vector3.zero;
+
+        if (inputActions.devices.HasValue)
+        {
+            var device = inputActions.devices.Value[0];
+
+            if (device.name == "Keyboard")
+            {
+                Vector3 mousePos = player.cam.ScreenToWorldPoint(Input.mousePosition);
+                mousePos = new Vector3(mousePos.x, mousePos.y, 0);
+                aimDir = (mousePos - transform.position).normalized;
+            }
+            else
+            {
+                aimDir = aimAction.ReadValue<Vector2>();
+            }
+        }
+
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         angle -= 90;
 
-        proj.Load(crossbowProjectile, mousePos, null, this, angle, player.cd2d);
+        proj.Load(crossbowProjectile, aimDir, null, this, angle, player.cd2d);
         StartCoroutine(CrossbowCooldown());
 
     }
@@ -215,7 +235,7 @@ public class AbilityManager : MonoBehaviour
         secondaryDelay = crossbowCooldown;
         uiManager.abilitySlots[secondary].cooldownSlider.value = secondaryDelay / crossbowCooldown;
 
-        while (dashDelay > 0)
+        while (secondaryDelay > 0)
         {
             yield return null;
             secondaryDelay -= Time.deltaTime;
