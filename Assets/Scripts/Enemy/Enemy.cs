@@ -11,6 +11,8 @@ public class Enemy : ScriptableObject
     public float speed;
     public float attackRadius;
     public float attackSpeed;
+    public float blockTime;
+    public float blockCooldown;
     public float rangedFleeRadius;
     public Projectile projectile;
     public float singDrawSpeed;

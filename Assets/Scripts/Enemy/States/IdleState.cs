@@ -25,7 +25,9 @@ public class IdleState : IEnemyState
             case AttackType.Sing:
                 controller.ChangeState(controller.sirenSingState);
                 break;
-            case AttackType.None:
+            case AttackType.MeleeBlock:
+                controller.ChangeState(controller.walkState);
+                break;
             default:
                 Debug.LogWarning("Enemy has no attack type. Please fix!!");
                 break;

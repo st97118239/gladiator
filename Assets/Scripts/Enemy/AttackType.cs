@@ -5,5 +5,6 @@
     ProjectileRanged,
     Jump,
     Sing,
-    Nymph
+    Nymph,
+    MeleeBlock
 }

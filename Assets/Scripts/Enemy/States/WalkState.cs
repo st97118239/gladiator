@@ -35,6 +35,9 @@ public class WalkState : IEnemyState
 
     public void OnHurt(EnemyStateMachine controller)
     {
-
+        if (controller.attackType == AttackType.MeleeBlock && controller.canBlock)
+        {
+            controller.ChangeState(controller.blockState);
+        }
     }
 }

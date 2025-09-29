@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
     [SerializeField] private ContactFilter2D filter;
 
     [SerializeField] private Slider hpSlider;
+    [SerializeField] private SpriteRenderer slashSprite;
+    [SerializeField] private float slashSpriteTime;
 
     private float atkSpeedMultiplier = 1f;
     private int lifestealDrainMultiplier;
@@ -88,6 +90,8 @@ public class Player : MonoBehaviour
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         angle -= 90;
         aimTransform.eulerAngles = new Vector3(0, 0, angle);
+        slashSprite.color = Color.white;
+        Invoke(nameof(ClearSlashSprite), slashSpriteTime);
 
         List<Collider2D> hitColliders = new();
         Physics2D.OverlapBox(meleeWeaponHitbox.position, meleeWeaponHitbox.localScale / 2, meleeWeaponHitbox.rotation.z, filter, hitColliders);
@@ -103,6 +107,11 @@ public class Player : MonoBehaviour
         }
 
         StartCoroutine(AttackDelay());
+    }
+
+    private void ClearSlashSprite()
+    {
+        slashSprite.color = Color.clear;
     }
 
     private IEnumerator AttackDelay()

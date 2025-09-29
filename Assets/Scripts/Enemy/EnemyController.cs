@@ -25,6 +25,10 @@ public class EnemyController : MonoBehaviour
 
     public void Hit(int damage)
     {
+        enemyStateMachine.currentState.OnHurt(enemyStateMachine);
+
+        if (enemyStateMachine.isBlocking) return;
+        
         health -= damage;
 
         if (enemyManager.abilityManager.hasLifesteal)

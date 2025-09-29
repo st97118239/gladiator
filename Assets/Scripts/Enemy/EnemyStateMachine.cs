@@ -13,6 +13,7 @@ public class EnemyStateMachine : MonoBehaviour
     public RangedWalkState rangedWalkState = new();
     public AttackState attackState = new();
     public RangedAttackState rangedAttackState = new();
+    public BlockState blockState = new();
 
     public AttackType attackType;
     public float attackDelay;
@@ -20,6 +21,8 @@ public class EnemyStateMachine : MonoBehaviour
     public Puddle puddle;
 
     public bool isReloading;
+    public bool isBlocking;
+    public bool canBlock;
 
     public BoxCollider2D enemyCollider;
 
@@ -39,8 +42,15 @@ public class EnemyStateMachine : MonoBehaviour
     public void Load()
     {
         attackType = enemyController.enemy.attackType;
-        if (attackType == AttackType.Sing)
-            FindPuddle();
+        switch (attackType)
+        {
+            case AttackType.Sing:
+                FindPuddle();
+                break;
+            case AttackType.MeleeBlock:
+                canBlock = true;
+                break;
+        }
         ChangeState(idleState);
     }
 
@@ -63,10 +73,50 @@ public class EnemyStateMachine : MonoBehaviour
 
         yield return new WaitForSeconds(enemyController.enemy.attackSpeed);
 
-        enemyController.spriteRenderer.color = Color.white;
+        switch (isBlocking)
+        {
+            case true:
+                enemyController.spriteRenderer.color = Color.gray4;
+                break;
+            case false:
+                enemyController.spriteRenderer.color = Color.white;
+                break;
+        }
         isReloading = false;
 
         ChangeState(idleState);
+    }
+
+    public void StartBlockDelay()
+    {
+        StartCoroutine(nameof(BlockAnim));
+    }
+
+    private IEnumerator BlockAnim()
+    {
+        isBlocking = true;
+        canBlock = false;
+        enemyController.spriteRenderer.color = Color.gray4;
+
+        yield return new WaitForSeconds(enemyController.enemy.blockTime);
+
+        switch (isReloading)
+        {
+            case true:
+                enemyController.spriteRenderer.color = Color.gray4;
+                break;
+            case false:
+                enemyController.spriteRenderer.color = Color.white;
+                break;
+        }
+
+        isBlocking = false;
+
+        ChangeState(idleState);
+
+        yield return new WaitForSeconds(enemyController.enemy.blockCooldown - enemyController.enemy.blockTime);
+
+        canBlock = true;
     }
 
     public void FindPuddle()
