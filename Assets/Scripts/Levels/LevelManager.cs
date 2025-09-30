@@ -148,6 +148,6 @@ public class LevelManager : MonoBehaviour
 
         player.movementScript.canMove = false;
         player.canAttack = false;
-        uiManager.LoadSceneFade(0);
+        uiManager.ShowDeathScreen();
     }
 }

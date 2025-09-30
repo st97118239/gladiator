@@ -28,6 +28,7 @@ public class EnemyManager : MonoBehaviour
     public int maxRootCount;
 
     [SerializeField] private float spawnDelay;
+    [SerializeField] private int healthPotionDropChance;
 
     private int spawnPosIdx;
 
@@ -148,12 +149,22 @@ public class EnemyManager : MonoBehaviour
             spawnPosIdx = 0;
     }
 
-    public void CheckIfEnd()
+    public void CheckIfEnd(bool isBoss)
     {
         enemyCount--;
 
-        if (enemyCount != 0) return;
-        levelManager.WaveFinish();
+        if (enemyCount == 0)
+            levelManager.WaveFinish();
+
+        if (isBoss)
+            player.GetHealthPotion();
+        else
+        {
+            float dropChance = Random.Range(0, 101);
+
+            if (dropChance <= healthPotionDropChance)
+                player.GetHealthPotion();
+        }
     }
 
     public void SetClosest()

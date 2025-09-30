@@ -40,7 +40,7 @@ public class BossController : MonoBehaviour
         transform.position = Vector3.zero;
         spriteRenderer.color = Color.white;
 
-        enemyManager.CheckIfEnd();
+        enemyManager.CheckIfEnd(true);
     }
 
     private IEnumerator HitEffect()

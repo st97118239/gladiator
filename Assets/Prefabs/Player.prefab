@@ -121,12 +121,16 @@ MonoBehaviour:
   meleeDamage: 5
   meleeAtkSpeed: 1
   atkKnockback: 1
+  healthPotionHealAmt: 50
+  healthPotionCap: 5
   canAttack: 0
   hasAttackCooldown: 0
   hasAttackPreview: 0
+  canHeal: 0
   inputActions: {fileID: -944628639613478452, guid: b91c654db24ba1845af790f7fb38f74e, type: 3}
   levelManager: {fileID: 0}
   abilityManager: {fileID: 5799873494410771425}
+  uiManager: {fileID: 0}
   meleeWeaponHitbox: {fileID: 1013117963668258421}
   aimTransform: {fileID: 4365072424774354997}
   aimPreview: {fileID: 8268054654468085231}

@@ -17,14 +17,18 @@ public class Player : MonoBehaviour
     public int meleeDamage;
     public float meleeAtkSpeed;
     public float atkKnockback;
+    public int healthPotionHealAmt;
+    public int healthPotionCap;
 
     public bool canAttack;
     public bool hasAttackCooldown;
     public bool hasAttackPreview;
+    public bool canHeal;
 
     [SerializeField] private InputActionAsset inputActions;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private AbilityManager abilityManager;
+    [SerializeField] private UIManager uiManager;
     [SerializeField] private Transform meleeWeaponHitbox;
     [SerializeField] private Transform aimTransform;
     [SerializeField] private SpriteRenderer aimPreview;
@@ -35,6 +39,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Slider hpSlider;
     [SerializeField] private Animator slashAnimator;
 
+    private int healthPotions;
     private float atkSpeedMultiplier = 1f;
     private int lifestealDrainMultiplier;
     private int armor;
@@ -51,7 +56,8 @@ public class Player : MonoBehaviour
     }
 
     private void Start()
-    { 
+    {
+        uiManager.UpdateHealthPotions(healthPotions);
         lifestealDrainMultiplier = abilityManager.lifestealDrainMultiplier;
         health = maxHealth;
         hpSlider.maxValue = maxHealth;
@@ -60,6 +66,7 @@ public class Player : MonoBehaviour
         canAttack = true;
         hasAttackPreview = true;
         movementScript.canMove = true;
+        canHeal = true;
     }
 
     private void Update()
@@ -105,6 +112,25 @@ public class Player : MonoBehaviour
     private void OnPause()
     {
         levelManager.uiManager.PauseMenu();
+    }
+
+    public void GetHealthPotion()
+    {
+        if (healthPotions >= healthPotionCap) return;
+
+        healthPotions++;
+        uiManager.UpdateHealthPotions(healthPotions);
+    }
+
+    private void OnHeal()
+    {
+        if (healthPotions <= 0 || health >= maxHealth) return;
+
+        healthPotions--;
+
+        PlayerHit(-healthPotionHealAmt, false);
+
+        uiManager.UpdateHealthPotions(healthPotions);
     }
 
     private void OnMelee()
@@ -196,14 +222,12 @@ public class Player : MonoBehaviour
             dmgToDo -= armor;
         }
 
-        if (dmgToDo < 0)
+        if (dmgToDo < 0 && fromEnemy)
             dmgToDo = 0;
 
         damage = Mathf.RoundToInt(dmgToDo);
 
         health -= damage;
-
-        Debug.Log(damage + ", " + health);
 
         if (health > maxHealth) health = maxHealth;
 

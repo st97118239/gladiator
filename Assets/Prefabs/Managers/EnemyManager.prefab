@@ -116,20 +116,7 @@ MonoBehaviour:
   sirens: []
   projectiles: []
   roots: []
-  rangedPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  rangedPositions: []
   currentWave: {fileID: 0}
   emptyEnemyPrefab: {fileID: 127359938022708900, guid: 15e0db7888fbe5142b1e892e8959014d, type: 3}
   emptyBossPrefab: {fileID: 127359938022708900, guid: f0f0b1dcad72eb848a74e2563ee7b25e, type: 3}
@@ -139,7 +126,8 @@ MonoBehaviour:
   projectileParent: {fileID: 1607569232705816480}
   enemySpawnIdx: 0
   enemyCount: 0
-  maxEnemyCount: 15
-  maxProjectileCount: 50
+  maxEnemyCount: 30
+  maxProjectileCount: 20
   maxRootCount: 3
   spawnDelay: 0.3
+  healthPotionDropChance: 10

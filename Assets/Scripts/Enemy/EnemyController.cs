@@ -51,7 +51,7 @@ public class EnemyController : MonoBehaviour
             isClosestSiren = false;
         }
 
-        enemyManager.CheckIfEnd();
+        enemyManager.CheckIfEnd(false);
     }
 
     private IEnumerator HitEffect()

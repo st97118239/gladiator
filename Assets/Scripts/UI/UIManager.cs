@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -13,6 +14,9 @@ public class UIManager : MonoBehaviour
     public EventSystem eventSystem;
     public LevelManager levelManager;
     public EnemyManager enemyManager;
+    public Image healthPotionImage;
+    public TMP_Text healthPotionText;
+    public Color healthPotionsUnavailable;
     public Image fadePanel;
     public Canvas abilityCanvas;
     public GameObject abilityMenuSelectedObj;
@@ -21,6 +25,9 @@ public class UIManager : MonoBehaviour
     public Canvas settingsCanvas;
     public GameObject settingsMenuSelectedObj;
     public GameObject settingsMenuBackSelectedObj;
+    public Canvas deathCanvas;
+    public CanvasGroup deathCanvasGroup;
+    public GameObject deathSelectedObj;
     public Canvas mainMenuCanvas;
     public GameObject mainMenuSelectedObj;
     public Canvas quitConfirmCanvas;
@@ -224,6 +231,37 @@ public class UIManager : MonoBehaviour
         StartCoroutine(LoadFade(false, sceneToLoad, false));
     }
 
+    public void ShowDeathScreen()
+    {
+        Time.timeScale = 0;
+        StartCoroutine(DeathScreenAnim());
+    }
+
+    private IEnumerator DeathScreenAnim()
+    {
+        deathCanvasGroup.alpha = 1;
+        deathCanvas.gameObject.SetActive(true);
+
+        yield return null;
+
+        for (float i = 0; i <= fadePanelTime + Time.unscaledDeltaTime; i += Time.unscaledDeltaTime)
+        {
+            if (i > fadePanelTime) i = fadePanelTime;
+
+            float fillAmount = i / fadePanelTime;
+
+            deathCanvasGroup.alpha = fillAmount;
+
+            yield return null;
+        }
+
+        deathCanvasGroup.alpha = 1;
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        eventSystem.SetSelectedGameObject(deathSelectedObj);
+    }
+
     public void OpenSettings()
     {
         if (isMainGame)
@@ -251,6 +289,12 @@ public class UIManager : MonoBehaviour
             mainMenuCanvas.gameObject.SetActive(true);
 
         eventSystem.SetSelectedGameObject(settingsMenuBackSelectedObj);
+    }
+
+    public void UpdateHealthPotions(int potionCount)
+    {
+        healthPotionImage.color = potionCount > 0 ? Color.white : healthPotionsUnavailable;
+        healthPotionText.text = potionCount > 0 ? potionCount.ToString() : string.Empty;
     }
 
     public void QuitButton()

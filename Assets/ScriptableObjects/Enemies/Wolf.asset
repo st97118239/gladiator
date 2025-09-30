@@ -17,7 +17,7 @@ MonoBehaviour:
   attackType: 1
   health: 6
   damage: 3
-  speed: 4
+  speed: 3.5
   attackRadius: 1
   attackSpeed: 0.4
   blockTime: 0
