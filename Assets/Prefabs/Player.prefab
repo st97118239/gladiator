@@ -34,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.0635, y: 3.8839998, z: 5}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4365072424774354997}
@@ -136,6 +136,7 @@ MonoBehaviour:
   aimTransform: {fileID: 4365072424774354997}
   aimPreview: {fileID: 8268054654468085231}
   aimPreviewColor: {r: 1, g: 1, b: 1, a: 0.39215687}
+  disabledAimPreviewColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 0.19607843}
   meleeHitboxDistanceFromPlayer: 0.1
   filter:
     useTriggers: 0
@@ -202,6 +203,8 @@ MonoBehaviour:
   steadyStanceArmorPoints: 2
   marathonRunnerMovementSpeedMultiplier: 0.3
   isDashing: 0
+  maxPowers: 2
+  powersUnlocked: 0
   passivesUnlocked: 0
   hasLifesteal: 0
   canUseSecondary: 0
@@ -232,6 +235,7 @@ MonoBehaviour:
   player: {fileID: 6138312183256452214}
   inputActions: {fileID: -944628639613478452, guid: b91c654db24ba1845af790f7fb38f74e, type: 3}
   rb2d: {fileID: 1325672466525981746}
+  spriteRenderer: {fileID: 8738978570264309918}
   canMove: 0
   moveAction:
     m_Name: Move
@@ -326,7 +330,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676582975853013370}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}

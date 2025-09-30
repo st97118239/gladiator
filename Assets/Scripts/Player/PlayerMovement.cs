@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     public Player player;
     public InputActionAsset inputActions;
     public Rigidbody2D rb2d;
+    public SpriteRenderer spriteRenderer;
     public bool canMove;
 
     public InputAction moveAction;
@@ -28,15 +29,23 @@ public class PlayerMovement : MonoBehaviour
         moveSpeed = player.movementSpeed * Time.deltaTime;
         moveAmount = moveAction.ReadValue<Vector2>();
 
-        if (canMove)
-            //rb2d.MovePosition(rb2d.position + Vector2.one * moveAmount * (speed * Time.deltaTime));
-            rb2d.AddForce(moveAmount * (moveSpeed * speed), ForceMode2D.Force);
+        if (!canMove) return;
+
+        rb2d.AddForce(moveAmount * (moveSpeed * speed), ForceMode2D.Force);
+
+        switch (moveAmount.x)
+        {
+            case < 0:
+                spriteRenderer.flipX = true;
+                break;
+            case > 0:
+                spriteRenderer.flipX = false;
+                break;
+        }
     }
 
     private void FixedUpdate()
     {
-        
-
         Vector3 clampedPosition = transform.position;
 
         clampedPosition.x = Mathf.Clamp(clampedPosition.x, camClampMin.x, camClampMax.x);

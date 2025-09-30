@@ -19,3 +19,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e860ad7c9d03ce84785d1258d4966d12, type: 2}
   - {fileID: 11400000, guid: e860ad7c9d03ce84785d1258d4966d12, type: 2}
   - {fileID: 11400000, guid: b4c46743f555e6f498aa3a556727773f, type: 2}
+  boss: {fileID: 0}
+  hasAbilityRoll: 0
+  abilitySortsToRoll: 

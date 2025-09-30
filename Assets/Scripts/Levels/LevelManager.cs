@@ -150,6 +150,7 @@ public class LevelManager : MonoBehaviour
 
         player.movementScript.canMove = false;
         player.canAttack = false;
+        player.hasAttackPreview = false;
         player.canHeal = false;
         player.abilityManager.canUseSecondary = false;
         player.abilityManager.canUsePowers = false;

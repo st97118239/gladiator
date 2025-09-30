@@ -43,11 +43,10 @@ public class NymphWalk : IBossState
 
         controller.gameObject.transform.position = Vector3.MoveTowards(controller.gameObject.transform.position, posToGoTo, speed * Time.deltaTime);
 
-        //if (playerDistance > controller.bossController.boss.attackRadius && !controller.isReloading) return;
-
-        //controller.ChangeState(controller.nymphAttackState);
-
-        
+        if (player.transform.position.x < controller.transform.position.x)
+            controller.bossController.spriteRenderer.flipX = true;
+        else if (player.transform.position.x > controller.transform.position.x)
+            controller.bossController.spriteRenderer.flipX = false;
     }
 
     public void OnEnter(BossStateMachine controller)

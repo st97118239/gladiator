@@ -13,7 +13,12 @@ public class Root : MonoBehaviour
     [SerializeField] private float distanceToDisable;
     [SerializeField] private float spawnSpeed;
     [SerializeField] private float disableSpeed;
-    
+    [SerializeField] private Sprite defaultSprite;
+    [SerializeField] private Sprite reverseSprite;
+
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private BoxCollider2D bc2d;
+
     private int dmg;
     private float angle;
     private bool shouldReverse;
@@ -22,31 +27,42 @@ public class Root : MonoBehaviour
     {
         if (!isOn) return;
 
-        if (!shouldReverse && transform.localScale.y < maxDistance)
+        if (!shouldReverse && spriteRenderer.size.y < maxDistance)
         {
-            transform.localScale += scaleExtend * Time.deltaTime;
+            spriteRenderer.size += new Vector2(0, scaleExtend.y / spawnSpeed * Time.deltaTime);
             transform.localPosition += transform.up * ((moveTo.x / spawnSpeed) * Time.deltaTime);
+            bc2d.size = new Vector2(0.5f, spriteRenderer.size.y);
         }
         else
         {
             if (!shouldReverse)
-                shouldReverse = true;
+                StartReverse();
 
-            transform.localScale -= scaleExtend / disableSpeed * Time.deltaTime;
+            spriteRenderer.size += new Vector2(0, -scaleExtend.y / disableSpeed * Time.deltaTime);
             transform.localPosition += transform.up * ((moveTo.x / disableSpeed) * Time.deltaTime);
+            bc2d.size = new Vector2(0.5f, spriteRenderer.size.y);
 
-            if (!(transform.localScale.y < distanceToDisable)) return;
+            if (!(spriteRenderer.size.y < distanceToDisable)) return;
 
             gameObject.SetActive(false);
             isOn = false;
         }
     }
 
+    private void StartReverse()
+    {
+        shouldReverse = true;
+        spriteRenderer.sprite = reverseSprite;
+        spriteRenderer.flipY = true;
+    }
+
     public void Load(int givenDamage, float givenAngle)
     {
+        spriteRenderer.sprite = defaultSprite;
+        spriteRenderer.flipY = false;
         angle = givenAngle;
         transform.eulerAngles = new Vector3(0, 0, angle);
-        transform.localScale = defaultScale;
+        //transform.localScale = defaultScale;
         dmg = givenDamage;
         shouldReverse = false;
         isOn = true;
@@ -55,11 +71,21 @@ public class Root : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D hit)
     {
-        if (hit.gameObject.CompareTag("Player"))
-            hit.gameObject.GetComponent<Player>().PlayerHit(dmg, true);
-        else if (hit.gameObject.CompareTag("Enemy"))
-            hit.gameObject.GetComponent<EnemyController>().Hit(dmg);
-        else if (hit.gameObject.CompareTag("Wall"))
-            shouldReverse = true;
+        CheckHit(hit.gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D hit)
+    {
+        CheckHit(hit.gameObject);
+    }
+
+    private void CheckHit(GameObject obj)
+    {
+        if (obj.CompareTag("Player"))
+            obj.GetComponent<Player>().PlayerHit(dmg, true);
+        else if (obj.CompareTag("Enemy"))
+            obj.GetComponent<EnemyController>().Hit(dmg);
+        else if (obj.CompareTag("Wall"))
+            StartReverse();
     }
 }

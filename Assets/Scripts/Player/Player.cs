@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform aimTransform;
     [SerializeField] private SpriteRenderer aimPreview;
     [SerializeField] private Color aimPreviewColor;
+    [SerializeField] private Color disabledAimPreviewColor;
     [SerializeField] private float meleeHitboxDistanceFromPlayer;
     [SerializeField] private ContactFilter2D filter;
 
@@ -104,12 +105,12 @@ public class Player : MonoBehaviour
         if (aimDir == Vector3.zero)
         {
             aimPreview.color = Color.clear;
+            return;
         }
-        else
-        {
-            aimPreview.color = aimPreviewColor;
-            aimTransform.eulerAngles = new Vector3(0, 0, angle);
-        }
+
+        aimPreview.color = hasAttackCooldown ? disabledAimPreviewColor : aimPreviewColor;
+
+        aimTransform.eulerAngles = new Vector3(0, 0, angle);
     }
 
     private void OnPause()
@@ -184,8 +185,7 @@ public class Player : MonoBehaviour
     {
         canAttack = false;
         hasAttackCooldown = true;
-        hasAttackPreview = false;
-        aimPreview.color = Color.clear;
+        aimPreview.color = disabledAimPreviewColor;
 
         spriteRenderer.color = Color.gray4;
 
@@ -196,7 +196,6 @@ public class Player : MonoBehaviour
         if (abilityManager.isBlocking) yield break;
 
         canAttack = true;
-        hasAttackPreview = true;
         spriteRenderer.color = Color.white;
     }
 
@@ -245,6 +244,7 @@ public class Player : MonoBehaviour
     {
         isDead = true;
         canAttack = false;
+        hasAttackPreview = false;
         movementScript.canMove = false;
         canHeal = false;
         abilityManager.canUseSecondary = false;

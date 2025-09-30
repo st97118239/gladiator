@@ -910,11 +910,11 @@ MonoBehaviour:
   isSelected: 0
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
-  hoverColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+  hoverColor: {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
   hoverTextColor: {r: 0, g: 0, b: 0, a: 1}
   defaultScale: {x: 1, y: 1, z: 1}
   selectScale: {x: 1, y: 1, z: 1}
-  fadeTime: 0.3
+  fadeTime: 0.1
   scaleTime: 0
   image1: {fileID: 8692958233149140165}
   image2: {fileID: 0}
@@ -1593,11 +1593,11 @@ MonoBehaviour:
   isSelected: 0
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
-  hoverColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+  hoverColor: {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
   hoverTextColor: {r: 0, g: 0, b: 0, a: 1}
   defaultScale: {x: 1, y: 1, z: 1}
   selectScale: {x: 1, y: 1, z: 1}
-  fadeTime: 0.3
+  fadeTime: 0.1
   scaleTime: 0
   image1: {fileID: 8226143421323282136}
   image2: {fileID: 0}

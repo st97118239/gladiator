@@ -79,6 +79,7 @@ public class EnemyManager : MonoBehaviour
         currentWave = givenWave;
 
         enemyCount = currentWave.enemies.Count;
+        spawnPosIdx = Random.Range(0, levelManager.spawnpoints.Count);
 
         StartCoroutine(SpawnEnemies());
     }
@@ -98,8 +99,14 @@ public class EnemyManager : MonoBehaviour
         {
             if (i >= maxEnemyCount)
             {
-                Debug.LogWarning("Not enough enemy slots available.");
+                Debug.LogError("Not enough enemy slots available.");
                 break;
+            }
+
+            if (!currentWave.enemies[i])
+            {
+                Debug.LogError("Missing enemy. Skipping it instead. Please fix!!");
+                continue;
             }
 
             EnemyController enemy = enemies[i];

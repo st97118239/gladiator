@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -31,6 +32,8 @@ public class AbilityManager : MonoBehaviour
     public float marathonRunnerMovementSpeedMultiplier;
 
     public bool isDashing;
+    public int maxPowers;
+    public int powersUnlocked;
     public int passivesUnlocked;
     public bool hasLifesteal;
 
@@ -82,14 +85,17 @@ public class AbilityManager : MonoBehaviour
                 secondaryAction = inputActions.FindAction("Secondary");
                 secondaryAction.performed += ctx => { Shield(); };
                 secondaryAction.canceled += ctx => { ShieldCancel(); };
+                secondarySlot = currentAbilitySlot;
                 secondaryDelay = -1;
                 break;
             case AbilityType.Net:
+                secondarySlot = currentAbilitySlot;
                 secondaryDelay = -1;
                 break;
             case AbilityType.Crossbow:
                 secondaryAction = inputActions.FindAction("Secondary");
                 aimAction = inputActions.FindAction("Aim");
+                secondarySlot = currentAbilitySlot;
                 secondaryDelay = -1;
                 break;
             case AbilityType.Dash:
@@ -124,17 +130,11 @@ public class AbilityManager : MonoBehaviour
     {
         switch (newAbility.abilitySort)
         {
-            case AbilitySort.Power when rageSlot == -1:
-                rageSlot = currentAbilitySlot;
-                break;
-            case AbilitySort.Power when throwSlot == -1:
-                throwSlot = currentAbilitySlot;
-                break;
-            case AbilitySort.Secondary when secondarySlot == -1:
-                secondarySlot = currentAbilitySlot;
-                break;
             case AbilitySort.Passive:
                 passivesUnlocked++;
+                break;
+            case AbilitySort.Power:
+                powersUnlocked++;
                 break;
         }
     }
@@ -175,6 +175,7 @@ public class AbilityManager : MonoBehaviour
         isBlocking = true;
         playerMovement.canMove = false;
         player.canAttack = false;
+        player.hasAttackPreview = false;
         player.canHeal = false;
         player.abilityManager.canUsePowers = false;
         player.spriteRenderer.color = Color.gray4;

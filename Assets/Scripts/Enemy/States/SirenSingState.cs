@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class SirenSingState : IEnemyState
@@ -23,6 +22,11 @@ public class SirenSingState : IEnemyState
         }
 
         playerTransform.position = Vector3.MoveTowards(playerTransform.position, controller.transform.position, singDrawSpeed * Time.deltaTime);
+
+        if (playerTransform.position.x < controller.transform.position.x)
+            controller.enemyController.spriteRenderer.flipX = true;
+        else if (playerTransform.position.x > controller.transform.position.x)
+            controller.enemyController.spriteRenderer.flipX = false;
     }
 
     public void OnEnter(EnemyStateMachine controller)

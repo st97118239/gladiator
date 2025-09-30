@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -73,6 +74,7 @@ public class UIManager : MonoBehaviour
     public void ShowAbilityMenu()
     {
         player.canAttack = false;
+        player.hasAttackPreview = false;
         player.movementScript.canMove = false;
         player.canHeal = false;
         player.abilityManager.canUseSecondary = false;
@@ -100,33 +102,82 @@ public class UIManager : MonoBehaviour
                     possibleAbilities.AddRange(abilityManager.passives);
                     break;
                 case AbilitySort.Random:
-                    if (abilityManager.secondarySlot == -1)
                         possibleAbilities.AddRange(abilityManager.secondaries);
-                    if (abilityManager.rageSlot == -1 || abilityManager.throwSlot == -1)
                         possibleAbilities.AddRange(abilityManager.powers);
-                    if (abilityManager.passivesUnlocked < abilityManager.passives.Length)
                         possibleAbilities.AddRange(abilityManager.passives);
                     break;
             }
         }
 
-        foreach (Ability ability in abilityManager.abilities)
+        foreach (Ability ability in possibleAbilities.ToList())
         {
-            if (possibleAbilities.Contains(ability))
-            {
+            if (abilityManager.abilities.Contains(ability))
                 possibleAbilities.Remove(ability);
-                Debug.Log("Removed " + ability);
+            else if (abilityManager.secondarySlot >= 0)
+            {
+                if (abilityManager.secondaries.Contains(ability))
+                    possibleAbilities.Remove(ability);
+            }
+            else if (abilityManager.powersUnlocked >= abilityManager.maxPowers)
+            {
+                if (abilityManager.powers.Contains(ability))
+                    possibleAbilities.Remove(ability);
+            }
+            else if (abilityManager.passivesUnlocked >= abilityManager.passives.Length)
+            {
+                if (abilityManager.passives.Contains(ability))
+                    possibleAbilities.Remove(ability);
             }
         }
 
         // TO-DO: if less than 3 possible abilities, make sure less than 3 cards show!
 
-        foreach (AbilityCard card in abilityCards)
-        {
-            int idx = Random.Range(0, possibleAbilities.Count);
+        int idx;
 
-            card.Load(possibleAbilities[idx]);
-            possibleAbilities.RemoveAt(idx);
+        switch (possibleAbilities.Count)
+        {
+            case 0:
+                player.canAttack = true;
+                player.hasAttackPreview = true;
+                player.movementScript.canMove = true;
+                player.canHeal = true;
+                player.abilityManager.canUseSecondary = true;
+                player.abilityManager.canUsePowers = true;
+                levelManager.WaveEnd();
+                Debug.Log("Can't choose any abilities from this pool.");
+                return;
+            case 1:
+                foreach (AbilityCard card in abilityCards)
+                {
+                    card.gameObject.SetActive(false);
+                }
+
+                abilityMenuSelectedObj.SetActive(true);
+
+                AbilityCard defaultCard = abilityMenuSelectedObj.GetComponent<AbilityCard>();
+
+                idx = Random.Range(0, possibleAbilities.Count);
+
+                defaultCard.Load(possibleAbilities[idx]);
+                possibleAbilities.RemoveAt(idx);
+                defaultCard.gameObject.SetActive(true);
+                break;
+            case >= 2:
+                foreach (AbilityCard card in abilityCards)
+                {
+                    if (possibleAbilities.Count == 0)
+                    {
+                        card.gameObject.SetActive(false);
+                        break;
+                    }
+
+                    idx = Random.Range(0, possibleAbilities.Count);
+
+                    card.Load(possibleAbilities[idx]);
+                    possibleAbilities.RemoveAt(idx);
+                    card.gameObject.SetActive(true);
+                }
+                break;
         }
 
         abilityCanvas.gameObject.SetActive(true);
@@ -137,6 +188,10 @@ public class UIManager : MonoBehaviour
     {
         abilityCanvasGroup.alpha = 1;
         abilityCanvas.gameObject.SetActive(true);
+        eventSystem.SetSelectedGameObject(abilityMenuSelectedObj);
+        abilityMenuSelectedObj.GetComponent<UIButton>().OnSelect(null);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
         yield return null;
 
@@ -152,11 +207,6 @@ public class UIManager : MonoBehaviour
         }
 
         abilityCanvasGroup.alpha = 1;
-
-        eventSystem.SetSelectedGameObject(abilityMenuSelectedObj);
-        abilityMenuSelectedObj.GetComponent<UIButton>().OnSelect(null);
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
     }
 
     public void DifferentAbilitySelected()
@@ -188,6 +238,7 @@ public class UIManager : MonoBehaviour
         }
 
         player.canAttack = true;
+        player.hasAttackPreview = true;
         player.movementScript.canMove = true;
         player.canHeal = true;
         player.abilityManager.canUseSecondary = true;
@@ -284,6 +335,9 @@ public class UIManager : MonoBehaviour
     {
         deathCanvasGroup.alpha = 1;
         deathCanvas.gameObject.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        eventSystem.SetSelectedGameObject(deathSelectedObj);
 
         yield return null;
 
@@ -299,16 +353,15 @@ public class UIManager : MonoBehaviour
         }
 
         deathCanvasGroup.alpha = 1;
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        eventSystem.SetSelectedGameObject(deathSelectedObj);
     }
 
     private IEnumerator WinScreenAnim()
     {
         winCanvasGroup.alpha = 1;
         winCanvas.gameObject.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        eventSystem.SetSelectedGameObject(winSelectedObj);
 
         yield return null;
 
@@ -324,10 +377,6 @@ public class UIManager : MonoBehaviour
         }
 
         winCanvasGroup.alpha = 1;
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        eventSystem.SetSelectedGameObject(winSelectedObj);
     }
 
     public void OpenSettings()

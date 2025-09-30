@@ -37,6 +37,11 @@ public class RangedWalkState : IEnemyState
         }
 
         controller.gameObject.transform.position = Vector3.MoveTowards(controller.gameObject.transform.position, posToGoTo, speed * Time.deltaTime);
+
+        if (player.transform.position.x < controller.transform.position.x)
+            controller.enemyController.spriteRenderer.flipX = true;
+        else if (player.transform.position.x > controller.transform.position.x)
+            controller.enemyController.spriteRenderer.flipX = false;
     }
 
     public void OnEnter(EnemyStateMachine controller)
