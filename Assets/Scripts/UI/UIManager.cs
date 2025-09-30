@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     public Color healthPotionsUnavailable;
     public Image fadePanel;
     public Canvas abilityCanvas;
+    public CanvasGroup abilityCanvasGroup;
     public GameObject abilityMenuSelectedObj;
     public Canvas pauseCanvas;
     public GameObject pauseMenuSelectedObj;
@@ -28,6 +29,12 @@ public class UIManager : MonoBehaviour
     public Canvas deathCanvas;
     public CanvasGroup deathCanvasGroup;
     public GameObject deathSelectedObj;
+    public Canvas winCanvas;
+    public CanvasGroup winCanvasGroup;
+    public GameObject winSelectedObj;
+    public GameObject mainMenuConfirmPanel;
+    public GameObject mainMenuConfirmSelectedObj;
+    public GameObject mainMenuConfirmBackSelectedObj;
     public Canvas mainMenuCanvas;
     public GameObject mainMenuSelectedObj;
     public Canvas quitConfirmCanvas;
@@ -67,6 +74,9 @@ public class UIManager : MonoBehaviour
     {
         player.canAttack = false;
         player.movementScript.canMove = false;
+        player.canHeal = false;
+        player.abilityManager.canUseSecondary = false;
+        player.abilityManager.canUsePowers = false;
 
         hasChosenAbility = false;
 
@@ -90,9 +100,9 @@ public class UIManager : MonoBehaviour
                     possibleAbilities.AddRange(abilityManager.passives);
                     break;
                 case AbilitySort.Random:
-                    if (abilityManager.secondary == -1)
+                    if (abilityManager.secondarySlot == -1)
                         possibleAbilities.AddRange(abilityManager.secondaries);
-                    if (abilityManager.ability1 == -1 || abilityManager.ability2 == -1)
+                    if (abilityManager.rageSlot == -1 || abilityManager.throwSlot == -1)
                         possibleAbilities.AddRange(abilityManager.powers);
                     if (abilityManager.passivesUnlocked < abilityManager.passives.Length)
                         possibleAbilities.AddRange(abilityManager.passives);
@@ -105,6 +115,7 @@ public class UIManager : MonoBehaviour
             if (possibleAbilities.Contains(ability))
             {
                 possibleAbilities.Remove(ability);
+                Debug.Log("Removed " + ability);
             }
         }
 
@@ -119,6 +130,29 @@ public class UIManager : MonoBehaviour
         }
 
         abilityCanvas.gameObject.SetActive(true);
+        StartCoroutine(AbilityMenuAnim());
+    }
+
+    private IEnumerator AbilityMenuAnim()
+    {
+        abilityCanvasGroup.alpha = 1;
+        abilityCanvas.gameObject.SetActive(true);
+
+        yield return null;
+
+        for (float i = 0; i <= fadePanelTime + Time.unscaledDeltaTime; i += Time.unscaledDeltaTime)
+        {
+            if (i > fadePanelTime) i = fadePanelTime;
+
+            float fillAmount = i / fadePanelTime;
+
+            abilityCanvasGroup.alpha = fillAmount;
+
+            yield return null;
+        }
+
+        abilityCanvasGroup.alpha = 1;
+
         eventSystem.SetSelectedGameObject(abilityMenuSelectedObj);
         abilityMenuSelectedObj.GetComponent<UIButton>().OnSelect(null);
         Cursor.visible = true;
@@ -155,6 +189,9 @@ public class UIManager : MonoBehaviour
 
         player.canAttack = true;
         player.movementScript.canMove = true;
+        player.canHeal = true;
+        player.abilityManager.canUseSecondary = true;
+        player.abilityManager.canUsePowers = true;
     }
 
     public void NewAbility(Ability givenAbility, int idx)
@@ -237,6 +274,12 @@ public class UIManager : MonoBehaviour
         StartCoroutine(DeathScreenAnim());
     }
 
+    public void ShowWinScreen()
+    {
+        Time.timeScale = 0;
+        StartCoroutine(WinScreenAnim());
+    }
+
     private IEnumerator DeathScreenAnim()
     {
         deathCanvasGroup.alpha = 1;
@@ -260,6 +303,31 @@ public class UIManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         eventSystem.SetSelectedGameObject(deathSelectedObj);
+    }
+
+    private IEnumerator WinScreenAnim()
+    {
+        winCanvasGroup.alpha = 1;
+        winCanvas.gameObject.SetActive(true);
+
+        yield return null;
+
+        for (float i = 0; i <= fadePanelTime + Time.unscaledDeltaTime; i += Time.unscaledDeltaTime)
+        {
+            if (i > fadePanelTime) i = fadePanelTime;
+
+            float fillAmount = i / fadePanelTime;
+
+            winCanvasGroup.alpha = fillAmount;
+
+            yield return null;
+        }
+
+        winCanvasGroup.alpha = 1;
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        eventSystem.SetSelectedGameObject(winSelectedObj);
     }
 
     public void OpenSettings()
@@ -295,6 +363,24 @@ public class UIManager : MonoBehaviour
     {
         healthPotionImage.color = potionCount > 0 ? Color.white : healthPotionsUnavailable;
         healthPotionText.text = potionCount > 0 ? potionCount.ToString() : string.Empty;
+    }
+
+    public void ContinueButton()
+    {
+        Debug.Log("Fuck you");
+        Exit();
+    }
+
+    public void WinMainMenuButton()
+    {
+        mainMenuConfirmPanel.SetActive(true);
+        eventSystem.SetSelectedGameObject(mainMenuConfirmSelectedObj);
+    }
+
+    public void WinMainMenuButtonCancel()
+    {
+        mainMenuConfirmPanel.SetActive(false);
+        eventSystem.SetSelectedGameObject(mainMenuConfirmBackSelectedObj);
     }
 
     public void QuitButton()

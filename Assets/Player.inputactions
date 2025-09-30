@@ -34,7 +34,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Ability1",
+                    "name": "Throw",
                     "type": "Button",
                     "id": "f87c998b-20e4-4d75-9d20-3a85065ee17b",
                     "expectedControlType": "",
@@ -43,7 +43,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Ability2",
+                    "name": "Rage",
                     "type": "Button",
                     "id": "5fdffc48-7e69-40e0-a5f3-4cc5aeeb38b0",
                     "expectedControlType": "",
@@ -195,18 +195,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyboardMouse",
-                    "action": "Ability1",
+                    "action": "Throw",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "3247192a-69b3-4650-bad1-e04adfb1f199",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Controller",
-                    "action": "Ability1",
+                    "action": "Throw",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -217,18 +217,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyboardMouse",
-                    "action": "Ability2",
+                    "action": "Rage",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "f824f021-575c-4536-9ca7-aed4a7d6d143",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/rightStickPress",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Controller",
-                    "action": "Ability2",
+                    "action": "Rage",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -305,17 +305,6 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyboardMouse",
-                    "action": "Heal",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "21b1ff10-b6b6-415f-93cd-43c4d2a39a5f",
-                    "path": "<SwitchProControllerHID>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Controller",
                     "action": "Heal",
                     "isComposite": false,
                     "isPartOfComposite": false

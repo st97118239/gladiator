@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     public Camera cam;
     public PlayerMovement movementScript;
+    public AbilityManager abilityManager;
     public SpriteRenderer spriteRenderer;
     public BoxCollider2D cd2d;
     public int maxHealth;
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     public float atkKnockback;
     public int healthPotionHealAmt;
     public int healthPotionCap;
+    public float hitTime;
 
     public bool canAttack;
     public bool hasAttackCooldown;
@@ -27,7 +29,6 @@ public class Player : MonoBehaviour
 
     [SerializeField] private InputActionAsset inputActions;
     [SerializeField] private LevelManager levelManager;
-    [SerializeField] private AbilityManager abilityManager;
     [SerializeField] private UIManager uiManager;
     [SerializeField] private Transform meleeWeaponHitbox;
     [SerializeField] private Transform aimTransform;
@@ -67,6 +68,8 @@ public class Player : MonoBehaviour
         hasAttackPreview = true;
         movementScript.canMove = true;
         canHeal = true;
+        abilityManager.canUseSecondary = true;
+        abilityManager.canUsePowers = true;
     }
 
     private void Update()
@@ -152,6 +155,7 @@ public class Player : MonoBehaviour
             else
             {
                 aimDir = aimAction.ReadValue<Vector2>();
+                if (aimDir == Vector3.zero) return;
             }
         }
 
@@ -210,7 +214,7 @@ public class Player : MonoBehaviour
 
     public void PlayerHit(int damage, bool fromEnemy)
     {
-        if (isDead) return;
+        if (isDead || abilityManager.isDashing) return;
 
         float dmgToDo = damage;
 
@@ -242,6 +246,9 @@ public class Player : MonoBehaviour
         isDead = true;
         canAttack = false;
         movementScript.canMove = false;
+        canHeal = false;
+        abilityManager.canUseSecondary = false;
+        abilityManager.canUsePowers = false;
         Debug.Log("Player died.");
         levelManager.GameEnd(true);
     }

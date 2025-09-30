@@ -288,7 +288,6 @@ GameObject:
   - component: {fileID: 3913685924673980989}
   - component: {fileID: 4653971144682183000}
   - component: {fileID: 2193319156268969911}
-  - component: {fileID: 1535454601388996091}
   m_Layer: 5
   m_Name: AbilitySlot4
   m_TagString: Untagged
@@ -368,51 +367,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AbilitySlot
   ability: {fileID: 0}
   cooldownSlider: {fileID: 1264051514463059948}
---- !u!114 &1535454601388996091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2544067362743126880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd6303fae825b87448a581fa4c8a669a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UIButton
-  isSelected: 0
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  defaultTextColor: {r: 0, g: 0, b: 0, a: 0}
-  hoverColor: {r: 1, g: 1, b: 1, a: 0.39215687}
-  hoverTextColor: {r: 0, g: 0, b: 0, a: 0}
-  defaultScale: {x: 1, y: 1, z: 1}
-  selectScale: {x: 0, y: 0, z: 0}
-  fadeTime: 0.3
-  scaleTime: 0
-  image1: {fileID: 4653971144682183000}
-  image2: {fileID: 0}
-  image3: {fileID: 0}
-  text: {fileID: 0}
-  hasImage1: 1
-  hasImage2: 0
-  hasImage3: 0
-  hasText: 0
-  shouldFade: 1
-  shouldScale: 0
-  lmbScale: 0
-  rmbScale: 0
-  onLeftClick:
-    m_PersistentCalls:
-      m_Calls: []
-  onRightClick:
-    m_PersistentCalls:
-      m_Calls: []
-  onHoverEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  onHoverExit:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &3025892615129811652
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,7 +640,6 @@ GameObject:
   - component: {fileID: 5770816153456591510}
   - component: {fileID: 8760094695818955833}
   - component: {fileID: 2274694781569138380}
-  - component: {fileID: 8248933885851873432}
   m_Layer: 5
   m_Name: AbilitySlot1
   m_TagString: Untagged
@@ -766,51 +719,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AbilitySlot
   ability: {fileID: 0}
   cooldownSlider: {fileID: 4701300715621432069}
---- !u!114 &8248933885851873432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4138492164693399316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd6303fae825b87448a581fa4c8a669a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UIButton
-  isSelected: 0
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  defaultTextColor: {r: 0, g: 0, b: 0, a: 0}
-  hoverColor: {r: 1, g: 1, b: 1, a: 0.39215687}
-  hoverTextColor: {r: 0, g: 0, b: 0, a: 0}
-  defaultScale: {x: 1, y: 1, z: 1}
-  selectScale: {x: 0, y: 0, z: 0}
-  fadeTime: 0.3
-  scaleTime: 0
-  image1: {fileID: 8760094695818955833}
-  image2: {fileID: 0}
-  image3: {fileID: 0}
-  text: {fileID: 0}
-  hasImage1: 1
-  hasImage2: 0
-  hasImage3: 0
-  hasText: 0
-  shouldFade: 1
-  shouldScale: 0
-  lmbScale: 0
-  rmbScale: 0
-  onLeftClick:
-    m_PersistentCalls:
-      m_Calls: []
-  onRightClick:
-    m_PersistentCalls:
-      m_Calls: []
-  onHoverEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  onHoverExit:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &5309111621083241531
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,7 +943,6 @@ GameObject:
   - component: {fileID: 7651179077970125109}
   - component: {fileID: 2600548751598933404}
   - component: {fileID: 2955101976449264459}
-  - component: {fileID: 2436808961906763332}
   m_Layer: 5
   m_Name: AbilitySlot3
   m_TagString: Untagged
@@ -1115,51 +1022,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AbilitySlot
   ability: {fileID: 0}
   cooldownSlider: {fileID: 2870898981066300296}
---- !u!114 &2436808961906763332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7702276019385176655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd6303fae825b87448a581fa4c8a669a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UIButton
-  isSelected: 0
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  defaultTextColor: {r: 0, g: 0, b: 0, a: 0}
-  hoverColor: {r: 1, g: 1, b: 1, a: 0.39215687}
-  hoverTextColor: {r: 0, g: 0, b: 0, a: 0}
-  defaultScale: {x: 1, y: 1, z: 1}
-  selectScale: {x: 0, y: 0, z: 0}
-  fadeTime: 0.3
-  scaleTime: 0
-  image1: {fileID: 2600548751598933404}
-  image2: {fileID: 0}
-  image3: {fileID: 0}
-  text: {fileID: 0}
-  hasImage1: 1
-  hasImage2: 0
-  hasImage3: 0
-  hasText: 0
-  shouldFade: 1
-  shouldScale: 0
-  lmbScale: 0
-  rmbScale: 0
-  onLeftClick:
-    m_PersistentCalls:
-      m_Calls: []
-  onRightClick:
-    m_PersistentCalls:
-      m_Calls: []
-  onHoverEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  onHoverExit:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &7854738696313528223
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,7 +1034,6 @@ GameObject:
   - component: {fileID: 5882409183637248752}
   - component: {fileID: 4797857389436846370}
   - component: {fileID: 7036059914191105000}
-  - component: {fileID: 8253491828059586740}
   m_Layer: 5
   m_Name: AbilitySlot2
   m_TagString: Untagged
@@ -1252,51 +1113,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AbilitySlot
   ability: {fileID: 0}
   cooldownSlider: {fileID: 8839624833888238014}
---- !u!114 &8253491828059586740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7854738696313528223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd6303fae825b87448a581fa4c8a669a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UIButton
-  isSelected: 0
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  defaultTextColor: {r: 0, g: 0, b: 0, a: 0}
-  hoverColor: {r: 1, g: 1, b: 1, a: 0.39215687}
-  hoverTextColor: {r: 0, g: 0, b: 0, a: 0}
-  defaultScale: {x: 1, y: 1, z: 1}
-  selectScale: {x: 0, y: 0, z: 0}
-  fadeTime: 0.3
-  scaleTime: 0
-  image1: {fileID: 4797857389436846370}
-  image2: {fileID: 0}
-  image3: {fileID: 0}
-  text: {fileID: 0}
-  hasImage1: 1
-  hasImage2: 0
-  hasImage3: 0
-  hasText: 0
-  shouldFade: 1
-  shouldScale: 0
-  lmbScale: 0
-  rmbScale: 0
-  onLeftClick:
-    m_PersistentCalls:
-      m_Calls: []
-  onRightClick:
-    m_PersistentCalls:
-      m_Calls: []
-  onHoverEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  onHoverExit:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1001 &540651173426468208
 PrefabInstance:
   m_ObjectHideFlags: 0

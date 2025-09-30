@@ -144,10 +144,14 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Game finished.");
 
         if (!died)
-            gameFinishedPanel.SetActive(true);
+            uiManager.ShowWinScreen();
+        else
+            uiManager.ShowDeathScreen();
 
         player.movementScript.canMove = false;
         player.canAttack = false;
-        uiManager.ShowDeathScreen();
+        player.canHeal = false;
+        player.abilityManager.canUseSecondary = false;
+        player.abilityManager.canUsePowers = false;
     }
 }

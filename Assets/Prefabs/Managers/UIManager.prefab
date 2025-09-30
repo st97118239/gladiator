@@ -49,14 +49,27 @@ MonoBehaviour:
   eventSystem: {fileID: 0}
   levelManager: {fileID: 0}
   enemyManager: {fileID: 0}
+  healthPotionImage: {fileID: 0}
+  healthPotionText: {fileID: 0}
+  healthPotionsUnavailable: {r: 0, g: 0, b: 0, a: 0.19607843}
   fadePanel: {fileID: 0}
   abilityCanvas: {fileID: 0}
+  abilityCanvasGroup: {fileID: 0}
   abilityMenuSelectedObj: {fileID: 0}
   pauseCanvas: {fileID: 0}
   pauseMenuSelectedObj: {fileID: 0}
   settingsCanvas: {fileID: 0}
   settingsMenuSelectedObj: {fileID: 0}
   settingsMenuBackSelectedObj: {fileID: 0}
+  deathCanvas: {fileID: 0}
+  deathCanvasGroup: {fileID: 0}
+  deathSelectedObj: {fileID: 0}
+  winCanvas: {fileID: 0}
+  winCanvasGroup: {fileID: 0}
+  winSelectedObj: {fileID: 0}
+  mainMenuConfirmPanel: {fileID: 0}
+  mainMenuConfirmSelectedObj: {fileID: 0}
+  mainMenuConfirmBackSelectedObj: {fileID: 0}
   mainMenuCanvas: {fileID: 0}
   mainMenuSelectedObj: {fileID: 0}
   quitConfirmCanvas: {fileID: 0}

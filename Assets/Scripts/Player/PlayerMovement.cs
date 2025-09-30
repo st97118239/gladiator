@@ -13,9 +13,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private Vector2 camClampMin = Vector2.one;
     [SerializeField] private Vector2 camClampMax = Vector2.one;
-    [SerializeField] private float speed = 5;
+    [SerializeField] private float speed = 1;
 
-    private float speedMultiplier = 1f;
     private float moveSpeed;
     private Vector3 moveAmount;
 
@@ -49,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void SpeedChange(float change)
     {
-        speedMultiplier += change;
-        speed *= speedMultiplier;
+        speed += change;
     }
 }
