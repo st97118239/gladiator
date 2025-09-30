@@ -31,6 +31,14 @@ public class EnemyManager : MonoBehaviour
 
     private int spawnPosIdx;
 
+    private void Awake()
+    {
+        for (int i = 0; i < levelManager.rangedPointsParent.childCount; i++)
+        {
+            rangedPositions.Add(levelManager.rangedPointsParent.GetChild(i));
+        }
+    }
+
     public void EmptyEnemySpawn()
     {
         GameObject bossObj = Instantiate(emptyBossPrefab, Vector3.zero, Quaternion.identity, enemyParent);

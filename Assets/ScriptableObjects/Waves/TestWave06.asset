@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b4fb03fcd02cdb4f9fc78eb9e651f60, type: 3}
-  m_Name: TestWave0
+  m_Name: TestWave06
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWave
   enemies:
-  - {fileID: 11400000, guid: e860ad7c9d03ce84785d1258d4966d12, type: 2}
-  - {fileID: 11400000, guid: e860ad7c9d03ce84785d1258d4966d12, type: 2}
-  - {fileID: 11400000, guid: e860ad7c9d03ce84785d1258d4966d12, type: 2}
-  - {fileID: 11400000, guid: e860ad7c9d03ce84785d1258d4966d12, type: 2}
-  - {fileID: 11400000, guid: e860ad7c9d03ce84785d1258d4966d12, type: 2}
+  - {fileID: 11400000, guid: d4e909b09be65cf47bea9b6be0154160, type: 2}
+  - {fileID: 11400000, guid: d4e909b09be65cf47bea9b6be0154160, type: 2}
+  - {fileID: 11400000, guid: d4e909b09be65cf47bea9b6be0154160, type: 2}
+  - {fileID: 11400000, guid: d4e909b09be65cf47bea9b6be0154160, type: 2}
+  - {fileID: 11400000, guid: 8c23ac97b0e214d4cab3c22afa347fc4, type: 2}
+  - {fileID: 11400000, guid: 8c23ac97b0e214d4cab3c22afa347fc4, type: 2}
   boss: {fileID: 0}
   hasAbilityRoll: 0
   abilitySortsToRoll: 

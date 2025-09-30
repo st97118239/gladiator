@@ -93,6 +93,16 @@ public class UIManager : MonoBehaviour
             }
         }
 
+        foreach (Ability ability in abilityManager.abilities)
+        {
+            if (possibleAbilities.Contains(ability))
+            {
+                possibleAbilities.Remove(ability);
+            }
+        }
+
+        // TO-DO: if less than 3 possible abilities, make sure less than 3 cards show!
+
         foreach (AbilityCard card in abilityCards)
         {
             int idx = Random.Range(0, possibleAbilities.Count);
@@ -152,15 +162,15 @@ public class UIManager : MonoBehaviour
         if (fadePanel.IsActive())
             fadePanel.gameObject.SetActive(false);
 
-        pauseCanvas.gameObject.SetActive(!isPaused);
-        player.canAttack = isPaused;
-        player.movementScript.canMove = isPaused;
-        Time.timeScale = isPaused ? 1 : 0;
-        eventSystem.SetSelectedGameObject(isPaused ? null : pauseMenuSelectedObj);
-        Cursor.visible = !isPaused;
-        Cursor.lockState = !isPaused ? CursorLockMode.Confined : CursorLockMode.None;
-
         isPaused = !isPaused;
+
+        pauseCanvas.gameObject.SetActive(isPaused);
+        player.canAttack = !isPaused;
+        player.movementScript.canMove = !isPaused;
+        Time.timeScale = isPaused ? 0 : 1;
+        eventSystem.SetSelectedGameObject(isPaused ? pauseMenuSelectedObj : null);
+        Cursor.visible = isPaused;
+        Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Confined;
     }
 
     public void Restart(int sceneToLoad)

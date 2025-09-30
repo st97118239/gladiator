@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class LevelManager : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class LevelManager : MonoBehaviour
     public EnemyManager enemyManager;
     public UIManager uiManager;
     public Player player;
+
+    public Transform spawnpointsParent;
+    public Transform rangedPointsParent;
+    public Transform puddlesParent;
+    public Transform platformsParent;
 
     public List<Transform> spawnpoints;
     public List<Puddle> puddles;
@@ -28,6 +34,24 @@ public class LevelManager : MonoBehaviour
 
     private WaitForSeconds waveWait;
     private float countdown;
+
+    private void Awake()
+    {
+        for (int i = 0; i < spawnpointsParent.childCount; i++)
+        {
+            spawnpoints.Add(spawnpointsParent.GetChild(i));
+        }
+
+        for (int i = 0; i < puddlesParent.childCount; i++)
+        {
+            puddles.Add(puddlesParent.GetChild(i).GetComponent<Puddle>());
+        }
+
+        for (int i = 0; i < platformsParent.childCount; i++)
+        {
+            platforms.Add(platformsParent.GetChild(i).GetComponent<Platform>());
+        }
+    }
 
     private void Start()
     {

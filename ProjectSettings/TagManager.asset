@@ -9,6 +9,9 @@ TagManager:
   - Boss
   - Root
   - Wall
+  - Spawnpoint
+  - RangedPoint
+  - Puddle
   layers:
   - Default
   - TransparentFX

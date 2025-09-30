@@ -20,6 +20,7 @@ public class AbilityManager : MonoBehaviour
     public int crossbowDamage;
     public float crossbowCooldown;
     public float dashSpeed;
+    public float dashTime;
     public float dashCooldown;
     public float rageAtkSpdMultiplier;
     public int lifestealDrainMultiplier;
@@ -48,6 +49,7 @@ public class AbilityManager : MonoBehaviour
         secondary = -1;
         ability1 = -1;
         ability2 = -1;
+        dashDelay = -1;
 
         if (shieldBlockAmt > 100)
             Debug.LogWarning("ShieldBlockAmt in AbilityManager should not be above 100.");
@@ -258,7 +260,7 @@ public class AbilityManager : MonoBehaviour
             playerMovement.rb2d.linearDamping = 5;
         }
 
-        Invoke(nameof(ResetRigidbody), 1);
+        Invoke(nameof(ResetRigidbody), dashTime);
         StartCoroutine(DashCooldown());
     }
 
