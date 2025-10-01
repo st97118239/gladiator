@@ -16,14 +16,16 @@ MonoBehaviour:
   enemyType: 3
   attackType: 1
   abilityType: 1
-  health: 50
+  health: 75
   damage: 10
   speed: 3
   attackRadius: 1
   attackSpeed: 1.2
+  abilityRadius: 4
   abilityTime: 0.5
   abilityCooldown: 3
   abilityPower: 1000
+  abilityUseChance: 50
   rangedFleeRadius: 0
   projectile: {fileID: 0}
   singDrawSpeed: 0

@@ -28,7 +28,7 @@ public class BossWalk : IBossState
         else if (player.transform.position.x > controller.transform.position.x)
             controller.bossController.spriteRenderer.flipX = false;
 
-        if (controller.canDash && controller.dashDelay < 0)
+        if (controller.canDash && controller.dashDelay < 0 && distance >= controller.dashRadius)
             controller.Dash();
     }
     
@@ -45,6 +45,11 @@ public class BossWalk : IBossState
 
     public void OnHurt(BossStateMachine controller)
     {
+        if (!controller.canDash || controller.dashDelay >= 0) return;
 
+        int shouldDash = Random.Range(0, 101);
+
+        if (shouldDash <= controller.bossController.boss.abilityUseChance) 
+            controller.Dash();
     }
 }

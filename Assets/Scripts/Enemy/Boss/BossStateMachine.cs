@@ -25,6 +25,7 @@ public class BossStateMachine : MonoBehaviour
     public bool isReloading;
     public bool canDash;
 
+    public float dashRadius;
     public float dashDelay;
     public float dashCooldown;
     public float dashSpeed;
@@ -50,6 +51,9 @@ public class BossStateMachine : MonoBehaviour
 
     public void Load()
     {
+        if (bossController.boss.abilityUseChance > 100) 
+            Debug.LogWarning("Boss Ability Use Chance should not be above 100. Please fix!");
+
         attackType = bossController.boss.attackType;
         abilityType = bossController.boss.abilityType;
         canDash = false;
@@ -62,10 +66,11 @@ public class BossStateMachine : MonoBehaviour
         {
             canDash = true;
             dashCooldown = bossController.boss.abilityCooldown;
-            dashDelay = dashCooldown / 2;
+            dashDelay = dashCooldown;
             dashSpeed = bossController.boss.abilityPower;
             dashTime = bossController.boss.abilityTime;
-            Invoke(nameof(ResetDashCooldown), dashCooldown);
+            dashRadius = bossController.boss.abilityRadius;
+            Invoke(nameof(ResetDashCooldown), dashCooldown / 2);
         }
 
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;

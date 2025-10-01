@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour
 
         enemyStateMachine.currentState.OnHurt(enemyStateMachine);
 
-        if (enemyStateMachine.isBlocking) return;
+        if (enemyStateMachine.isBlocking || enemyStateMachine.isDashing) return;
         
         health -= damage;
 

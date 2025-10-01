@@ -55,11 +55,14 @@ public class Player : MonoBehaviour
     {
         gameManager = FindFirstObjectByType<GameManager>();
 
-        for (int i = 0; i < gameManager.healthPotions; i++)
+        if (gameManager)
         {
-            GetHealthPotion();
+            for (int i = 0; i < gameManager.healthPotions; i++) 
+                GetHealthPotion();
         }
-
+        else
+            Debug.LogWarning("No GameManager found.");
+        
         aimAction = inputActions.FindAction("Aim");
         if (Application.isPlaying)
             gizmoHitboxScale = cd2d.size * transform.localScale;

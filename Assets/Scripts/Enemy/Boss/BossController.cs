@@ -26,6 +26,10 @@ public class BossController : MonoBehaviour
     {
         if (bossStateMachine.isDashing) return;
 
+        bossStateMachine.currentState.OnHurt(bossStateMachine);
+
+        if (bossStateMachine.isDashing) return;
+
         health -= damage;
 
         if (enemyManager.abilityManager.hasLifesteal)

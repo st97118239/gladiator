@@ -83,7 +83,7 @@ public class EnemyStateMachine : MonoBehaviour
             dashDelay = dashCooldown;
             dashSpeed = enemyController.enemy.abilityPower;
             dashTime = enemyController.enemy.abilityTime;
-            Invoke(nameof(ResetDashCooldown), dashCooldown);
+            Invoke(nameof(ResetDashCooldown), dashCooldown / 2);
         }
 
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
