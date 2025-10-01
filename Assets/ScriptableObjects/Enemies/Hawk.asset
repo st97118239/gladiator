@@ -23,7 +23,7 @@ MonoBehaviour:
   attackSpeed: 0.7
   abilityTime: 0.3
   abilityCooldown: 5
-  abilityPower: 300
+  abilityPower: 750
   blockTime: 0
   blockCooldown: 0
   rangedFleeRadius: 0

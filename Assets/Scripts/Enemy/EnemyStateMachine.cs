@@ -87,6 +87,7 @@ public class EnemyStateMachine : MonoBehaviour
             Invoke(nameof(ResetDashCooldown), dashCooldown);
         }
 
+        rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
         ChangeState(idleState);
     }
 
@@ -225,10 +226,10 @@ public class EnemyStateMachine : MonoBehaviour
         isDashing = true;
         spriteRenderer.color = Color.deepSkyBlue;
 
+        ChangeState(dashState);
         rb2d.AddForce(moveAmount * dashSpeed, ForceMode2D.Force);
         rb2d.linearDamping = 5;
 
-        ChangeState(dashState);
         Invoke(nameof(ResetRigidbody), dashTime);
         StartCoroutine(DashCooldown());
     }

@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b4fb03fcd02cdb4f9fc78eb9e651f60, type: 3}
-  m_Name: TestWave09
+  m_Name: ForestWave02
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWave
   enemies:
   - {fileID: 11400000, guid: d4e909b09be65cf47bea9b6be0154160, type: 2}
   - {fileID: 11400000, guid: d4e909b09be65cf47bea9b6be0154160, type: 2}
   - {fileID: 11400000, guid: d4e909b09be65cf47bea9b6be0154160, type: 2}
   - {fileID: 11400000, guid: d4e909b09be65cf47bea9b6be0154160, type: 2}
+  - {fileID: 11400000, guid: d4e909b09be65cf47bea9b6be0154160, type: 2}
+  - {fileID: 11400000, guid: 8c23ac97b0e214d4cab3c22afa347fc4, type: 2}
   - {fileID: 11400000, guid: 8c23ac97b0e214d4cab3c22afa347fc4, type: 2}
   - {fileID: 11400000, guid: 8c23ac97b0e214d4cab3c22afa347fc4, type: 2}
   - {fileID: 11400000, guid: e0bbb012f6e23e648a069c5abb18933f, type: 2}
-  boss: {fileID: 11400000, guid: 6f66848e1b2f6db40864025dfa45d345, type: 2}
-  hasAbilityRoll: 1
-  abilitySortsToRoll: 04000000
+  boss: {fileID: 0}
+  hasAbilityRoll: 0
+  abilitySortsToRoll: 

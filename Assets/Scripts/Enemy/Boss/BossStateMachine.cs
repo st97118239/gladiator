@@ -33,7 +33,7 @@ public class BossStateMachine : MonoBehaviour
     public bool isDashing;
 
     [SerializeField] private BoxCollider2D enemyCollider;
-    [SerializeField] private Rigidbody2D rb2d;
+    public Rigidbody2D rb2d;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     private Vector3 gizmoHitboxScale;
@@ -69,6 +69,7 @@ public class BossStateMachine : MonoBehaviour
             Invoke(nameof(ResetDashCooldown), dashCooldown);
         }
 
+        rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
         ChangeState(idleState);
     }
 
@@ -146,10 +147,10 @@ public class BossStateMachine : MonoBehaviour
         isDashing = true;
         spriteRenderer.color = Color.deepSkyBlue;
 
+        ChangeState(dashState);
         rb2d.AddForce(moveAmount * dashSpeed, ForceMode2D.Force);
         rb2d.linearDamping = 5;
 
-        ChangeState(dashState);
         Invoke(nameof(ResetRigidbody), dashTime);
         StartCoroutine(DashCooldown());
     }

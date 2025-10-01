@@ -235,7 +235,7 @@ public class UIManager : MonoBehaviour
         foreach (AbilityCard card in abilityCards)
         {
             if (card.isSelected)
-                abilityManager.NewPower(card.ability);
+                abilityManager.NewPower(card.ability, false);
 
             card.Reset();
         }
@@ -248,11 +248,12 @@ public class UIManager : MonoBehaviour
         player.abilityManager.canUsePowers = true;
     }
 
-    public void NewAbility(Ability givenAbility, int idx)
+    public void NewAbility(Ability givenAbility, int idx, bool endWave)
     {
         abilitySlots[idx].Activate(givenAbility);
 
-        levelManager.WaveEnd();
+        if (endWave)
+            levelManager.WaveEnd();
     }
 
     public void PauseMenu()
@@ -424,6 +425,8 @@ public class UIManager : MonoBehaviour
 
     public void ContinueButton()
     {
+        if (isMainGame) 
+            abilityManager.SaveAbilities();
         LoadSceneFade(nextScene);
     }
 

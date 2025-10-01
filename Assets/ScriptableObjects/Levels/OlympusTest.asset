@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc83e71e13111246b735a285182170c, type: 3}
+  m_Name: OlympusTest
+  m_EditorClassIdentifier: Assembly-CSharp::Level
+  waves:
+  - {fileID: 11400000, guid: e9999a08dc3c3f94bb6087c43ae934ae, type: 2}
+  - {fileID: 11400000, guid: a674806f1391c394b832951a7d6145c1, type: 2}
+  - {fileID: 11400000, guid: 7920b4b4ce72c8849b0a146fd6d165ac, type: 2}
+  - {fileID: 11400000, guid: 5c7c168bbf69a1f43a834d56df9dfff9, type: 2}
+  - {fileID: 11400000, guid: aece045c7f59ce34d8208f16de2f7c0e, type: 2}
+  - {fileID: 11400000, guid: a2e1f87a698b3394f9ff643d758e589e, type: 2}
+  - {fileID: 11400000, guid: b740578ab970eda4fbe708e58458d573, type: 2}

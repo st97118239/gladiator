@@ -47,6 +47,7 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] private LayerMask emptyLayer;
     [SerializeField] private LayerMask dashExcludeLayers;
 
+    private GameManager gameManager;
     private int currentAbilitySlot;
     private float secondaryDelay;
     private float dashDelay;
@@ -57,60 +58,73 @@ public class AbilityManager : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = FindFirstObjectByType<GameManager>();
+
         secondarySlot = -1;
         dashSlot = -1;
         rageSlot = -1;
         throwSlot = -1;
         dashDelay = -1;
 
-        for (int i = 0; i < abilities.Length; i++)
+        if (gameManager)
         {
-            if (!abilities[i]) break;
-
-            switch (abilities[i].abilityType)
+            foreach (Ability t in gameManager.abilities)
             {
-                case AbilityType.Shield:
-                case AbilityType.Net:
-                case AbilityType.Crossbow:
-                    secondarySlot = i;
-                    secondaryDelay = -1;
-                    break;
-                case AbilityType.Dash:
-                    dashSlot = i;
-                    dashDelay = -1;
-                    powersUnlocked++;
-                    break;
-                case AbilityType.BerserkerRage:
-                    rageSlot = i;
-                    rageDelay = -1;
-                    powersUnlocked++;
-                    break;
-                case AbilityType.Throw:
-                    throwSlot = i;
-                    throwDelay = -1;
-                    powersUnlocked++;
-                    break;
-                case AbilityType.Lifesteal:
-                    passivesUnlocked++;
-                    Lifesteal();
-                    break;
-                case AbilityType.SteadyStance:
-                    passivesUnlocked++;
-                    SteadyStance();
-                    break;
-                case AbilityType.MarathonRunner:
-                    passivesUnlocked++;
-                    MarathonRunner();
-                    break;
+                if (t)
+                    NewPower(t, true);
             }
         }
+        else
+            Debug.LogWarning("No GameManager found.");
+
+        //for (int i = 0; i < abilities.Length; i++)
+        //{
+        //    if (!abilities[i]) break;
+
+        //    switch (abilities[i].abilityType)
+        //    {
+        //        case AbilityType.Shield:
+        //        case AbilityType.Net:
+        //        case AbilityType.Crossbow:
+        //            secondarySlot = i;
+        //            secondaryDelay = -1;
+        //            break;
+        //        case AbilityType.Dash:
+        //            dashSlot = i;
+        //            dashDelay = -1;
+        //            powersUnlocked++;
+        //            break;
+        //        case AbilityType.BerserkerRage:
+        //            rageSlot = i;
+        //            rageDelay = -1;
+        //            powersUnlocked++;
+        //            break;
+        //        case AbilityType.Throw:
+        //            throwSlot = i;
+        //            throwDelay = -1;
+        //            powersUnlocked++;
+        //            break;
+        //        case AbilityType.Lifesteal:
+        //            passivesUnlocked++;
+        //            Lifesteal();
+        //            break;
+        //        case AbilityType.SteadyStance:
+        //            passivesUnlocked++;
+        //            SteadyStance();
+        //            break;
+        //        case AbilityType.MarathonRunner:
+        //            passivesUnlocked++;
+        //            MarathonRunner();
+        //            break;
+        //    }
+        //}
 
         if (shieldBlockAmt > 100)
             Debug.LogWarning("ShieldBlockAmt in AbilityManager should not be above 100.");
         shieldBlockAmt /= 100;
     }
 
-    public void NewPower(Ability newAbility)
+    public void NewPower(Ability newAbility, bool startOfGame)
     {
         if (currentAbilitySlot >= abilities.Length) return;
 
@@ -163,7 +177,7 @@ public class AbilityManager : MonoBehaviour
         }
 
         abilities[currentAbilitySlot] = newAbility;
-        uiManager.NewAbility(newAbility, currentAbilitySlot);
+        uiManager.NewAbility(newAbility, currentAbilitySlot, !startOfGame);
         currentAbilitySlot++;
     }
 
@@ -387,5 +401,15 @@ public class AbilityManager : MonoBehaviour
     private void MarathonRunner()
     {
         player.movementScript.SpeedChange(marathonRunnerMovementSpeedMultiplier);
+    }
+
+    public void SaveAbilities()
+    {
+        gameManager.abilities.Clear();
+
+        foreach (Ability ability in abilities)
+        {
+            gameManager.abilities.Add(ability);
+        }
     }
 }

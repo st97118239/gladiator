@@ -135,6 +135,7 @@ MonoBehaviour:
   isBlocking: 0
   canBlock: 0
   canDash: 0
+  reachedPlatform: 0
   dashDelay: 0
   dashCooldown: 0
   dashSpeed: 0
@@ -211,8 +212,8 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 3063
+    m_Bits: 2935
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7

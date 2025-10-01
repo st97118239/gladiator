@@ -80,6 +80,7 @@ public class ProjectileObj : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D hit)
     {
+        Debug.Log(hit.gameObject.name); // DEBUGGING
         if (hit.gameObject.CompareTag("Enemy") && isPlayerProj)
         {
             hit.gameObject.GetComponent<EnemyController>().Hit(dmg);
