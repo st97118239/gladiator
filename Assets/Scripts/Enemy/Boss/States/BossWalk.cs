@@ -20,12 +20,6 @@ public class BossWalk : IBossState
             controller.ChangeState(controller.meleeState);
             return;
         }
-        
-        if (controller.abilityType == BossAbility.Dash && distance >= controller.bossController.boss.abilityRadius)
-        {
-            controller.ChangeState(controller.dashState);
-            return;
-        }
 
         controller.gameObject.transform.position = Vector3.MoveTowards(controller.gameObject.transform.position, player.transform.position, speed * Time.deltaTime);
 
@@ -33,6 +27,9 @@ public class BossWalk : IBossState
             controller.bossController.spriteRenderer.flipX = true;
         else if (player.transform.position.x > controller.transform.position.x)
             controller.bossController.spriteRenderer.flipX = false;
+
+        if (controller.canDash && controller.dashDelay < 0)
+            controller.Dash();
     }
     
     public void OnEnter(BossStateMachine controller)

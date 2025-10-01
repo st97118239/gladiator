@@ -12,6 +12,8 @@ TagManager:
   - Spawnpoint
   - RangedPoint
   - Puddle
+  - FallTrigger
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -23,8 +25,8 @@ TagManager:
   - Projectile
   - Enemy
   - Root
-  - 
-  - 
+  - Platform
+  - Bridge
   - 
   - 
   - 
@@ -48,6 +50,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Platform
+    uniqueID: 1628672717
+    locked: 0
+  - name: Bridge
+    uniqueID: 1730973111
     locked: 0
   - name: Puddles
     uniqueID: 2292118167

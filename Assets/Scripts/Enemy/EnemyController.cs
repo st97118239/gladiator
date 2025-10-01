@@ -25,6 +25,8 @@ public class EnemyController : MonoBehaviour
 
     public void Hit(int damage)
     {
+        if (enemyStateMachine.isDashing) return;
+
         enemyStateMachine.currentState.OnHurt(enemyStateMachine);
 
         if (enemyStateMachine.isBlocking) return;
@@ -50,6 +52,15 @@ public class EnemyController : MonoBehaviour
             enemyManager.sirens.Remove(this);
             isClosestSiren = false;
         }
+
+        if (enemyStateMachine.platform)
+        {
+            if (!enemyStateMachine.reachedPlatform) 
+                enemyManager.levelManager.availablePlatforms.Add(enemyStateMachine.platform);
+            enemyStateMachine.platform = null;
+        }
+
+        enemyStateMachine.currentPlatform = null;
 
         enemyManager.CheckIfEnd(false);
     }

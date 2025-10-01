@@ -21,8 +21,9 @@ MonoBehaviour:
   speed: 3
   attackRadius: 1
   attackSpeed: 1.2
-  abilityRadius: 6
-  abilitySpeed: 10
+  abilityTime: 0.5
+  abilityCooldown: 3
+  abilityPower: 500
   rangedFleeRadius: 0
   projectile: {fileID: 0}
   singDrawSpeed: 0

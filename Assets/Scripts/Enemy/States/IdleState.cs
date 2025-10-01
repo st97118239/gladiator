@@ -20,7 +20,7 @@ public class IdleState : IEnemyState
                 controller.ChangeState(controller.rangedWalkState);
                 break;
             case AttackType.Jump:
-                Debug.Log("Attack hasn't been coded yet.");
+                controller.ChangeState(controller.jumpWalkState);
                 break;
             case AttackType.Sing:
                 controller.ChangeState(controller.sirenSingState);
@@ -28,8 +28,12 @@ public class IdleState : IEnemyState
             case AttackType.MeleeBlock:
                 controller.ChangeState(controller.walkState);
                 break;
+            case AttackType.Nymph:
+                Debug.LogError("Enemy has a boss attack type. Please fix!");
+                break;
+            case AttackType.None:
             default:
-                Debug.LogWarning("Enemy has no attack type. Please fix!!");
+                Debug.LogError("Enemy has no attack type. Please fix!!");
                 break;
         }
     }

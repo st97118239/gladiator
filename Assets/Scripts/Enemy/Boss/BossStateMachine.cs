@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Linq;
+using UnityEditor.Playables;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -23,8 +24,17 @@ public class BossStateMachine : MonoBehaviour
     public Puddle puddle;
 
     public bool isReloading;
+    public bool canDash;
+
+    public float dashDelay;
+    public float dashCooldown;
+    public float dashSpeed;
+    public float dashTime;
+    public bool isDashing;
 
     [SerializeField] private BoxCollider2D enemyCollider;
+    [SerializeField] private Rigidbody2D rb2d;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     private Vector3 gizmoHitboxScale;
 
@@ -43,8 +53,22 @@ public class BossStateMachine : MonoBehaviour
     {
         attackType = bossController.boss.attackType;
         abilityType = bossController.boss.abilityType;
+        canDash = false;
+        isDashing = false;
+
         if (attackType == AttackType.Sing)
             FindPuddle();
+
+        if (abilityType == BossAbility.Dash)
+        {
+            canDash = true;
+            dashCooldown = bossController.boss.abilityCooldown;
+            dashDelay = dashCooldown / 2;
+            dashSpeed = bossController.boss.abilityPower;
+            dashTime = bossController.boss.abilityTime;
+            Invoke(nameof(ResetDashCooldown), dashCooldown);
+        }
+
         ChangeState(idleState);
     }
 
@@ -110,5 +134,45 @@ public class BossStateMachine : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position, gizmoHitboxScale);
+    }
+    public void Dash()
+    {
+        if (!canDash && dashDelay >= 0) return;
+
+        Vector3 moveAmount = (bossController.enemyManager.player.transform.position - transform.position).normalized;
+
+        if (moveAmount == Vector3.zero) return;
+
+        isDashing = true;
+        spriteRenderer.color = Color.deepSkyBlue;
+
+        rb2d.AddForce(moveAmount * dashSpeed, ForceMode2D.Force);
+        rb2d.linearDamping = 5;
+
+        ChangeState(dashState);
+        Invoke(nameof(ResetRigidbody), dashTime);
+        StartCoroutine(DashCooldown());
+    }
+
+    private void ResetRigidbody()
+    {
+        rb2d.linearDamping = 10;
+        isDashing = false;
+        spriteRenderer.color = Color.white;
+        ChangeState(idleState);
+    }
+
+    private IEnumerator DashCooldown()
+    {
+        dashDelay = dashCooldown;
+
+        yield return new WaitForSeconds(dashDelay);
+
+        dashDelay = -1;
+    }
+
+    private void ResetDashCooldown()
+    {
+        dashDelay = -1;
     }
 }

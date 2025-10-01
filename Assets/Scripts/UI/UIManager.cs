@@ -18,6 +18,9 @@ public class UIManager : MonoBehaviour
     public Image healthPotionImage;
     public TMP_Text healthPotionText;
     public Color healthPotionsUnavailable;
+    public int mainMenuScene;
+    public int thisScene;
+    public int nextScene;
     public Image fadePanel;
     public Canvas abilityCanvas;
     public CanvasGroup abilityCanvasGroup;
@@ -268,9 +271,9 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Confined;
     }
 
-    public void Restart(int sceneToLoad)
+    public void Restart()
     {
-        StartCoroutine(LoadFade(false, sceneToLoad, false));
+        StartCoroutine(LoadFade(false, thisScene, false));
     }
 
     private IEnumerator LoadFade(bool shouldReverse, int sceneToLoad, bool shouldQuit)
@@ -317,6 +320,11 @@ public class UIManager : MonoBehaviour
     public void LoadSceneFade(int sceneToLoad)
     {
         StartCoroutine(LoadFade(false, sceneToLoad, false));
+    }
+
+    public void MainMenu()
+    {
+        StartCoroutine(LoadFade(false, mainMenuScene, false));
     }
 
     public void ShowDeathScreen()
@@ -416,8 +424,7 @@ public class UIManager : MonoBehaviour
 
     public void ContinueButton()
     {
-        Debug.Log("Fuck you");
-        Exit();
+        LoadSceneFade(nextScene);
     }
 
     public void WinMainMenuButton()

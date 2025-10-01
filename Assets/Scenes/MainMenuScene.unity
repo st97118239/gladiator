@@ -232,6 +232,9 @@ MonoBehaviour:
   healthPotionImage: {fileID: 0}
   healthPotionText: {fileID: 0}
   healthPotionsUnavailable: {r: 0, g: 0, b: 0, a: 0}
+  mainMenuScene: 0
+  thisScene: 0
+  nextScene: 1
   fadePanel: {fileID: 1731759047}
   abilityCanvas: {fileID: 0}
   abilityCanvasGroup: {fileID: 0}
@@ -1024,8 +1027,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 293706386}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: LoadSceneFade
-        m_Mode: 3
+        m_MethodName: ContinueButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

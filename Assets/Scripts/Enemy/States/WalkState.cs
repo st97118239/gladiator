@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WalkState : IEnemyState
 {
-    private Player player;
+    private Transform playerTransform;
     private float speed;
 
     public void UpdateState(EnemyStateMachine controller)
@@ -13,23 +13,26 @@ public class WalkState : IEnemyState
             return;
         }
 
-        if (Vector3.Distance(controller.transform.position, player.transform.position) <= controller.enemyController.enemy.attackRadius)
+        if (Vector3.Distance(controller.transform.position, playerTransform.position) <= controller.enemyController.enemy.attackRadius)
         {
             controller.ChangeState(controller.attackState);
             return;
         }
 
-        controller.transform.position = Vector3.MoveTowards(controller.transform.position, player.transform.position, speed * Time.deltaTime);
+        controller.transform.position = Vector3.MoveTowards(controller.transform.position, playerTransform.position, speed * Time.deltaTime);
 
-        if (player.transform.position.x < controller.transform.position.x)
+        if (playerTransform.position.x < controller.transform.position.x)
             controller.enemyController.spriteRenderer.flipX = true;
-        else if (player.transform.position.x > controller.transform.position.x) 
+        else if (playerTransform.position.x > controller.transform.position.x) 
             controller.enemyController.spriteRenderer.flipX = false;
+
+        if (controller.canDash && controller.dashDelay < 0)
+            controller.Dash();
     }
     
     public void OnEnter(EnemyStateMachine controller)
     {
-        player = controller.enemyController.enemyManager.player;
+        playerTransform = controller.enemyController.enemyManager.player.transform;
         speed = controller.enemyController.enemy.speed;
     }
 

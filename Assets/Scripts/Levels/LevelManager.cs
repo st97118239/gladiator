@@ -24,6 +24,7 @@ public class LevelManager : MonoBehaviour
     public List<Platform> platforms;
 
     public List<Puddle> availablePuddles;
+    public List<Platform> availablePlatforms;
 
     [SerializeField] private int levelStartDelay;
     [SerializeField] private int waveStartDelay;
@@ -49,7 +50,10 @@ public class LevelManager : MonoBehaviour
 
         for (int i = 0; i < platformsParent.childCount; i++)
         {
-            platforms.Add(platformsParent.GetChild(i).GetComponent<Platform>());
+            Platform platform = platformsParent.GetChild(i).GetComponent<Platform>();
+
+            if (!platform.isEmpty)
+                platforms.Add(platform);
         }
     }
 
@@ -66,6 +70,7 @@ public class LevelManager : MonoBehaviour
     private void StartLevel()
     {
         SetPuddles();
+        SetPlatforms();
         enemyManager.EmptyEnemySpawn();
         enemyManager.EmptyProjectileSpawn();
         enemyManager.EmptyRootSpawn();
@@ -81,6 +86,14 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void SetPlatforms()
+    {
+        availablePlatforms.Clear();
+        foreach (Platform platform in platforms)
+        {
+            availablePlatforms.Add(platform);
+        }
+    }
     private IEnumerator LevelCountdown()
     {
         WaitForSeconds wait1Second = new(1);

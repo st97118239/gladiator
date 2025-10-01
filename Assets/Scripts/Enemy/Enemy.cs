@@ -6,11 +6,15 @@ public class Enemy : ScriptableObject
     public Sprite sprite;
     public EnemyTypes enemyType;
     public AttackType attackType;
+    public EnemyAbility ability;
     public int health;
     public int damage;
     public float speed;
     public float attackRadius;
     public float attackSpeed;
+    public float abilityTime;
+    public float abilityCooldown;
+    public float abilityPower;
     public float blockTime;
     public float blockCooldown;
     public float rangedFleeRadius;

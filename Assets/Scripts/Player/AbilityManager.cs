@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -63,6 +62,48 @@ public class AbilityManager : MonoBehaviour
         rageSlot = -1;
         throwSlot = -1;
         dashDelay = -1;
+
+        for (int i = 0; i < abilities.Length; i++)
+        {
+            if (!abilities[i]) break;
+
+            switch (abilities[i].abilityType)
+            {
+                case AbilityType.Shield:
+                case AbilityType.Net:
+                case AbilityType.Crossbow:
+                    secondarySlot = i;
+                    secondaryDelay = -1;
+                    break;
+                case AbilityType.Dash:
+                    dashSlot = i;
+                    dashDelay = -1;
+                    powersUnlocked++;
+                    break;
+                case AbilityType.BerserkerRage:
+                    rageSlot = i;
+                    rageDelay = -1;
+                    powersUnlocked++;
+                    break;
+                case AbilityType.Throw:
+                    throwSlot = i;
+                    throwDelay = -1;
+                    powersUnlocked++;
+                    break;
+                case AbilityType.Lifesteal:
+                    passivesUnlocked++;
+                    Lifesteal();
+                    break;
+                case AbilityType.SteadyStance:
+                    passivesUnlocked++;
+                    SteadyStance();
+                    break;
+                case AbilityType.MarathonRunner:
+                    passivesUnlocked++;
+                    MarathonRunner();
+                    break;
+            }
+        }
 
         if (shieldBlockAmt > 100)
             Debug.LogWarning("ShieldBlockAmt in AbilityManager should not be above 100.");

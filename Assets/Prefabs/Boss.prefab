@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -359099630463156172}
   - component: {fileID: 9168182095947676320}
   - component: {fileID: 340753586850306276}
+  - component: {fileID: 1898615627537797970}
   m_Layer: 8
   m_Name: Boss
   m_TagString: Boss
@@ -129,7 +130,15 @@ MonoBehaviour:
   attackDelay: 0
   puddle: {fileID: 0}
   isReloading: 0
+  canDash: 0
+  dashDelay: 0
+  dashCooldown: 0
+  dashSpeed: 0
+  dashTime: 0
+  isDashing: 0
   enemyCollider: {fileID: 340753586850306276}
+  rb2d: {fileID: 1898615627537797970}
+  spriteRenderer: {fileID: 8208541899940622705}
 --- !u!61 &340753586850306276
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -176,3 +185,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
+--- !u!50 &1898615627537797970
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127359938022708900}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
