@@ -177,8 +177,6 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void FindPlatform()
     {
-        Debug.Log("Finding platform."); // DEBUGGING
-
         if (enemyController.enemyManager.levelManager.availablePlatforms.Count == 0)
         {
             Debug.LogError("Not enough platforms. Please fix!");

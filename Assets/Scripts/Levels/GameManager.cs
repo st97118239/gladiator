@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public List<Ability> abilities;
+    public int healthPotions;
 
     private void Awake()
     {

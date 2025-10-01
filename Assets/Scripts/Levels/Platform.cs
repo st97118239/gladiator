@@ -49,16 +49,8 @@ public class Platform : MonoBehaviour
             levelManager.enemyManager.rangedPositions.Remove(rangedPoint);
         }
 
-        Debug.Log(name); // DEBUGGING
-
-        foreach (Platform platform in levelManager.availablePlatforms) // DEBUGGING
-        {
-            Debug.Log(platform.name);
-        }
-
         if (levelManager.availablePlatforms.Contains(this))
         {
-            Debug.Log("Platform removed from platform."); // DEBUGGING
             levelManager.availablePlatforms.Remove(this);
         }
         brokenCollider.gameObject.SetActive(true);

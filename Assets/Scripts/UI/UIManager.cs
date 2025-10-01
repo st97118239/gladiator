@@ -425,8 +425,11 @@ public class UIManager : MonoBehaviour
 
     public void ContinueButton()
     {
-        if (isMainGame) 
+        if (isMainGame)
+        {
             abilityManager.SaveAbilities();
+            player.SavePotions();
+        }
         LoadSceneFade(nextScene);
     }
 

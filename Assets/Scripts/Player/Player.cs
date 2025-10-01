@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,6 +41,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Slider hpSlider;
     [SerializeField] private Animator slashAnimator;
 
+    private GameManager gameManager;
     private int healthPotions;
     private float atkSpeedMultiplier = 1f;
     private int lifestealDrainMultiplier;
@@ -53,6 +53,13 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = FindFirstObjectByType<GameManager>();
+
+        for (int i = 0; i < gameManager.healthPotions; i++)
+        {
+            GetHealthPotion();
+        }
+
         aimAction = inputActions.FindAction("Aim");
         if (Application.isPlaying)
             gizmoHitboxScale = cd2d.size * transform.localScale;
@@ -270,5 +277,10 @@ public class Player : MonoBehaviour
 
         PlayerHit(-healthStolen, false);
         
+    }
+
+    public void SavePotions()
+    {
+        gameManager.healthPotions = healthPotions;
     }
 }

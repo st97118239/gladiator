@@ -1398,6 +1398,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7008458788800464073, guid: 574cabcb1fdfbfc419ea17a9304ba36f, type: 3}
+      propertyPath: healthPotions
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7008458788800464073, guid: 574cabcb1fdfbfc419ea17a9304ba36f, type: 3}
       propertyPath: abilities.Array.size
       value: 0
       objectReference: {fileID: 0}
