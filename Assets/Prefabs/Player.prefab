@@ -118,7 +118,7 @@ MonoBehaviour:
   cd2d: {fileID: 5331712625960726167}
   maxHealth: 100
   health: 100
-  movementSpeed: 1250
+  movementSpeed: 2000
   isDead: 0
   meleeDamage: 5
   meleeAtkSpeed: 1
@@ -130,6 +130,11 @@ MonoBehaviour:
   hasAttackCooldown: 0
   hasAttackPreview: 0
   canHeal: 0
+  isLookingRight: 0
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  cooldownColor: {r: 0.4392157, g: 0.5019608, b: 0.5647059, a: 1}
+  hitColor: {r: 1, g: 0, b: 0, a: 1}
+  dashColor: {r: 0, g: 0.7490196, b: 1, a: 1}
   inputActions: {fileID: -944628639613478452, guid: b91c654db24ba1845af790f7fb38f74e, type: 3}
   levelManager: {fileID: 0}
   uiManager: {fileID: 0}
@@ -188,11 +193,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f9a2921c7ce89c549a830d947192e25d, type: 2}
   - {fileID: 11400000, guid: f8b9b18524476df43a36365a2fa1febb, type: 2}
   - {fileID: 11400000, guid: 92b8b2cf46ff78f458d5edb8b2893fd5, type: 2}
-  isBlocking: 0
   shieldBlockAmt: 60
   crossbowProjectile: {fileID: 11400000, guid: 09480273132878349af4011b042f16d6, type: 2}
   crossbowDamage: 3
   crossbowCooldown: 1
+  enemyProjectile: {fileID: 0}
+  enemyHeld: {fileID: 0}
+  throwSpeed: 700
+  throwTime: 0.3
+  throwDamage: 2
+  throwCooldown: 5
   dashSpeed: 500
   dashTime: 0.5
   dashCooldown: 1
@@ -203,6 +213,8 @@ MonoBehaviour:
   lifestealDrainMultiplier: 2
   steadyStanceArmorPoints: 2
   marathonRunnerMovementSpeedMultiplier: 0.3
+  isBlocking: 0
+  isHoldingEnemy: 0
   isDashing: 0
   maxPowers: 2
   powersUnlocked: 0

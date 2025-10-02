@@ -129,5 +129,9 @@ MonoBehaviour:
   maxEnemyCount: 30
   maxProjectileCount: 20
   maxRootCount: 3
+  defaultEnemyColor: {r: 1, g: 1, b: 1, a: 1}
+  cooldownEnemyColor: {r: 0.4392157, g: 0.5019608, b: 0.5647059, a: 1}
+  hitEnemyColor: {r: 1, g: 0, b: 0, a: 1}
+  dashEnemyColor: {r: 0, g: 0.7490196, b: 1, a: 1}
   spawnDelay: 0.3
   healthPotionDropChance: 10

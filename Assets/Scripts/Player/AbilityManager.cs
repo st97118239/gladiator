@@ -1,6 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class AbilityManager : MonoBehaviour
 {
@@ -14,11 +17,16 @@ public class AbilityManager : MonoBehaviour
     public Ability[] powers;
     public Ability[] passives;
 
-    public bool isBlocking;
     public float shieldBlockAmt;
     [SerializeField] private Projectile crossbowProjectile;
     public int crossbowDamage;
     public float crossbowCooldown;
+    [SerializeField] private Projectile enemyProjectile;
+    [SerializeField] private EnemyStateMachine enemyHeld;
+    public float throwSpeed;
+    public float throwTime;
+    public int throwDamage;
+    public float throwCooldown;
     public float dashSpeed;
     public float dashTime;
     public float dashCooldown;
@@ -30,6 +38,8 @@ public class AbilityManager : MonoBehaviour
     public int steadyStanceArmorPoints;
     public float marathonRunnerMovementSpeedMultiplier;
 
+    public bool isBlocking;
+    public bool isHoldingEnemy;
     public bool isDashing;
     public int maxPowers;
     public int powersUnlocked;
@@ -66,6 +76,8 @@ public class AbilityManager : MonoBehaviour
         throwSlot = -1;
         dashDelay = -1;
 
+        aimAction = inputActions.FindAction("Aim");
+
         if (gameManager)
         {
             foreach (Ability t in gameManager.abilities)
@@ -76,48 +88,6 @@ public class AbilityManager : MonoBehaviour
         }
         else
             Debug.LogWarning("No GameManager found.");
-
-        //for (int i = 0; i < abilities.Length; i++)
-        //{
-        //    if (!abilities[i]) break;
-
-        //    switch (abilities[i].abilityType)
-        //    {
-        //        case AbilityType.Shield:
-        //        case AbilityType.Net:
-        //        case AbilityType.Crossbow:
-        //            secondarySlot = i;
-        //            secondaryDelay = -1;
-        //            break;
-        //        case AbilityType.Dash:
-        //            dashSlot = i;
-        //            dashDelay = -1;
-        //            powersUnlocked++;
-        //            break;
-        //        case AbilityType.BerserkerRage:
-        //            rageSlot = i;
-        //            rageDelay = -1;
-        //            powersUnlocked++;
-        //            break;
-        //        case AbilityType.Throw:
-        //            throwSlot = i;
-        //            throwDelay = -1;
-        //            powersUnlocked++;
-        //            break;
-        //        case AbilityType.Lifesteal:
-        //            passivesUnlocked++;
-        //            Lifesteal();
-        //            break;
-        //        case AbilityType.SteadyStance:
-        //            passivesUnlocked++;
-        //            SteadyStance();
-        //            break;
-        //        case AbilityType.MarathonRunner:
-        //            passivesUnlocked++;
-        //            MarathonRunner();
-        //            break;
-        //    }
-        //}
 
         if (shieldBlockAmt > 100)
             Debug.LogWarning("ShieldBlockAmt in AbilityManager should not be above 100.");
@@ -149,7 +119,6 @@ public class AbilityManager : MonoBehaviour
                 break;
             case AbilityType.Crossbow:
                 secondaryAction = inputActions.FindAction("Secondary");
-                aimAction = inputActions.FindAction("Aim");
                 secondarySlot = currentAbilitySlot;
                 secondaryDelay = -1;
                 break;
@@ -196,7 +165,15 @@ public class AbilityManager : MonoBehaviour
 
     public void OnSecondary()
     {
-        if (secondarySlot == -1 || secondaryDelay >= 0 || !canUseSecondary) return;
+        if (!canUseSecondary) return;
+
+        if (isHoldingEnemy)
+        {
+            ThrowUse();
+            return;
+        }
+
+        if (secondarySlot == -1 || secondaryDelay >= 0) return;
 
         switch (abilities[secondarySlot].abilityType)
         {
@@ -233,7 +210,7 @@ public class AbilityManager : MonoBehaviour
         player.hasAttackPreview = false;
         player.canHeal = false;
         player.abilityManager.canUsePowers = false;
-        player.spriteRenderer.color = Color.gray4;
+        player.spriteRenderer.color = player.cooldownColor; // Sprite Color
     }
 
     private void ShieldCancel()
@@ -246,7 +223,7 @@ public class AbilityManager : MonoBehaviour
         player.abilityManager.canUsePowers = true;
         if (player.hasAttackCooldown) return;
         player.canAttack = true;
-        player.spriteRenderer.color = Color.white;
+        player.spriteRenderer.color = player.defaultColor; // Sprite Color
     }
 
     private void Net()
@@ -315,7 +292,7 @@ public class AbilityManager : MonoBehaviour
         if (moveAmount == Vector2.zero) return;
 
         isDashing = true;
-        player.spriteRenderer.color = Color.deepSkyBlue;
+        player.spriteRenderer.color = player.dashColor; // Sprite Color
         player.movementScript.rb2d.excludeLayers = dashExcludeLayers;
 
         if (playerMovement.canMove)
@@ -332,7 +309,7 @@ public class AbilityManager : MonoBehaviour
     {
         playerMovement.rb2d.linearDamping = 10;
         isDashing = false;
-        player.spriteRenderer.color = Color.white;
+        player.spriteRenderer.color = player.defaultColor; // Sprite Color
         player.movementScript.rb2d.excludeLayers = emptyLayer;
     }
 
@@ -385,7 +362,99 @@ public class AbilityManager : MonoBehaviour
 
     private void Throw()
     {
-        if (throwSlot < 0 || throwDelay >= 0 || !canUsePowers) return;
+        if (throwSlot < 0 || throwDelay >= 0 || !canUsePowers || isHoldingEnemy) return;
+
+        Vector3 aimDir = Vector3.zero;
+
+        if (inputActions.devices.HasValue)
+        {
+            var device = inputActions.devices.Value[0];
+
+            if (device.name == "Keyboard")
+            {
+                Vector3 mousePos = player.cam.ScreenToWorldPoint(Input.mousePosition);
+                mousePos = new Vector3(mousePos.x, mousePos.y, 0);
+                aimDir = (mousePos - transform.position).normalized;
+            }
+            else
+            {
+                aimDir = aimAction.ReadValue<Vector2>();
+                if (aimDir == Vector3.zero) return;
+            }
+        }
+
+        float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+        angle -= 90;
+        player.aimTransform.eulerAngles = new Vector3(0, 0, angle);
+
+        List<Collider2D> hitColliders = new();
+        Physics2D.OverlapBox(player.meleeWeaponHitbox.position, player.meleeWeaponHitbox.localScale / 2, player.meleeWeaponHitbox.rotation.z, player.filter, hitColliders);
+
+        bool checkIfFirst = true;
+        foreach (Collider2D cd2d in hitColliders.OrderBy(e => Vector3.Distance(player.transform.position, e.transform.position)))
+        {
+            if (!checkIfFirst) break;
+            
+            if (!cd2d.gameObject.CompareTag("Enemy")) return;
+            checkIfFirst = false;
+            enemyHeld = cd2d.gameObject.GetComponent<EnemyStateMachine>();
+        }
+
+        if (!enemyHeld) return;
+
+        enemyHeld.GotPickedUp();
+        isHoldingEnemy = true;
+        canUseSecondary = true;
+        uiManager.abilitySlots[throwSlot].cooldownSlider.value = 1;
+    }
+
+    private void ThrowUse()
+    {
+        if (!isHoldingEnemy) return;
+
+        Vector3 aimDir = Vector3.zero;
+
+        if (inputActions.devices.HasValue)
+        {
+            var device = inputActions.devices.Value[0];
+
+            if (device.name == "Keyboard")
+            {
+                Vector3 mousePos = player.cam.ScreenToWorldPoint(Input.mousePosition);
+                mousePos = new Vector3(mousePos.x, mousePos.y, 0);
+                aimDir = (mousePos - transform.position).normalized;
+            }
+            else
+            {
+                aimDir = aimAction.ReadValue<Vector2>();
+                if (aimDir == Vector3.zero) return;
+            }
+        }
+
+        float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+        angle -= 90;
+        player.aimTransform.eulerAngles = new Vector3(0, 0, angle);
+
+        enemyHeld.GotThrown(throwTime, throwDamage);
+        enemyHeld.rb2d.AddForce(aimDir * throwSpeed);
+        isHoldingEnemy = false;
+        enemyHeld = null;
+        StartCoroutine(ThrowCooldown());
+    }
+
+    private IEnumerator ThrowCooldown()
+    {
+        throwDelay = throwCooldown;
+        uiManager.abilitySlots[throwSlot].cooldownSlider.value = throwDelay / throwCooldown;
+
+        while (throwDelay > 0)
+        {
+            yield return null;
+            throwDelay -= Time.deltaTime;
+            uiManager.abilitySlots[throwSlot].cooldownSlider.value = throwDelay / throwCooldown;
+        }
+
+        throwDelay = -1;
     }
 
     private void Lifesteal()

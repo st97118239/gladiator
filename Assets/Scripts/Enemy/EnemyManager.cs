@@ -27,6 +27,11 @@ public class EnemyManager : MonoBehaviour
     public int maxProjectileCount;
     public int maxRootCount;
 
+    public Color defaultEnemyColor;
+    public Color cooldownEnemyColor;
+    public Color hitEnemyColor;
+    public Color dashEnemyColor;
+
     [SerializeField] private float spawnDelay;
     [SerializeField] private int healthPotionDropChance;
 

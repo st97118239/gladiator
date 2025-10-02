@@ -97,11 +97,11 @@ public class BossStateMachine : MonoBehaviour
     private IEnumerator AttackAnim()
     {
         isReloading = true;
-        bossController.spriteRenderer.color = Color.gray4;
+        bossController.spriteRenderer.color = bossController.enemyManager.cooldownEnemyColor; // Sprite Color
 
         yield return new WaitForSeconds(bossController.boss.attackSpeed);
 
-        bossController.spriteRenderer.color = Color.white;
+        bossController.spriteRenderer.color = bossController.enemyManager.defaultEnemyColor; // Sprite Color
         isReloading = false;
 
         ChangeState(idleState);
@@ -149,7 +149,7 @@ public class BossStateMachine : MonoBehaviour
         if (moveAmount == Vector3.zero) return;
 
         isDashing = true;
-        spriteRenderer.color = Color.deepSkyBlue;
+        spriteRenderer.color = bossController.enemyManager.dashEnemyColor; // Sprite Color
 
         ChangeState(dashState);
         rb2d.AddForce(moveAmount * dashSpeed, ForceMode2D.Force);
@@ -163,7 +163,7 @@ public class BossStateMachine : MonoBehaviour
     {
         rb2d.linearDamping = 10;
         isDashing = false;
-        spriteRenderer.color = Color.white;
+        spriteRenderer.color = bossController.enemyManager.defaultEnemyColor; // Sprite Color
         ChangeState(idleState);
     }
 

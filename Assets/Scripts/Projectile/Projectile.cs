@@ -7,4 +7,5 @@ public class Projectile : ScriptableObject
     public float despawnDelay;
     public float spinSpeed;
     public Sprite sprite;
+    public bool isEnemy;
 }

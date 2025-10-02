@@ -37,9 +37,11 @@ public class PlayerMovement : MonoBehaviour
         {
             case < 0:
                 spriteRenderer.flipX = true;
+                player.isLookingRight = false;
                 break;
             case > 0:
                 spriteRenderer.flipX = false;
+                player.isLookingRight = true;
                 break;
         }
     }

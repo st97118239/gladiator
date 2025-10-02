@@ -44,24 +44,24 @@ public class BossController : MonoBehaviour
 
         gameObject.SetActive(false);
         transform.position = Vector3.zero;
-        spriteRenderer.color = Color.white;
+        spriteRenderer.color = enemyManager.defaultEnemyColor; // Sprite Color
 
         enemyManager.CheckIfEnd(true);
     }
 
     private IEnumerator HitEffect()
     {
-        spriteRenderer.color = Color.red;
+        spriteRenderer.color = enemyManager.hitEnemyColor; // Sprite Color
 
         yield return new WaitForSeconds(hitColorTime);
 
         switch (bossStateMachine.isReloading)
         {
             case true:
-                spriteRenderer.color = Color.gray4;
+                spriteRenderer.color = enemyManager.cooldownEnemyColor; // Sprite Color
                 break;
             case false:
-                spriteRenderer.color = Color.white;
+                spriteRenderer.color = enemyManager.defaultEnemyColor; // Sprite Color
                 break;
         }
     }

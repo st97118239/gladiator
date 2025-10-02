@@ -17,6 +17,7 @@ public class EnemyStateMachine : MonoBehaviour
     public JumpState jumpState = new();
     public BlockState blockState = new();
     public DashState dashState = new();
+    public PickedUpState pickedUpState = new();
 
     public AttackType attackType;
     public EnemyAbility ability;
@@ -37,12 +38,15 @@ public class EnemyStateMachine : MonoBehaviour
     public float dashSpeed;
     public float dashTime;
     public bool isDashing;
+    public bool isBeingHeld;
+    public bool isBeingThrown;
 
     public BoxCollider2D enemyCollider;
     public Rigidbody2D rb2d;
     public SpriteRenderer spriteRenderer;
 
     private Vector3 gizmoHitboxScale;
+    private int fallDamage;
 
     private void Awake()
     {
@@ -105,21 +109,22 @@ public class EnemyStateMachine : MonoBehaviour
     private IEnumerator AttackAnim()
     {
         isReloading = true;
-        enemyController.spriteRenderer.color = Color.gray6;
+        enemyController.spriteRenderer.color = enemyController.enemyManager.cooldownEnemyColor; // Sprite Color
 
         yield return new WaitForSeconds(enemyController.enemy.attackSpeed);
 
         switch (isBlocking)
         {
             case true:
-                enemyController.spriteRenderer.color = Color.gray6;
+                enemyController.spriteRenderer.color = enemyController.enemyManager.cooldownEnemyColor; // Sprite Color
                 break;
             case false:
-                enemyController.spriteRenderer.color = Color.white;
+                enemyController.spriteRenderer.color = enemyController.enemyManager.defaultEnemyColor; // Sprite Color
                 break;
         }
         isReloading = false;
 
+        if (isBeingHeld) yield break;
         ChangeState(idleState);
     }
 
@@ -132,23 +137,24 @@ public class EnemyStateMachine : MonoBehaviour
     {
         isBlocking = true;
         canBlock = false;
-        enemyController.spriteRenderer.color = Color.gray6;
+        enemyController.spriteRenderer.color = enemyController.enemyManager.cooldownEnemyColor; // Sprite Color
 
         yield return new WaitForSeconds(enemyController.enemy.blockTime);
 
         switch (isReloading)
         {
             case true:
-                enemyController.spriteRenderer.color = Color.gray6;
+                enemyController.spriteRenderer.color = enemyController.enemyManager.cooldownEnemyColor; // Sprite Color
                 break;
             case false:
-                enemyController.spriteRenderer.color = Color.white;
+                enemyController.spriteRenderer.color = enemyController.enemyManager.defaultEnemyColor; // Sprite Color
                 break;
         }
 
         isBlocking = false;
 
-        ChangeState(idleState);
+        if (!isBeingHeld)
+            ChangeState(idleState);
 
         yield return new WaitForSeconds(enemyController.enemy.blockCooldown - enemyController.enemy.blockTime);
 
@@ -221,7 +227,7 @@ public class EnemyStateMachine : MonoBehaviour
         if (moveAmount == Vector3.zero) return;
 
         isDashing = true;
-        spriteRenderer.color = Color.deepSkyBlue;
+        spriteRenderer.color = enemyController.enemyManager.dashEnemyColor; // Sprite Color
 
         ChangeState(dashState);
         rb2d.AddForce(moveAmount * dashSpeed, ForceMode2D.Force);
@@ -235,7 +241,9 @@ public class EnemyStateMachine : MonoBehaviour
     {
         rb2d.linearDamping = 10;
         isDashing = false;
-        spriteRenderer.color = Color.white;
+        spriteRenderer.color = enemyController.enemyManager.defaultEnemyColor; // Sprite Color
+
+        if (isBeingHeld) return;
         ChangeState(idleState);
     }
 
@@ -264,5 +272,26 @@ public class EnemyStateMachine : MonoBehaviour
         {
             currentPlatform = hit.gameObject.GetComponent<Platform>();
         }
+    }
+
+    public void GotPickedUp()
+    {
+        ChangeState(pickedUpState);
+    }
+
+    public void GotThrown(float time, int dmg)
+    {
+        isBeingThrown = true;
+        rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+        fallDamage = dmg;
+        Invoke(nameof(LandFromThrow), time);
+    }
+
+    private void LandFromThrow()
+    {
+        isBeingThrown = false;
+        rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+        ChangeState(idleState);
+        enemyController.Hit(fallDamage);
     }
 }

@@ -27,16 +27,23 @@ public class Player : MonoBehaviour
     public bool hasAttackPreview;
     public bool canHeal;
 
+    public bool isLookingRight;
+
+    public Color defaultColor;
+    public Color cooldownColor;
+    public Color hitColor;
+    public Color dashColor;
+
     [SerializeField] private InputActionAsset inputActions;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private UIManager uiManager;
-    [SerializeField] private Transform meleeWeaponHitbox;
-    [SerializeField] private Transform aimTransform;
+    public Transform meleeWeaponHitbox;
+    public Transform aimTransform;
     [SerializeField] private SpriteRenderer aimPreview;
     [SerializeField] private Color aimPreviewColor;
     [SerializeField] private Color disabledAimPreviewColor;
     [SerializeField] private float meleeHitboxDistanceFromPlayer;
-    [SerializeField] private ContactFilter2D filter;
+    public ContactFilter2D filter;
 
     [SerializeField] private Slider hpSlider;
     [SerializeField] private Animator slashAnimator;
@@ -198,7 +205,7 @@ public class Player : MonoBehaviour
         hasAttackCooldown = true;
         aimPreview.color = disabledAimPreviewColor;
 
-        spriteRenderer.color = Color.gray4;
+        spriteRenderer.color = cooldownColor; // Sprite Color
 
         yield return new WaitForSeconds(meleeAtkSpeed * atkSpeedMultiplier);
 
@@ -207,7 +214,7 @@ public class Player : MonoBehaviour
         if (abilityManager.isBlocking) yield break;
 
         canAttack = true;
-        spriteRenderer.color = Color.white;
+        spriteRenderer.color = defaultColor; // Sprite Color
     }
 
     private void OnDrawGizmos()

@@ -5,6 +5,7 @@ public class ProjectileObj : MonoBehaviour
 {
     public bool isOn;
     public bool isPlayerProj;
+    public bool isEnemy;
     public int dmg;
     public float speed;
     public Vector3 target;
@@ -56,6 +57,7 @@ public class ProjectileObj : MonoBehaviour
             rigid.excludeLayers = playerLayer;
             aimDir = givenTarget;
         }
+        isEnemy = givenProj.isEnemy;
         speed = givenProj.speed;
         spinSpeed = new Vector3(0, 0, givenProj.spinSpeed);
         spriteRenderer.sprite = givenProj.sprite;
