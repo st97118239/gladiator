@@ -50,6 +50,7 @@ public class AbilityManager : MonoBehaviour
     public bool canUseSecondary;
     public bool canUsePowers;
 
+    public GameManager gameManager;
     public Player player;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private LevelManager levelManager;
@@ -58,7 +59,6 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] private LayerMask emptyLayer;
     [SerializeField] private LayerMask dashExcludeLayers;
 
-    private GameManager gameManager;
     private int currentAbilitySlot;
     private float secondaryDelay;
     private float dashDelay;
@@ -222,6 +222,7 @@ public class AbilityManager : MonoBehaviour
         playerMovement.canMove = true;
         player.canHeal = true;
         player.abilityManager.canUsePowers = true;
+        player.hasAttackPreview = true;
         if (player.hasAttackCooldown) return;
         player.canAttack = true;
         player.spriteRenderer.color = player.defaultColor; // Sprite Color
@@ -531,6 +532,8 @@ public class AbilityManager : MonoBehaviour
 
     public void SaveAbilities()
     {
+        if (!gameManager) levelManager.SpawnNewGameManager();
+
         gameManager.abilities.Clear();
 
         foreach (Ability ability in abilities)

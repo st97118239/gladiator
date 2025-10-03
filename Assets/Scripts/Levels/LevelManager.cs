@@ -32,6 +32,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject countdownBox;
     [SerializeField] private TMP_Text countdownText;
     [SerializeField] private GameObject gameFinishedPanel;
+    [SerializeField] private GameObject gameManagerPrefab;
 
     private WaitForSeconds waveWait;
     private float countdown;
@@ -168,5 +169,10 @@ public class LevelManager : MonoBehaviour
         player.canHeal = false;
         player.abilityManager.canUseSecondary = false;
         player.abilityManager.canUsePowers = false;
+    }
+
+    public void SpawnNewGameManager()
+    {
+        player.abilityManager.gameManager = Instantiate(gameManagerPrefab).GetComponent<GameManager>();
     }
 }

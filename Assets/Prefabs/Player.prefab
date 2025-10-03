@@ -224,6 +224,7 @@ MonoBehaviour:
   hasLifesteal: 0
   canUseSecondary: 0
   canUsePowers: 0
+  gameManager: {fileID: 0}
   player: {fileID: 6138312183256452214}
   playerMovement: {fileID: 5928797679792064197}
   levelManager: {fileID: 0}

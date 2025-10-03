@@ -39,6 +39,11 @@ public class UIManager : MonoBehaviour
     public GameObject mainMenuConfirmPanel;
     public GameObject mainMenuConfirmSelectedObj;
     public GameObject mainMenuConfirmBackSelectedObj;
+    public Canvas levelChangeCanvas;
+    public CanvasGroup levelChangeCanvasGroup;
+    public LevelChangePlayer levelChangePlayer;
+    public float levelChangePlayerSpeed;
+    public int levelChangeCurrentLvl;
     public Canvas mainMenuCanvas;
     public GameObject mainMenuSelectedObj;
     public Canvas quitConfirmCanvas;
@@ -54,6 +59,9 @@ public class UIManager : MonoBehaviour
 
     private bool isPaused;
     private bool hasChosenAbility;
+
+    private static readonly int Level1 = Animator.StringToHash("Level");
+    private static readonly int Move = Animator.StringToHash("Move");
 
     private void Start()
     {
@@ -388,6 +396,38 @@ public class UIManager : MonoBehaviour
         winCanvasGroup.alpha = 1;
     }
 
+    private IEnumerator LevelChangeScreenAnim()
+    {
+        levelChangeCanvasGroup.alpha = 1;
+        levelChangeCanvas.gameObject.SetActive(true);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+        eventSystem.SetSelectedGameObject(null);
+
+        yield return null;
+
+        for (float i = 0; i <= fadePanelTime + Time.unscaledDeltaTime; i += Time.unscaledDeltaTime)
+        {
+            if (i > fadePanelTime) i = fadePanelTime;
+
+            float fillAmount = i / fadePanelTime;
+
+            levelChangeCanvasGroup.alpha = fillAmount;
+
+            yield return null;
+        }
+
+        levelChangeCanvasGroup.alpha = 1;
+        Time.timeScale = 1;
+        levelChangePlayer.animator.SetInteger(Level1, levelChangeCurrentLvl);
+        levelChangePlayer.animator.SetTrigger(Move);
+    }
+
+    public void LevelChangePlayerFinished()
+    {
+        LoadSceneFade(nextScene);
+    }
+
     public void OpenSettings()
     {
         if (isMainGame)
@@ -430,7 +470,8 @@ public class UIManager : MonoBehaviour
             abilityManager.SaveAbilities();
             player.SavePotions();
         }
-        LoadSceneFade(nextScene);
+
+        StartCoroutine(LevelChangeScreenAnim());
     }
 
     public void WinMainMenuButton()

@@ -48,7 +48,6 @@ public class Player : MonoBehaviour
     [SerializeField] private Slider hpSlider;
     [SerializeField] private Animator slashAnimator;
 
-    private GameManager gameManager;
     private int healthPotions;
     private float atkSpeedMultiplier = 1f;
     private int lifestealDrainMultiplier;
@@ -60,11 +59,9 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        gameManager = FindFirstObjectByType<GameManager>();
-
-        if (gameManager)
+        if (abilityManager.gameManager)
         {
-            for (int i = 0; i < gameManager.healthPotions; i++) 
+            for (int i = 0; i < abilityManager.gameManager.healthPotions; i++) 
                 GetHealthPotion();
         }
         else
@@ -290,7 +287,7 @@ public class Player : MonoBehaviour
     }
 
     public void SavePotions()
-    {
-        gameManager.healthPotions = healthPotions;
+    { 
+        abilityManager.gameManager.healthPotions = healthPotions;
     }
 }

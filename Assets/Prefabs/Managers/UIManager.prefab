@@ -52,6 +52,9 @@ MonoBehaviour:
   healthPotionImage: {fileID: 0}
   healthPotionText: {fileID: 0}
   healthPotionsUnavailable: {r: 0, g: 0, b: 0, a: 0.19607843}
+  mainMenuScene: 0
+  thisScene: 0
+  nextScene: 0
   fadePanel: {fileID: 0}
   abilityCanvas: {fileID: 0}
   abilityCanvasGroup: {fileID: 0}
@@ -70,6 +73,11 @@ MonoBehaviour:
   mainMenuConfirmPanel: {fileID: 0}
   mainMenuConfirmSelectedObj: {fileID: 0}
   mainMenuConfirmBackSelectedObj: {fileID: 0}
+  levelChangeCanvas: {fileID: 0}
+  levelChangeCanvasGroup: {fileID: 0}
+  levelChangePlayer: {fileID: 0}
+  levelChangePlayerSpeed: 0.1
+  levelChangeCurrentLvl: 0
   mainMenuCanvas: {fileID: 0}
   mainMenuSelectedObj: {fileID: 0}
   quitConfirmCanvas: {fileID: 0}

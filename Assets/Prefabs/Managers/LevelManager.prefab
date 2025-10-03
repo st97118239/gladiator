@@ -126,12 +126,14 @@ MonoBehaviour:
   puddles: []
   platforms: []
   availablePuddles: []
+  availablePlatforms: []
   levelStartDelay: 3
   waveStartDelay: 3
   gameEndDelay: 3
   countdownBox: {fileID: 0}
   countdownText: {fileID: 0}
   gameFinishedPanel: {fileID: 0}
+  gameManagerPrefab: {fileID: 7782978162257292766, guid: 574cabcb1fdfbfc419ea17a9304ba36f, type: 3}
 --- !u!1 &5453624301487471406
 GameObject:
   m_ObjectHideFlags: 0
