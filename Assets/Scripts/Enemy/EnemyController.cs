@@ -81,4 +81,18 @@ public class EnemyController : MonoBehaviour
                 break;
         }
     }
+
+    public void Stun(float duration)
+    {
+        enemyStateMachine.ChangeState(enemyStateMachine.stunnedState);
+
+        StartCoroutine(StunTime(duration));
+    }
+
+    private IEnumerator StunTime(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        enemyStateMachine.ChangeState(enemyStateMachine.idleState);
+    }
 }

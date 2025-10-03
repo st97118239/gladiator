@@ -12,12 +12,14 @@ public class EnemyManager : MonoBehaviour
     public BossController boss;
     public List<EnemyController> sirens;
     public List<ProjectileObj> projectiles;
+    public List<Net> nets;
     public List<Root> roots;
     public List<Transform> rangedPositions;
     public Wave currentWave;
     public GameObject emptyEnemyPrefab;
     public GameObject emptyBossPrefab;
     public GameObject emptyProjectilePrefab;
+    public GameObject emptyNetPrefab;
     public GameObject emptyRootPrefab;
     public Transform enemyParent;
     public Transform projectileParent;
@@ -25,6 +27,7 @@ public class EnemyManager : MonoBehaviour
     public int enemyCount;
     public int maxEnemyCount;
     public int maxProjectileCount;
+    public int maxNetCount;
     public int maxRootCount;
 
     public Color defaultEnemyColor;
@@ -66,6 +69,16 @@ public class EnemyManager : MonoBehaviour
             GameObject projObj = Instantiate(emptyProjectilePrefab, Vector3.zero, Quaternion.identity, projectileParent);
             projObj.SetActive(false);
             projectiles.Add(projObj.GetComponent<ProjectileObj>());
+        }
+    }
+
+    public void EmptyNetSpawn()
+    {
+        for (int i = 0; i < maxNetCount; i++)
+        {
+            GameObject netObj = Instantiate(emptyNetPrefab, Vector3.zero, Quaternion.identity, projectileParent);
+            netObj.SetActive(false);
+            nets.Add(netObj.GetComponent<Net>());
         }
     }
 
@@ -201,5 +214,10 @@ public class EnemyManager : MonoBehaviour
     public ProjectileObj GetProjectile()
     {
         return projectiles.FirstOrDefault(proj => !proj.isOn);
+    }
+
+    public Net GetNet()
+    {
+        return nets.FirstOrDefault(net => !net.isOn);
     }
 }

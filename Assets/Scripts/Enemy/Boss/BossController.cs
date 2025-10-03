@@ -65,4 +65,18 @@ public class BossController : MonoBehaviour
                 break;
         }
     }
+
+    public void Stun(float duration)
+    {
+        bossStateMachine.ChangeState(bossStateMachine.stunnedState);
+
+        StartCoroutine(StunTime(duration));
+    }
+
+    private IEnumerator StunTime(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        bossStateMachine.ChangeState(bossStateMachine.idleState);
+    }
 }

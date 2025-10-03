@@ -73,6 +73,7 @@ public class LevelManager : MonoBehaviour
         SetPlatforms();
         enemyManager.EmptyEnemySpawn();
         enemyManager.EmptyProjectileSpawn();
+        enemyManager.EmptyNetSpawn();
         enemyManager.EmptyRootSpawn();
         StartCoroutine(LevelCountdown());
     }

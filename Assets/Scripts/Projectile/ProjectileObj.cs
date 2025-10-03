@@ -5,7 +5,7 @@ public class ProjectileObj : MonoBehaviour
 {
     public bool isOn;
     public bool isPlayerProj;
-    public bool isEnemy;
+    public bool isNet;
     public int dmg;
     public float speed;
     public Vector3 target;
@@ -22,6 +22,7 @@ public class ProjectileObj : MonoBehaviour
     private WaitForSeconds despawnDelay;
     private Vector3 gizmoHitboxScale;
     private Collider2D colliderToIgnore;
+    private AbilityManager abilityManager;
 
     private void Awake()
     {
@@ -52,12 +53,13 @@ public class ProjectileObj : MonoBehaviour
         {
             enemy = null;
             isPlayerProj = true;
-            dmg = givenAbilityManager.crossbowDamage;
-            transform.position = givenAbilityManager.transform.position;
+            abilityManager = givenAbilityManager;
+            dmg = abilityManager.crossbowDamage;
+            transform.position = abilityManager.transform.position;
             rigid.excludeLayers = playerLayer;
             aimDir = givenTarget;
         }
-        isEnemy = givenProj.isEnemy;
+        isNet = givenProj.isNet;
         speed = givenProj.speed;
         spinSpeed = new Vector3(0, 0, givenProj.spinSpeed);
         spriteRenderer.sprite = givenProj.sprite;
@@ -82,7 +84,12 @@ public class ProjectileObj : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D hit)
     {
-        if (hit.gameObject.CompareTag("Enemy") && isPlayerProj)
+        if ((hit.gameObject.CompareTag("Enemy") && isNet) || (hit.gameObject.CompareTag("Boss") && isNet))
+        {
+            abilityManager.NetCollapse(hit.transform.position, transform.rotation.z);
+            Reset();
+        }
+        else if (hit.gameObject.CompareTag("Enemy") && isPlayerProj)
         {
             hit.gameObject.GetComponent<EnemyController>().Hit(dmg);
             Reset();

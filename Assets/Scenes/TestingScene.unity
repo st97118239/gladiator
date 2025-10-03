@@ -575,7 +575,7 @@ PrefabInstance:
     - target: {fileID: 7008458788800464073, guid: 574cabcb1fdfbfc419ea17a9304ba36f, type: 3}
       propertyPath: 'abilities.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 9a99d85057dae434db8034a81592bfa3, type: 2}
+      objectReference: {fileID: 11400000, guid: d8d2efc590080c2449b6fb6f23932a95, type: 2}
     - target: {fileID: 7782978162257292766, guid: 574cabcb1fdfbfc419ea17a9304ba36f, type: 3}
       propertyPath: m_Name
       value: GameManager

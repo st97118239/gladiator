@@ -115,12 +115,14 @@ MonoBehaviour:
   boss: {fileID: 0}
   sirens: []
   projectiles: []
+  nets: []
   roots: []
   rangedPositions: []
   currentWave: {fileID: 0}
   emptyEnemyPrefab: {fileID: 127359938022708900, guid: 15e0db7888fbe5142b1e892e8959014d, type: 3}
   emptyBossPrefab: {fileID: 127359938022708900, guid: f0f0b1dcad72eb848a74e2563ee7b25e, type: 3}
   emptyProjectilePrefab: {fileID: 127359938022708900, guid: 955a5e66db05eed4a9de4b3046a4dca7, type: 3}
+  emptyNetPrefab: {fileID: 6319262482962342408, guid: 703a19aadaa4a2c47a65f9457b41e7f4, type: 3}
   emptyRootPrefab: {fileID: 8327271448520034645, guid: f1fd9ce7d542e1846948b884669aecc0, type: 3}
   enemyParent: {fileID: 5141242508263261137}
   projectileParent: {fileID: 1607569232705816480}
@@ -128,6 +130,7 @@ MonoBehaviour:
   enemyCount: 0
   maxEnemyCount: 30
   maxProjectileCount: 20
+  maxNetCount: 1
   maxRootCount: 3
   defaultEnemyColor: {r: 1, g: 1, b: 1, a: 1}
   cooldownEnemyColor: {r: 0.4392157, g: 0.5019608, b: 0.5647059, a: 1}

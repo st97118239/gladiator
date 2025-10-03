@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class AbilityManager : MonoBehaviour
 {
@@ -21,7 +20,9 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] private Projectile crossbowProjectile;
     public int crossbowDamage;
     public float crossbowCooldown;
-    [SerializeField] private Projectile enemyProjectile;
+    [SerializeField] private Projectile netProjectile;
+    public Projectile netCollapsedProjectile;
+    public float netCooldown;
     [SerializeField] private EnemyStateMachine enemyHeld;
     public float throwSpeed;
     public float throwTime;
@@ -49,7 +50,7 @@ public class AbilityManager : MonoBehaviour
     public bool canUseSecondary;
     public bool canUsePowers;
 
-    [SerializeField] private Player player;
+    public Player player;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private UIManager uiManager;
@@ -228,7 +229,63 @@ public class AbilityManager : MonoBehaviour
 
     private void Net()
     {
-        if (!canUseSecondary) return;
+        if (secondaryDelay >= 0 || !canUseSecondary) return;
+
+        ProjectileObj proj = levelManager.enemyManager.GetProjectile();
+        if (!proj)
+        {
+            Debug.LogError("No projectile object available.");
+            return;
+        }
+
+        Vector3 aimDir = Vector3.zero;
+
+        if (inputActions.devices.HasValue)
+        {
+            var device = inputActions.devices.Value[0];
+
+            if (device.name == "Keyboard")
+            {
+                Vector3 mousePos = player.cam.ScreenToWorldPoint(Input.mousePosition);
+                mousePos = new Vector3(mousePos.x, mousePos.y, 0);
+                aimDir = (mousePos - transform.position).normalized;
+            }
+            else
+            {
+                aimDir = aimAction.ReadValue<Vector2>();
+                if (aimDir == Vector3.zero) return;
+            }
+        }
+
+        float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+        angle -= 90;
+
+        proj.Load(netProjectile, aimDir, null, this, angle, player.cd2d);
+        StartCoroutine(NetCooldown());
+    }
+
+    public void NetCollapse(Vector3 position, float angleZ)
+    {
+        Net net = levelManager.enemyManager.GetNet();
+
+        if (!net) return;
+
+        net.Load(position, angleZ, this);
+    }
+
+    private IEnumerator NetCooldown()
+    {
+        secondaryDelay = netCooldown;
+        uiManager.abilitySlots[secondarySlot].cooldownSlider.value = secondaryDelay / netCooldown;
+
+        while (secondaryDelay > 0)
+        {
+            yield return null;
+            secondaryDelay -= Time.deltaTime;
+            uiManager.abilitySlots[secondarySlot].cooldownSlider.value = secondaryDelay / netCooldown;
+        }
+
+        secondaryDelay = -1;
     }
 
     private void Crossbow()

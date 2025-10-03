@@ -18,6 +18,7 @@ public class EnemyStateMachine : MonoBehaviour
     public BlockState blockState = new();
     public DashState dashState = new();
     public PickedUpState pickedUpState = new();
+    public StunnedState stunnedState = new();
 
     public AttackType attackType;
     public EnemyAbility ability;
@@ -40,6 +41,7 @@ public class EnemyStateMachine : MonoBehaviour
     public bool isDashing;
     public bool isBeingHeld;
     public bool isBeingThrown;
+    public bool isStunned;
 
     public BoxCollider2D enemyCollider;
     public Rigidbody2D rb2d;
@@ -259,11 +261,6 @@ public class EnemyStateMachine : MonoBehaviour
     private void ResetDashCooldown()
     {
         dashDelay = -1;
-    }
-
-    public void SetCurrentPlatform(Platform givenPlatform)
-    {
-        currentPlatform = givenPlatform;
     }
 
     private void OnTriggerEnter2D(Collider2D hit)

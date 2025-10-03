@@ -15,6 +15,7 @@ public class BossStateMachine : MonoBehaviour
     public BossMelee meleeState = new();
     public NymphAttack nymphAttackState = new();
     public BossDash dashState = new();
+    public BossStunned stunnedState = new();
 
     public AttackType attackType;
     public BossAbility abilityType;
@@ -31,6 +32,7 @@ public class BossStateMachine : MonoBehaviour
     public float dashSpeed;
     public float dashTime;
     public bool isDashing;
+    public bool isStunned;
 
     [SerializeField] private BoxCollider2D enemyCollider;
     public Rigidbody2D rb2d;
