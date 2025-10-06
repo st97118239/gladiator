@@ -7729,6 +7729,11 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 2266817186607528916, guid: 50acf9bdf7341f6479fe00c164c9c6ee, type: 3}
   m_PrefabInstance: {fileID: 1321475756}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1321475760 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 9029397475872838242, guid: 50acf9bdf7341f6479fe00c164c9c6ee, type: 3}
+  m_PrefabInstance: {fileID: 1321475756}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1349421769 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
@@ -10850,6 +10855,10 @@ PrefabInstance:
       propertyPath: mainMenuConfirmSelectedObj
       value: 
       objectReference: {fileID: 1709709449}
+    - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
+      propertyPath: levelChangePlayerRTransform
+      value: 
+      objectReference: {fileID: 1321475760}
     - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
       propertyPath: settingsMenuBackSelectedObj
       value: 

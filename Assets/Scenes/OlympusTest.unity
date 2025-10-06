@@ -938,6 +938,11 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 2266817186607528916, guid: 50acf9bdf7341f6479fe00c164c9c6ee, type: 3}
   m_PrefabInstance: {fileID: 289086019}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &289086023 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 9029397475872838242, guid: 50acf9bdf7341f6479fe00c164c9c6ee, type: 3}
+  m_PrefabInstance: {fileID: 289086019}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &297175185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11650,6 +11655,10 @@ PrefabInstance:
       propertyPath: mainMenuConfirmSelectedObj
       value: 
       objectReference: {fileID: 1709709449}
+    - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
+      propertyPath: levelChangePlayerRTransform
+      value: 
+      objectReference: {fileID: 289086023}
     - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
       propertyPath: settingsMenuBackSelectedObj
       value: 
