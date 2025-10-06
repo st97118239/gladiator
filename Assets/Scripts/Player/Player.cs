@@ -61,8 +61,12 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        health = maxHealth;
+
         if (abilityManager.gameManager)
         {
+            health = abilityManager.gameManager.health;
+
             for (int i = 0; i < abilityManager.gameManager.healthPotions; i++) 
                 GetHealthPotion();
         }
@@ -78,7 +82,6 @@ public class Player : MonoBehaviour
     {
         uiManager.UpdateHealthPotions(healthPotions);
         lifestealDrainMultiplier = abilityManager.lifestealDrainMultiplier;
-        health = maxHealth;
         hpSlider.maxValue = maxHealth;
         hpSlider.value = health;
         meleeWeaponHitbox.position += Vector3.up * meleeHitboxDistanceFromPlayer;
@@ -292,5 +295,6 @@ public class Player : MonoBehaviour
     public void SavePotions()
     { 
         abilityManager.gameManager.healthPotions = healthPotions;
+        abilityManager.gameManager.health = health;
     }
 }

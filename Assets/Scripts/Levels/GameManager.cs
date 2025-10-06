@@ -5,14 +5,10 @@ public class GameManager : MonoBehaviour
 {
     public List<Ability> abilities;
     public int healthPotions;
+    public int health;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-    }
-
-    public void AddAbility(Ability givenAbility)
-    {
-        abilities.Add(givenAbility);
     }
 }
