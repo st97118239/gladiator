@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class BossMelee : IBossState
+public class GriffonSwipe : IBossState
 {
+    // TO-DO: Make the boss do a platform swipe attack. Animation not needed rn, is for polishing
     public void UpdateState(BossStateMachine controller)
     {
         
@@ -9,8 +10,8 @@ public class BossMelee : IBossState
 
     public void OnEnter(BossStateMachine controller)
     {
-        controller.bossController.enemyManager.player.PlayerHit(controller.bossController.boss.damage, true);
-        controller.StartAttackDelay(false);
+        controller.bossController.enemyManager.player.PlayerHit(controller.bossController.boss.extraAttackDamage, true);
+        controller.StartAttackDelay(true);
     }
 
     public void OnExit(BossStateMachine controller)

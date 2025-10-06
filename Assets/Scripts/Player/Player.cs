@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
     public Color hitColor;
     public Color dashColor;
 
+    public Platform currentPlatform;
+
     [SerializeField] private InputActionAsset inputActions;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private UIManager uiManager;

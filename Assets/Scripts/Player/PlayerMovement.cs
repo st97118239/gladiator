@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -60,5 +61,21 @@ public class PlayerMovement : MonoBehaviour
     public void SpeedChange(float change)
     {
         speed += change;
+    }
+
+    private void OnTriggerEnter2D(Collider2D hit)
+    {
+        if (hit.gameObject.CompareTag("Platform"))
+        {
+            player.currentPlatform = hit.gameObject.GetComponent<Platform>();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D hit)
+    {
+        if (hit.gameObject.CompareTag("Platform"))
+        {
+            player.currentPlatform = null;
+        }
     }
 }

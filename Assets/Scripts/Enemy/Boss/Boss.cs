@@ -12,11 +12,15 @@ public class Boss : ScriptableObject
     public float speed;
     public float attackRadius;
     public float attackSpeed;
+    public int extraAttackDamage;
+    public float extraAttackRadius;
+    public float extraAttackSpeed;
     public float abilityRadius;
     public float abilityTime;
     public float abilityCooldown;
     public float abilityPower;
     public int abilityUseChance;
+    public int swipeAttackChance;
     public float rangedFleeRadius;
     public Projectile projectile;
     public float singDrawSpeed;

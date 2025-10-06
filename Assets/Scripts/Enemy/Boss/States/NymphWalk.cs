@@ -28,7 +28,7 @@ public class NymphWalk : IBossState
 
             controller.bossController.enemyManager.SummonRoot(controller.bossController, angle);
 
-            controller.StartAttackDelay();
+            controller.StartAttackDelay(false);
         }
 
         switch (reachedPos)

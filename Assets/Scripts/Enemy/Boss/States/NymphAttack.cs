@@ -21,7 +21,7 @@ public class NymphAttack : IBossState
 
         controller.bossController.enemyManager.SummonRoot(controller.bossController, angle);
 
-        controller.StartAttackDelay();
+        controller.StartAttackDelay(false);
     }
 
     public void OnExit(BossStateMachine controller)

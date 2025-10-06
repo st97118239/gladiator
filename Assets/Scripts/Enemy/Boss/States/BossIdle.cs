@@ -24,6 +24,12 @@ public class BossIdle : IBossState
             case AttackType.Nymph:
                 controller.ChangeState(controller.nymphWalkState);
                 break;
+            case AttackType.MeleeBlock:
+                Debug.LogWarning("Attack hasn't been coded yet.");
+                break;
+            case AttackType.MeleeSwipe:
+                controller.ChangeState(controller.griffonFlyState);
+                break;
             case AttackType.None:
             default:
                 Debug.LogWarning("Enemy has no attack type. Please fix!!");

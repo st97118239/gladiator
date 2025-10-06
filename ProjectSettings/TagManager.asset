@@ -14,6 +14,7 @@ TagManager:
   - Puddle
   - FallTrigger
   - Platform
+  - SwipePoint
   layers:
   - Default
   - TransparentFX

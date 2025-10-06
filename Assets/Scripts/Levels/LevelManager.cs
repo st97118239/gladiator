@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
 
     public Transform spawnpointsParent;
     public Transform rangedPointsParent;
+    public Transform swipePointsParent;
     public Transform puddlesParent;
     public Transform platformsParent;
 

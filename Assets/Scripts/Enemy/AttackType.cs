@@ -6,5 +6,6 @@
     Jump,
     Sing,
     Nymph,
-    MeleeBlock
+    MeleeBlock,
+    MeleeSwipe
 }

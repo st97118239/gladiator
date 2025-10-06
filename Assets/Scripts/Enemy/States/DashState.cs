@@ -9,7 +9,7 @@ public class DashState : IEnemyState
     
     public void OnEnter(EnemyStateMachine controller)
     {
-        controller.rb2d.constraints = RigidbodyConstraints2D.None;
+        controller.rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public void OnExit(EnemyStateMachine controller)

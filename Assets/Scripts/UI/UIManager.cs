@@ -469,9 +469,10 @@ public class UIManager : MonoBehaviour
         {
             abilityManager.SaveAbilities();
             player.SavePotions();
+            StartCoroutine(LevelChangeScreenAnim());
         }
-
-        StartCoroutine(LevelChangeScreenAnim());
+        else
+            LoadSceneFade(nextScene);
     }
 
     public void WinMainMenuButton()

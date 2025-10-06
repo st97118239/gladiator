@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,9 +10,11 @@ public class BossStateMachine : MonoBehaviour
     public BossIdle idleState = new();
     public NymphIdle nymphIdleState = new();
     public NymphWalk nymphWalkState = new();
+    public GriffonFly griffonFlyState = new();
     public BossWalk walkState = new();
     public BossMelee meleeState = new();
     public NymphAttack nymphAttackState = new();
+    public GriffonSwipe griffonSwipeState = new();
     public BossDash dashState = new();
     public BossStunned stunnedState = new();
 
@@ -22,6 +23,8 @@ public class BossStateMachine : MonoBehaviour
     public float attackDelay;
 
     public Puddle puddle;
+    public Platform currentPlatform;
+    public bool isOnPlatform;
 
     public bool isReloading;
     public bool canDash;
@@ -86,27 +89,27 @@ public class BossStateMachine : MonoBehaviour
         currentState.OnEnter(this);
     }
 
-    public ProjectileObj GetProjectile()
+    public void StartAttackDelay(bool isExtraAttack)
     {
-        return bossController.enemyManager.projectiles.FirstOrDefault(proj => !proj.isOn);
+        StartCoroutine(AttackAnim(isExtraAttack));
     }
 
-    public void StartAttackDelay()
-    {
-        StartCoroutine(nameof(AttackAnim));
-    }
-
-    private IEnumerator AttackAnim()
+    private IEnumerator AttackAnim(bool isExtraAttack)
     {
         isReloading = true;
         bossController.spriteRenderer.color = bossController.enemyManager.cooldownEnemyColor; // Sprite Color
+        StopCoroutine(DashCooldown());
+        dashDelay = 1;
 
-        yield return new WaitForSeconds(bossController.boss.attackSpeed);
+        yield return isExtraAttack
+            ? new WaitForSeconds(bossController.boss.extraAttackSpeed)
+            : new WaitForSeconds(bossController.boss.attackSpeed);
 
         bossController.spriteRenderer.color = bossController.enemyManager.defaultEnemyColor; // Sprite Color
         isReloading = false;
 
         if (isStunned) yield break;
+        StartCoroutine(DashCooldown());
         ChangeState(idleState);
     }
 
@@ -182,5 +185,32 @@ public class BossStateMachine : MonoBehaviour
     private void ResetDashCooldown()
     {
         dashDelay = -1;
+    }
+
+    private void OnTriggerEnter2D(Collider2D hit)
+    {
+        if (hit.gameObject.CompareTag("Platform"))
+        {
+            currentPlatform = hit.gameObject.GetComponent<Platform>();
+            StartCoroutine(ReachesPlatform(currentPlatform));
+        }
+    }
+
+    private IEnumerator ReachesPlatform(Platform givenPlatform)
+    {
+        yield return new WaitForSeconds(0.7f);
+
+        if (currentPlatform != givenPlatform) yield break;
+
+        isOnPlatform = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D hit)
+    {
+        if (hit.gameObject.CompareTag("Platform"))
+        {
+            currentPlatform = null;
+            isOnPlatform = false;
+        }
     }
 }

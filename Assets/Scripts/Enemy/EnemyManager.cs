@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -15,6 +18,7 @@ public class EnemyManager : MonoBehaviour
     public List<Net> nets;
     public List<Root> roots;
     public List<Transform> rangedPositions;
+    public List<Transform> swipePositions;
     public Wave currentWave;
     public GameObject emptyEnemyPrefab;
     public GameObject emptyBossPrefab;
@@ -45,6 +49,11 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < levelManager.rangedPointsParent.childCount; i++)
         {
             rangedPositions.Add(levelManager.rangedPointsParent.GetChild(i));
+        }
+
+        for (int i = 0; i < levelManager.swipePointsParent.childCount; i++)
+        {
+            swipePositions.Add(levelManager.swipePointsParent.GetChild(i));
         }
     }
 
@@ -200,6 +209,18 @@ public class EnemyManager : MonoBehaviour
             enemy.isClosestSiren = isClosest;
             isClosest = false;
         }
+    }
+
+    public Vector3 GetPlatformSwipePos(Vector3 pos)
+    {
+        Vector3 posToGive = Vector3.zero;
+        foreach (Transform swipePos in swipePositions.OrderBy(t => Vector3.Distance(pos, t.position)))
+        {
+            posToGive = swipePos.position;
+            break;
+        }
+
+        return posToGive;
     }
 
     public void SummonRoot(BossController controller, float angle)
