@@ -42,8 +42,10 @@ public class UIManager : MonoBehaviour
     public Canvas levelChangeCanvas;
     public CanvasGroup levelChangeCanvasGroup;
     public LevelChangePlayer levelChangePlayer;
+    public RectTransform levelChangePlayerRTransform;
     public float levelChangePlayerSpeed;
     public int levelChangeCurrentLvl;
+    public Vector2 levelChangePlayerDefaultPos;
     public Canvas mainMenuCanvas;
     public GameObject mainMenuSelectedObj;
     public Canvas quitConfirmCanvas;
@@ -85,6 +87,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowAbilityMenu()
     {
+        canPause = false;
         player.canAttack = false;
         player.hasAttackPreview = false;
         player.movementScript.canMove = false;
@@ -255,6 +258,7 @@ public class UIManager : MonoBehaviour
         player.canHeal = true;
         player.abilityManager.canUseSecondary = true;
         player.abilityManager.canUsePowers = true;
+        canPause = true;
     }
 
     public void NewAbility(Ability givenAbility, int idx, bool endWave)
@@ -409,6 +413,7 @@ public class UIManager : MonoBehaviour
     {
         canPause = false;
         levelChangeCanvasGroup.alpha = 1;
+        levelChangePlayerRTransform.anchoredPosition = levelChangePlayerDefaultPos;
         levelChangeCanvas.gameObject.SetActive(true);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;

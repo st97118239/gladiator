@@ -11655,6 +11655,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1403410017}
     - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
+      propertyPath: levelChangePlayerDefaultPos.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
+      propertyPath: levelChangePlayerDefaultPos.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
       propertyPath: mainMenuConfirmBackSelectedObj
       value: 
       objectReference: {fileID: 1709709448}

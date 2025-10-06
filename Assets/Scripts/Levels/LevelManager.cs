@@ -61,12 +61,29 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.LogWarning("Remember to remove the wave skip!");
+
         waveWait = new(waveStartDelay);
         int pos = Random.Range(0, spawnpoints.Count);
         player.transform.position = spawnpoints[pos].position;
 
         gameFinishedPanel.SetActive(false);
         StartLevel();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Backslash))
+        {
+            foreach (var enemy in enemyManager.enemies)
+            {
+                if (!enemy.isActiveAndEnabled) continue;
+                enemy.Hit(1000);
+            }
+
+            if (enemyManager.boss.isActiveAndEnabled)
+                enemyManager.boss.Hit(1000);
+        }
     }
 
     private void StartLevel()
