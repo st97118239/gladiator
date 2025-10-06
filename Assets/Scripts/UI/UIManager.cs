@@ -61,7 +61,6 @@ public class UIManager : MonoBehaviour
     private bool hasChosenAbility;
 
     private static readonly int Level1 = Animator.StringToHash("Level");
-    private static readonly int Move = Animator.StringToHash("Move");
 
     private void Start()
     {
@@ -420,7 +419,6 @@ public class UIManager : MonoBehaviour
         levelChangeCanvasGroup.alpha = 1;
         Time.timeScale = 1;
         levelChangePlayer.animator.SetInteger(Level1, levelChangeCurrentLvl);
-        levelChangePlayer.animator.SetTrigger(Move);
     }
 
     public void LevelChangePlayerFinished()
