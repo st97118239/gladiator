@@ -88,6 +88,7 @@ public class Player : MonoBehaviour
         canHeal = true;
         abilityManager.canUseSecondary = true;
         abilityManager.canUsePowers = true;
+        uiManager.canPause = true;
     }
 
     private void Update()

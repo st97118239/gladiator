@@ -51,6 +51,8 @@ public class UIManager : MonoBehaviour
     public GameObject quitMenuBackSelectedObj;
     public bool isMainGame;
 
+    public bool canPause;
+
     public AbilitySlot[] abilitySlots;
     [SerializeField] private AbilityCard[] abilityCards;
     [SerializeField] private Button confirmButton;
@@ -265,6 +267,8 @@ public class UIManager : MonoBehaviour
 
     public void PauseMenu()
     {
+        if (!canPause) return;
+
         if (fadePanel.IsActive())
             fadePanel.gameObject.SetActive(false);
 
@@ -288,6 +292,7 @@ public class UIManager : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
+        canPause = false;
         fadePanel.gameObject.SetActive(true);
 
         yield return null;
@@ -309,7 +314,10 @@ public class UIManager : MonoBehaviour
         fadePanel.color = endColor;
 
         if (shouldReverse)
+        {
             fadePanel.gameObject.SetActive(false);
+            canPause = true;
+        }
 
         if (shouldQuit)
             Quit();
@@ -349,6 +357,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator DeathScreenAnim()
     {
+        canPause = false;
         deathCanvasGroup.alpha = 1;
         deathCanvas.gameObject.SetActive(true);
         Cursor.visible = true;
@@ -373,6 +382,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator WinScreenAnim()
     {
+        canPause = false;
         winCanvasGroup.alpha = 1;
         winCanvas.gameObject.SetActive(true);
         Cursor.visible = true;
@@ -397,6 +407,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator LevelChangeScreenAnim()
     {
+        canPause = false;
         levelChangeCanvasGroup.alpha = 1;
         levelChangeCanvas.gameObject.SetActive(true);
         Cursor.visible = false;
