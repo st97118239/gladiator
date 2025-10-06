@@ -106,6 +106,7 @@ public class BossStateMachine : MonoBehaviour
         bossController.spriteRenderer.color = bossController.enemyManager.defaultEnemyColor; // Sprite Color
         isReloading = false;
 
+        if (isStunned) yield break;
         ChangeState(idleState);
     }
 

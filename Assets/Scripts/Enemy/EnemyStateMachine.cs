@@ -126,7 +126,7 @@ public class EnemyStateMachine : MonoBehaviour
         }
         isReloading = false;
 
-        if (isBeingHeld) yield break;
+        if (isBeingHeld || isStunned) yield break;
         ChangeState(idleState);
     }
 
