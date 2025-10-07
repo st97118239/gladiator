@@ -7341,6 +7341,10 @@ PrefabInstance:
       value: LevelManager
       objectReference: {fileID: 0}
     - target: {fileID: 5660054280036448657, guid: d791bdda6678b854b88d1758e0ddd83c, type: 3}
+      propertyPath: level
+      value: 
+      objectReference: {fileID: 11400000, guid: 33142e5db136d824eab1c80d009a2b47, type: 2}
+    - target: {fileID: 5660054280036448657, guid: d791bdda6678b854b88d1758e0ddd83c, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1349421769}
@@ -7666,6 +7670,10 @@ PrefabInstance:
       propertyPath: abilityManager
       value: 
       objectReference: {fileID: 592514611}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: maxSummonerEnemyCount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5548334227488344643, guid: a8aa08712be39cf49be247240e83a675, type: 3}
       propertyPath: m_Name
       value: EnemyManager

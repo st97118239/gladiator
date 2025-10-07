@@ -15,6 +15,16 @@ public class BossWalk : IBossState
 
         float distance = Vector3.Distance(controller.gameObject.transform.position, player.transform.position);
 
+        if (controller.abilityType == BossAbility.Summon && distance <= controller.bossController.boss.abilityRadius)
+        {
+            if (controller.CanSummon())
+            {
+                Debug.Log("Is gonna summon."); // DEBUGGING
+                controller.StartSummonCountdown();
+                return;
+            }
+        }
+
         if (distance <= controller.bossController.boss.attackRadius)
         {
             controller.ChangeState(controller.meleeState);
@@ -28,7 +38,7 @@ public class BossWalk : IBossState
         else if (player.transform.position.x > controller.transform.position.x)
             controller.bossController.spriteRenderer.flipX = false;
 
-        if (controller.canDash && controller.dashDelay < 0 && distance >= controller.dashRadius)
+        if (controller.canDash && controller.abilityDelay < 0 && distance >= controller.abilityRadius)
             controller.Dash();
     }
     
@@ -45,7 +55,7 @@ public class BossWalk : IBossState
 
     public void OnHurt(BossStateMachine controller)
     {
-        if (!controller.canDash || controller.dashDelay >= 0) return;
+        if (controller.isFrozen || !controller.canDash || controller.abilityDelay >= 0) return;
 
         int shouldDash = Random.Range(0, 101);
 

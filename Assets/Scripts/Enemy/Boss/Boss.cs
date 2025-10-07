@@ -24,4 +24,6 @@ public class Boss : ScriptableObject
     public float rangedFleeRadius;
     public Projectile projectile;
     public float singDrawSpeed;
+    public Enemy enemyToSummon;
+    public int enemyAmtToSpawn;
 }

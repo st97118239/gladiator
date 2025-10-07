@@ -12,6 +12,7 @@ public class EnemyManager : MonoBehaviour
     public AbilityManager abilityManager;
     public Player player;
     public List<EnemyController> enemies;
+    public List<EnemyController> summonerEnemies;
     public BossController boss;
     public List<EnemyController> sirens;
     public List<ProjectileObj> projectiles;
@@ -30,6 +31,7 @@ public class EnemyManager : MonoBehaviour
     public int enemySpawnIdx;
     public int enemyCount;
     public int maxEnemyCount;
+    public int maxSummonerEnemyCount;
     public int maxProjectileCount;
     public int maxNetCount;
     public int maxRootCount;
@@ -38,6 +40,7 @@ public class EnemyManager : MonoBehaviour
     public Color cooldownEnemyColor;
     public Color hitEnemyColor;
     public Color dashEnemyColor;
+    public Color summonEnemyColor;
 
     [SerializeField] private float spawnDelay;
     [SerializeField] private int healthPotionDropChance;
@@ -57,42 +60,40 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void EmptyEnemySpawn()
+    public void SpawnEmpties()
     {
-        GameObject bossObj = Instantiate(emptyBossPrefab, Vector3.zero, Quaternion.identity, enemyParent);
-        bossObj.SetActive(false);
-        boss = bossObj.GetComponent<BossController>();
-
         for (int i = 0; i < maxEnemyCount; i++)
         {
             GameObject enemyObj = Instantiate(emptyEnemyPrefab, Vector3.zero, Quaternion.identity, enemyParent);
             enemyObj.SetActive(false);
             enemies.Add(enemyObj.GetComponent<EnemyController>());
         }
-    }
 
-    public void EmptyProjectileSpawn()
-    {
+        for (int i = 0; i < maxSummonerEnemyCount; i++)
+        {
+            GameObject enemyObj = Instantiate(emptyEnemyPrefab, Vector3.zero, Quaternion.identity, enemyParent);
+            enemyObj.SetActive(false);
+            summonerEnemies.Add(enemyObj.GetComponent<EnemyController>());
+        }
+
+        GameObject bossObj = Instantiate(emptyBossPrefab, Vector3.zero, Quaternion.identity, enemyParent);
+        bossObj.SetActive(false);
+        boss = bossObj.GetComponent<BossController>();
+
         for (int i = 0; i < maxProjectileCount; i++)
         {
             GameObject projObj = Instantiate(emptyProjectilePrefab, Vector3.zero, Quaternion.identity, projectileParent);
             projObj.SetActive(false);
             projectiles.Add(projObj.GetComponent<ProjectileObj>());
         }
-    }
 
-    public void EmptyNetSpawn()
-    {
         for (int i = 0; i < maxNetCount; i++)
         {
             GameObject netObj = Instantiate(emptyNetPrefab, Vector3.zero, Quaternion.identity, projectileParent);
             netObj.SetActive(false);
             nets.Add(netObj.GetComponent<Net>());
         }
-    }
 
-    public void EmptyRootSpawn()
-    {
         for (int i = 0; i < maxRootCount; i++)
         {
             GameObject rootObj = Instantiate(emptyRootPrefab, Vector3.zero, Quaternion.identity, projectileParent);
@@ -137,7 +138,7 @@ public class EnemyManager : MonoBehaviour
             }
 
             EnemyController enemy = enemies[i];
-            enemy.Load(currentWave.enemies[i], this);
+            enemy.Load(currentWave.enemies[i], this, false);
             if (enemy.enemy.attackType == AttackType.Sing)
             {
                 sirens.Add(enemy);
@@ -183,7 +184,52 @@ public class EnemyManager : MonoBehaviour
             spawnPosIdx = 0;
     }
 
-    public void CheckIfEnd(bool isBoss)
+    public IEnumerator SpawnSummonerEnemies(int amtToSpawn, Enemy enemyToSpawn, BossStateMachine summoner)
+    {
+        Debug.Log("Spawning summoner enemies.");
+
+        WaitForSeconds wait = new(spawnDelay);
+
+        yield return wait;
+
+        for (int i = 0; i < amtToSpawn; i++)
+        {
+            if (i >= maxSummonerEnemyCount)
+            {
+                Debug.LogError("Not enough enemy slots available.");
+                break;
+            }
+
+            if (!enemyToSpawn)
+            {
+                Debug.LogError("Missing enemy. Please fix!!");
+                break;
+            }
+
+            EnemyController enemy = summonerEnemies[i];
+            enemy.Load(enemyToSpawn, this, true);
+            if (enemy.enemy.attackType == AttackType.Sing)
+            {
+                sirens.Add(enemy);
+                enemy.transform.position = enemy.enemyStateMachine.puddle.transform.position;
+            }
+            else
+            {
+                enemy.transform.position = levelManager.spawnpoints[spawnPosIdx].position;
+                enemySpawnIdx++;
+            }
+
+            enemyCount++;
+            enemy.gameObject.SetActive(true);
+
+            SetSpawnPosIdx();
+            yield return wait;
+        }
+
+        StartCoroutine(summoner.SummonAnim());
+    }
+
+    public void CheckIfEnd(bool isBoss, bool isSummoned)
     {
         enemyCount--;
 
@@ -199,6 +245,9 @@ public class EnemyManager : MonoBehaviour
             if (dropChance <= healthPotionDropChance)
                 player.GetHealthPotion();
         }
+
+        if (isSummoned) 
+            boss.StartSummonCooldown();
     }
 
     public void SetClosest()

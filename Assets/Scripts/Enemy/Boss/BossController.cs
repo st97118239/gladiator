@@ -24,11 +24,11 @@ public class BossController : MonoBehaviour
 
     public void Hit(int damage)
     {
-        if (bossStateMachine.isDashing) return;
+        if (bossStateMachine.isUsingAbility) return;
 
         bossStateMachine.currentState.OnHurt(bossStateMachine);
 
-        if (bossStateMachine.isDashing) return;
+        if (bossStateMachine.isUsingAbility) return;
 
         health -= damage;
 
@@ -46,7 +46,7 @@ public class BossController : MonoBehaviour
         transform.position = Vector3.zero;
         spriteRenderer.color = enemyManager.defaultEnemyColor; // Sprite Color
 
-        enemyManager.CheckIfEnd(true);
+        enemyManager.CheckIfEnd(true, false);
     }
 
     private IEnumerator HitEffect()
@@ -78,5 +78,10 @@ public class BossController : MonoBehaviour
         yield return new WaitForSeconds(duration);
 
         bossStateMachine.ChangeState(bossStateMachine.idleState);
+    }
+
+    public void StartSummonCooldown()
+    {
+        StartCoroutine(bossStateMachine.AbilityCooldown());
     }
 }

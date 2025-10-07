@@ -68,7 +68,7 @@ public class GriffonFly : IBossState
         else if (player.transform.position.x > controller.transform.position.x)
             controller.bossController.spriteRenderer.flipX = false;
 
-        if (controller.canDash && controller.dashDelay < 0 && distance >= controller.dashRadius)
+        if (controller.canDash && controller.abilityDelay < 0 && distance >= controller.abilityRadius)
             controller.Dash();
     }
     
@@ -87,7 +87,7 @@ public class GriffonFly : IBossState
 
     public void OnHurt(BossStateMachine controller)
     {
-        if (!controller.canDash || controller.dashDelay >= 0) return;
+        if (!controller.canDash || controller.abilityDelay >= 0) return;
 
         int shouldDash = Random.Range(0, 101);
 

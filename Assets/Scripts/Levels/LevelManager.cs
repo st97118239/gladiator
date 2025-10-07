@@ -90,10 +90,7 @@ public class LevelManager : MonoBehaviour
     {
         SetPuddles();
         SetPlatforms();
-        enemyManager.EmptyEnemySpawn();
-        enemyManager.EmptyProjectileSpawn();
-        enemyManager.EmptyNetSpawn();
-        enemyManager.EmptyRootSpawn();
+        enemyManager.SpawnEmpties();
         StartCoroutine(LevelCountdown());
     }
 

@@ -7,14 +7,16 @@ public class EnemyController : MonoBehaviour
     public EnemyStateMachine enemyStateMachine;
     public Enemy enemy;
     public int health;
+    public bool isSummoned;
 
     public SpriteRenderer spriteRenderer;
     public float hitColorTime;
 
     public bool isClosestSiren;
 
-    public void Load(Enemy givenEnemy, EnemyManager givenManager)
+    public void Load(Enemy givenEnemy, EnemyManager givenManager, bool gotSummoned)
     {
+        isSummoned = gotSummoned;
         enemyManager = givenManager;
         enemy = givenEnemy;
         health = enemy.health;
@@ -62,7 +64,7 @@ public class EnemyController : MonoBehaviour
 
         enemyStateMachine.currentPlatform = null;
 
-        enemyManager.CheckIfEnd(false);
+        enemyManager.CheckIfEnd(false, isSummoned);
     }
 
     private IEnumerator HitEffect()

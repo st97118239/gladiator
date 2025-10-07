@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b4fb03fcd02cdb4f9fc78eb9e651f60, type: 3}
-  m_Name: OlympusWave06
+  m_Name: OlympusWave07
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWave
   enemies:
   - {fileID: 11400000, guid: f10c73f436ed8e24eb44977c07130e5f, type: 2}
@@ -18,11 +18,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f10c73f436ed8e24eb44977c07130e5f, type: 2}
   - {fileID: 11400000, guid: f10c73f436ed8e24eb44977c07130e5f, type: 2}
   - {fileID: 11400000, guid: f10c73f436ed8e24eb44977c07130e5f, type: 2}
+  - {fileID: 11400000, guid: f10c73f436ed8e24eb44977c07130e5f, type: 2}
+  - {fileID: 11400000, guid: f10c73f436ed8e24eb44977c07130e5f, type: 2}
+  - {fileID: 11400000, guid: f10c73f436ed8e24eb44977c07130e5f, type: 2}
   - {fileID: 11400000, guid: 893bf793d93871d4bb6c29ed16259d2c, type: 2}
   - {fileID: 11400000, guid: 893bf793d93871d4bb6c29ed16259d2c, type: 2}
-  - {fileID: 11400000, guid: 893bf793d93871d4bb6c29ed16259d2c, type: 2}
-  - {fileID: 11400000, guid: 6f453b9abb5b9774cabb00fc4ba55a88, type: 2}
-  - {fileID: 11400000, guid: 6f453b9abb5b9774cabb00fc4ba55a88, type: 2}
   - {fileID: 11400000, guid: 6f453b9abb5b9774cabb00fc4ba55a88, type: 2}
   - {fileID: 11400000, guid: 6f453b9abb5b9774cabb00fc4ba55a88, type: 2}
   boss: {fileID: 0}

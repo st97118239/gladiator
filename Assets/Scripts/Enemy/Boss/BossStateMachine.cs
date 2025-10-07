@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,6 +18,7 @@ public class BossStateMachine : MonoBehaviour
     public GriffonSwipe griffonSwipeState = new();
     public BossDash dashState = new();
     public BossStunned stunnedState = new();
+    public BossFreeze bossFreezeState = new();
 
     public AttackType attackType;
     public BossAbility abilityType;
@@ -29,13 +31,14 @@ public class BossStateMachine : MonoBehaviour
     public bool isReloading;
     public bool canDash;
 
-    public float dashRadius;
-    public float dashDelay;
-    public float dashCooldown;
-    public float dashSpeed;
-    public float dashTime;
-    public bool isDashing;
+    public float abilityRadius;
+    public float abilityDelay;
+    public float abilityCooldown;
+    public float abilityPower;
+    public float abilityTime;
+    public bool isUsingAbility;
     public bool isStunned;
+    public bool isFrozen;
 
     [SerializeField] private BoxCollider2D enemyCollider;
     public Rigidbody2D rb2d;
@@ -62,20 +65,30 @@ public class BossStateMachine : MonoBehaviour
         attackType = bossController.boss.attackType;
         abilityType = bossController.boss.abilityType;
         canDash = false;
-        isDashing = false;
+        isUsingAbility = false;
 
         if (attackType == AttackType.Sing)
             FindPuddle();
 
-        if (abilityType == BossAbility.Dash)
+        switch (abilityType)
         {
-            canDash = true;
-            dashCooldown = bossController.boss.abilityCooldown;
-            dashDelay = dashCooldown;
-            dashSpeed = bossController.boss.abilityPower;
-            dashTime = bossController.boss.abilityTime;
-            dashRadius = bossController.boss.abilityRadius;
-            Invoke(nameof(ResetDashCooldown), dashCooldown / 2);
+            case BossAbility.Dash:
+                canDash = true;
+                abilityCooldown = bossController.boss.abilityCooldown;
+                abilityDelay = abilityCooldown;
+                abilityPower = bossController.boss.abilityPower;
+                abilityTime = bossController.boss.abilityTime;
+                abilityRadius = bossController.boss.abilityRadius;
+                Invoke(nameof(ResetAbilityCooldown), abilityCooldown / 2);
+                break;
+            case BossAbility.Summon:
+                abilityCooldown = bossController.boss.abilityCooldown;
+                abilityDelay = abilityCooldown;
+                abilityPower = bossController.boss.abilityPower;
+                abilityTime = bossController.boss.abilityTime;
+                abilityRadius = bossController.boss.abilityRadius;
+                Invoke(nameof(ResetAbilityCooldown), abilityCooldown / 2);
+                break;
         }
 
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -98,8 +111,8 @@ public class BossStateMachine : MonoBehaviour
     {
         isReloading = true;
         bossController.spriteRenderer.color = bossController.enemyManager.cooldownEnemyColor; // Sprite Color
-        StopCoroutine(DashCooldown());
-        dashDelay = 1;
+        StopCoroutine(AbilityCooldown());
+        abilityDelay = 1;
 
         yield return isExtraAttack
             ? new WaitForSeconds(bossController.boss.extraAttackSpeed)
@@ -108,8 +121,8 @@ public class BossStateMachine : MonoBehaviour
         bossController.spriteRenderer.color = bossController.enemyManager.defaultEnemyColor; // Sprite Color
         isReloading = false;
 
-        if (isStunned) yield break;
-        StartCoroutine(DashCooldown());
+        if (isStunned || isFrozen) yield break;
+        StartCoroutine(AbilityCooldown());
         ChangeState(idleState);
     }
 
@@ -148,43 +161,74 @@ public class BossStateMachine : MonoBehaviour
     }
     public void Dash()
     {
-        if (!canDash && dashDelay >= 0) return;
+        if (!canDash && abilityDelay >= 0) return;
 
         Vector3 moveAmount = (bossController.enemyManager.player.transform.position - transform.position).normalized;
 
         if (moveAmount == Vector3.zero) return;
 
-        isDashing = true;
+        isUsingAbility = true;
         spriteRenderer.color = bossController.enemyManager.dashEnemyColor; // Sprite Color
 
         ChangeState(dashState);
-        rb2d.AddForce(moveAmount * dashSpeed, ForceMode2D.Force);
+        rb2d.AddForce(moveAmount * abilityPower, ForceMode2D.Force);
         rb2d.linearDamping = 5;
 
-        Invoke(nameof(ResetRigidbody), dashTime);
-        StartCoroutine(DashCooldown());
+        Invoke(nameof(ResetRigidbody), abilityTime);
+        StartCoroutine(AbilityCooldown());
+    }
+
+    public bool CanSummon()
+    {
+        if (abilityDelay > 0) return false;
+
+        int enemiesOff = bossController.enemyManager.summonerEnemies.Count(enemy => !enemy.isActiveAndEnabled);
+
+        return enemiesOff >= bossController.boss.enemyAmtToSpawn;
+    }
+
+    public void StartSummonCountdown()
+    {
+        isReloading = true;
+        bossController.spriteRenderer.color = bossController.enemyManager.summonEnemyColor; // Sprite Color
+        StopCoroutine(AbilityCooldown());
+        abilityDelay = 1;
+        ChangeState(bossFreezeState);
+        StartCoroutine(bossController.enemyManager.SpawnSummonerEnemies(bossController.boss.enemyAmtToSpawn, bossController.boss.enemyToSummon, this));
+    }
+
+    public IEnumerator SummonAnim()
+    {
+        yield return new WaitForSeconds(bossController.boss.abilityTime);
+
+        bossController.spriteRenderer.color = bossController.enemyManager.defaultEnemyColor; // Sprite Color
+        isReloading = false;
+
+        if (isStunned) yield break;
+        StartCoroutine(AbilityCooldown());
+        ChangeState(idleState);
     }
 
     private void ResetRigidbody()
     {
         rb2d.linearDamping = 10;
-        isDashing = false;
+        isUsingAbility = false;
         spriteRenderer.color = bossController.enemyManager.defaultEnemyColor; // Sprite Color
         ChangeState(idleState);
     }
 
-    private IEnumerator DashCooldown()
+    public IEnumerator AbilityCooldown()
     {
-        dashDelay = dashCooldown;
+        abilityDelay = abilityCooldown;
 
-        yield return new WaitForSeconds(dashDelay);
+        yield return new WaitForSeconds(abilityDelay);
 
-        dashDelay = -1;
+        abilityDelay = -1;
     }
 
-    private void ResetDashCooldown()
+    private void ResetAbilityCooldown()
     {
-        dashDelay = -1;
+        abilityDelay = -1;
     }
 
     private void OnTriggerEnter2D(Collider2D hit)
