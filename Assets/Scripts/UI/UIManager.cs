@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ public class UIManager : MonoBehaviour
 {
     public Player player;
     public AbilityManager abilityManager;
+    public GameManager gameManager;
     public EventSystem eventSystem;
     public LevelManager levelManager;
     public EnemyManager enemyManager;
@@ -65,6 +67,14 @@ public class UIManager : MonoBehaviour
     private bool hasChosenAbility;
 
     private static readonly int Level1 = Animator.StringToHash("Level");
+
+    private void Awake()
+    {
+        gameManager = FindFirstObjectByType<GameManager>();
+
+        if (levelChangeCurrentLvl == 1)
+            gameManager.FirstLevel();
+    }
 
     private void Start()
     {

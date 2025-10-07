@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695f53f935e5d3e46908db68ebbbb862, type: 3}
   m_Name: Nymph
   m_EditorClassIdentifier: Assembly-CSharp::Boss
-  sprite: {fileID: 21300000, guid: 5226f28755f131349b1ea02d732b017c, type: 3}
+  sprite: {fileID: 21300000, guid: 6841226d2257ebd4d9094529d112fb54, type: 3}
   enemyType: 7
   attackType: 5
   abilityType: 0
@@ -21,8 +21,17 @@ MonoBehaviour:
   speed: 2
   attackRadius: 10
   attackSpeed: 5
+  extraAttackDamage: 0
+  extraAttackRadius: 0
+  extraAttackSpeed: 0
   abilityRadius: 0
-  abilitySpeed: 0
+  abilityTime: 0
+  abilityCooldown: 0
+  abilityPower: 0
+  abilityUseChance: 0
+  swipeAttackChance: 0
   rangedFleeRadius: 5
   projectile: {fileID: 0}
   singDrawSpeed: 0
+  enemyToSummon: {fileID: 0}
+  enemyAmtToSpawn: 0

@@ -17,6 +17,8 @@ public class BossIdle : IBossState
                 controller.ChangeState(controller.walkState);
                 break;
             case AttackType.ProjectileRanged:
+                controller.ChangeState(controller.zeusWalkState);
+                break;
             case AttackType.Jump:
             case AttackType.Sing:
                 Debug.LogWarning("Attack hasn't been coded yet.");

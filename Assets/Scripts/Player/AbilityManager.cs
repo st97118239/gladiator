@@ -261,7 +261,7 @@ public class AbilityManager : MonoBehaviour
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         angle -= 90;
 
-        proj.Load(netProjectile, aimDir, null, this, angle, player.cd2d);
+        proj.Load(netProjectile, aimDir, null, null, this, angle, player.cd2d);
         StartCoroutine(NetCooldown());
     }
 
@@ -322,7 +322,7 @@ public class AbilityManager : MonoBehaviour
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         angle -= 90;
 
-        proj.Load(crossbowProjectile, aimDir, null, this, angle, player.cd2d);
+        proj.Load(crossbowProjectile, aimDir, null, null, this, angle, player.cd2d);
         StartCoroutine(CrossbowCooldown());
 
     }

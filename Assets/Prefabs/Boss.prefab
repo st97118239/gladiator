@@ -129,14 +129,19 @@ MonoBehaviour:
   abilityType: 0
   attackDelay: 0
   puddle: {fileID: 0}
+  currentPlatform: {fileID: 0}
+  isOnPlatform: 0
   isReloading: 0
   canDash: 0
-  dashDelay: 0
-  dashCooldown: 0
-  dashSpeed: 0
-  dashTime: 0
-  isDashing: 0
-  enemyCollider: {fileID: 340753586850306276}
+  abilityRadius: 0
+  abilityDelay: 0
+  abilityCooldown: 0
+  abilityPower: 0
+  abilityTime: 0
+  isUsingAbility: 0
+  isStunned: 0
+  isFrozen: 0
+  bossCollider: {fileID: 340753586850306276}
   rb2d: {fileID: 1898615627537797970}
   spriteRenderer: {fileID: 8208541899940622705}
 --- !u!61 &340753586850306276

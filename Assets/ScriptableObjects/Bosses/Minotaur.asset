@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695f53f935e5d3e46908db68ebbbb862, type: 3}
   m_Name: Minotaur
   m_EditorClassIdentifier: Assembly-CSharp::Boss
-  sprite: {fileID: 21300000, guid: d6d32779becef98478991aedd2e6fe5a, type: 3}
+  sprite: {fileID: 21300000, guid: 45e0ce34838afa34a883accc3a490abe, type: 3}
   enemyType: 3
   attackType: 1
   abilityType: 1
@@ -21,11 +21,17 @@ MonoBehaviour:
   speed: 3
   attackRadius: 1
   attackSpeed: 1.2
+  extraAttackDamage: 0
+  extraAttackRadius: 0
+  extraAttackSpeed: 0
   abilityRadius: 4
   abilityTime: 0.5
   abilityCooldown: 3
   abilityPower: 1000
   abilityUseChance: 50
+  swipeAttackChance: 0
   rangedFleeRadius: 0
   projectile: {fileID: 0}
   singDrawSpeed: 0
+  enemyToSummon: {fileID: 0}
+  enemyAmtToSpawn: 0

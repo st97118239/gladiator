@@ -226,6 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   player: {fileID: 0}
   abilityManager: {fileID: 0}
+  gameManager: {fileID: 0}
   eventSystem: {fileID: 809840611}
   levelManager: {fileID: 0}
   enemyManager: {fileID: 0}
@@ -253,12 +254,20 @@ MonoBehaviour:
   mainMenuConfirmPanel: {fileID: 0}
   mainMenuConfirmSelectedObj: {fileID: 0}
   mainMenuConfirmBackSelectedObj: {fileID: 0}
+  levelChangeCanvas: {fileID: 0}
+  levelChangeCanvasGroup: {fileID: 0}
+  levelChangePlayer: {fileID: 0}
+  levelChangePlayerRTransform: {fileID: 0}
+  levelChangePlayerSpeed: 0
+  levelChangeCurrentLvl: 0
+  levelChangePlayerDefaultPos: {x: 0, y: 0}
   mainMenuCanvas: {fileID: 2131347857}
   mainMenuSelectedObj: {fileID: 991481264}
   quitConfirmCanvas: {fileID: 359688776}
   quitMenuSelectedObj: {fileID: 1814275014}
   quitMenuBackSelectedObj: {fileID: 2101184846}
   isMainGame: 0
+  canPause: 0
   abilitySlots: []
   abilityCards: []
   confirmButton: {fileID: 0}
@@ -1396,18 +1405,6 @@ PrefabInstance:
     - target: {fileID: 6705853677996019674, guid: 574cabcb1fdfbfc419ea17a9304ba36f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7008458788800464073, guid: 574cabcb1fdfbfc419ea17a9304ba36f, type: 3}
-      propertyPath: healthPotions
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7008458788800464073, guid: 574cabcb1fdfbfc419ea17a9304ba36f, type: 3}
-      propertyPath: abilities.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7008458788800464073, guid: 574cabcb1fdfbfc419ea17a9304ba36f, type: 3}
-      propertyPath: 'abilities.Array.data[0]'
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7782978162257292766, guid: 574cabcb1fdfbfc419ea17a9304ba36f, type: 3}
       propertyPath: m_Name

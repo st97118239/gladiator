@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b34b1a5a7bfc3834c8c51dd3315f1c99
+guid: e10c1729e8c468840b2cadf24c3f7170
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1224384326437599908
-    second: Lion_0
+      213: 6304571239013174967
+    second: Zeus_pc_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lion_0
+      name: Zeus_pc_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 4
-        width: 20
-        height: 19
+        x: 4
+        y: 0
+        width: 28
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c55812231fc120fe0800000000000000
-      internalID: -1224384326437599908
+      spriteID: 7be468a83265e7750800000000000000
+      internalID: 6304571239013174967
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Lion_0: -1224384326437599908
+      Zeus_pc_0: 6304571239013174967
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

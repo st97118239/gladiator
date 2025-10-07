@@ -7,8 +7,15 @@ public class GameManager : MonoBehaviour
     public int healthPotions;
     public int health;
 
+    [SerializeField] private int defaultHealth;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void FirstLevel()
+    {
+        health = defaultHealth;
     }
 }

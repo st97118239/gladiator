@@ -19,7 +19,6 @@ public class BossWalk : IBossState
         {
             if (controller.CanSummon())
             {
-                Debug.Log("Is gonna summon."); // DEBUGGING
                 controller.StartSummonCountdown();
                 return;
             }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 22aa2fee5275c0743baaaf3cc36aac2d
+guid: 9b1624b6b54f61b419266814145f0cce
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8377423803776407904
-    second: Hades pixil-frame-0_0
+      213: -1224384326437599908
+    second: Lion_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hades pixil-frame-0_0
+      name: Lion_0
       rect:
         serializedVersion: 2
         x: 3
-        y: 0
-        width: 29
-        height: 32
+        y: 4
+        width: 20
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0699ef46096924470800000000000000
-      internalID: 8377423803776407904
+      spriteID: c55812231fc120fe0800000000000000
+      internalID: -1224384326437599908
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Hades pixil-frame-0_0: 8377423803776407904
+      Lion_0: -1224384326437599908
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -28,7 +28,7 @@ public class RangedAttackState : IEnemyState
             return;
         }
 
-        proj.Load(enemyController.enemy.projectile, player.transform.position, enemyController, null, angle, controller.enemyCollider);
+        proj.Load(enemyController.enemy.projectile, player.transform.position, enemyController, null, null, angle, controller.enemyCollider);
 
         controller.StartAttackDelay();
     }

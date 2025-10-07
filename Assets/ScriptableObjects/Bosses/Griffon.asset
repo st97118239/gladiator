@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695f53f935e5d3e46908db68ebbbb862, type: 3}
   m_Name: Griffon
   m_EditorClassIdentifier: Assembly-CSharp::Boss
-  sprite: {fileID: 21300000, guid: cd126f7b04a766243b9951065fa9679a, type: 3}
+  sprite: {fileID: 21300000, guid: c7ded32a3045bd24d978dbcf51ead50e, type: 3}
   enemyType: 11
   attackType: 7
   abilityType: 1
@@ -33,3 +33,5 @@ MonoBehaviour:
   rangedFleeRadius: 0
   projectile: {fileID: 0}
   singDrawSpeed: 0
+  enemyToSummon: {fileID: 0}
+  enemyAmtToSpawn: 0

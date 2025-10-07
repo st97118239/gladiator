@@ -10,6 +10,7 @@ public class ProjectileObj : MonoBehaviour
     public float speed;
     public Vector3 target;
     public EnemyController enemy;
+    public BossController boss;
 
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Rigidbody2D rigid;
@@ -35,7 +36,8 @@ public class ProjectileObj : MonoBehaviour
         transform.eulerAngles += spinSpeed * Time.deltaTime;
     }
 
-    public void Load(Projectile givenProj, Vector3 givenTarget, EnemyController givenEnemy, AbilityManager givenAbilityManager, float angle, Collider2D givenColliderToIgnore)
+    public void Load(Projectile givenProj, Vector3 givenTarget, EnemyController givenEnemy, BossController givenBoss, 
+        AbilityManager givenAbilityManager, float angle, Collider2D givenColliderToIgnore)
     {
         isOn = true;
         Vector3 aimDir;
@@ -44,6 +46,16 @@ public class ProjectileObj : MonoBehaviour
             enemy = givenEnemy;
             dmg = enemy.enemy.damage;
             transform.position = enemy.transform.position;
+            isPlayerProj = false;
+            rigid.excludeLayers = enemyLayer;
+            target = givenTarget;
+            aimDir = (givenTarget - transform.position).normalized;
+        }
+        else if (givenBoss)
+        {
+            boss = givenBoss;
+            dmg = boss.boss.damage;
+            transform.position = boss.transform.position;
             isPlayerProj = false;
             rigid.excludeLayers = enemyLayer;
             target = givenTarget;
@@ -59,6 +71,7 @@ public class ProjectileObj : MonoBehaviour
             rigid.excludeLayers = playerLayer;
             aimDir = givenTarget;
         }
+
         isNet = givenProj.isNet;
         speed = givenProj.speed;
         spinSpeed = new Vector3(0, 0, givenProj.spinSpeed);
@@ -69,7 +82,7 @@ public class ProjectileObj : MonoBehaviour
         Physics2D.IgnoreCollision(projCollider, colliderToIgnore, true);
 
         gameObject.SetActive(true);
-       
+
         rigid.AddForce(aimDir * speed);
 
         StartCoroutine(Despawn());

@@ -45,3 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   abilities: []
+  healthPotions: 0
+  health: 0
+  defaultHealth: 100

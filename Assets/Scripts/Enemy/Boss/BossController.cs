@@ -24,11 +24,11 @@ public class BossController : MonoBehaviour
 
     public void Hit(int damage)
     {
-        if (bossStateMachine.isUsingAbility) return;
+        if (!bossStateMachine.canBeHit) return;
 
         bossStateMachine.currentState.OnHurt(bossStateMachine);
 
-        if (bossStateMachine.isUsingAbility) return;
+        if (!bossStateMachine.canBeHit) return;
 
         health -= damage;
 

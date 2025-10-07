@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d6d32779becef98478991aedd2e6fe5a
+guid: 45e0ce34838afa34a883accc3a490abe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7744424781442014258
-    second: Minotaur_0
+      213: 6742781879255630770
+    second: MinotaurNew_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Minotaur_0
+      name: MinotaurNew_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 1
-        width: 16
-        height: 22
+        x: 1
+        y: 0
+        width: 31
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ec3aa6861b6468490800000000000000
-      internalID: -7744424781442014258
+      spriteID: 2b309f6f46c239d50800000000000000
+      internalID: 6742781879255630770
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Minotaur_0: -7744424781442014258
+      MinotaurNew_0: 6742781879255630770
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

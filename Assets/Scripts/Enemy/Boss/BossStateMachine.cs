@@ -1,7 +1,11 @@
+using System;
 using System.Collections;
 using System.Linq;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
+using Vector3 = UnityEngine.Vector3;
 
 public class BossStateMachine : MonoBehaviour
 {
@@ -11,12 +15,15 @@ public class BossStateMachine : MonoBehaviour
     public BossIdle idleState = new();
     public NymphIdle nymphIdleState = new();
     public NymphWalk nymphWalkState = new();
+    public ZeusWalk zeusWalkState = new();
     public GriffonFly griffonFlyState = new();
     public BossWalk walkState = new();
     public BossMelee meleeState = new();
     public NymphAttack nymphAttackState = new();
+    public ZeusThrow zeusAttackState = new();
     public GriffonSwipe griffonSwipeState = new();
     public BossDash dashState = new();
+    public ZeusLightning zeusLightningState = new();
     public BossStunned stunnedState = new();
     public BossFreeze bossFreezeState = new();
 
@@ -39,8 +46,9 @@ public class BossStateMachine : MonoBehaviour
     public bool isUsingAbility;
     public bool isStunned;
     public bool isFrozen;
+    public bool canBeHit;
 
-    [SerializeField] private BoxCollider2D enemyCollider;
+    public BoxCollider2D bossCollider;
     public Rigidbody2D rb2d;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
@@ -49,7 +57,7 @@ public class BossStateMachine : MonoBehaviour
     private void Awake()
     {
         if (Application.isPlaying)
-            gizmoHitboxScale = enemyCollider.size * transform.localScale;
+            gizmoHitboxScale = bossCollider.size * transform.localScale;
     }
 
     private void Update()
@@ -91,6 +99,7 @@ public class BossStateMachine : MonoBehaviour
                 break;
         }
 
+        canBeHit = true;
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
         ChangeState(idleState);
     }
@@ -168,6 +177,7 @@ public class BossStateMachine : MonoBehaviour
         if (moveAmount == Vector3.zero) return;
 
         isUsingAbility = true;
+        canBeHit = false;
         spriteRenderer.color = bossController.enemyManager.dashEnemyColor; // Sprite Color
 
         ChangeState(dashState);
@@ -213,6 +223,7 @@ public class BossStateMachine : MonoBehaviour
     {
         rb2d.linearDamping = 10;
         isUsingAbility = false;
+        canBeHit = false;
         spriteRenderer.color = bossController.enemyManager.defaultEnemyColor; // Sprite Color
         ChangeState(idleState);
     }
@@ -256,5 +267,42 @@ public class BossStateMachine : MonoBehaviour
             currentPlatform = null;
             isOnPlatform = false;
         }
+    }
+
+    public void ZeusLightningAbility()
+    {
+        canBeHit = false;
+        StartCoroutine(ZeusStartAbility());
+    }
+
+    private IEnumerator ZeusStartAbility()
+    {
+        for (float i = 0; i < 1; i += Time.deltaTime)
+        {
+            transform.position += Vector3.up * 0.007f;
+            transform.localScale += new Vector3(0.002f, 0.002f, 0);
+            yield return null;
+        }
+
+        float chargeTime = 3;
+        for (float i = 0; i < chargeTime; i += Time.deltaTime)
+        {
+            if (i > chargeTime) i = chargeTime;
+
+            float fillAmount = i / chargeTime;
+
+            spriteRenderer.color = Color.Lerp(bossController.enemyManager.defaultEnemyColor, bossController.enemyManager.dashEnemyColor, fillAmount);
+            yield return null;
+        }
+
+        Vector3 pos = bossController.enemyManager.player.transform.position;
+        yield return new WaitForSeconds(0.1f);
+
+        SummonLightning(pos);
+    }
+
+    private void SummonLightning(Vector3 targetPos)
+    {
+        Instantiate(bossController.enemyManager.emptyProjectilePrefab, targetPos, Quaternion.identity);
     }
 }

@@ -12,14 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1cb0c2e1aa06d44aa652cadaea1b264, type: 3}
   m_Name: Lion
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  sprite: {fileID: 21300000, guid: 1ef8aba66fab9aa478a2302d42171bf2, type: 3}
+  sprite: {fileID: 21300000, guid: 0f21dbec1cae7df47a90f1cd016947ae, type: 3}
   enemyType: 0
   attackType: 1
+  ability: 0
   health: 4
   damage: 3
   speed: 3
   attackRadius: 1
   attackSpeed: 0.7
+  abilityTime: 0
+  abilityCooldown: 0
+  abilityPower: 0
+  blockTime: 0
+  blockCooldown: 0
   rangedFleeRadius: 0
   projectile: {fileID: 0}
   singDrawSpeed: 0

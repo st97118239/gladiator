@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5226f28755f131349b1ea02d732b017c
+guid: 6841226d2257ebd4d9094529d112fb54
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6504738088816379412
-    second: Nymph_0
+      213: -4204575561280360141
+    second: NymphNew_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Nymph_0
+      name: NymphNew_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 2
-        width: 13
-        height: 25
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4168ad404d8754a50800000000000000
-      internalID: 6504738088816379412
+      spriteID: 3317896cdc856a5c0800000000000000
+      internalID: -4204575561280360141
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Nymph_0: 6504738088816379412
+      NymphNew_0: -4204575561280360141
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

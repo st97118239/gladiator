@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1cb0c2e1aa06d44aa652cadaea1b264, type: 3}
   m_Name: StoneGolem
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  sprite: {fileID: 21300000, guid: c0246f7b7217b684fbb3d03aed9cbde1, type: 3}
+  sprite: {fileID: 21300000, guid: e47ac2f7a5c275245b85fa24030a1e53, type: 3}
   enemyType: 10
   attackType: 3
   ability: 0
