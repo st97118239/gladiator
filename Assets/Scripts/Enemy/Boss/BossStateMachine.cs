@@ -284,6 +284,9 @@ public class BossStateMachine : MonoBehaviour
             yield return null;
         }
 
+        // TO-DO: Make these variables a normal variable in this or boss script.
+        bossController.enemyManager.lightningStrikes[0].Load(bossController.enemyManager.player, Mathf.RoundToInt(bossController.boss.abilityPower));
+
         float chargeTime = 3;
         for (float i = 0; i < chargeTime; i += Time.deltaTime)
         {
@@ -292,17 +295,12 @@ public class BossStateMachine : MonoBehaviour
             float fillAmount = i / chargeTime;
 
             spriteRenderer.color = Color.Lerp(bossController.enemyManager.defaultEnemyColor, bossController.enemyManager.dashEnemyColor, fillAmount);
+
             yield return null;
         }
 
-        Vector3 pos = bossController.enemyManager.player.transform.position;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(1);
 
-        SummonLightning(pos);
-    }
-
-    private void SummonLightning(Vector3 targetPos)
-    {
-        Instantiate(bossController.enemyManager.emptyProjectilePrefab, targetPos, Quaternion.identity);
+        bossController.enemyManager.lightningStrikes[0].StopFollowing();
     }
 }

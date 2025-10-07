@@ -18,6 +18,7 @@ public class EnemyManager : MonoBehaviour
     public List<ProjectileObj> projectiles;
     public List<Net> nets;
     public List<Root> roots;
+    public List<Lightning> lightningStrikes;
     public List<Transform> rangedPositions;
     public List<Transform> swipePositions;
     public Wave currentWave;
@@ -26,6 +27,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject emptyProjectilePrefab;
     public GameObject emptyNetPrefab;
     public GameObject emptyRootPrefab;
+    public GameObject emptyLightningStrikePrefab;
     public Transform enemyParent;
     public Transform projectileParent;
     public int enemySpawnIdx;
@@ -35,6 +37,7 @@ public class EnemyManager : MonoBehaviour
     public int maxProjectileCount;
     public int maxNetCount;
     public int maxRootCount;
+    public int maxLightningStrikesCount;
 
     public Color defaultEnemyColor;
     public Color cooldownEnemyColor;
@@ -99,6 +102,13 @@ public class EnemyManager : MonoBehaviour
             GameObject rootObj = Instantiate(emptyRootPrefab, Vector3.zero, Quaternion.identity, projectileParent);
             rootObj.SetActive(false);
             roots.Add(rootObj.GetComponent<Root>());
+        }
+
+        for (int i = 0; i < maxLightningStrikesCount; i++)
+        {
+            GameObject strikeObj = Instantiate(emptyLightningStrikePrefab, Vector3.zero, Quaternion.identity, projectileParent);
+            strikeObj.SetActive(false);
+            lightningStrikes.Add(strikeObj.GetComponent<Lightning>());
         }
     }
 
