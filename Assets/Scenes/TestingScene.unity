@@ -574,7 +574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7008458788800464073, guid: 574cabcb1fdfbfc419ea17a9304ba36f, type: 3}
       propertyPath: abilities.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7008458788800464073, guid: 574cabcb1fdfbfc419ea17a9304ba36f, type: 3}
       propertyPath: 'abilities.Array.data[0]'
@@ -591,7 +591,7 @@ PrefabInstance:
     - target: {fileID: 7008458788800464073, guid: 574cabcb1fdfbfc419ea17a9304ba36f, type: 3}
       propertyPath: 'abilities.Array.data[3]'
       value: 
-      objectReference: {fileID: 11400000, guid: a7242e62424805e458c7e5116b3b3ac3, type: 2}
+      objectReference: {fileID: 11400000, guid: 92b8b2cf46ff78f458d5edb8b2893fd5, type: 2}
     - target: {fileID: 7782978162257292766, guid: 574cabcb1fdfbfc419ea17a9304ba36f, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -6598,6 +6598,11 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 2266817186607528916, guid: 50acf9bdf7341f6479fe00c164c9c6ee, type: 3}
   m_PrefabInstance: {fileID: 1395472695}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1395472702 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 9029397475872838242, guid: 50acf9bdf7341f6479fe00c164c9c6ee, type: 3}
+  m_PrefabInstance: {fileID: 1395472695}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1400722388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7971,6 +7976,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1349421769}
@@ -7983,12 +7992,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 592514611}
     - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: lightningStrike
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: chargeEnemyColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: chargeEnemyColor.b
+      value: 0.93941146
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: chargeEnemyColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: chargeEnemyColor.r
+      value: 0.6933962
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
       propertyPath: maxSummonerEnemyCount
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
       propertyPath: maxLightningStrikesCount
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
       propertyPath: emptyLightningStrikePrefab
@@ -8327,9 +8356,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1709709449}
     - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
+      propertyPath: levelChangePlayerRTransform
+      value: 
+      objectReference: {fileID: 1395472702}
+    - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
       propertyPath: settingsMenuBackSelectedObj
       value: 
       objectReference: {fileID: 1403410017}
+    - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
+      propertyPath: levelChangePlayerDefaultPos.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
+      propertyPath: levelChangePlayerDefaultPos.y
+      value: -300
+      objectReference: {fileID: 0}
     - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
       propertyPath: mainMenuConfirmBackSelectedObj
       value: 

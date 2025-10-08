@@ -1,10 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using UnityEngine;
-using Quaternion = UnityEngine.Quaternion;
-using Vector3 = UnityEngine.Vector3;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -18,7 +15,7 @@ public class EnemyManager : MonoBehaviour
     public List<ProjectileObj> projectiles;
     public List<Net> nets;
     public List<Root> roots;
-    public List<Lightning> lightningStrikes;
+    public Lightning lightningStrike;
     public List<Transform> rangedPositions;
     public List<Transform> swipePositions;
     public Wave currentWave;
@@ -37,13 +34,13 @@ public class EnemyManager : MonoBehaviour
     public int maxProjectileCount;
     public int maxNetCount;
     public int maxRootCount;
-    public int maxLightningStrikesCount;
 
     public Color defaultEnemyColor;
     public Color cooldownEnemyColor;
     public Color hitEnemyColor;
     public Color dashEnemyColor;
     public Color summonEnemyColor;
+    public Color chargeEnemyColor;
 
     [SerializeField] private float spawnDelay;
     [SerializeField] private int healthPotionDropChance;
@@ -104,12 +101,9 @@ public class EnemyManager : MonoBehaviour
             roots.Add(rootObj.GetComponent<Root>());
         }
 
-        for (int i = 0; i < maxLightningStrikesCount; i++)
-        {
-            GameObject strikeObj = Instantiate(emptyLightningStrikePrefab, Vector3.zero, Quaternion.identity, projectileParent);
-            strikeObj.SetActive(false);
-            lightningStrikes.Add(strikeObj.GetComponent<Lightning>());
-        }
+        GameObject strikeObj = Instantiate(emptyLightningStrikePrefab, Vector3.zero, Quaternion.identity, projectileParent);
+        strikeObj.SetActive(false);
+        lightningStrike = strikeObj.GetComponent<Lightning>();
     }
 
     public void SpawnEnemy(Wave givenWave)

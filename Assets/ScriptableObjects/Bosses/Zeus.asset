@@ -17,7 +17,7 @@ MonoBehaviour:
   attackType: 2
   abilityType: 3
   health: 250
-  damage: 7
+  damage: 13
   speed: 7
   attackRadius: 15
   attackSpeed: 1.3
@@ -25,10 +25,10 @@ MonoBehaviour:
   extraAttackRadius: 0
   extraAttackSpeed: 0
   abilityRadius: 4
-  abilityTime: 0
-  abilityCooldown: 0
-  abilityPower: 10
-  abilityUseChance: 0
+  abilityTime: 2.8
+  abilityCooldown: 7
+  abilityPower: 25
+  abilityUseChance: 30
   swipeAttackChance: 0
   rangedFleeRadius: 7
   projectile: {fileID: 11400000, guid: 2fb16398dcf188f4e841e31a5afd6c10, type: 2}

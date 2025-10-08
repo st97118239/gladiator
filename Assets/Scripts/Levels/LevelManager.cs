@@ -82,7 +82,7 @@ public class LevelManager : MonoBehaviour
             }
 
             if (enemyManager.boss.isActiveAndEnabled)
-                enemyManager.boss.Hit(1000);
+                enemyManager.boss.Hit(1000, false);
         }
     }
 

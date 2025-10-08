@@ -111,6 +111,7 @@ MonoBehaviour:
   health: 0
   spriteRenderer: {fileID: 8208541899940622705}
   hitColorTime: 0.5
+  isHit: 0
   isClosestSiren: 0
 --- !u!114 &9168182095947676320
 MonoBehaviour:
@@ -141,9 +142,15 @@ MonoBehaviour:
   isUsingAbility: 0
   isStunned: 0
   isFrozen: 0
+  canBeHit: 0
+  canBeShot: 0
   bossCollider: {fileID: 340753586850306276}
   rb2d: {fileID: 1898615627537797970}
   spriteRenderer: {fileID: 8208541899940622705}
+  zeusDefaultScale: {x: 4, y: 4, z: 4}
+  zeusFlyingScale: {x: 5, y: 5, z: 5}
+  zeusFlyingOffset: {x: 0, y: 4, z: 0}
+  zeusFlyingSpeed: 1
 --- !u!61 &340753586850306276
 BoxCollider2D:
   m_ObjectHideFlags: 0

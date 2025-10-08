@@ -47,10 +47,18 @@ public class BossStateMachine : MonoBehaviour
     public bool isStunned;
     public bool isFrozen;
     public bool canBeHit;
+    public bool canBeShot;
 
     public BoxCollider2D bossCollider;
     public Rigidbody2D rb2d;
     [SerializeField] private SpriteRenderer spriteRenderer;
+
+    [SerializeField] private Vector3 zeusDefaultScale;
+    [SerializeField] private Vector3 zeusFlyingScale;
+    [SerializeField] private Vector3 zeusFlyingOffset;
+    [SerializeField] private float zeusFlyingSpeed;
+
+    private Vector3 zeusStandingPos;
 
     private Vector3 gizmoHitboxScale;
 
@@ -90,6 +98,7 @@ public class BossStateMachine : MonoBehaviour
                 Invoke(nameof(ResetAbilityCooldown), abilityCooldown / 2);
                 break;
             case BossAbility.Summon:
+            case BossAbility.Thunder:
                 abilityCooldown = bossController.boss.abilityCooldown;
                 abilityDelay = abilityCooldown;
                 abilityPower = bossController.boss.abilityPower;
@@ -100,6 +109,7 @@ public class BossStateMachine : MonoBehaviour
         }
 
         canBeHit = true;
+        canBeShot = true;
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
         ChangeState(idleState);
     }
@@ -178,6 +188,7 @@ public class BossStateMachine : MonoBehaviour
 
         isUsingAbility = true;
         canBeHit = false;
+        canBeShot = false;
         spriteRenderer.color = bossController.enemyManager.dashEnemyColor; // Sprite Color
 
         ChangeState(dashState);
@@ -224,6 +235,7 @@ public class BossStateMachine : MonoBehaviour
         rb2d.linearDamping = 10;
         isUsingAbility = false;
         canBeHit = false;
+        canBeShot = false;
         spriteRenderer.color = bossController.enemyManager.defaultEnemyColor; // Sprite Color
         ChangeState(idleState);
     }
@@ -271,36 +283,94 @@ public class BossStateMachine : MonoBehaviour
 
     public void ZeusLightningAbility()
     {
+        isUsingAbility = true;
+        abilityDelay = 1;
         canBeHit = false;
+        canBeShot = true;
         StartCoroutine(ZeusStartAbility());
     }
 
     private IEnumerator ZeusStartAbility()
     {
-        for (float i = 0; i < 1; i += Time.deltaTime)
+        zeusStandingPos = transform.position;
+        Vector3 posToGoTo = zeusStandingPos + zeusFlyingOffset;
+
+        for (float i = 0; i < zeusFlyingSpeed + Time.deltaTime; i += Time.deltaTime)
         {
-            transform.position += Vector3.up * 0.007f;
-            transform.localScale += new Vector3(0.002f, 0.002f, 0);
+            //if (Time.timeScale > 0)
+            //{
+            //    transform.position += Vector3.up * 0.007f;
+            //    transform.localScale += new Vector3(0.002f, 0.002f, 0);
+            //}
+
+            transform.position = Vector3.Lerp(zeusStandingPos, posToGoTo, i / zeusFlyingSpeed);
+            transform.localScale = Vector3.Lerp(zeusDefaultScale, zeusFlyingScale, i / zeusFlyingSpeed);
+
             yield return null;
         }
 
         // TO-DO: Make these variables a normal variable in this or boss script.
-        bossController.enemyManager.lightningStrikes[0].Load(bossController.enemyManager.player, Mathf.RoundToInt(bossController.boss.abilityPower));
+        bossController.enemyManager.lightningStrike.LoadMain(bossController.enemyManager.player, Mathf.RoundToInt(bossController.boss.abilityPower), this);
 
-        float chargeTime = 3;
-        for (float i = 0; i < chargeTime; i += Time.deltaTime)
+        float chargeTime = bossController.boss.abilityTime;
+        for (float i = 0; i < chargeTime + Time.deltaTime; i += Time.deltaTime)
         {
             if (i > chargeTime) i = chargeTime;
 
             float fillAmount = i / chargeTime;
 
-            spriteRenderer.color = Color.Lerp(bossController.enemyManager.defaultEnemyColor, bossController.enemyManager.dashEnemyColor, fillAmount);
+            Color color = Color.Lerp(bossController.enemyManager.defaultEnemyColor, bossController.enemyManager.chargeEnemyColor, fillAmount);
+
+            if (!bossController.isHit)
+                spriteRenderer.color = color;
 
             yield return null;
         }
 
         yield return new WaitForSeconds(1);
 
-        bossController.enemyManager.lightningStrikes[0].StopFollowing();
+        bossController.enemyManager.lightningStrike.StopFollowing();
+    }
+
+    public void ZeusEndAbility()
+    {
+        StartCoroutine(ZeusEndAnim());
+    }
+
+    private IEnumerator ZeusEndAnim()
+    {
+        Vector3 posToGoFrom = transform.position;
+
+        for (float i = 0; i < zeusFlyingSpeed + Time.deltaTime; i += Time.deltaTime)
+        {
+            //if (Time.timeScale > 0)
+            //{
+            //    transform.position -= Vector3.up * 0.007f;
+            //    transform.localScale -= new Vector3(0.002f, 0.002f, 0);
+            //}
+
+            transform.position = Vector3.Lerp(posToGoFrom, zeusStandingPos, i / zeusFlyingSpeed);
+            transform.localScale = Vector3.Lerp(zeusFlyingScale, zeusDefaultScale, i / zeusFlyingSpeed);
+
+            float chargeTime = bossController.boss.abilityTime;
+            if (i > chargeTime) i = chargeTime;
+
+            float fillAmount = i / chargeTime;
+
+            Color color = Color.Lerp(bossController.enemyManager.chargeEnemyColor, bossController.enemyManager.defaultEnemyColor, fillAmount);
+
+            if (!bossController.isHit)
+                spriteRenderer.color = color;
+
+            yield return null;
+        }
+
+        if (!bossController.isHit)
+            spriteRenderer.color = bossController.enemyManager.defaultEnemyColor;
+        canBeHit = true;
+        canBeShot = true;
+        isUsingAbility = false;
+        StartCoroutine(AbilityCooldown());
+        ChangeState(zeusWalkState);
     }
 }

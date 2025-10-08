@@ -11,6 +11,7 @@ public class BossController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public float hitColorTime;
 
+    public bool isHit;
     public bool isClosestSiren;
 
     public void Load(Boss givenBoss, EnemyManager givenManager)
@@ -22,14 +23,15 @@ public class BossController : MonoBehaviour
         bossStateMachine.Load();
     }
 
-    public void Hit(int damage)
+    public void Hit(int damage, bool fromProj)
     {
-        if (!bossStateMachine.canBeHit) return;
+        if ((!bossStateMachine.canBeHit && !fromProj) || (!bossStateMachine.canBeShot && fromProj)) return;
 
         bossStateMachine.currentState.OnHurt(bossStateMachine);
 
-        if (!bossStateMachine.canBeHit) return;
+        if ((!bossStateMachine.canBeHit && !fromProj) || (!bossStateMachine.canBeShot && fromProj)) return;
 
+        isHit = true;
         health -= damage;
 
         if (enemyManager.abilityManager.hasLifesteal)
@@ -55,14 +57,21 @@ public class BossController : MonoBehaviour
 
         yield return new WaitForSeconds(hitColorTime);
 
-        switch (bossStateMachine.isReloading)
+        isHit = false;
+
+        if (bossStateMachine.isUsingAbility && boss.abilityType == BossAbility.Thunder) 
+            spriteRenderer.color = enemyManager.chargeEnemyColor; // Sprite Color
+        else
         {
-            case true:
-                spriteRenderer.color = enemyManager.cooldownEnemyColor; // Sprite Color
-                break;
-            case false:
-                spriteRenderer.color = enemyManager.defaultEnemyColor; // Sprite Color
-                break;
+            switch (bossStateMachine.isReloading)
+            {
+                case true:
+                    spriteRenderer.color = enemyManager.cooldownEnemyColor; // Sprite Color
+                    break;
+                case false:
+                    spriteRenderer.color = enemyManager.defaultEnemyColor; // Sprite Color
+                    break;
+            }
         }
     }
 

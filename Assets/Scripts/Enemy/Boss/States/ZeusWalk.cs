@@ -18,13 +18,18 @@ public class ZeusWalk : IBossState
             return;
         }
 
-        if (!controller.isReloading && controller.abilityType == BossAbility.Thunder && controller.abilityDelay < 0)
-        {
-            controller.ChangeState(controller.zeusLightningState);
-            return;
-        }
-
         float playerDistance = Vector3.Distance(controller.gameObject.transform.position, player.transform.position);
+
+        if (!controller.isReloading && controller.abilityType == BossAbility.Thunder && controller.abilityDelay < 0 && playerDistance <= controller.bossController.boss.abilityRadius)
+        {
+            int swipeChance = Random.Range(0, 101);
+
+            if (swipeChance <= controller.bossController.boss.abilityUseChance)
+            {
+                controller.ChangeState(controller.zeusLightningState);
+                return;
+            }
+        }
 
         if (!controller.isReloading && playerDistance <= controller.bossController.boss.attackRadius && playerDistance > controller.bossController.boss.rangedFleeRadius)
         {
