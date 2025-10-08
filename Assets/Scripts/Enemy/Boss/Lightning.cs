@@ -142,12 +142,13 @@ public class Lightning : MonoBehaviour
 
     public void Strike()
     {
-        if (hasHitPlayer) return;
-
-        if (Vector3.Distance(playerTransform.position, transform.position) <= hitDistance)
+        if (!hasHitPlayer)
         {
-            player.PlayerHit(dmg, true);
-            hasHitPlayer = true;
+            if (Vector3.Distance(playerTransform.position, transform.position) <= hitDistance)
+            {
+                player.PlayerHit(dmg, true);
+                hasHitPlayer = true;
+            }
         }
 
         if (strikeIdx != 3 && !isFirstStrike) return;
