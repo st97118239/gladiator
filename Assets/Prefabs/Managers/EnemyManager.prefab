@@ -118,6 +118,7 @@ MonoBehaviour:
   projectiles: []
   nets: []
   roots: []
+  lightningStrike: {fileID: 0}
   rangedPositions: []
   swipePositions: []
   currentWave: {fileID: 0}
@@ -126,12 +127,13 @@ MonoBehaviour:
   emptyProjectilePrefab: {fileID: 127359938022708900, guid: 955a5e66db05eed4a9de4b3046a4dca7, type: 3}
   emptyNetPrefab: {fileID: 6319262482962342408, guid: 703a19aadaa4a2c47a65f9457b41e7f4, type: 3}
   emptyRootPrefab: {fileID: 8327271448520034645, guid: f1fd9ce7d542e1846948b884669aecc0, type: 3}
+  emptyLightningStrikePrefab: {fileID: 2846136759016828, guid: 8924e2b0f807ec844bde322abc62956c, type: 3}
   enemyParent: {fileID: 5141242508263261137}
   projectileParent: {fileID: 1607569232705816480}
   enemySpawnIdx: 0
   enemyCount: 0
   maxEnemyCount: 30
-  maxSummonerEnemyCount: 0
+  maxSummonerEnemyCount: 2
   maxProjectileCount: 20
   maxNetCount: 1
   maxRootCount: 3
@@ -140,5 +142,6 @@ MonoBehaviour:
   hitEnemyColor: {r: 1, g: 0, b: 0, a: 1}
   dashEnemyColor: {r: 0, g: 0.7490196, b: 1, a: 1}
   summonEnemyColor: {r: 0.4862745, g: 0.990566, b: 0.378471, a: 1}
+  chargeEnemyColor: {r: 0.6933962, g: 1, b: 0.93941146, a: 1}
   spawnDelay: 0.3
   healthPotionDropChance: 10

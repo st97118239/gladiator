@@ -108,6 +108,7 @@ public class BossStateMachine : MonoBehaviour
                 break;
         }
 
+        isReloading = false;
         canBeHit = true;
         canBeShot = true;
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;

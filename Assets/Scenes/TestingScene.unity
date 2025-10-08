@@ -7976,10 +7976,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
-      propertyPath: boss
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1349421769}
@@ -7991,38 +7987,6 @@ PrefabInstance:
       propertyPath: abilityManager
       value: 
       objectReference: {fileID: 592514611}
-    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
-      propertyPath: lightningStrike
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
-      propertyPath: chargeEnemyColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
-      propertyPath: chargeEnemyColor.b
-      value: 0.93941146
-      objectReference: {fileID: 0}
-    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
-      propertyPath: chargeEnemyColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
-      propertyPath: chargeEnemyColor.r
-      value: 0.6933962
-      objectReference: {fileID: 0}
-    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
-      propertyPath: maxSummonerEnemyCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
-      propertyPath: maxLightningStrikesCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
-      propertyPath: emptyLightningStrikePrefab
-      value: 
-      objectReference: {fileID: 2846136759016828, guid: 8924e2b0f807ec844bde322abc62956c, type: 3}
     - target: {fileID: 5548334227488344643, guid: a8aa08712be39cf49be247240e83a675, type: 3}
       propertyPath: m_Name
       value: EnemyManager

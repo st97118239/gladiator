@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: OtherTestWave
   m_EditorClassIdentifier: Assembly-CSharp::Wave
   enemies: []
-  boss: {fileID: 0}
+  boss: {fileID: 11400000, guid: d6a298b17b49e094aad6bc7fb182eb89, type: 2}
   hasAbilityRoll: 0
   abilitySortsToRoll: 
