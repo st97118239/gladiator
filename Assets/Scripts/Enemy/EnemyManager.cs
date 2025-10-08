@@ -250,7 +250,7 @@ public class EnemyManager : MonoBehaviour
                 player.GetHealthPotion();
         }
 
-        if (isSummoned) 
+        if (isSummoned && boss.isActiveAndEnabled) 
             boss.StartSummonCooldown();
     }
 
