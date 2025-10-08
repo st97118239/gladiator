@@ -235,8 +235,8 @@ public class BossStateMachine : MonoBehaviour
     {
         rb2d.linearDamping = 10;
         isUsingAbility = false;
-        canBeHit = false;
-        canBeShot = false;
+        canBeHit = true;
+        canBeShot = true;
         spriteRenderer.color = bossController.enemyManager.defaultEnemyColor; // Sprite Color
         ChangeState(idleState);
     }

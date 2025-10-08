@@ -24,7 +24,7 @@ MonoBehaviour:
   extraAttackDamage: 0
   extraAttackRadius: 0
   extraAttackSpeed: 0
-  abilityRadius: 4
+  abilityRadius: 3
   abilityTime: 0.5
   abilityCooldown: 3
   abilityPower: 1000
