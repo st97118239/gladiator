@@ -1,12 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -94,16 +91,16 @@ public class UIManager : MonoBehaviour
 
         if (!isMainGame)
         {
-            Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             eventSystem.SetSelectedGameObject(mainMenuSelectedObj);
             isInMenu = true;
         }
         else
         {
-            Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;
         }
+
+        Cursor.visible = true;
     }
 
     public void ShowAbilityMenu()
@@ -226,7 +223,6 @@ public class UIManager : MonoBehaviour
         abilityCanvas.gameObject.SetActive(true);
         eventSystem.SetSelectedGameObject(abilityMenuSelectedObj);
         abilityMenuSelectedObj.GetComponent<UIButton>().OnSelect(null);
-        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
         yield return null;
@@ -262,7 +258,6 @@ public class UIManager : MonoBehaviour
 
         abilityCanvas.gameObject.SetActive(false);
         eventSystem.SetSelectedGameObject(null);
-        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
 
         foreach (AbilityCard card in abilityCards)
@@ -304,7 +299,6 @@ public class UIManager : MonoBehaviour
         player.movementScript.canMove = !isPaused;
         Time.timeScale = isPaused ? 0 : 1;
         eventSystem.SetSelectedGameObject(isPaused ? pauseMenuSelectedObj : null);
-        Cursor.visible = isPaused;
         Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Confined;
     }
 
@@ -393,7 +387,6 @@ public class UIManager : MonoBehaviour
         canPause = false;
         deathCanvasGroup.alpha = 1;
         deathCanvas.gameObject.SetActive(true);
-        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         eventSystem.SetSelectedGameObject(deathSelectedObj);
 
@@ -418,7 +411,6 @@ public class UIManager : MonoBehaviour
         canPause = false;
         winCanvasGroup.alpha = 1;
         winCanvas.gameObject.SetActive(true);
-        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         eventSystem.SetSelectedGameObject(winSelectedObj);
 
@@ -471,8 +463,11 @@ public class UIManager : MonoBehaviour
     {
         if (levelChangeCurrentLvl < 4)
             LoadSceneFade(nextScene);
-        else 
+        else
+        {
             StartCoroutine(ShowTotalVictoryScreen());
+            Cursor.visible = true;
+        }
     }
 
     private IEnumerator ShowTotalVictoryScreen()
@@ -480,7 +475,6 @@ public class UIManager : MonoBehaviour
         canPause = false;
         victoryCanvasGroup.alpha = 1;
         victoryCanvas.gameObject.SetActive(true);
-        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         eventSystem.SetSelectedGameObject(victorySelectedObj);
 
@@ -511,7 +505,6 @@ public class UIManager : MonoBehaviour
         BorderTypeSetting(false);
         settingsCanvas.gameObject.SetActive(true);
         eventSystem.SetSelectedGameObject(settingsMenuSelectedObj);
-        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
 
@@ -521,7 +514,6 @@ public class UIManager : MonoBehaviour
 
         if (isMainGame)
         {
-            Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;
             pauseCanvas.gameObject.SetActive(true);
         }

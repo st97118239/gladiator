@@ -8204,11 +8204,11 @@ PrefabInstance:
       objectReference: {fileID: 1729461527}
     - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
       propertyPath: nextScene
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
       propertyPath: thisScene
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
       propertyPath: winCanvas
@@ -8296,7 +8296,7 @@ PrefabInstance:
       objectReference: {fileID: 501455214}
     - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
       propertyPath: levelChangeCurrentLvl
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
       propertyPath: abilityMenuSelectedObj

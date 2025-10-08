@@ -194,11 +194,7 @@ public class EnemyStateMachine : MonoBehaviour
         Platform pf = enemyController.enemyManager.levelManager.availablePlatforms[Random.Range(0, enemyController.enemyManager.levelManager.availablePlatforms.Count)];
         enemyController.enemyManager.levelManager.availablePlatforms.Remove(pf);
 
-        Debug.Log("pf = " + pf.name);
-
         platform = pf;
-
-        Debug.Log("platform = " + platform.name);
 
         if (pf) return;
 

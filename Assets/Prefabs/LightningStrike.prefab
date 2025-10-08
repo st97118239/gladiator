@@ -116,7 +116,7 @@ MonoBehaviour:
   strike2Delay: 0.2
   strike3Delay: 0.2
   despawnDelay: 1
-  distanceFromMain: {x: 1.8, y: 2.5}
+  distanceFromMain: {x: 0.2, y: 2}
   spinSpeed: 3
   animator1: {fileID: 7396474669683038081}
   animator2: {fileID: 8486010168787052664}

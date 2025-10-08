@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Lightning : MonoBehaviour
 {
@@ -38,6 +40,8 @@ public class Lightning : MonoBehaviour
     private float angle2;
     private float angle3;
     private int strikeIdx;
+    private bool hasHitPlayer;
+    private bool isFirstStrike;
 
     private static readonly int strikeAnim = Animator.StringToHash("Strike");
 
@@ -64,6 +68,7 @@ public class Lightning : MonoBehaviour
 
     public void LoadMain(Player givenTarget, int givenDmg, BossStateMachine givenBoss)
     {
+        hasHitPlayer = false;
         boss = givenBoss;
         dmg = givenDmg;
         player = givenTarget;
@@ -71,14 +76,14 @@ public class Lightning : MonoBehaviour
         transform.position = playerTransform.position;
         strikeIdx = 1;
 
-        followDistanceFromMain2 = Random.Range(distanceFromMain.x - 1, distanceFromMain.y);
+        followDistanceFromMain2 = Random.Range(distanceFromMain.x, distanceFromMain.y);
         angle2 = Random.Range(0, 360);
         strike2Parent.eulerAngles += Vector3.forward * angle2;
         strike2.eulerAngles += Vector3.forward * -angle2;
         strike2.transform.position += transform.right * followDistanceFromMain2;
         strike2Lighting.LoadRing(player, dmg, hitDistance, boss, 2);
 
-        followDistanceFromMain3 = Random.Range(distanceFromMain.x - 1, distanceFromMain.y);
+        followDistanceFromMain3 = Random.Range(distanceFromMain.x, distanceFromMain.y);
         angle3 = Random.Range(0, 360);
         strike3Parent.eulerAngles += Vector3.forward * angle3;
         strike3.eulerAngles += Vector3.forward * -angle3;
@@ -94,6 +99,8 @@ public class Lightning : MonoBehaviour
 
     public void LoadRing(Player givenTarget, int givenDmg, float givenHitDistance, BossStateMachine givenBoss, int givenIdx)
     {
+        isFirstStrike = true;
+        hasHitPlayer = false;
         player = givenTarget;
         playerTransform = player.transform;
         dmg = givenDmg;
@@ -135,10 +142,23 @@ public class Lightning : MonoBehaviour
 
     public void Strike()
     {
-        if (Vector3.Distance(playerTransform.position, transform.position) <= hitDistance)
-            player.PlayerHit(dmg, true);
+        if (hasHitPlayer) return;
 
-        if (strikeIdx == 3)
-            boss.ZeusEndAbility();
+        if (Vector3.Distance(playerTransform.position, transform.position) <= hitDistance)
+        {
+            player.PlayerHit(dmg, true);
+            hasHitPlayer = true;
+        }
+
+        if (strikeIdx != 3 && !isFirstStrike) return;
+
+        boss.ZeusEndAbility();
+        isFirstStrike = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, hitDistance);
     }
 }
