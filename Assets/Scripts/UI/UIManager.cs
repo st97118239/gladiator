@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +31,7 @@ public class UIManager : MonoBehaviour
     public Canvas settingsCanvas;
     public GameObject settingsMenuSelectedObj;
     public GameObject settingsMenuBackSelectedObj;
+    public TMP_Text settingsWindowTypeText;
     public Canvas deathCanvas;
     public CanvasGroup deathCanvasGroup;
     public GameObject deathSelectedObj;
@@ -48,6 +48,9 @@ public class UIManager : MonoBehaviour
     public float levelChangePlayerSpeed;
     public int levelChangeCurrentLvl;
     public Vector2 levelChangePlayerDefaultPos;
+    public Canvas victoryCanvas;
+    public CanvasGroup victoryCanvasGroup;
+    public GameObject victorySelectedObj;
     public Canvas mainMenuCanvas;
     public GameObject mainMenuSelectedObj;
     public Canvas quitConfirmCanvas;
@@ -71,6 +74,9 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         gameManager = FindFirstObjectByType<GameManager>();
+
+        if (!gameManager) 
+            BorderTypeSetting(false);
 
         if (levelChangeCurrentLvl == 1)
             gameManager.FirstLevel();
@@ -302,6 +308,17 @@ public class UIManager : MonoBehaviour
         StartCoroutine(LoadFade(false, thisScene, false));
     }
 
+    public void Replay()
+    {
+        if (gameManager)
+        {
+            gameManager.health = 100;
+            gameManager.abilities.Clear();
+            gameManager.healthPotions = 0;
+        }
+        StartCoroutine(LoadFade(false, 1, false));
+    }
+
     private IEnumerator LoadFade(bool shouldReverse, int sceneToLoad, bool shouldQuit)
     {
         Cursor.visible = false;
@@ -445,11 +462,41 @@ public class UIManager : MonoBehaviour
         levelChangeCanvasGroup.alpha = 1;
         Time.timeScale = 1;
         levelChangePlayer.animator.SetInteger(Level1, levelChangeCurrentLvl);
+
     }
 
     public void LevelChangePlayerFinished()
     {
-        LoadSceneFade(nextScene);
+        if (levelChangeCurrentLvl < 4)
+            LoadSceneFade(nextScene);
+        else 
+            StartCoroutine(ShowTotalVictoryScreen());
+    }
+
+    private IEnumerator ShowTotalVictoryScreen()
+    {
+        canPause = false;
+        victoryCanvasGroup.alpha = 1;
+        victoryCanvas.gameObject.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        eventSystem.SetSelectedGameObject(victorySelectedObj);
+
+        yield return null;
+
+        for (float i = 0; i <= fadePanelTime + Time.unscaledDeltaTime; i += Time.unscaledDeltaTime)
+        {
+            if (i > fadePanelTime) i = fadePanelTime;
+
+            float fillAmount = i / fadePanelTime;
+
+            victoryCanvasGroup.alpha = fillAmount;
+
+            yield return null;
+        }
+
+        victoryCanvasGroup.alpha = 1;
+        winCanvas.gameObject.SetActive(false);
     }
 
     public void OpenSettings()
@@ -459,6 +506,7 @@ public class UIManager : MonoBehaviour
         else
             mainMenuCanvas.gameObject.SetActive(false);
 
+        BorderTypeSetting(false);
         settingsCanvas.gameObject.SetActive(true);
         eventSystem.SetSelectedGameObject(settingsMenuSelectedObj);
         Cursor.visible = true;
@@ -479,6 +527,40 @@ public class UIManager : MonoBehaviour
             mainMenuCanvas.gameObject.SetActive(true);
 
         eventSystem.SetSelectedGameObject(settingsMenuBackSelectedObj);
+    }
+
+    public void BorderTypeSetting(bool shouldRaise)
+    {
+        int screenType = PlayerPrefs.GetInt("ScreenType");
+
+        if (shouldRaise)
+        {
+            screenType++;
+
+            if (screenType >= 4) screenType = 0;
+
+            PlayerPrefs.SetInt("ScreenType", screenType);
+        }
+
+        switch (screenType)
+        {
+            case 0:
+                Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+                settingsWindowTypeText.text = "Exclusive";
+                break;
+            case 1:
+                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+                settingsWindowTypeText.text = "Fullscreen";
+                break;
+            case 2:
+                Screen.fullScreenMode = FullScreenMode.MaximizedWindow;
+                settingsWindowTypeText.text = "Maximized";
+                break;
+            case 3:
+                Screen.fullScreenMode = FullScreenMode.Windowed;
+                settingsWindowTypeText.text = "Windowed";
+                break;
+        }
     }
 
     public void UpdateHealthPotions(int potionCount)

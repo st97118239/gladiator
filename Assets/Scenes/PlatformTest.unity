@@ -7426,6 +7426,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 664955538179451729, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1885806525}
+    - target: {fileID: 664955538179451729, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BorderTypeSetting
+      objectReference: {fileID: 0}
+    - target: {fileID: 664955538179451729, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7242814452831854929, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -7519,6 +7531,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+--- !u!114 &1262183437 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8706402246950236023, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+  m_PrefabInstance: {fileID: 1262183436}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!223 &1262183438 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 6967763443419557883, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
@@ -10819,6 +10842,10 @@ PrefabInstance:
       propertyPath: levelChangeCanvasGroup
       value: 
       objectReference: {fileID: 1321475758}
+    - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
+      propertyPath: settingsWindowTypeText
+      value: 
+      objectReference: {fileID: 1262183437}
     - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
       propertyPath: settingsMenuSelectedObj
       value: 

@@ -245,6 +245,7 @@ MonoBehaviour:
   settingsCanvas: {fileID: 6030326723469315857}
   settingsMenuSelectedObj: {fileID: 6030326723469315858}
   settingsMenuBackSelectedObj: {fileID: 319169254}
+  settingsWindowTypeText: {fileID: 6030326723469315859}
   deathCanvas: {fileID: 0}
   deathCanvasGroup: {fileID: 0}
   deathSelectedObj: {fileID: 0}
@@ -261,6 +262,9 @@ MonoBehaviour:
   levelChangePlayerSpeed: 0
   levelChangeCurrentLvl: 0
   levelChangePlayerDefaultPos: {x: 0, y: 0}
+  victoryCanvas: {fileID: 0}
+  victoryCanvasGroup: {fileID: 0}
+  victorySelectedObj: {fileID: 0}
   mainMenuCanvas: {fileID: 2131347857}
   mainMenuSelectedObj: {fileID: 991481264}
   quitConfirmCanvas: {fileID: 359688776}
@@ -2453,6 +2457,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 664955538179451729, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 293706386}
+    - target: {fileID: 664955538179451729, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7242814452831854929, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2556,6 +2568,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9163699096744381660, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
   m_PrefabInstance: {fileID: 6030326723469315856}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6030326723469315859 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8706402246950236023, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+  m_PrefabInstance: {fileID: 6030326723469315856}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
