@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +17,13 @@ public class GameManager : MonoBehaviour
 
     public void FirstLevel()
     {
+        health = defaultHealth;
+    }
+
+    public void Reset()
+    {
+        abilities.Clear();
+        healthPotions = 0;
         health = defaultHealth;
     }
 }

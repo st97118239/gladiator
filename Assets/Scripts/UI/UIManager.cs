@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -59,6 +62,7 @@ public class UIManager : MonoBehaviour
     public bool isMainGame;
 
     public bool canPause;
+    public bool isInMenu;
 
     public AbilitySlot[] abilitySlots;
     [SerializeField] private AbilityCard[] abilityCards;
@@ -79,7 +83,7 @@ public class UIManager : MonoBehaviour
             BorderTypeSetting(false);
 
         if (levelChangeCurrentLvl == 1)
-            gameManager.FirstLevel();
+            gameManager.Reset();
     }
 
     private void Start()
@@ -93,6 +97,7 @@ public class UIManager : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             eventSystem.SetSelectedGameObject(mainMenuSelectedObj);
+            isInMenu = true;
         }
         else
         {
@@ -310,12 +315,9 @@ public class UIManager : MonoBehaviour
 
     public void Replay()
     {
-        if (gameManager)
-        {
-            gameManager.health = 100;
-            gameManager.abilities.Clear();
-            gameManager.healthPotions = 0;
-        }
+        if (gameManager) 
+            gameManager.Reset();
+
         StartCoroutine(LoadFade(false, 1, false));
     }
 
