@@ -30,6 +30,7 @@ public class RangedAttackState : IEnemyState
 
         proj.Load(enemyController.enemy.projectile, player.transform.position, enemyController, null, null, angle, controller.enemyCollider);
 
+        enemyController.enemyManager.levelManager.uiManager.audioManager.PlayEnemyShoot();
         controller.StartAttackDelay();
     }
 

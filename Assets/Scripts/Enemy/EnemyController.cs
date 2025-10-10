@@ -34,6 +34,7 @@ public class EnemyController : MonoBehaviour
         if (enemyStateMachine.isBlocking || enemyStateMachine.isDashing) return;
         
         health -= damage;
+        enemyManager.levelManager.uiManager.audioManager.PlayEnemyHit();
 
         if (enemyManager.abilityManager.hasLifesteal)
             enemyManager.player.Lifesteal(damage);

@@ -151,10 +151,12 @@ public class Lightning : MonoBehaviour
             }
         }
 
-        if (strikeIdx != 3 && !isFirstStrike) return;
-
-        boss.ZeusEndAbility();
+        if (!isFirstStrike) return;
+        boss.bossController.enemyManager.levelManager.uiManager.audioManager.PlayZeusThunderStrike();
         isFirstStrike = false;
+
+        if (strikeIdx == 3)
+            boss.ZeusEndAbility();
     }
 
     private void OnDrawGizmos()

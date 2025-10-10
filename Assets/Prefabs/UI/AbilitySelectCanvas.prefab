@@ -689,6 +689,7 @@ GameObject:
   - component: {fileID: 1710058241654675695}
   - component: {fileID: 4105246383247261425}
   - component: {fileID: 709750792809443937}
+  - component: {fileID: 2691133978587092059}
   m_Layer: 5
   m_Name: AbilityConfirmButton
   m_TagString: Untagged
@@ -810,6 +811,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2691133978587092059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3850697338595809238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be377fff14eb944ab37ab199c725096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonHoverDetection
 --- !u!1 &4387719886625099589
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,6 +989,7 @@ GameObject:
   - component: {fileID: 4654011656180224346}
   - component: {fileID: 2254764291788115626}
   - component: {fileID: 8918596992137549156}
+  - component: {fileID: 955175114327809999}
   m_Layer: 5
   m_Name: AbilityCard2
   m_TagString: Untagged
@@ -1158,6 +1172,18 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 7291321829716012628}
+--- !u!114 &955175114327809999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4888172584282514808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be377fff14eb944ab37ab199c725096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonHoverDetection
 --- !u!1 &5019526901797845494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,6 +1487,7 @@ GameObject:
   - component: {fileID: 1278660336369327266}
   - component: {fileID: 8499001938651526309}
   - component: {fileID: 7632789794893001109}
+  - component: {fileID: 4872375151487075108}
   m_Layer: 5
   m_Name: AbilityCard1
   m_TagString: Untagged
@@ -1643,6 +1670,18 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 8379725940963202018}
+--- !u!114 &4872375151487075108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7077109919737116566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be377fff14eb944ab37ab199c725096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonHoverDetection
 --- !u!1 &7915728758513049058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1732,6 +1771,7 @@ GameObject:
   - component: {fileID: 2950558897808283461}
   - component: {fileID: 3051103558539844116}
   - component: {fileID: 3079001989059894629}
+  - component: {fileID: 1827011071067218447}
   m_Layer: 5
   m_Name: AbilityCard3
   m_TagString: Untagged
@@ -1914,3 +1954,15 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 2449436447753426608}
+--- !u!114 &1827011071067218447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7949163073320443066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be377fff14eb944ab37ab199c725096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonHoverDetection

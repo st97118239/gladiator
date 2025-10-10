@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 7273689324558348358}
   - component: {fileID: 605451217175051700}
   - component: {fileID: 6887333184016989455}
+  - component: {fileID: 542188464775744767}
   m_Layer: 5
   m_Name: ConfirmButton
   m_TagString: Untagged
@@ -465,6 +466,18 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 7273689324558348358}
+--- !u!114 &542188464775744767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078956266509120605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be377fff14eb944ab37ab199c725096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonHoverDetection
 --- !u!1 &2783142237317629767
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +843,7 @@ GameObject:
   - component: {fileID: 8692958233149140165}
   - component: {fileID: 8124605473137240097}
   - component: {fileID: 852177091416088687}
+  - component: {fileID: 2119197535501312287}
   m_Layer: 5
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -993,6 +1007,18 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 8692958233149140165}
+--- !u!114 &2119197535501312287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4979440853714461587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be377fff14eb944ab37ab199c725096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonHoverDetection
 --- !u!1 &5556908080863600017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,6 +1363,7 @@ GameObject:
   - component: {fileID: 8727501867214490460}
   - component: {fileID: 1707668234963884465}
   - component: {fileID: 743130178985780206}
+  - component: {fileID: 2079062177005817269}
   m_Layer: 5
   m_Name: CancelButton
   m_TagString: Untagged
@@ -1500,6 +1527,18 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 8727501867214490460}
+--- !u!114 &2079062177005817269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7291125269410710400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be377fff14eb944ab37ab199c725096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonHoverDetection
 --- !u!1 &7717392909727212591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,6 +1552,7 @@ GameObject:
   - component: {fileID: 8226143421323282136}
   - component: {fileID: 6329401117785808350}
   - component: {fileID: 8581259491570666876}
+  - component: {fileID: 7771379913604726609}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -1676,6 +1716,18 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 8226143421323282136}
+--- !u!114 &7771379913604726609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7717392909727212591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be377fff14eb944ab37ab199c725096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonHoverDetection
 --- !u!1 &8090167973183415655
 GameObject:
   m_ObjectHideFlags: 0

@@ -262,6 +262,7 @@ public class AbilityManager : MonoBehaviour
         angle -= 90;
 
         proj.Load(netProjectile, aimDir, null, null, this, angle, player.cd2d);
+        uiManager.audioManager.PlayPlayerNetThrow();
         StartCoroutine(NetCooldown());
     }
 
@@ -323,6 +324,7 @@ public class AbilityManager : MonoBehaviour
         angle -= 90;
 
         proj.Load(crossbowProjectile, aimDir, null, null, this, angle, player.cd2d);
+        uiManager.audioManager.PlayPlayerBow();
         StartCoroutine(CrossbowCooldown());
 
     }
@@ -344,7 +346,7 @@ public class AbilityManager : MonoBehaviour
 
     private void OnDash()
     {
-        if (dashSlot < 0 || dashDelay >= 0 || !canUseSecondary) return;
+        if (dashSlot < 0 || dashDelay >= 0 || !canUseSecondary || !playerMovement.canMove) return;
 
         Vector2 moveAmount = playerMovement.moveAction.ReadValue<Vector2>();
         if (moveAmount == Vector2.zero) return;
@@ -353,12 +355,10 @@ public class AbilityManager : MonoBehaviour
         player.spriteRenderer.color = player.dashColor; // Sprite Color
         player.movementScript.rb2d.excludeLayers = dashExcludeLayers;
 
-        if (playerMovement.canMove)
-        {
-            playerMovement.rb2d.AddForce(moveAmount * dashSpeed, ForceMode2D.Force);
-            playerMovement.rb2d.linearDamping = 5;
-        }
+        playerMovement.rb2d.AddForce(moveAmount * dashSpeed, ForceMode2D.Force);
+        playerMovement.rb2d.linearDamping = 5;
 
+        uiManager.audioManager.PlayPlayerDash();
         Invoke(nameof(ResetRigidbody), dashTime);
         StartCoroutine(DashCooldown());
     }
@@ -392,6 +392,7 @@ public class AbilityManager : MonoBehaviour
 
         player.movementScript.SpeedChange(rageMovementSpeedMultiplier);
         player.MeleeAtkSpeedChange(-rageAtkSpdMultiplier);
+        uiManager.audioManager.PlayPlayerRage();
 
         Invoke(nameof(BerserkerRageTime), rageTime);
         StartCoroutine(RageCooldown());
@@ -460,6 +461,7 @@ public class AbilityManager : MonoBehaviour
 
         if (!enemyHeld) return;
 
+        uiManager.audioManager.PlayPlayerPickUp();
         enemyHeld.GotPickedUp();
         isHoldingEnemy = true;
         canUseSecondary = true;
@@ -497,6 +499,7 @@ public class AbilityManager : MonoBehaviour
         enemyHeld.rb2d.AddForce(aimDir * throwSpeed);
         isHoldingEnemy = false;
         enemyHeld = null;
+        uiManager.audioManager.PlayPlayerThrow();
         StartCoroutine(ThrowCooldown());
     }
 

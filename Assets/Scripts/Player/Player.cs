@@ -151,6 +151,7 @@ public class Player : MonoBehaviour
     {
         if (healthPotions <= 0 || health >= maxHealth) return;
 
+        uiManager.audioManager.PlayPlayerPotionUse();
         healthPotions--;
 
         PlayerHit(-healthPotionHealAmt, false);
@@ -199,6 +200,7 @@ public class Player : MonoBehaviour
             i++;
         }
 
+        uiManager.audioManager.PlayPlayerMelee();
         StartCoroutine(AttackDelay());
     }
 
@@ -252,6 +254,11 @@ public class Player : MonoBehaviour
         damage = Mathf.RoundToInt(dmgToDo);
 
         health -= damage;
+        if (abilityManager.isBlocking)
+            uiManager.audioManager.PlayPlayerBlock();
+        else
+            uiManager.audioManager.PlayPlayerHit();
+
 
         if (health > maxHealth) health = maxHealth;
 

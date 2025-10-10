@@ -39,8 +39,11 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     private WaitForSeconds fadeDelay;
     private WaitForSeconds scaleDelay;
 
+    private AudioManager audioManager;
+
     private void Awake()
     {
+        audioManager = FindFirstObjectByType<AudioManager>();
         fadeDelay = new WaitForSeconds(fadeTime);
         scaleDelay = new WaitForSeconds(scaleTime);
     }

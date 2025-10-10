@@ -31,6 +31,7 @@ public class SirenSingState : IEnemyState
 
     public void OnEnter(EnemyStateMachine controller)
     {
+        controller.enemyController.enemyManager.levelManager.uiManager.audioManager.PlayEnemySing();
         playerTransform = controller.enemyController.enemyManager.player.transform;
         singDrawSpeed = controller.enemyController.enemy.singDrawSpeed;
     }

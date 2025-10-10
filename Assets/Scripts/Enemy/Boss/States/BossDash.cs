@@ -9,6 +9,7 @@ public class BossDash : IBossState
 
     public void OnEnter(BossStateMachine controller)
     {
+        controller.bossController.enemyManager.levelManager.uiManager.audioManager.PlayPlayerDash();
         controller.rb2d.constraints = RigidbodyConstraints2D.None;
     }
 

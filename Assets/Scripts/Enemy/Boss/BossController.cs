@@ -33,6 +33,7 @@ public class BossController : MonoBehaviour
 
         isHit = true;
         health -= damage;
+        enemyManager.levelManager.uiManager.audioManager.PlayEnemyHit();
 
         if (enemyManager.abilityManager.hasLifesteal)
             enemyManager.player.Lifesteal(damage);

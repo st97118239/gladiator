@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 2393473848950485709}
   - component: {fileID: 7667368365615197748}
   - component: {fileID: 4846184820731917255}
+  - component: {fileID: 545693669282689240}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -370,6 +371,18 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 2393473848950485709}
+--- !u!114 &545693669282689240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2316817611358638187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be377fff14eb944ab37ab199c725096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonHoverDetection
 --- !u!1 &2914459701814439442
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,6 +683,7 @@ GameObject:
   - component: {fileID: 665418324186144975}
   - component: {fileID: 5061121962761727153}
   - component: {fileID: 6823415129344688223}
+  - component: {fileID: 6447185768431395703}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -833,6 +847,18 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 665418324186144975}
+--- !u!114 &6447185768431395703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5330830186057866938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be377fff14eb944ab37ab199c725096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonHoverDetection
 --- !u!1 &5636609284092821007
 GameObject:
   m_ObjectHideFlags: 0

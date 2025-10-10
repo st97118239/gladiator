@@ -9,6 +9,7 @@ public class BlockState : IEnemyState
 
     public void OnEnter(EnemyStateMachine controller)
     {
+        controller.enemyController.enemyManager.levelManager.uiManager.audioManager.PlayPlayerBlock();
         controller.StartBlockDelay();
     }
 

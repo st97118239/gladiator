@@ -26,6 +26,7 @@ public class ZeusThrow : IBossState
         }
 
         proj.Load(controller.bossController.boss.projectile, playerTransform.position, null, controller.bossController, null, angle, controller.bossCollider);
+        controller.bossController.enemyManager.levelManager.uiManager.audioManager.PlayZeusThrow();
 
         controller.StartAttackDelay(false);
     }

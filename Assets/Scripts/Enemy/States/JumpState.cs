@@ -9,6 +9,7 @@ public class JumpState : IEnemyState
 
     public void OnEnter(EnemyStateMachine controller)
     {
+        controller.enemyController.enemyManager.levelManager.uiManager.audioManager.PlayStoneGolemJump();
         controller.platform.Break();
         controller.enemyController.Hit(1000);
     }

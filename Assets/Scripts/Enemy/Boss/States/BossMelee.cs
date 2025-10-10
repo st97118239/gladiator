@@ -9,6 +9,7 @@ public class BossMelee : IBossState
 
     public void OnEnter(BossStateMachine controller)
     {
+        controller.bossController.enemyManager.levelManager.uiManager.audioManager.PlayEnemyAttack();
         controller.bossController.enemyManager.player.PlayerHit(controller.bossController.boss.damage, true);
         controller.StartAttackDelay(false);
     }

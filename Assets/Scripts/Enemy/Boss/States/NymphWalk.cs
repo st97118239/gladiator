@@ -27,6 +27,7 @@ public class NymphWalk : IBossState
             angle -= 90;
 
             controller.bossController.enemyManager.SummonRoot(controller.bossController, angle);
+            controller.bossController.enemyManager.levelManager.uiManager.audioManager.PlayEnemyCast();
 
             controller.StartAttackDelay(false);
         }

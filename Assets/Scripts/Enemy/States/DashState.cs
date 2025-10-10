@@ -9,6 +9,7 @@ public class DashState : IEnemyState
     
     public void OnEnter(EnemyStateMachine controller)
     {
+        controller.enemyController.enemyManager.levelManager.uiManager.audioManager.PlayPlayerDash();
         controller.rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 

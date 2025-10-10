@@ -108,6 +108,11 @@ public class BossStateMachine : MonoBehaviour
                 break;
         }
 
+        if (bossController.boss.enemyType == EnemyTypes.Minotaur)
+            bossController.enemyManager.levelManager.uiManager.audioManager.PlayMinotaurRoar();
+        else if (bossController.boss.enemyType == EnemyTypes.Griffon)
+            bossController.enemyManager.levelManager.uiManager.audioManager.PlayGriffonScreech();
+
         isReloading = false;
         canBeHit = true;
         canBeShot = true;
@@ -216,6 +221,7 @@ public class BossStateMachine : MonoBehaviour
         StopCoroutine(AbilityCooldown());
         abilityDelay = 1;
         ChangeState(bossFreezeState);
+        bossController.enemyManager.levelManager.uiManager.audioManager.PlayEnemyCast();
         StartCoroutine(bossController.enemyManager.SpawnSummonerEnemies(bossController.boss.enemyAmtToSpawn, bossController.boss.enemyToSummon, this));
     }
 

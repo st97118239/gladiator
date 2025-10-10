@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public Player player;
     public AbilityManager abilityManager;
     public GameManager gameManager;
+    public AudioManager audioManager;
     public EventSystem eventSystem;
     public LevelManager levelManager;
     public EnemyManager enemyManager;
@@ -32,6 +33,8 @@ public class UIManager : MonoBehaviour
     public GameObject settingsMenuSelectedObj;
     public GameObject settingsMenuBackSelectedObj;
     public TMP_Text settingsWindowTypeText;
+    public Slider settingsSFXVolumeSlider;
+    public Slider settingsMusicVolumeSlider;
     public Canvas deathCanvas;
     public CanvasGroup deathCanvasGroup;
     public GameObject deathSelectedObj;
@@ -78,6 +81,15 @@ public class UIManager : MonoBehaviour
 
         if (!gameManager) 
             BorderTypeSetting(false);
+
+        if (PlayerPrefs.GetInt("hasPlayed") == 0)
+        {
+            PlayerPrefs.SetFloat("sfxVolume", 1);
+            PlayerPrefs.SetFloat("musicVolume", 1);
+            PlayerPrefs.SetInt("hasPlayed", 1);
+            Debug.Log("Set audio settings to default.");
+        }
+        SetVolumeSettings();
 
         if (levelChangeCurrentLvl == 1)
             gameManager.Reset();
@@ -344,6 +356,25 @@ public class UIManager : MonoBehaviour
         {
             fadePanel.gameObject.SetActive(false);
             canPause = true;
+            
+            switch (levelChangeCurrentLvl)
+            {
+                case 0:
+                    audioManager.PlayBGMMainMenu();
+                    break;
+                case 1:
+                    audioManager.PlayBGMColosseum();
+                    break;
+                case 2:
+                    audioManager.PlayBGMForest();
+                    break;
+                case 3:
+                    audioManager.PlayBGMPlatform();
+                    break;
+                case 4:
+                    audioManager.PlayBGMOlympus();
+                    break;
+            }
         }
 
         if (shouldQuit)
@@ -555,6 +586,27 @@ public class UIManager : MonoBehaviour
                 settingsWindowTypeText.text = "Windowed";
                 break;
         }
+    }
+
+    public void UpdateVolumeSettings()
+    {
+        PlayerPrefs.SetFloat("sfxVolume", settingsSFXVolumeSlider.value);
+        PlayerPrefs.SetFloat("musicVolume", settingsMusicVolumeSlider.value);
+
+        audioManager.sfxAudioSource.volume = settingsSFXVolumeSlider.value;
+        audioManager.musicAudioSource.volume = settingsMusicVolumeSlider.value;
+    }
+
+    private void SetVolumeSettings()
+    {
+        float sfxVolume = PlayerPrefs.GetFloat("sfxVolume");
+        float musicVolume = PlayerPrefs.GetFloat("musicVolume");
+
+        settingsSFXVolumeSlider.value = sfxVolume;
+        settingsMusicVolumeSlider.value = musicVolume;
+
+        audioManager.sfxAudioSource.volume = sfxVolume;
+        audioManager.musicAudioSource.volume = musicVolume;
     }
 
     public void UpdateHealthPotions(int potionCount)
