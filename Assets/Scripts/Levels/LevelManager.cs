@@ -61,7 +61,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.LogWarning("Remember to remove the wave skip!");
+        Debug.LogWarning("Remember to remove the wave skip!"); // TODO
 
         waveWait = new(waveStartDelay);
         int pos = Random.Range(0, spawnpoints.Count);
@@ -140,11 +140,8 @@ public class LevelManager : MonoBehaviour
 
     public void WaveFinish()
     {
-        Debug.Log("Wave ended.");
-
         if (level.waves[currentWave - 1].hasAbilityRoll)
         {
-            Debug.Log("Showing ability menu");
             uiManager.ShowAbilityMenu();
             return;
         }
@@ -162,8 +159,6 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator NextWave()
     {
-        Debug.Log("Countdown for new wave.");
-
         yield return waveWait;
 
         StartWave();
@@ -171,8 +166,6 @@ public class LevelManager : MonoBehaviour
 
     public void GameEnd(bool died)
     {
-        Debug.Log("Game finished.");
-
         if (!died)
             uiManager.ShowWinScreen();
         else

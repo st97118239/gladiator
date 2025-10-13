@@ -42,7 +42,7 @@ public class BossController : MonoBehaviour
         if (enemyManager.abilityManager.hasLifesteal)
             enemyManager.player.Lifesteal(damage);
 
-        // To-Do: Knockback code here
+        // TODO: Knockback code here
         // We can use rigidbody for knockback maybe
 
         StartCoroutine(HitEffect());
@@ -53,30 +53,30 @@ public class BossController : MonoBehaviour
         enemyManager.bossBarText.gameObject.SetActive(false);
         gameObject.SetActive(false);
         transform.position = Vector3.zero;
-        spriteRenderer.color = enemyManager.defaultEnemyColor; // Sprite Color
+        spriteRenderer.color = enemyManager.defaultEnemyColor;
 
         enemyManager.CheckIfEnd(true, false);
     }
 
     private IEnumerator HitEffect()
     {
-        spriteRenderer.color = enemyManager.hitEnemyColor; // Sprite Color
+        spriteRenderer.color = enemyManager.hitEnemyColor;
 
         yield return new WaitForSeconds(hitColorTime);
 
         isHit = false;
 
         if (bossStateMachine.isUsingAbility && boss.abilityType == BossAbility.Thunder) 
-            spriteRenderer.color = enemyManager.chargeEnemyColor; // Sprite Color
+            spriteRenderer.color = enemyManager.chargeEnemyColor;
         else
         {
             switch (bossStateMachine.isReloading)
             {
                 case true:
-                    spriteRenderer.color = enemyManager.cooldownEnemyColor; // Sprite Color
+                    spriteRenderer.color = enemyManager.cooldownEnemyColor;
                     break;
                 case false:
-                    spriteRenderer.color = enemyManager.defaultEnemyColor; // Sprite Color
+                    spriteRenderer.color = enemyManager.defaultEnemyColor;
                     break;
             }
         }

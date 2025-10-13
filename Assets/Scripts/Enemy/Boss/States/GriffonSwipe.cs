@@ -4,7 +4,6 @@ public class GriffonSwipe : IBossState
 {
     private static readonly int PlatformSwipe = Animator.StringToHash("PlatformSwipe");
 
-    // TO-DO: Make the boss do a platform swipe attack. Animation not needed rn, is for polishing
     public void UpdateState(BossStateMachine controller)
     {
         

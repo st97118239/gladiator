@@ -210,7 +210,7 @@ public class Player : MonoBehaviour
         hasAttackCooldown = true;
         aimPreview.color = disabledAimPreviewColor;
 
-        spriteRenderer.color = cooldownColor; // Sprite Color
+        spriteRenderer.color = cooldownColor;
 
         yield return new WaitForSeconds(meleeAtkSpeed * atkSpeedMultiplier);
 
@@ -219,7 +219,7 @@ public class Player : MonoBehaviour
         if (abilityManager.isBlocking) yield break;
 
         canAttack = true;
-        spriteRenderer.color = defaultColor; // Sprite Color
+        spriteRenderer.color = defaultColor;
     }
 
     private void OnDrawGizmos()

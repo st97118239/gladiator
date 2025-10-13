@@ -175,8 +175,6 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        // TO-DO: if less than 3 possible abilities, make sure less than 3 cards show!
-
         int idx;
 
         switch (possibleAbilities.Count)
@@ -660,8 +658,6 @@ public class UIManager : MonoBehaviour
 
     public void Quit()
     {
-        Debug.Log("Quiting game.");
-
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

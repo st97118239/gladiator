@@ -211,7 +211,7 @@ public class AbilityManager : MonoBehaviour
         player.hasAttackPreview = false;
         player.canHeal = false;
         player.abilityManager.canUsePowers = false;
-        player.spriteRenderer.color = player.cooldownColor; // Sprite Color
+        player.spriteRenderer.color = player.cooldownColor;
     }
 
     private void ShieldCancel()
@@ -225,7 +225,7 @@ public class AbilityManager : MonoBehaviour
         player.hasAttackPreview = true;
         if (player.hasAttackCooldown) return;
         player.canAttack = true;
-        player.spriteRenderer.color = player.defaultColor; // Sprite Color
+        player.spriteRenderer.color = player.defaultColor;
     }
 
     private void Net()
@@ -352,7 +352,7 @@ public class AbilityManager : MonoBehaviour
         if (moveAmount == Vector2.zero) return;
 
         isDashing = true;
-        player.spriteRenderer.color = player.dashColor; // Sprite Color
+        player.spriteRenderer.color = player.dashColor;
         player.movementScript.rb2d.excludeLayers = dashExcludeLayers;
 
         playerMovement.rb2d.AddForce(moveAmount * dashSpeed, ForceMode2D.Force);
@@ -367,7 +367,7 @@ public class AbilityManager : MonoBehaviour
     {
         playerMovement.rb2d.linearDamping = 10;
         isDashing = false;
-        player.spriteRenderer.color = player.defaultColor; // Sprite Color
+        player.spriteRenderer.color = player.defaultColor;
         player.movementScript.rb2d.excludeLayers = emptyLayer;
     }
 

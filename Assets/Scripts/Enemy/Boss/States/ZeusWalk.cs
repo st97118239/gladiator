@@ -8,7 +8,7 @@ public class ZeusWalk : IBossState
     private Vector3 posToGoTo;
     private bool reachedPos;
 
-    // To-Do: Zeus has to walk to random ranged position, then if player is near, make them walk to another position where player is *not* near
+    // TODO: Zeus has to walk to random ranged position, then if player is near, make them walk to another position where player is *not* near
 
     public void UpdateState(BossStateMachine controller)
     {

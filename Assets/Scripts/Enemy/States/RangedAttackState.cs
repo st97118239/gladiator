@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class RangedAttackState : IEnemyState
 {
-    // To-Do: Should grab first unused projectile in storage that moves towards player, when the player is hit it'll deal damage
-
     public void UpdateState(EnemyStateMachine controller)
     {
         

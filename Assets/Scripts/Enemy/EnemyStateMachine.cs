@@ -115,17 +115,17 @@ public class EnemyStateMachine : MonoBehaviour
     private IEnumerator AttackAnim()
     {
         isReloading = true;
-        enemyController.spriteRenderer.color = enemyController.enemyManager.cooldownEnemyColor; // Sprite Color
+        enemyController.spriteRenderer.color = enemyController.enemyManager.cooldownEnemyColor;
 
         yield return new WaitForSeconds(enemyController.enemy.attackSpeed);
 
         switch (isBlocking)
         {
             case true:
-                enemyController.spriteRenderer.color = enemyController.enemyManager.cooldownEnemyColor; // Sprite Color
+                enemyController.spriteRenderer.color = enemyController.enemyManager.cooldownEnemyColor;
                 break;
             case false:
-                enemyController.spriteRenderer.color = enemyController.enemyManager.defaultEnemyColor; // Sprite Color
+                enemyController.spriteRenderer.color = enemyController.enemyManager.defaultEnemyColor;
                 break;
         }
         isReloading = false;
@@ -143,17 +143,17 @@ public class EnemyStateMachine : MonoBehaviour
     {
         isBlocking = true;
         canBlock = false;
-        enemyController.spriteRenderer.color = enemyController.enemyManager.cooldownEnemyColor; // Sprite Color
+        enemyController.spriteRenderer.color = enemyController.enemyManager.cooldownEnemyColor;
 
         yield return new WaitForSeconds(enemyController.enemy.blockTime);
 
         switch (isReloading)
         {
             case true:
-                enemyController.spriteRenderer.color = enemyController.enemyManager.cooldownEnemyColor; // Sprite Color
+                enemyController.spriteRenderer.color = enemyController.enemyManager.cooldownEnemyColor;
                 break;
             case false:
-                enemyController.spriteRenderer.color = enemyController.enemyManager.defaultEnemyColor; // Sprite Color
+                enemyController.spriteRenderer.color = enemyController.enemyManager.defaultEnemyColor;
                 break;
         }
 
@@ -229,7 +229,7 @@ public class EnemyStateMachine : MonoBehaviour
         if (moveAmount == Vector3.zero) return;
 
         isDashing = true;
-        spriteRenderer.color = enemyController.enemyManager.dashEnemyColor; // Sprite Color
+        spriteRenderer.color = enemyController.enemyManager.dashEnemyColor;
 
         ChangeState(dashState);
         rb2d.AddForce(moveAmount * dashSpeed, ForceMode2D.Force);
@@ -243,7 +243,7 @@ public class EnemyStateMachine : MonoBehaviour
     {
         rb2d.linearDamping = 10;
         isDashing = false;
-        spriteRenderer.color = enemyController.enemyManager.defaultEnemyColor; // Sprite Color
+        spriteRenderer.color = enemyController.enemyManager.defaultEnemyColor;
 
         if (isBeingHeld) return;
         ChangeState(idleState);

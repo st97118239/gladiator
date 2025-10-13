@@ -8,7 +8,7 @@ public class RangedWalkState : IEnemyState
     private Vector3 posToGoTo;
     private bool reachedPos;
 
-    // To-Do: Sling user has to walk to random ranged position, then if player is near, make them walk to another position where player is *not* near
+    // TODO: Sling user has to walk to random ranged position, then if player is near, make them walk to another position where player is *not* near
 
     public void UpdateState(EnemyStateMachine controller)
     {

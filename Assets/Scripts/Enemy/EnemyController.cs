@@ -39,7 +39,7 @@ public class EnemyController : MonoBehaviour
         if (enemyManager.abilityManager.hasLifesteal)
             enemyManager.player.Lifesteal(damage);
 
-        // To-Do: Knockback code here
+        // TODO: Knockback code here
         // We can use rigidbody for knockback maybe
 
         if (gameObject.activeSelf)
@@ -49,7 +49,7 @@ public class EnemyController : MonoBehaviour
 
         gameObject.SetActive(false);
         transform.position = Vector3.zero;
-        spriteRenderer.color = enemyManager.defaultEnemyColor; // Sprite Color
+        spriteRenderer.color = enemyManager.defaultEnemyColor;
         if (enemy.attackType == AttackType.Sing)
         {
             enemyManager.sirens.Remove(this);
@@ -70,17 +70,17 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator HitEffect()
     {
-        spriteRenderer.color = enemyManager.hitEnemyColor; // Sprite Color
+        spriteRenderer.color = enemyManager.hitEnemyColor;
 
         yield return new WaitForSeconds(hitColorTime);
 
         switch (enemyStateMachine.isReloading)
         {
             case true:
-                spriteRenderer.color = enemyManager.cooldownEnemyColor; // Sprite Color
+                spriteRenderer.color = enemyManager.cooldownEnemyColor;
                 break;
             case false:
-                spriteRenderer.color = enemyManager.defaultEnemyColor; // Sprite Color
+                spriteRenderer.color = enemyManager.defaultEnemyColor;
                 break;
         }
     }

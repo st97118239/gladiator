@@ -135,7 +135,7 @@ public class BossStateMachine : MonoBehaviour
     private IEnumerator AttackAnim(bool isExtraAttack)
     {
         isReloading = true;
-        bossController.spriteRenderer.color = bossController.enemyManager.cooldownEnemyColor; // Sprite Color
+        bossController.spriteRenderer.color = bossController.enemyManager.cooldownEnemyColor;
         StopCoroutine(AbilityCooldown());
         abilityDelay = 1;
 
@@ -143,7 +143,7 @@ public class BossStateMachine : MonoBehaviour
             ? new WaitForSeconds(bossController.boss.extraAttackSpeed)
             : new WaitForSeconds(bossController.boss.attackSpeed);
 
-        bossController.spriteRenderer.color = bossController.enemyManager.defaultEnemyColor; // Sprite Color
+        bossController.spriteRenderer.color = bossController.enemyManager.defaultEnemyColor;
         isReloading = false;
 
         if (isStunned || isFrozen) yield break;
@@ -195,7 +195,7 @@ public class BossStateMachine : MonoBehaviour
         isUsingAbility = true;
         canBeHit = false;
         canBeShot = false;
-        spriteRenderer.color = bossController.enemyManager.dashEnemyColor; // Sprite Color
+        spriteRenderer.color = bossController.enemyManager.dashEnemyColor;
 
         ChangeState(dashState);
         rb2d.AddForce(moveAmount * abilityPower, ForceMode2D.Force);
@@ -217,7 +217,7 @@ public class BossStateMachine : MonoBehaviour
     public void StartSummonCountdown()
     {
         isReloading = true;
-        bossController.spriteRenderer.color = bossController.enemyManager.summonEnemyColor; // Sprite Color
+        bossController.spriteRenderer.color = bossController.enemyManager.summonEnemyColor;
         StopCoroutine(AbilityCooldown());
         abilityDelay = 1;
         ChangeState(bossFreezeState);
@@ -229,7 +229,7 @@ public class BossStateMachine : MonoBehaviour
     {
         yield return new WaitForSeconds(bossController.boss.abilityTime);
 
-        bossController.spriteRenderer.color = bossController.enemyManager.defaultEnemyColor; // Sprite Color
+        bossController.spriteRenderer.color = bossController.enemyManager.defaultEnemyColor;
         isReloading = false;
 
         if (isStunned) yield break;
@@ -243,7 +243,7 @@ public class BossStateMachine : MonoBehaviour
         isUsingAbility = false;
         canBeHit = true;
         canBeShot = true;
-        spriteRenderer.color = bossController.enemyManager.defaultEnemyColor; // Sprite Color
+        spriteRenderer.color = bossController.enemyManager.defaultEnemyColor;
         ChangeState(idleState);
     }
 

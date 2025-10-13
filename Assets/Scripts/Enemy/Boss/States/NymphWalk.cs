@@ -8,7 +8,7 @@ public class NymphWalk : IBossState
     private Vector3 posToGoTo;
     private bool reachedPos;
 
-    // To-Do: Nymph has to walk to random ranged position, then if player is near, make them walk to another position where player is *not* near
+    // TODO: Nymph has to walk to random ranged position, then if player is near, make them walk to another position where player is *not* near
 
     public void UpdateState(BossStateMachine controller)
     {
