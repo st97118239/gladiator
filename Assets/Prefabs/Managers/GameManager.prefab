@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6705853677996019674}
   - component: {fileID: 7008458788800464073}
+  - component: {fileID: 4115690012335637881}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -48,3 +49,15 @@ MonoBehaviour:
   healthPotions: 0
   health: 0
   defaultHealth: 100
+--- !u!114 &4115690012335637881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7782978162257292766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 622c280abeabb3b41bc2e5fc0972ade1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Discord_Controller
