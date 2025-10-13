@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
     public LevelManager levelManager;
     public AbilityManager abilityManager;
+    public Slider bossBarSlider;
+    public TMP_Text bossBarText;
     public Player player;
     public List<EnemyController> enemies;
     public List<EnemyController> summonerEnemies;
@@ -173,7 +177,12 @@ public class EnemyManager : MonoBehaviour
             BossController enemy = boss;
             enemy.Load(currentWave.boss, this);
             enemy.transform.position = boss.boss.enemyType == EnemyTypes.Nymph ? Vector3.zero : levelManager.spawnpoints[spawnPosIdx].position;
+            bossBarSlider.maxValue = enemy.health;
+            bossBarSlider.value = enemy.health;
+            bossBarText.text = enemy.boss.name;
             enemy.gameObject.SetActive(true);
+            bossBarSlider.gameObject.SetActive(true);
+            bossBarText.gameObject.SetActive(true);
 
             enemySpawnIdx++;
             SetSpawnPosIdx();

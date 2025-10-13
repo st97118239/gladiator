@@ -33,6 +33,10 @@ public class BossController : MonoBehaviour
 
         isHit = true;
         health -= damage;
+
+        if (health < 0) health = 0;
+
+        enemyManager.bossBarSlider.value = health;
         enemyManager.levelManager.uiManager.audioManager.PlayEnemyHit();
 
         if (enemyManager.abilityManager.hasLifesteal)
@@ -45,6 +49,8 @@ public class BossController : MonoBehaviour
 
         if (health > 0) return;
 
+        enemyManager.bossBarSlider.gameObject.SetActive(false);
+        enemyManager.bossBarText.gameObject.SetActive(false);
         gameObject.SetActive(false);
         transform.position = Vector3.zero;
         spriteRenderer.color = enemyManager.defaultEnemyColor; // Sprite Color

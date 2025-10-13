@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
 using System.Linq;
-using System.Numerics;
 using UnityEngine;
-using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 
@@ -304,19 +301,12 @@ public class BossStateMachine : MonoBehaviour
 
         for (float i = 0; i < zeusFlyingSpeed + Time.deltaTime; i += Time.deltaTime)
         {
-            //if (Time.timeScale > 0)
-            //{
-            //    transform.position += Vector3.up * 0.007f;
-            //    transform.localScale += new Vector3(0.002f, 0.002f, 0);
-            //}
-
             transform.position = Vector3.Lerp(zeusStandingPos, posToGoTo, i / zeusFlyingSpeed);
             transform.localScale = Vector3.Lerp(zeusDefaultScale, zeusFlyingScale, i / zeusFlyingSpeed);
 
             yield return null;
         }
 
-        // TO-DO: Make these variables a normal variable in this or boss script.
         bossController.enemyManager.lightningStrike.LoadMain(bossController.enemyManager.player, Mathf.RoundToInt(bossController.boss.abilityPower), this);
 
         float chargeTime = bossController.boss.abilityTime;

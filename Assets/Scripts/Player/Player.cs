@@ -236,7 +236,7 @@ public class Player : MonoBehaviour
 
     public void PlayerHit(int damage, bool fromEnemy)
     {
-        if (isDead || abilityManager.isDashing) return;
+        if (isDead || (abilityManager.isDashing && fromEnemy)) return;
 
         float dmgToDo = damage;
 
@@ -246,15 +246,15 @@ public class Player : MonoBehaviour
                 dmgToDo -= dmgToDo * abilityManager.shieldBlockAmt;
 
             dmgToDo -= armor;
+
+            if (dmgToDo < 0)
+                dmgToDo = 0;
         }
-
-        if (dmgToDo < 0 && fromEnemy)
-            dmgToDo = 0;
-
+        
         damage = Mathf.RoundToInt(dmgToDo);
 
         health -= damage;
-        if (abilityManager.isBlocking)
+        if (abilityManager.isBlocking && fromEnemy)
             uiManager.audioManager.PlayPlayerBlock();
         else
             uiManager.audioManager.PlayPlayerHit();
