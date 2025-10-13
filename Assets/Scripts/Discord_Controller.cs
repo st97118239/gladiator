@@ -4,24 +4,22 @@ using Discord;
 
 public class Discord_Controller : MonoBehaviour
 {
-    [SerializeField] private Sprite logo;
-
     private Discord.Discord discord;
+    private ActivityManager activityManager;
 
-    private void Start()
+    private void Awake()
     {
         discord = new Discord.Discord(1427284413942857909, (ulong)Discord.CreateFlags.NoRequireDiscord);
-        ChangeActivity();
+        activityManager = discord.GetActivityManager();
     }
 
     private void OnDisable()
     {
-        discord.Dispose();
+        discord?.Dispose();
     }
 
-    public void ChangeActivity()
+    public void MainMenu()
     {
-        ActivityManager activityManager = discord.GetActivityManager();
         Activity activity = new()
         {
             Name = "Gladiator",
@@ -33,11 +31,77 @@ public class Discord_Controller : MonoBehaviour
             }
         };
 
-        activityManager.UpdateActivity(activity, (res) => {Debug.Log("Activity Updated!");});
+        activityManager.UpdateActivity(activity, (res) => { Debug.Log("Activity Updated!"); });
+    }
+
+    public void Level1()
+    {
+        Activity activity = new()
+        {
+            Name = "Gladiator",
+            Details = "Fighting in the Colosseum",
+            Assets =
+            {
+                LargeImage = "logo",
+                LargeText = "Colosseum"
+            }
+        };
+
+        activityManager.UpdateActivity(activity, (res) => { Debug.Log("Activity Updated!"); });
+    }
+
+    public void Level2()
+    {
+        Activity activity = new()
+        {
+            Name = "Gladiator",
+            Details = "Fighting in the Forest",
+            Assets =
+            {
+                LargeImage = "logo",
+                LargeText = "The Forest"
+            }
+        };
+
+        activityManager.UpdateActivity(activity, (res) => { Debug.Log("Activity Updated!"); });
+    }
+
+    public void Level3()
+    {
+        Activity activity = new()
+        {
+            Name = "Gladiator",
+            Details = "Fighting on High Stakes",
+            Assets =
+            {
+                LargeImage = "logo",
+                LargeText = "High Stakes"
+            }
+        };
+
+        activityManager.UpdateActivity(activity, (res) => { Debug.Log("Activity Updated!"); });
+    }
+
+    public void Level4()
+    {
+        Activity activity = new()
+        {
+            Name = "Gladiator",
+            Details = "Fighting on Olympus",
+            Assets =
+            {
+                LargeImage = "logo",
+                LargeText = "Olympus"
+            }
+        };
+
+        activityManager.UpdateActivity(activity, (res) => { Debug.Log("Activity Updated!"); });
     }
 
     private void Update()
     {
+        if (discord == null) return;
+
         discord.RunCallbacks();
     }
 }

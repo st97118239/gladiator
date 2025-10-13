@@ -97,6 +97,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        gameManager.StartLevel(levelChangeCurrentLvl);
         fadePanel.color = Color.gray2;
         Time.timeScale = 1;
         StartCoroutine(LoadFade(true, -1, false));
