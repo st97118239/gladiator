@@ -82,7 +82,7 @@ public class Root : MonoBehaviour
     private void CheckHit(GameObject obj)
     {
         if (obj.CompareTag("Player"))
-            obj.GetComponent<Player>().PlayerHit(dmg, true);
+            obj.GetComponent<Player>().PlayerHit(dmg, true, false);
         else if (obj.CompareTag("Enemy"))
             obj.GetComponent<EnemyController>().Hit(dmg);
         else if (obj.CompareTag("Wall"))

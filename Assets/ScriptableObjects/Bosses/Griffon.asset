@@ -23,7 +23,7 @@ MonoBehaviour:
   attackSpeed: 1
   extraAttackDamage: 15
   extraAttackRadius: 0.1
-  extraAttackSpeed: 3
+  extraAttackSpeed: 1.5
   abilityRadius: 3
   abilityTime: 0.6
   abilityCooldown: 4
@@ -35,3 +35,4 @@ MonoBehaviour:
   singDrawSpeed: 0
   enemyToSummon: {fileID: 0}
   enemyAmtToSpawn: 0
+  useAltSlash: 1

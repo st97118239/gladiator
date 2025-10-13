@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class AttackState : IEnemyState
 {
+    private static readonly int AltSlash = Animator.StringToHash("AltSlash");
+    private static readonly int MeleeSlash = Animator.StringToHash("MeleeSlash");
+
     public void UpdateState(EnemyStateMachine controller)
     {
         
@@ -9,13 +12,15 @@ public class AttackState : IEnemyState
 
     public void OnEnter(EnemyStateMachine controller)
     {
-        Attack(controller.enemyController.enemyManager.player, controller.enemyController, controller);
-    }
+        Vector3 aimDir = (controller.enemyController.enemyManager.player.transform.position - controller.transform.position).normalized;
+        float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+        angle -= 90;
 
-    private static void Attack(Player player, EnemyController enemyController, EnemyStateMachine controller)
-    {
-        player.PlayerHit(enemyController.enemy.damage, true);
-        enemyController.enemyManager.levelManager.uiManager.audioManager.PlayEnemyAttack();
+        controller.aimTransform.eulerAngles = new Vector3(0, 0, angle);
+        controller.slashAnimator.SetTrigger(controller.enemyController.enemy.useAltSlash ? AltSlash : MeleeSlash);
+
+        controller.enemyController.enemyManager.player.PlayerHit(controller.enemyController.enemy.damage, true, false);
+        controller.enemyController.enemyManager.levelManager.uiManager.audioManager.PlayEnemyAttack();
         controller.StartAttackDelay();
     }
 

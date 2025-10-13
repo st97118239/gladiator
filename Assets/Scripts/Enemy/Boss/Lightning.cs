@@ -146,7 +146,7 @@ public class Lightning : MonoBehaviour
         {
             if (Vector3.Distance(playerTransform.position, transform.position) <= hitDistance)
             {
-                player.PlayerHit(dmg, true);
+                player.PlayerHit(dmg, true, false);
                 hasHitPlayer = true;
             }
         }

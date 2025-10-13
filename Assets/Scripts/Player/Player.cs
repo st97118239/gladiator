@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
         uiManager.audioManager.PlayPlayerPotionUse();
         healthPotions--;
 
-        PlayerHit(-healthPotionHealAmt, false);
+        PlayerHit(-healthPotionHealAmt, false, true);
 
         uiManager.UpdateHealthPotions(healthPotions);
     }
@@ -234,9 +234,9 @@ public class Player : MonoBehaviour
         Gizmos.DrawWireCube(meleeWeaponHitbox.position, meleeWeaponHitbox.localScale);
     }
 
-    public void PlayerHit(int damage, bool fromEnemy)
+    public void PlayerHit(int damage, bool fromEnemy, bool forced)
     {
-        if (isDead || (abilityManager.isDashing && fromEnemy)) return;
+        if (isDead || (abilityManager.isDashing && !forced)) return;
 
         float dmgToDo = damage;
 
@@ -295,7 +295,7 @@ public class Player : MonoBehaviour
     {
         healthStolen /= lifestealDrainMultiplier;
 
-        PlayerHit(-healthStolen, false);
+        PlayerHit(-healthStolen, false, true);
         
     }
 

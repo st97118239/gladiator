@@ -114,7 +114,7 @@ public class ProjectileObj : MonoBehaviour
         }
         else if (hit.gameObject.CompareTag("Player") && !isPlayerProj)
         {
-            hit.gameObject.GetComponent<Player>().PlayerHit(dmg, true);
+            hit.gameObject.GetComponent<Player>().PlayerHit(dmg, true, false);
             Reset();
         }
         else if (hit.gameObject.CompareTag("Wall"))

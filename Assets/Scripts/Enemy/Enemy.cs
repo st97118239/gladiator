@@ -20,4 +20,5 @@ public class Enemy : ScriptableObject
     public float rangedFleeRadius;
     public Projectile projectile;
     public float singDrawSpeed;
+    public bool useAltSlash;
 }

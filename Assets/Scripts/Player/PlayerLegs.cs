@@ -7,6 +7,6 @@ public class PlayerLegs : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D hit)
     {
         if (hit.gameObject.CompareTag("FallTrigger"))
-            player.PlayerHit(10000, false);
+            player.PlayerHit(10000, false, false);
     }
 }

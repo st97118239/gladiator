@@ -46,6 +46,9 @@ public class BossStateMachine : MonoBehaviour
     public bool canBeHit;
     public bool canBeShot;
 
+    public Transform aimTransform;
+    public SpriteRenderer slashSprite;
+    public Animator slashAnimator;
     public BoxCollider2D bossCollider;
     public Rigidbody2D rb2d;
     [SerializeField] private SpriteRenderer spriteRenderer;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1cb0c2e1aa06d44aa652cadaea1b264, type: 3}
   m_Name: Fallen Warrior
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  sprite: {fileID: -7609313400231430238, guid: 932a96f53045e494ca311f43cf254f24, type: 3}
+  sprite: {fileID: 21300000, guid: d839b030fb44ab44aa9b5695dfbe97ce, type: 3}
   enemyType: 12
   attackType: 1
   ability: 0

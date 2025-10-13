@@ -26,4 +26,5 @@ public class Boss : ScriptableObject
     public float singDrawSpeed;
     public Enemy enemyToSummon;
     public int enemyAmtToSpawn;
+    public bool useAltSlash;
 }

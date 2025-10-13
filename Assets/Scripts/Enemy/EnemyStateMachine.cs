@@ -43,6 +43,9 @@ public class EnemyStateMachine : MonoBehaviour
     public bool isBeingThrown;
     public bool isStunned;
 
+    public Transform aimTransform;
+    public SpriteRenderer slashSprite;
+    public Animator slashAnimator;
     public BoxCollider2D enemyCollider;
     public Rigidbody2D rb2d;
     public SpriteRenderer spriteRenderer;
@@ -69,6 +72,7 @@ public class EnemyStateMachine : MonoBehaviour
         canDash = false;
         isDashing = false;
         reachedPlatform = false;
+        slashSprite.color = Color.clear;
         switch (attackType)
         {
             case AttackType.Sing:
