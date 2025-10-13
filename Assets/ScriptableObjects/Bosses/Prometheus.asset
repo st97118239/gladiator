@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695f53f935e5d3e46908db68ebbbb862, type: 3}
   m_Name: Prometheus
   m_EditorClassIdentifier: Assembly-CSharp::Boss
-  sprite: {fileID: 21300000, guid: 999977a011a617b45874b17ba9b08301, type: 3}
+  sprite: {fileID: 21300000, guid: 88263bd75dada0642b1c5beeb7affd57, type: 3}
   enemyType: 15
   attackType: 1
   abilityType: 2
