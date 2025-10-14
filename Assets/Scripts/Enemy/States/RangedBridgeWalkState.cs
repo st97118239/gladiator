@@ -127,7 +127,7 @@ public class RangedBridgeWalkState : IEnemyState
 
             foreach (BridgePoint bp in controller.currentPlatform.bridges)
             {
-                if (bp.isBroken) continue;
+                if (bp.otherBridgePoint.isBroken) continue;
 
                 float bpDistance = Vector3.Distance(player.transform.position, bp.transform.position);
 

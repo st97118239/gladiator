@@ -51,6 +51,14 @@ public class Platform : MonoBehaviour
             levelManager.enemyManager.rangedPositions.Remove(rangedPoint);
         }
 
+        foreach (EnemyController enemy in levelManager.enemyManager.enemies)
+        {
+            if (!enemy.isActiveAndEnabled) continue;
+
+            if (enemy.enemyStateMachine.currentPlatform == this)
+                enemy.Hit(10000);
+        }
+
         if (levelManager.availablePlatforms.Contains(this))
         {
             levelManager.availablePlatforms.Remove(this);

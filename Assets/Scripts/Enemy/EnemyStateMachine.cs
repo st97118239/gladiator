@@ -79,9 +79,6 @@ public class EnemyStateMachine : MonoBehaviour
             case AttackType.Sing:
                 FindPuddle();
                 break;
-            case AttackType.Jump:
-                FindPlatform();
-                break;
             case AttackType.MeleeBlock:
                 canBlock = true;
                 break;

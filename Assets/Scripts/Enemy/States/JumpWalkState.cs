@@ -57,6 +57,7 @@ public class JumpWalkState : IEnemyState
     
     public void OnEnter(EnemyStateMachine controller)
     {
+        controller.FindPlatform();
         posToGoTo = Vector3.zero;
         bridgeToGoTo = Vector3.zero;
         platformToGoTo = Vector3.zero;

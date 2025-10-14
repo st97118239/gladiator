@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b4fb03fcd02cdb4f9fc78eb9e651f60, type: 3}
   m_Name: TestWave
   m_EditorClassIdentifier: Assembly-CSharp::Wave
-  enemies: []
-  boss: {fileID: 11400000, guid: 2690413aa0a4ac140936990aabc5f417, type: 2}
+  enemies:
+  - {fileID: 11400000, guid: ca7f9ba69bde6434385ac6ed55ac528b, type: 2}
+  - {fileID: 11400000, guid: 6f453b9abb5b9774cabb00fc4ba55a88, type: 2}
+  boss: {fileID: 0}
   hasAbilityRoll: 0
   abilitySortsToRoll: 

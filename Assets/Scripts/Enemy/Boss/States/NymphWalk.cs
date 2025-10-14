@@ -22,23 +22,23 @@ public class NymphWalk : IBossState
         float playerDistance = Vector3.Distance(controller.transform.position, player.transform.position);
         float posDistance = Vector3.Distance(controller.transform.position, posToRunTo);
 
+        if (playerDistance <= controller.bossController.boss.attackRadius && !controller.isReloading)
+        {
+            Vector3 aimDir = (controller.bossController.enemyManager.player.transform.position - controller.transform.position).normalized;
+            float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+            angle -= 90;
+
+            controller.bossController.enemyManager.SummonRoot(controller.bossController, angle);
+            controller.bossController.enemyManager.levelManager.uiManager.audioManager.PlayEnemyCast();
+
+            controller.StartAttackDelay(false);
+        }
+
         if (reachedPos)
         {
             reachedPos = false;
             goToRangedPoint = true;
             CalculateNextPath(controller);
-
-            if (playerDistance <= controller.bossController.boss.attackRadius && !controller.isReloading)
-            {
-                Vector3 aimDir = (controller.bossController.enemyManager.player.transform.position - controller.transform.position).normalized;
-                float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
-                angle -= 90;
-
-                controller.bossController.enemyManager.SummonRoot(controller.bossController, angle);
-                controller.bossController.enemyManager.levelManager.uiManager.audioManager.PlayEnemyCast();
-
-                controller.StartAttackDelay(false);
-            }
         }
         else if (posDistance <= 0.2f)
         {
