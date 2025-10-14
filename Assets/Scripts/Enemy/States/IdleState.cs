@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class IdleState : IEnemyState
@@ -17,7 +16,10 @@ public class IdleState : IEnemyState
                 controller.ChangeState(controller.walkState);
                 break;
             case AttackType.ProjectileRanged:
-                controller.ChangeState(controller.rangedWalkState);
+                if (controller.enemyController.enemy.usesBridges)
+                    controller.ChangeState(controller.rangedBridgeWalkState);
+                else
+                    controller.ChangeState(controller.rangedWalkState);
                 break;
             case AttackType.Jump:
                 controller.ChangeState(controller.jumpWalkState);

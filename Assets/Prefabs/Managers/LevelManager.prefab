@@ -152,6 +152,7 @@ MonoBehaviour:
   player: {fileID: 0}
   spawnpointsParent: {fileID: 2716013874994475526}
   rangedPointsParent: {fileID: 2420918658771747142}
+  bridePointsParent: {fileID: 226202271908055884}
   swipePointsParent: {fileID: 528850299844369039}
   puddlesParent: {fileID: 6385380668180396294}
   platformsParent: {fileID: 2793227695072481692}

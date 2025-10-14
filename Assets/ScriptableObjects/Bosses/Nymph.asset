@@ -31,7 +31,9 @@ MonoBehaviour:
   abilityUseChance: 0
   swipeAttackChance: 0
   rangedFleeRadius: 5
+  rangedPointsToCheck: 5
   projectile: {fileID: 0}
   singDrawSpeed: 0
   enemyToSummon: {fileID: 0}
   enemyAmtToSpawn: 0
+  useAltSlash: 0

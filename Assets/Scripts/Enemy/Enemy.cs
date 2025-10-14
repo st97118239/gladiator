@@ -18,7 +18,9 @@ public class Enemy : ScriptableObject
     public float blockTime;
     public float blockCooldown;
     public float rangedFleeRadius;
+    public int rangedPointsToCheck;
     public Projectile projectile;
     public float singDrawSpeed;
     public bool useAltSlash;
+    public bool usesBridges;
 }

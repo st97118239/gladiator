@@ -1,15 +1,17 @@
-using System.Linq;
 using UnityEngine;
 
-public class RangedWalkState : IEnemyState
+public class RangedBridgeWalkState : IEnemyState
 {
     private Player player;
     private float speed;
     private bool reachedPos;
+    private bool goToBridge;
+    private bool goToOtherBridge;
     private bool goToRangedPoint;
     private bool isAttacking;
+    private Vector3 otherBridgePos;
+    private Platform platformToGoTo;
 
-    private RangedPoint pointToGoTo;
     private Vector3 posToRunTo;
 
     public void UpdateState(EnemyStateMachine controller)
@@ -29,7 +31,8 @@ public class RangedWalkState : IEnemyState
             {
                 reachedPos = false;
                 isAttacking = false;
-                goToRangedPoint = true;
+                goToBridge = true;
+                goToRangedPoint = false;
                 CalculateNextPath(controller);
                 return;
             }
@@ -45,9 +48,31 @@ public class RangedWalkState : IEnemyState
         }
         else if (posDistance <= 0.2f)
         {
+            if (goToBridge)
+            {
+                reachedPos = true;
+                goToBridge = false;
+                goToOtherBridge = true;
+                goToRangedPoint = false;
+                CalculateNextPath(controller);
+                return;
+            }
+
+            if (goToOtherBridge)
+            {
+                reachedPos = true;
+                goToBridge = false;
+                goToOtherBridge = false;
+                goToRangedPoint = true;
+                CalculateNextPath(controller);
+                return;
+            }
+
             if (goToRangedPoint)
             {
                 reachedPos = true;
+                goToBridge = false;
+                goToOtherBridge = false;
                 goToRangedPoint = false;
             }
         }
@@ -78,7 +103,8 @@ public class RangedWalkState : IEnemyState
         reachedPos = false;
         player = controller.enemyController.enemyManager.player;
         speed = controller.enemyController.enemy.speed;
-        goToRangedPoint = true;
+        goToBridge = true;
+        goToRangedPoint = false;
         CalculateNextPath(controller);
     }
 
@@ -94,33 +120,43 @@ public class RangedWalkState : IEnemyState
 
     private void CalculateNextPath(EnemyStateMachine controller)
     {
-        if (!goToRangedPoint) return;
-
-        RangedPoint[] closestPoints = new RangedPoint[controller.enemyController.enemy.rangedPointsToCheck];
-        int idx = 0;
-        bool shouldSkip = true;
-
-        foreach (RangedPoint rp in controller.enemyController.enemyManager.rangedPositions.OrderBy(r => Vector3.Distance(controller.transform.position, r.transform.position)))
+        if (goToBridge)
         {
-            if (shouldSkip)
+            BridgePoint furthestBridge = null;
+            float distance = -1000;
+
+            foreach (BridgePoint bp in controller.currentPlatform.bridges)
             {
-                shouldSkip = false;
-                continue;
+                if (bp.isBroken) continue;
+
+                float bpDistance = Vector3.Distance(player.transform.position, bp.transform.position);
+
+                if (distance != -1000 && !(bpDistance > distance)) continue;
+
+                distance = bpDistance;
+                furthestBridge = bp;
             }
 
-            if (idx < controller.enemyController.enemy.rangedPointsToCheck)
+            if (!furthestBridge)
             {
-                closestPoints[idx] = rp;
-                idx++;
+                Debug.Log("Couldn't find a bridge, aborting pathfinding.");
+                return;
             }
-            else
-                break;
+
+            posToRunTo = furthestBridge.bridgeEntrance.position;
+            otherBridgePos = furthestBridge.otherBridgePoint.bridgeEntrance.position;
+            platformToGoTo = furthestBridge.otherBridgePoint.platform;
         }
+        else if (goToOtherBridge)
+        {
+            posToRunTo = otherBridgePos;
+            reachedPos = false;
+        }
+        else if (goToRangedPoint)
+        {
 
-        closestPoints = closestPoints.OrderByDescending(r => Vector3.Distance(player.transform.position, r.transform.position)).ToArray();
-
-        pointToGoTo = closestPoints[0];
-        posToRunTo = pointToGoTo.transform.position;
-        reachedPos = false;
+            posToRunTo = platformToGoTo.rangedPoints[Random.Range(0, controller.currentPlatform.rangedPoints.Length)].transform.position;
+            reachedPos = false;
+        }
     }
 }

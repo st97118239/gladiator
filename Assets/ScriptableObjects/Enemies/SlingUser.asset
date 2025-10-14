@@ -18,14 +18,17 @@ MonoBehaviour:
   ability: 0
   health: 7
   damage: 5
-  speed: 5
+  speed: 5.5
   attackRadius: 15
-  attackSpeed: 2
+  attackSpeed: 1.5
   abilityTime: 0
   abilityCooldown: 0
   abilityPower: 0
   blockTime: 0
   blockCooldown: 0
-  rangedFleeRadius: 7
+  rangedFleeRadius: 4.5
+  rangedPointsToCheck: 0
   projectile: {fileID: 11400000, guid: 0e8866987755c324cba0c9e8ea9b508a, type: 2}
   singDrawSpeed: 0
+  useAltSlash: 0
+  usesBridges: 1

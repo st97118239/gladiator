@@ -11,6 +11,7 @@ public class EnemyStateMachine : MonoBehaviour
     public SirenSingState sirenSingState = new();
     public WalkState walkState = new();
     public RangedWalkState rangedWalkState = new();
+    public RangedBridgeWalkState rangedBridgeWalkState = new();
     public JumpWalkState jumpWalkState = new();
     public AttackState attackState = new();
     public RangedAttackState rangedAttackState = new();
@@ -97,6 +98,11 @@ public class EnemyStateMachine : MonoBehaviour
         }
 
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+        Invoke(nameof(Begin), Time.fixedDeltaTime);
+    }
+
+    private void Begin()
+    {
         ChangeState(idleState);
     }
 

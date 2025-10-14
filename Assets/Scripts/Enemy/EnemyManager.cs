@@ -20,8 +20,9 @@ public class EnemyManager : MonoBehaviour
     public List<Net> nets;
     public List<Root> roots;
     public Lightning lightningStrike;
-    public List<Transform> rangedPositions;
+    public List<RangedPoint> rangedPositions;
     public List<Transform> swipePositions;
+    public List<BridgePoint> bridgePoints;
     public Wave currentWave;
     public GameObject emptyEnemyPrefab;
     public GameObject emptyBossPrefab;
@@ -55,7 +56,12 @@ public class EnemyManager : MonoBehaviour
     {
         for (int i = 0; i < levelManager.rangedPointsParent.childCount; i++)
         {
-            rangedPositions.Add(levelManager.rangedPointsParent.GetChild(i));
+            rangedPositions.Add(levelManager.rangedPointsParent.GetChild(i).GetComponent<RangedPoint>());
+        }
+
+        for (int i = 0; i < levelManager.bridePointsParent.childCount; i++)
+        {
+            bridgePoints.Add(levelManager.bridePointsParent.GetChild(i).GetComponent<BridgePoint>());
         }
 
         for (int i = 0; i < levelManager.swipePointsParent.childCount; i++)
@@ -123,8 +129,6 @@ public class EnemyManager : MonoBehaviour
     private IEnumerator SpawnEnemies()
     {
         sirens.Clear();
-
-        Debug.Log("Spawning enemies.");
 
         WaitForSeconds wait = new(spawnDelay);
 

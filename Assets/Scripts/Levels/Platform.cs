@@ -11,16 +11,17 @@ public class Platform : MonoBehaviour
     public Platform platformLeft;
     public Platform platformRight;
 
+    public BridgePoint[] bridges;
     public Transform bridgeUp;
     public Transform bridgeDown;
     public Transform bridgeLeft;
     public Transform bridgeRight;
 
+    public RangedPoint[] rangedPoints;
+
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private Animator animator;
-    [SerializeField] private GameObject[] bridgesToDestroy;
     [SerializeField] private Transform[] spawnpointsToRemove;
-    [SerializeField] private Transform[] rangedPointsToRemove;
     [SerializeField] private BoxCollider2D brokenCollider;
     [SerializeField] private BoxCollider2D bc2d;
 
@@ -35,16 +36,17 @@ public class Platform : MonoBehaviour
         else
             gameObject.SetActive(false);
 
-        foreach (GameObject bridge in bridgesToDestroy)
+        foreach (BridgePoint bridge in bridges)
         {
-            bridge.SetActive(false);
+            bridge.gameObject.SetActive(false);
+            bridge.isBroken = true;
         }
 
         foreach (Transform spawnPoint in spawnpointsToRemove)
         {
             levelManager.spawnpoints.Remove(spawnPoint);
         }
-        foreach (Transform rangedPoint in rangedPointsToRemove)
+        foreach (RangedPoint rangedPoint in rangedPoints)
         {
             levelManager.enemyManager.rangedPositions.Remove(rangedPoint);
         }

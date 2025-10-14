@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1cb0c2e1aa06d44aa652cadaea1b264, type: 3}
-  m_Name: Treant
+  m_Name: OlympusSlingUser
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  sprite: {fileID: 21300000, guid: 9e50d073568be054d96a21c2f3486c2d, type: 3}
-  enemyType: 6
+  sprite: {fileID: 21300000, guid: 9faf0e318a9cdf84fa1e3d447cb1af93, type: 3}
+  enemyType: 9
   attackType: 2
   ability: 0
-  health: 16
-  damage: 3
-  speed: 2.4
-  attackRadius: 13
-  attackSpeed: 1.6
+  health: 7
+  damage: 5
+  speed: 5.5
+  attackRadius: 15
+  attackSpeed: 1
   abilityTime: 0
   abilityCooldown: 0
   abilityPower: 0
   blockTime: 0
   blockCooldown: 0
-  rangedFleeRadius: 4
+  rangedFleeRadius: 4.5
   rangedPointsToCheck: 5
-  projectile: {fileID: 11400000, guid: dea738b7b1531d8408518a7bb5c3a24f, type: 2}
+  projectile: {fileID: 11400000, guid: 0e8866987755c324cba0c9e8ea9b508a, type: 2}
   singDrawSpeed: 0
   useAltSlash: 0
   usesBridges: 0

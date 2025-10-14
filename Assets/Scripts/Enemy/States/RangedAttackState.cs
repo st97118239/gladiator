@@ -22,7 +22,7 @@ public class RangedAttackState : IEnemyState
 
         if (!proj)
         {
-            controller.ChangeState(controller.rangedWalkState);
+            controller.ChangeState(controller.idleState);
             return;
         }
 

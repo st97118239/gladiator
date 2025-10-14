@@ -1,14 +1,15 @@
+using System.Linq;
 using UnityEngine;
 
 public class NymphWalk : IBossState
 {
     private Player player;
     private float speed;
-    private int posIdx;
-    private Vector3 posToGoTo;
     private bool reachedPos;
+    private bool goToRangedPoint;
 
-    // TODO: Nymph has to walk to random ranged position, then if player is near, make them walk to another position where player is *not* near
+    private RangedPoint pointToGoTo;
+    private Vector3 posToRunTo;
 
     public void UpdateState(BossStateMachine controller)
     {
@@ -18,31 +19,38 @@ public class NymphWalk : IBossState
             return;
         }
 
-        float playerDistance = Vector3.Distance(controller.gameObject.transform.position, player.transform.position);
+        float playerDistance = Vector3.Distance(controller.transform.position, player.transform.position);
+        float posDistance = Vector3.Distance(controller.transform.position, posToRunTo);
 
-        if (playerDistance <= controller.bossController.boss.attackRadius && !controller.isReloading)
+        if (reachedPos)
         {
-            Vector3 aimDir = (controller.bossController.enemyManager.player.transform.position - controller.transform.position).normalized;
-            float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
-            angle -= 90;
+            reachedPos = false;
+            goToRangedPoint = true;
+            CalculateNextPath(controller);
 
-            controller.bossController.enemyManager.SummonRoot(controller.bossController, angle);
-            controller.bossController.enemyManager.levelManager.uiManager.audioManager.PlayEnemyCast();
+            if (playerDistance <= controller.bossController.boss.attackRadius && !controller.isReloading)
+            {
+                Vector3 aimDir = (controller.bossController.enemyManager.player.transform.position - controller.transform.position).normalized;
+                float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+                angle -= 90;
 
-            controller.StartAttackDelay(false);
+                controller.bossController.enemyManager.SummonRoot(controller.bossController, angle);
+                controller.bossController.enemyManager.levelManager.uiManager.audioManager.PlayEnemyCast();
+
+                controller.StartAttackDelay(false);
+            }
         }
-
-        switch (reachedPos)
+        else if (posDistance <= 0.2f)
         {
-            case false when controller.gameObject.transform.position == posToGoTo:
+            if (goToRangedPoint)
+            {
                 reachedPos = true;
-                break;
-            case true when playerDistance <= controller.bossController.boss.rangedFleeRadius:
-                OnEnter(controller);
-                return;
+                goToRangedPoint = false;
+            }
         }
 
-        controller.gameObject.transform.position = Vector3.MoveTowards(controller.gameObject.transform.position, posToGoTo, speed * Time.deltaTime);
+        if (!reachedPos)
+            controller.gameObject.transform.position = Vector3.MoveTowards(controller.gameObject.transform.position, posToRunTo, speed * Time.deltaTime);
 
         if (player.transform.position.x < controller.transform.position.x)
             controller.bossController.spriteRenderer.flipX = true;
@@ -55,8 +63,8 @@ public class NymphWalk : IBossState
         reachedPos = false;
         player = controller.bossController.enemyManager.player;
         speed = controller.bossController.boss.speed;
-        posIdx = Random.Range(0, controller.bossController.enemyManager.rangedPositions.Count);
-        posToGoTo = controller.bossController.enemyManager.rangedPositions[posIdx].position;
+        goToRangedPoint = true;
+        CalculateNextPath(controller);
     }
 
     public void OnExit(BossStateMachine controller)
@@ -67,5 +75,37 @@ public class NymphWalk : IBossState
     public void OnHurt(BossStateMachine controller)
     {
 
+    }
+
+    private void CalculateNextPath(BossStateMachine controller)
+    {
+        if (!goToRangedPoint) return;
+
+        RangedPoint[] closestPoints = new RangedPoint[controller.bossController.boss.rangedPointsToCheck];
+        int idx = 0;
+        bool shouldSkip = true;
+
+        foreach (RangedPoint rp in controller.bossController.enemyManager.rangedPositions.OrderBy(r => Vector3.Distance(controller.transform.position, r.transform.position)))
+        {
+            if (shouldSkip)
+            {
+                shouldSkip = false;
+                continue;
+            }
+
+            if (idx < controller.bossController.boss.rangedPointsToCheck)
+            {
+                closestPoints[idx] = rp;
+                idx++;
+            }
+            else
+                break;
+        }
+
+        closestPoints = closestPoints.OrderByDescending(r => Vector3.Distance(player.transform.position, r.transform.position)).ToArray();
+
+        pointToGoTo = closestPoints[0];
+        posToRunTo = pointToGoTo.transform.position;
+        reachedPos = false;
     }
 }

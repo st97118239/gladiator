@@ -22,6 +22,7 @@ public class Boss : ScriptableObject
     public int abilityUseChance;
     public int swipeAttackChance;
     public float rangedFleeRadius;
+    public int rangedPointsToCheck;
     public Projectile projectile;
     public float singDrawSpeed;
     public Enemy enemyToSummon;

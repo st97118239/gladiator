@@ -604,6 +604,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5741784096604700574}
     m_Modifications:
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: platform
+      value: 
+      objectReference: {fileID: 918007866}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: otherBridgePoint
+      value: 
+      objectReference: {fileID: 928612526}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: rangedPoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: 'rangedPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1510722105}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: 'rangedPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1890597893}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: 'rangedPoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 577423803}
+    - target: {fileID: 1600062018240783154, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6512300716324305966, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
       propertyPath: m_Name
       value: BridgeHorizontal02
@@ -658,6 +686,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7617467582564260080, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
   m_PrefabInstance: {fileID: 243780307}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &243780309 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+  m_PrefabInstance: {fileID: 243780307}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034391670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81db4a0e97cf39a4c8583160590bad2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BridgePoint
 --- !u!1001 &316966718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -793,6 +832,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+--- !u!114 &350549224 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4510955117718486514, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+  m_PrefabInstance: {fileID: 350549223}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31c81cc07e5dbb4eb2a6b4b8f70ffa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedPoint
 --- !u!4 &361904971 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6854112408697252714, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
@@ -1082,6 +1132,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+--- !u!114 &577423803 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4510955117718486514, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+  m_PrefabInstance: {fileID: 577423802}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31c81cc07e5dbb4eb2a6b4b8f70ffa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedPoint
 --- !u!1001 &592514610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1318,10 +1379,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5190953604457898596, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7223746426592174086, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
       propertyPath: m_Name
       value: BridgeVertical02
       objectReference: {fileID: 0}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: platform
+      value: 
+      objectReference: {fileID: 1406345879}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: otherBridgePoint
+      value: 
+      objectReference: {fileID: 1605375585}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: rangedPoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: 'rangedPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1601155363}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: 'rangedPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 785311972}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: 'rangedPoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1511906564}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1337,6 +1426,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7223746426592174086, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
   m_PrefabInstance: {fileID: 613908945}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &613908949 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+  m_PrefabInstance: {fileID: 613908945}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613908947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81db4a0e97cf39a4c8583160590bad2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BridgePoint
 --- !u!1001 &617798690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1794,6 +1894,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+--- !u!114 &785311972 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4510955117718486514, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+  m_PrefabInstance: {fileID: 785311971}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31c81cc07e5dbb4eb2a6b4b8f70ffa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedPoint
 --- !u!1001 &827311641
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1843,6 +1954,34 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1805669771}
     - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: bridges.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'bridges.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1605375585}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'bridges.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1293679881}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: rangedPoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'rangedPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 908113313}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'rangedPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1869664606}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'rangedPoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1529998078}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: bridgesToDestroy.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -1869,15 +2008,19 @@ PrefabInstance:
     - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: 'rangedPointsToRemove.Array.data[0]'
       value: 
-      objectReference: {fileID: 1576085202}
+      objectReference: {fileID: 908113313}
     - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: 'rangedPointsToRemove.Array.data[1]'
       value: 
-      objectReference: {fileID: 2116010964}
+      objectReference: {fileID: 1869664606}
     - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: 'rangedPointsToRemove.Array.data[2]'
       value: 
-      objectReference: {fileID: 4142727}
+      objectReference: {fileID: 1529998078}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'rangedPointsToRemove.Array.data[3]'
+      value: 
+      objectReference: {fileID: 908113313}
     - target: {fileID: 5359398562206087981, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4
@@ -6614,6 +6757,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+--- !u!114 &908113313 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4510955117718486514, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+  m_PrefabInstance: {fileID: 908113312}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31c81cc07e5dbb4eb2a6b4b8f70ffa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedPoint
 --- !u!4 &918007865 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5359398562206087981, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
@@ -6682,6 +6836,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: BridgeVertical01
       objectReference: {fileID: 0}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: platform
+      value: 
+      objectReference: {fileID: 1832766866}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: otherBridgePoint
+      value: 
+      objectReference: {fileID: 1772219279553130794}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: rangedPoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: 'rangedPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3194184437684291205}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: 'rangedPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1079415429}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: 'rangedPoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 350549224}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6697,6 +6875,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7223746426592174086, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
   m_PrefabInstance: {fileID: 922137491}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &922137495 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+  m_PrefabInstance: {fileID: 922137491}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922137493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81db4a0e97cf39a4c8583160590bad2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BridgePoint
 --- !u!1001 &928612522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6705,6 +6894,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5741784096604700574}
     m_Modifications:
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: platform
+      value: 
+      objectReference: {fileID: 1406345879}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: otherBridgePoint
+      value: 
+      objectReference: {fileID: 243780309}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: rangedPoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: 'rangedPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1601155363}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: 'rangedPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 785311972}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: 'rangedPoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1511906564}
+    - target: {fileID: 1600062018240783154, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1600062018240783154, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6512300716324305966, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
       propertyPath: m_Name
       value: BridgeHorizontal03
@@ -6764,6 +6985,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6512300716324305966, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
   m_PrefabInstance: {fileID: 928612522}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &928612526 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+  m_PrefabInstance: {fileID: 928612522}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928612524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81db4a0e97cf39a4c8583160590bad2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BridgePoint
 --- !u!4 &952450990 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6854112408697252714, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
@@ -6911,6 +7143,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+--- !u!114 &1079415429 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4510955117718486514, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+  m_PrefabInstance: {fileID: 1079415428}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31c81cc07e5dbb4eb2a6b4b8f70ffa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedPoint
 --- !u!4 &1102555676 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6854112408697252714, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
@@ -7613,6 +7856,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5741784096604700574}
     m_Modifications:
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: platform
+      value: 
+      objectReference: {fileID: 1574120853}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: otherBridgePoint
+      value: 
+      objectReference: {fileID: 1738460509335594261}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: rangedPoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: 'rangedPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 908113313}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: 'rangedPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1869664606}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: 'rangedPoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1529998078}
+    - target: {fileID: 1600062018240783154, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1600062018240783154, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6512300716324305966, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
       propertyPath: m_Name
       value: BridgeHorizontal01
@@ -7672,6 +7947,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6512300716324305966, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
   m_PrefabInstance: {fileID: 1293679877}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1293679881 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+  m_PrefabInstance: {fileID: 1293679877}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293679879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81db4a0e97cf39a4c8583160590bad2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BridgePoint
 --- !u!1001 &1321475756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7864,6 +8150,34 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 15357046}
     - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: bridges.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'bridges.Array.data[0]'
+      value: 
+      objectReference: {fileID: 613908949}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'bridges.Array.data[1]'
+      value: 
+      objectReference: {fileID: 928612526}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: rangedPoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'rangedPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1601155363}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'rangedPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 785311972}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'rangedPoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1511906564}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: bridgesToDestroy.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -7894,15 +8208,19 @@ PrefabInstance:
     - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: 'rangedPointsToRemove.Array.data[0]'
       value: 
-      objectReference: {fileID: 74650922}
+      objectReference: {fileID: 1601155363}
     - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: 'rangedPointsToRemove.Array.data[1]'
       value: 
-      objectReference: {fileID: 863115239}
+      objectReference: {fileID: 785311972}
     - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: 'rangedPointsToRemove.Array.data[2]'
       value: 
-      objectReference: {fileID: 1967219706}
+      objectReference: {fileID: 1511906564}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'rangedPointsToRemove.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1601155363}
     - target: {fileID: 5359398562206087981, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4
@@ -8104,6 +8422,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+--- !u!114 &1510722105 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4510955117718486514, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+  m_PrefabInstance: {fileID: 1510722104}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31c81cc07e5dbb4eb2a6b4b8f70ffa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedPoint
 --- !u!1001 &1511906563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8161,6 +8490,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+--- !u!114 &1511906564 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4510955117718486514, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+  m_PrefabInstance: {fileID: 1511906563}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31c81cc07e5dbb4eb2a6b4b8f70ffa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedPoint
 --- !u!1001 &1529998077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8218,6 +8558,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+--- !u!114 &1529998078 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4510955117718486514, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+  m_PrefabInstance: {fileID: 1529998077}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31c81cc07e5dbb4eb2a6b4b8f70ffa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedPoint
 --- !u!114 &1574120853 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
@@ -8358,6 +8709,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+--- !u!114 &1601155363 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4510955117718486514, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+  m_PrefabInstance: {fileID: 1601155362}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31c81cc07e5dbb4eb2a6b4b8f70ffa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedPoint
 --- !u!1001 &1605375581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8410,6 +8772,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: BridgeVertical03
       objectReference: {fileID: 0}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: platform
+      value: 
+      objectReference: {fileID: 1574120853}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: otherBridgePoint
+      value: 
+      objectReference: {fileID: 613908949}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: rangedPoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: 'rangedPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 908113313}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: 'rangedPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1869664606}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: 'rangedPoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1529998078}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8425,6 +8811,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7223746426592174086, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
   m_PrefabInstance: {fileID: 1605375581}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1605375585 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+  m_PrefabInstance: {fileID: 1605375581}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605375583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81db4a0e97cf39a4c8583160590bad2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BridgePoint
 --- !u!4 &1645885891 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 528850299844369039, guid: d791bdda6678b854b88d1758e0ddd83c, type: 3}
@@ -8945,6 +9342,34 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1748235310}
     - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: bridges.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'bridges.Array.data[0]'
+      value: 
+      objectReference: {fileID: 922137495}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'bridges.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1738460509335594261}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: rangedPoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'rangedPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3194184437684291205}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'rangedPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1079415429}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'rangedPoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 350549224}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: bridgesToDestroy.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -8971,15 +9396,15 @@ PrefabInstance:
     - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: 'rangedPointsToRemove.Array.data[0]'
       value: 
-      objectReference: {fileID: 4195356120143714574}
+      objectReference: {fileID: 3194184437684291205}
     - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: 'rangedPointsToRemove.Array.data[1]'
       value: 
-      objectReference: {fileID: 952450990}
+      objectReference: {fileID: 1079415429}
     - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: 'rangedPointsToRemove.Array.data[2]'
       value: 
-      objectReference: {fileID: 1102555676}
+      objectReference: {fileID: 350549224}
     - target: {fileID: 5359398562206087981, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4
@@ -9106,6 +9531,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+--- !u!114 &1869664606 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4510955117718486514, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+  m_PrefabInstance: {fileID: 1869664605}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31c81cc07e5dbb4eb2a6b4b8f70ffa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedPoint
 --- !u!114 &1885806525 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
@@ -9236,6 +9672,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+--- !u!114 &1890597893 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4510955117718486514, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+  m_PrefabInstance: {fileID: 1890597892}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31c81cc07e5dbb4eb2a6b4b8f70ffa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedPoint
 --- !u!1001 &1900916056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9685,6 +10132,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5741784096604700574}
     m_Modifications:
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: platform
+      value: 
+      objectReference: {fileID: 1832766866}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: otherBridgePoint
+      value: 
+      objectReference: {fileID: 1293679881}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: rangedPoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: 'rangedPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3194184437684291205}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: 'rangedPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1079415429}
+    - target: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: 'rangedPoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 350549224}
+    - target: {fileID: 1600062018240783154, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6512300716324305966, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
       propertyPath: m_Name
       value: BridgeHorizontal00
@@ -9739,6 +10214,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6512300716324305966, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
   m_PrefabInstance: {fileID: 1738460509335594259}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1738460509335594261 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4691784725081864856, guid: 79e63436fd0c33946a03abd330f6d1f0, type: 3}
+  m_PrefabInstance: {fileID: 1738460509335594259}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738460509335594260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81db4a0e97cf39a4c8583160590bad2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BridgePoint
 --- !u!1001 &1772219279553130790
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9787,10 +10273,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5190953604457898596, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7223746426592174086, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
       propertyPath: m_Name
       value: BridgeVertical00
       objectReference: {fileID: 0}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: platform
+      value: 
+      objectReference: {fileID: 918007866}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: otherBridgePoint
+      value: 
+      objectReference: {fileID: 922137495}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: rangedPoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: 'rangedPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1510722105}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: 'rangedPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1890597893}
+    - target: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+      propertyPath: 'rangedPoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 577423803}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9806,6 +10320,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7223746426592174086, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
   m_PrefabInstance: {fileID: 1772219279553130790}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1772219279553130794 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7265860642408757850, guid: e0dc0cc7cf8e7d446869cbb7a2697fef, type: 3}
+  m_PrefabInstance: {fileID: 1772219279553130790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772219279553130792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81db4a0e97cf39a4c8583160590bad2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BridgePoint
 --- !u!1001 &1963513747884758551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9855,6 +10380,34 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 600261292}
     - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: bridges.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'bridges.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1772219279553130794}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'bridges.Array.data[1]'
+      value: 
+      objectReference: {fileID: 243780309}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: rangedPoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'rangedPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1510722105}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'rangedPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1890597893}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
+      propertyPath: 'rangedPoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 577423803}
+    - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: bridgesToDestroy.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -9881,15 +10434,15 @@ PrefabInstance:
     - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: 'rangedPointsToRemove.Array.data[0]'
       value: 
-      objectReference: {fileID: 361904971}
+      objectReference: {fileID: 1510722105}
     - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: 'rangedPointsToRemove.Array.data[1]'
       value: 
-      objectReference: {fileID: 40286724}
+      objectReference: {fileID: 1890597893}
     - target: {fileID: 3447144543726739907, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: 'rangedPointsToRemove.Array.data[2]'
       value: 
-      objectReference: {fileID: 613175097}
+      objectReference: {fileID: 577423803}
     - target: {fileID: 5359398562206087981, guid: 19cf58176afd3e34e869f9dadc72df5c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4
@@ -10001,6 +10554,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+--- !u!114 &3194184437684291205 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4510955117718486514, guid: d58df74c8182d36499789acc9f3581cd, type: 3}
+  m_PrefabInstance: {fileID: 3194184437684291204}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31c81cc07e5dbb4eb2a6b4b8f70ffa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedPoint
 --- !u!1001 &3905527765868393140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10263,6 +10827,10 @@ PrefabInstance:
       propertyPath: countdownText
       value: 
       objectReference: {fileID: 2033819468}
+    - target: {fileID: 5660054280036448657, guid: d791bdda6678b854b88d1758e0ddd83c, type: 3}
+      propertyPath: bridePointsParent
+      value: 
+      objectReference: {fileID: 5741784096604700574}
     - target: {fileID: 5660054280036448657, guid: d791bdda6678b854b88d1758e0ddd83c, type: 3}
       propertyPath: gameFinishedPanel
       value: 

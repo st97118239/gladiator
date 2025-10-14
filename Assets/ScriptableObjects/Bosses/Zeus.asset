@@ -16,7 +16,7 @@ MonoBehaviour:
   enemyType: 16
   attackType: 2
   abilityType: 3
-  health: 250
+  health: 200
   damage: 13
   speed: 7
   attackRadius: 15
@@ -24,14 +24,16 @@ MonoBehaviour:
   extraAttackDamage: 0
   extraAttackRadius: 0
   extraAttackSpeed: 0
-  abilityRadius: 4
+  abilityRadius: 10
   abilityTime: 2.8
   abilityCooldown: 7
   abilityPower: 25
-  abilityUseChance: 30
+  abilityUseChance: 70
   swipeAttackChance: 0
   rangedFleeRadius: 7
+  rangedPointsToCheck: 5
   projectile: {fileID: 11400000, guid: 2fb16398dcf188f4e841e31a5afd6c10, type: 2}
   singDrawSpeed: 0
   enemyToSummon: {fileID: 0}
   enemyAmtToSpawn: 0
+  useAltSlash: 0
