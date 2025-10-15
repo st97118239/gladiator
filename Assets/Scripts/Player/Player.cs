@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
 
         levelManager.enemyManager.SetClosest();
 
-        if (!hasAttackPreview) return;
+        if (!hasAttackPreview || Time.timeScale == 0) return;
 
         Vector3 aimDir = Vector3.zero;
 

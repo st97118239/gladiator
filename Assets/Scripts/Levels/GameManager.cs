@@ -18,11 +18,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void FirstLevel()
-    {
-        health = defaultHealth;
-    }
-
     public void Reset()
     {
         abilities.Clear();

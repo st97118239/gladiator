@@ -199,6 +199,7 @@ public class BossStateMachine : MonoBehaviour
         spriteRenderer.color = bossController.enemyManager.dashEnemyColor;
 
         ChangeState(dashState);
+        rb2d.excludeLayers = bossController.enemyManager.collisionLayer;
         rb2d.AddForce(moveAmount * abilityPower, ForceMode2D.Force);
         rb2d.linearDamping = 5;
 
@@ -243,6 +244,7 @@ public class BossStateMachine : MonoBehaviour
 
     private void ResetRigidbody()
     {
+        rb2d.excludeLayers = bossController.enemyManager.emptyLayer;
         rb2d.linearDamping = 10;
         isUsingAbility = false;
         canBeHit = true;
@@ -347,12 +349,6 @@ public class BossStateMachine : MonoBehaviour
 
         for (float i = 0; i < zeusFlyingSpeed + Time.deltaTime; i += Time.deltaTime)
         {
-            //if (Time.timeScale > 0)
-            //{
-            //    transform.position -= Vector3.up * 0.007f;
-            //    transform.localScale -= new Vector3(0.002f, 0.002f, 0);
-            //}
-
             transform.position = Vector3.Lerp(posToGoFrom, zeusStandingPos, i / zeusFlyingSpeed);
             transform.localScale = Vector3.Lerp(zeusFlyingScale, zeusDefaultScale, i / zeusFlyingSpeed);
 

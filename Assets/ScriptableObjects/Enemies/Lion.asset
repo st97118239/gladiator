@@ -16,11 +16,11 @@ MonoBehaviour:
   enemyType: 0
   attackType: 1
   ability: 0
-  health: 4
-  damage: 3
+  health: 9
+  damage: 10
   speed: 3
-  attackRadius: 1
-  attackSpeed: 0.7
+  attackRadius: 0.7
+  attackSpeed: 1
   abilityTime: 0
   abilityCooldown: 0
   abilityPower: 0
@@ -32,4 +32,5 @@ MonoBehaviour:
   singDrawSpeed: 0
   useAltSlash: 1
   usesBridges: 0
-  healthPotionChance: 20
+  healthPotionChance: 25
+  canBeHeld: 0

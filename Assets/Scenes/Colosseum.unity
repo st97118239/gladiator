@@ -8228,6 +8228,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5741784096604700577}
     - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: maxRootCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
       propertyPath: bossBarSlider
       value: 
       objectReference: {fileID: 3905527765868393145}
@@ -8237,7 +8241,7 @@ PrefabInstance:
       objectReference: {fileID: 592514611}
     - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
       propertyPath: maxSummonerEnemyCount
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5548334227488344643, guid: a8aa08712be39cf49be247240e83a675, type: 3}
       propertyPath: m_Name

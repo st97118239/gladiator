@@ -110,6 +110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
   levelManager: {fileID: 0}
   abilityManager: {fileID: 0}
+  bossBarSlider: {fileID: 0}
+  bossBarText: {fileID: 0}
   player: {fileID: 0}
   enemies: []
   summonerEnemies: []
@@ -121,6 +123,7 @@ MonoBehaviour:
   lightningStrike: {fileID: 0}
   rangedPositions: []
   swipePositions: []
+  bridgePoints: []
   currentWave: {fileID: 0}
   emptyEnemyPrefab: {fileID: 127359938022708900, guid: 15e0db7888fbe5142b1e892e8959014d, type: 3}
   emptyBossPrefab: {fileID: 127359938022708900, guid: f0f0b1dcad72eb848a74e2563ee7b25e, type: 3}
@@ -132,7 +135,7 @@ MonoBehaviour:
   projectileParent: {fileID: 1607569232705816480}
   enemySpawnIdx: 0
   enemyCount: 0
-  maxEnemyCount: 30
+  maxEnemyCount: 25
   maxSummonerEnemyCount: 2
   maxProjectileCount: 20
   maxNetCount: 1
@@ -143,5 +146,10 @@ MonoBehaviour:
   dashEnemyColor: {r: 0, g: 0.7490196, b: 1, a: 1}
   summonEnemyColor: {r: 0.4862745, g: 0.990566, b: 0.378471, a: 1}
   chargeEnemyColor: {r: 0.6933962, g: 1, b: 0.93941146, a: 1}
+  emptyLayer:
+    serializedVersion: 2
+    m_Bits: 2935
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 3063
   spawnDelay: 0.3
-  healthPotionDropChance: 10

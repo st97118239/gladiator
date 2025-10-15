@@ -47,6 +47,9 @@ public class EnemyManager : MonoBehaviour
     public Color summonEnemyColor;
     public Color chargeEnemyColor;
 
+    public LayerMask emptyLayer;
+    public LayerMask collisionLayer;
+
     [SerializeField] private float spawnDelay;
 
     private int spawnPosIdx;

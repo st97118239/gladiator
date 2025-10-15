@@ -75,6 +75,8 @@ public class UIManager : MonoBehaviour
     private bool isPaused;
     private bool hasChosenAbility;
 
+    private Coroutine fadeCoroutine;
+
     private static readonly int Level1 = Animator.StringToHash("Level");
 
     private void Awake()
@@ -123,7 +125,7 @@ public class UIManager : MonoBehaviour
             gameManager.StartLevel(levelChangeCurrentLvl);
         fadePanel.color = Color.gray2;
         Time.timeScale = 1;
-        StartCoroutine(LoadFade(true, -1, false));
+        fadeCoroutine = StartCoroutine(LoadFade(true, -1, false));
 
         if (!isMainGame)
         {
@@ -324,7 +326,10 @@ public class UIManager : MonoBehaviour
         if (!canPause) return;
 
         if (fadePanel.IsActive())
+        {
+            StopCoroutine(fadeCoroutine);
             fadePanel.gameObject.SetActive(false);
+        }
 
         isPaused = !isPaused;
 
@@ -338,7 +343,7 @@ public class UIManager : MonoBehaviour
 
     public void Restart()
     {
-        StartCoroutine(LoadFade(false, thisScene, false));
+        fadeCoroutine = StartCoroutine(LoadFade(false, thisScene, false));
     }
 
     public void Replay()
@@ -346,7 +351,7 @@ public class UIManager : MonoBehaviour
         if (gameManager) 
             gameManager.Reset();
 
-        StartCoroutine(LoadFade(false, 1, false));
+        fadeCoroutine = StartCoroutine(LoadFade(false, 1, false));
     }
 
     private IEnumerator LoadFade(bool shouldReverse, int sceneToLoad, bool shouldQuit)
@@ -415,12 +420,12 @@ public class UIManager : MonoBehaviour
 
     public void LoadSceneFade(int sceneToLoad)
     {
-        StartCoroutine(LoadFade(false, sceneToLoad, false));
+        fadeCoroutine = StartCoroutine(LoadFade(false, sceneToLoad, false));
     }
 
     public void MainMenu()
     {
-        StartCoroutine(LoadFade(false, mainMenuScene, false));
+        fadeCoroutine = StartCoroutine(LoadFade(false, mainMenuScene, false));
     }
 
     public void ShowDeathScreen()
@@ -646,7 +651,10 @@ public class UIManager : MonoBehaviour
             StartCoroutine(LevelChangeScreenAnim());
         }
         else
+        {
+            StopCoroutine(fadeCoroutine);
             LoadSceneFade(nextScene);
+        }
     }
 
     public void WinMainMenuButton()
@@ -677,7 +685,8 @@ public class UIManager : MonoBehaviour
 
     public void Exit()
     {
-        StartCoroutine(LoadFade(false, -1, true));
+        StopCoroutine(fadeCoroutine);
+        fadeCoroutine = StartCoroutine(LoadFade(false, -1, true));
     }
 
     public void Quit()

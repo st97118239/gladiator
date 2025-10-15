@@ -24,4 +24,5 @@ public class Enemy : ScriptableObject
     public bool useAltSlash;
     public bool usesBridges;
     public int healthPotionChance;
+    public bool canBeHeld;
 }

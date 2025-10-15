@@ -29,6 +29,9 @@ public class Discord_Controller : MonoBehaviour
                 LargeText = "Main Menu"
             }
         };
+
+
+        activityManager.UpdateActivity(activity, (res) => {});
     }
 
     public void Level1()
@@ -43,6 +46,8 @@ public class Discord_Controller : MonoBehaviour
                 LargeText = "Colosseum"
             }
         };
+
+        activityManager.UpdateActivity(activity, (res) => { });
     }
 
     public void Level2()
@@ -57,6 +62,8 @@ public class Discord_Controller : MonoBehaviour
                 LargeText = "The Forest"
             }
         };
+
+        activityManager.UpdateActivity(activity, (res) => { });
     }
 
     public void Level3()
@@ -71,6 +78,8 @@ public class Discord_Controller : MonoBehaviour
                 LargeText = "High Stakes"
             }
         };
+
+        activityManager.UpdateActivity(activity, (res) => { });
     }
 
     public void Level4()
@@ -85,6 +94,8 @@ public class Discord_Controller : MonoBehaviour
                 LargeText = "Olympus"
             }
         };
+
+        activityManager.UpdateActivity(activity, (res) => { });
     }
 
     private void Update()

@@ -456,7 +456,9 @@ public class AbilityManager : MonoBehaviour
             
             if (!cd2d.gameObject.CompareTag("Enemy")) return;
             checkIfFirst = false;
-            enemyHeld = cd2d.gameObject.GetComponent<EnemyStateMachine>();
+            EnemyStateMachine enemy = cd2d.gameObject.GetComponent<EnemyStateMachine>();
+            if (enemy.enemyController.enemy.canBeHeld)
+                enemyHeld = enemy;
         }
 
         if (!enemyHeld) return;

@@ -252,6 +252,7 @@ public class EnemyStateMachine : MonoBehaviour
         spriteRenderer.color = enemyController.enemyManager.dashEnemyColor;
 
         ChangeState(dashState);
+        rb2d.excludeLayers = enemyController.enemyManager.collisionLayer;
         rb2d.AddForce(moveAmount * dashSpeed, ForceMode2D.Force);
         rb2d.linearDamping = 5;
 
@@ -261,6 +262,7 @@ public class EnemyStateMachine : MonoBehaviour
 
     private void ResetRigidbody()
     {
+        rb2d.excludeLayers = enemyController.enemyManager.emptyLayer;
         rb2d.linearDamping = 10;
         isDashing = false;
         spriteRenderer.color = enemyController.enemyManager.defaultEnemyColor;
