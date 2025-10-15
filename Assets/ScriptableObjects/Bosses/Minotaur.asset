@@ -16,6 +16,7 @@ MonoBehaviour:
   enemyType: 3
   attackType: 1
   abilityType: 1
+  bossName: Minotaur
   health: 75
   damage: 10
   speed: 3

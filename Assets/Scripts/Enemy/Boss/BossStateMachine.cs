@@ -82,6 +82,7 @@ public class BossStateMachine : MonoBehaviour
         abilityType = bossController.boss.abilityType;
         canDash = false;
         isUsingAbility = false;
+        slashSprite.color = Color.clear;
 
         if (attackType == AttackType.Sing)
             FindPuddle();
@@ -227,10 +228,13 @@ public class BossStateMachine : MonoBehaviour
 
     public IEnumerator SummonAnim()
     {
+        isUsingAbility = true;
+
         yield return new WaitForSeconds(bossController.boss.abilityTime);
 
         bossController.spriteRenderer.color = bossController.enemyManager.defaultEnemyColor;
         isReloading = false;
+        isUsingAbility = false;
 
         if (isStunned) yield break;
         StartCoroutine(AbilityCooldown());

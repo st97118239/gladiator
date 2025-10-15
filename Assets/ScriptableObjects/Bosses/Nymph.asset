@@ -16,6 +16,7 @@ MonoBehaviour:
   enemyType: 7
   attackType: 5
   abilityType: 0
+  bossName: Nymph
   health: 80
   damage: 10
   speed: 2

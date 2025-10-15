@@ -16,6 +16,7 @@ MonoBehaviour:
   enemyType: 11
   attackType: 7
   abilityType: 1
+  bossName: Griffon
   health: 100
   damage: 5
   speed: 3.1

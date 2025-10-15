@@ -16,6 +16,7 @@ MonoBehaviour:
   enemyType: 16
   attackType: 2
   abilityType: 3
+  bossName: Zeus
   health: 200
   damage: 13
   speed: 7

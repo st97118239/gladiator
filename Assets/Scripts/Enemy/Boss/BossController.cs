@@ -73,7 +73,21 @@ public class BossController : MonoBehaviour
             switch (bossStateMachine.isReloading)
             {
                 case true:
-                    spriteRenderer.color = enemyManager.cooldownEnemyColor;
+                    if (bossStateMachine.isUsingAbility)
+                    {
+                        switch (boss.abilityType)
+                        {
+                            case BossAbility.Dash:
+                                spriteRenderer.color = enemyManager.dashEnemyColor;
+                                break;
+                            case BossAbility.Summon:
+                                spriteRenderer.color = enemyManager.summonEnemyColor;
+                                break;
+                        }
+                    }
+                    else
+                        spriteRenderer.color = enemyManager.cooldownEnemyColor;
+
                     break;
                 case false:
                     spriteRenderer.color = enemyManager.defaultEnemyColor;

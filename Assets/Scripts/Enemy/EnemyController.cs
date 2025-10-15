@@ -80,7 +80,7 @@ public class EnemyController : MonoBehaviour
                 spriteRenderer.color = enemyManager.cooldownEnemyColor;
                 break;
             case false:
-                spriteRenderer.color = enemyManager.defaultEnemyColor;
+                spriteRenderer.color = enemyStateMachine.isBlocking ? enemyManager.cooldownEnemyColor : enemyManager.defaultEnemyColor;
                 break;
         }
     }

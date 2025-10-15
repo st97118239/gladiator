@@ -122,8 +122,8 @@ MonoBehaviour:
   meleeDamage: 5
   meleeAtkSpeed: 1
   atkKnockback: 1
-  healthPotionHealAmt: 50
-  healthPotionCap: 5
+  healthPotionHealAmt: 30
+  healthPotionCap: 3
   hitTime: 0.3
   canAttack: 0
   hasAttackCooldown: 0

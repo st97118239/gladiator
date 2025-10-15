@@ -70,6 +70,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private float fadePanelTime;
 
+    [SerializeField] private GameObject[] mainMenuBackgrounds;
+
     private bool isPaused;
     private bool hasChosenAbility;
 
@@ -79,7 +81,7 @@ public class UIManager : MonoBehaviour
     {
         gameManager = FindFirstObjectByType<GameManager>();
 
-        if (!gameManager) 
+        if (!gameManager)
             BorderTypeSetting(false);
 
         if (PlayerPrefs.GetInt("hasPlayed") == 0)
@@ -93,6 +95,26 @@ public class UIManager : MonoBehaviour
 
         if (levelChangeCurrentLvl == 1)
             gameManager.Reset();
+
+        if (isMainGame) return;
+
+        int amount = PlayerPrefs.GetInt("HighestLevelReached");
+
+        if (amount == 0) amount++;
+
+        List<GameObject> backgrounds = new();
+
+        foreach (GameObject bg in mainMenuBackgrounds)
+        {
+            if (amount <= 0) break;
+
+            backgrounds.Add(bg);
+            amount--;
+        }
+
+        int roll = Random.Range(0, backgrounds.Count);
+
+        backgrounds[roll].SetActive(true);
     }
 
     private void Start()

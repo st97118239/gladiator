@@ -168,7 +168,11 @@ public class LevelManager : MonoBehaviour
     public void GameEnd(bool died)
     {
         if (!died)
+        {
             uiManager.ShowWinScreen();
+            if (PlayerPrefs.GetInt("HighestLevelReached") < uiManager.levelChangeCurrentLvl)
+                PlayerPrefs.SetInt("HighestLevelReached", uiManager.levelChangeCurrentLvl);
+        }
         else
             uiManager.ShowDeathScreen();
 

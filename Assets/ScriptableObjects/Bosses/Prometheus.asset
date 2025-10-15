@@ -16,6 +16,7 @@ MonoBehaviour:
   enemyType: 15
   attackType: 1
   abilityType: 2
+  bossName: Prometheus
   health: 100
   damage: 5
   speed: 3.1

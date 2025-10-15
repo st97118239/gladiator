@@ -32,4 +32,4 @@ MonoBehaviour:
   singDrawSpeed: 0
   useAltSlash: 1
   usesBridges: 0
-  healthPotionChance: 15
+  healthPotionChance: 20
