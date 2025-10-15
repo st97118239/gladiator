@@ -236,6 +236,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5289157835933326106, guid: a45f76990c0cb3245b72c5108caf454f, type: 3}
+      propertyPath: playerMelee
+      value: 
+      objectReference: {fileID: 8300000, guid: 6bb5b2a27d6210546be34b293e1ff160, type: 3}
     - target: {fileID: 6840469631058064389, guid: a45f76990c0cb3245b72c5108caf454f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.67081
