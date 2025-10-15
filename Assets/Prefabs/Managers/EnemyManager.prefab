@@ -152,4 +152,4 @@ MonoBehaviour:
   collisionLayer:
     serializedVersion: 2
     m_Bits: 3063
-  spawnDelay: 0.3
+  spawnDelay: 0.6

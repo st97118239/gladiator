@@ -212,7 +212,13 @@ public class Player : MonoBehaviour
 
         spriteRenderer.color = cooldownColor;
 
-        yield return new WaitForSeconds(meleeAtkSpeed * atkSpeedMultiplier);
+        float timer = meleeAtkSpeed * atkSpeedMultiplier;
+
+        for (float i = 0; i < timer + Time.deltaTime; i += Time.deltaTime)
+        {
+            if (Time.timeScale != 0)
+                yield return null;
+        }
 
         hasAttackCooldown = false;
 
