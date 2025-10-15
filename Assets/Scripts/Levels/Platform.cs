@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
@@ -25,6 +26,11 @@ public class Platform : MonoBehaviour
     [SerializeField] private BoxCollider2D brokenCollider;
     [SerializeField] private BoxCollider2D bc2d;
 
+    [SerializeField] private float timeUntilBroken;
+
+    private List<EnemyController> enemiesToKill;
+    private bool shouldKillPlayer;
+
     private static readonly int BreakAnim = Animator.StringToHash("Break");
 
     // TODO platform animation
@@ -37,19 +43,11 @@ public class Platform : MonoBehaviour
 
         if (levelManager.player.currentPlatform == this)
         {
-            levelManager.player.PlayerHit(1000, false, true);
+            shouldKillPlayer = true;
+            levelManager.player.movementScript.canMove = false;
         }
 
-        if (animator)
-            animator.SetTrigger(BreakAnim);
-        else
-            gameObject.SetActive(false);
-
-        foreach (BridgePoint bridge in bridges)
-        {
-            bridge.gameObject.SetActive(false);
-            bridge.isBroken = true;
-        }
+        animator.SetTrigger(BreakAnim);
 
         foreach (Transform spawnPoint in spawnpointsToRemove)
         {
@@ -60,17 +58,40 @@ public class Platform : MonoBehaviour
             levelManager.enemyManager.rangedPositions.Remove(rangedPoint);
         }
 
+        enemiesToKill = new List<EnemyController>();
+
         foreach (EnemyController enemy in levelManager.enemyManager.enemies)
         {
             if (!enemy.isActiveAndEnabled) continue;
 
-            if (enemy.enemyStateMachine.currentPlatform == this)
-                enemy.Hit(10000, false);
+            if (enemy.enemyStateMachine.currentPlatform != this) continue;
+
+            enemiesToKill.Add(enemy);
+            enemy.Stun(timeUntilBroken);
         }
 
         if (levelManager.availablePlatforms.Contains(this))
         {
             levelManager.availablePlatforms.Remove(this);
         }
+
+        Invoke(nameof(FullyBreak), timeUntilBroken);
+    }
+
+    private void FullyBreak()
+    {
+        foreach (BridgePoint bridge in bridges)
+        {
+            bridge.gameObject.SetActive(false);
+            bridge.isBroken = true;
+        }
+
+        foreach (EnemyController enemy in enemiesToKill)
+        {
+            enemy.Hit(10000, false);
+        }
+
+        if (shouldKillPlayer)
+            levelManager.player.PlayerHit(1000, false, true);
     }
 }

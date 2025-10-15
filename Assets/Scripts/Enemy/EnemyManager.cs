@@ -182,7 +182,7 @@ public class EnemyManager : MonoBehaviour
             enemy.transform.position = boss.boss.enemyType == EnemyTypes.Nymph ? Vector3.zero : levelManager.spawnpoints[spawnPosIdx].position;
             bossBarSlider.maxValue = enemy.health;
             bossBarSlider.value = enemy.health;
-            bossBarText.text = enemy.boss.name;
+            bossBarText.text = enemy.boss.bossName;
             enemy.gameObject.SetActive(true);
             bossBarSlider.gameObject.SetActive(true);
             bossBarText.gameObject.SetActive(true);

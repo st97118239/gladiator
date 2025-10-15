@@ -7,6 +7,7 @@ public class Boss : ScriptableObject
     public EnemyTypes enemyType;
     public AttackType attackType;
     public BossAbility abilityType;
+    public string bossName;
     public int health;
     public int damage;
     public float speed;

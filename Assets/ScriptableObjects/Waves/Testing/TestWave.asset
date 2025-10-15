@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Wave
   enemies:
   - {fileID: 11400000, guid: ca7f9ba69bde6434385ac6ed55ac528b, type: 2}
+  - {fileID: 11400000, guid: b61740597a5881f4286d5ccee4207b84, type: 2}
   boss: {fileID: 0}
   hasAbilityRoll: 0
   abilitySortsToRoll: 
