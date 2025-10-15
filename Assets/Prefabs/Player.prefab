@@ -199,7 +199,7 @@ MonoBehaviour:
   crossbowCooldown: 1
   netProjectile: {fileID: 11400000, guid: 79b6e4f0a4010ca49b1e1a0f043f4d52, type: 2}
   netCollapsedProjectile: {fileID: 11400000, guid: 188c4f392efe2a94f9bc9491625cb3b5, type: 2}
-  netCooldown: 10
+  netCooldown: 5
   enemyHeld: {fileID: 0}
   throwSpeed: 700
   throwTime: 0.3

@@ -1200,6 +1200,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1885806525}
     - target: {fileID: 5799873494410771425, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: netCooldown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799873494410771425, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 5741784096604700577}
@@ -11156,11 +11160,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6840469631058064389, guid: a45f76990c0cb3245b72c5108caf454f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.67081
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6840469631058064389, guid: a45f76990c0cb3245b72c5108caf454f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2208
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6840469631058064389, guid: a45f76990c0cb3245b72c5108caf454f, type: 3}
       propertyPath: m_LocalPosition.z

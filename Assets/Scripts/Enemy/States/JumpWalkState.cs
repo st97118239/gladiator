@@ -22,6 +22,8 @@ public class JumpWalkState : IEnemyState
             return;
         }
 
+        if (controller.enemyController.enemy.attackType != AttackType.Jump) return;
+
         float posDistance = Vector3.Distance(controller.transform.position, posToGoTo);
 
         if (posDistance <= controller.enemyController.enemy.attackRadius)

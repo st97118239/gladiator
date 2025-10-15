@@ -22,6 +22,16 @@ public class RangedBridgeWalkState : IEnemyState
             return;
         }
 
+        if (platformToGoTo.isBroken)
+        {
+            reachedPos = false;
+            goToBridge = true;
+            goToOtherBridge = false;
+            goToRangedPoint = false;
+            CalculateNextPath(controller);
+            return;
+        }
+
         float playerDistance = Vector3.Distance(controller.transform.position, player.transform.position);
         float posDistance = Vector3.Distance(controller.transform.position, posToRunTo);
 
@@ -32,6 +42,7 @@ public class RangedBridgeWalkState : IEnemyState
                 reachedPos = false;
                 isAttacking = false;
                 goToBridge = true;
+                goToOtherBridge = false;
                 goToRangedPoint = false;
                 CalculateNextPath(controller);
                 return;
@@ -104,6 +115,7 @@ public class RangedBridgeWalkState : IEnemyState
         player = controller.enemyController.enemyManager.player;
         speed = controller.enemyController.enemy.speed;
         goToBridge = true;
+        goToOtherBridge = false;
         goToRangedPoint = false;
         CalculateNextPath(controller);
     }

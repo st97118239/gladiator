@@ -17,7 +17,7 @@ MonoBehaviour:
   attackType: 1
   ability: 1
   health: 4
-  damage: 3
+  damage: 2
   speed: 3
   attackRadius: 1
   attackSpeed: 0.7
@@ -33,3 +33,4 @@ MonoBehaviour:
   useAltSlash: 1
   usesBridges: 0
   healthPotionChance: 20
+  canBeHeld: 0

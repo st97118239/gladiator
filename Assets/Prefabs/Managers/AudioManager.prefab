@@ -49,7 +49,7 @@ MonoBehaviour:
   sfxAudioSource: {fileID: -2599822558263462293}
   musicAudioSource: {fileID: 8898517875278498114}
   playerHit: {fileID: 8300000, guid: fa578bfb9166cb74a85f81b25bf01a32, type: 3}
-  playerMelee: {fileID: 8300000, guid: 46d2a73aa8a414a4d9db3fa1dce7e722, type: 3}
+  playerMelee: {fileID: 8300000, guid: 6bb5b2a27d6210546be34b293e1ff160, type: 3}
   playerBow: {fileID: 8300000, guid: 94095971ff6e2564dade4fe30ad40f0b, type: 3}
   playerNetThrow: {fileID: 8300000, guid: 4f1910e18a69c0c458a92e136691d7a5, type: 3}
   playerBlock: {fileID: 8300000, guid: 2c65fdc059c92b54e8dfec8cea6c3462, type: 3}
