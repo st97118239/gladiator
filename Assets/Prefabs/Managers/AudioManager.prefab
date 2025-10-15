@@ -48,28 +48,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   sfxAudioSource: {fileID: -2599822558263462293}
   musicAudioSource: {fileID: 8898517875278498114}
-  playerHit: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
-  playerMelee: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
-  playerBow: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
-  playerNetThrow: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
-  playerBlock: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
+  playerHit: {fileID: 8300000, guid: fa578bfb9166cb74a85f81b25bf01a32, type: 3}
+  playerMelee: {fileID: 8300000, guid: 46d2a73aa8a414a4d9db3fa1dce7e722, type: 3}
+  playerBow: {fileID: 8300000, guid: 94095971ff6e2564dade4fe30ad40f0b, type: 3}
+  playerNetThrow: {fileID: 8300000, guid: 4f1910e18a69c0c458a92e136691d7a5, type: 3}
+  playerBlock: {fileID: 8300000, guid: 2c65fdc059c92b54e8dfec8cea6c3462, type: 3}
   playerThrow: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
   playerWalk: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
-  playerDash: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
-  playerRage: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
-  playerPotionUse: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
+  playerDash: {fileID: 8300000, guid: 4f1910e18a69c0c458a92e136691d7a5, type: 3}
+  playerRage: {fileID: 8300000, guid: 859aaa57b9aa84d4eabf2d6f228b0508, type: 3}
+  playerPotionUse: {fileID: 8300000, guid: a0862603fa094d24d8a1f321b1759e06, type: 3}
   playerPickUp: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
-  enemyHit: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
-  enemyAttack: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
-  enemyShoot: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
-  enemyCast: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
+  enemyHit: {fileID: 8300000, guid: e4d33558e17e9e54caead24022459d63, type: 3}
+  enemyAttack: {fileID: 8300000, guid: 46d2a73aa8a414a4d9db3fa1dce7e722, type: 3}
+  enemyShoot: {fileID: 8300000, guid: 94095971ff6e2564dade4fe30ad40f0b, type: 3}
+  enemyCast: {fileID: 8300000, guid: 3464b71837473c241a0bb8346b773996, type: 3}
   enemySing: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
   stoneGolemJump: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
   minotaurRoar: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
   griffonScreech: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
   zeusThrow: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
   zeusThunderStrike: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
-  buttonHover: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
+  buttonHover: {fileID: 8300000, guid: 0d9414aeca1e1154f81836636e3d2c01, type: 3}
   buttonSelect: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
   bgmMainMenu: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
   bgmColosseum: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
