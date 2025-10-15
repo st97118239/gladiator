@@ -27,5 +27,9 @@ MonoBehaviour:
   blockTime: 0
   blockCooldown: 0
   rangedFleeRadius: 0
+  rangedPointsToCheck: 0
   projectile: {fileID: 0}
   singDrawSpeed: 0
+  useAltSlash: 0
+  usesBridges: 0
+  healthPotionChance: 5

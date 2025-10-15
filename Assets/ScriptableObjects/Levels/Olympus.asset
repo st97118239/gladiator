@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4dc83e71e13111246b735a285182170c, type: 3}
-  m_Name: OlympusTest
+  m_Name: Olympus
   m_EditorClassIdentifier: Assembly-CSharp::Level
   waves:
   - {fileID: 11400000, guid: e9999a08dc3c3f94bb6087c43ae934ae, type: 2}

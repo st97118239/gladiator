@@ -194,9 +194,9 @@ public class Player : MonoBehaviour
         while (i < hitColliders.Count)
         {
             if (hitColliders[i].CompareTag("Enemy"))
-                hitColliders[i].GetComponent<EnemyController>().Hit(meleeDamage);
+                hitColliders[i].GetComponent<EnemyController>().Hit(meleeDamage, true);
             else if (hitColliders[i].CompareTag("Boss"))
-                hitColliders[i].GetComponent<BossController>().Hit(meleeDamage, false);
+                hitColliders[i].GetComponent<BossController>().Hit(meleeDamage, false, true);
             i++;
         }
 

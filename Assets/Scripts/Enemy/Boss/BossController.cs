@@ -23,7 +23,7 @@ public class BossController : MonoBehaviour
         bossStateMachine.Load();
     }
 
-    public void Hit(int damage, bool fromProj)
+    public void Hit(int damage, bool fromProj, bool fromPlayer)
     {
         if ((!bossStateMachine.canBeHit && !fromProj) || (!bossStateMachine.canBeShot && fromProj)) return;
 
@@ -55,7 +55,7 @@ public class BossController : MonoBehaviour
         transform.position = Vector3.zero;
         spriteRenderer.color = enemyManager.defaultEnemyColor;
 
-        enemyManager.CheckIfEnd(true, false);
+        enemyManager.CheckIfEnd(true, false, boss.healthPotionChance);
     }
 
     private IEnumerator HitEffect()

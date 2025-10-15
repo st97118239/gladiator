@@ -27,9 +27,18 @@ public class Platform : MonoBehaviour
 
     private static readonly int BreakAnim = Animator.StringToHash("Break");
 
+    // TODO platform animation
+
     public void Break()
     {
         isBroken = true;
+
+        brokenCollider.gameObject.SetActive(true);
+
+        if (levelManager.player.currentPlatform == this)
+        {
+            levelManager.player.PlayerHit(1000, false, true);
+        }
 
         if (animator)
             animator.SetTrigger(BreakAnim);
@@ -56,13 +65,12 @@ public class Platform : MonoBehaviour
             if (!enemy.isActiveAndEnabled) continue;
 
             if (enemy.enemyStateMachine.currentPlatform == this)
-                enemy.Hit(10000);
+                enemy.Hit(10000, false);
         }
 
         if (levelManager.availablePlatforms.Contains(this))
         {
             levelManager.availablePlatforms.Remove(this);
         }
-        brokenCollider.gameObject.SetActive(true);
     }
 }

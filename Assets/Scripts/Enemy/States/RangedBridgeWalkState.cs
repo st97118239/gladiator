@@ -154,7 +154,6 @@ public class RangedBridgeWalkState : IEnemyState
         }
         else if (goToRangedPoint)
         {
-
             posToRunTo = platformToGoTo.rangedPoints[Random.Range(0, controller.currentPlatform.rangedPoints.Length)].transform.position;
             reachedPos = false;
         }

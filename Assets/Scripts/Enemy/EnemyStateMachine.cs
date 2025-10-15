@@ -175,7 +175,7 @@ public class EnemyStateMachine : MonoBehaviour
         if (enemyController.enemyManager.levelManager.availablePuddles.Count == 0)
         {
             Debug.LogError("Not enough puddles. Please fix!");
-            enemyController.Hit(1000);
+            enemyController.Hit(1000, false);
         }
 
         puddle = enemyController.enemyManager.levelManager.availablePuddles[Random.Range(0, enemyController.enemyManager.levelManager.availablePuddles.Count)];
@@ -184,7 +184,7 @@ public class EnemyStateMachine : MonoBehaviour
         if (!puddle)
         {
             Debug.LogError("Not enough puddles. Please fix!");
-            enemyController.Hit(1000);
+            enemyController.Hit(1000, false);
         }
 
         puddle.occupied = true;
@@ -192,21 +192,38 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void FindPlatform()
     {
-        if (enemyController.enemyManager.levelManager.availablePlatforms.Count == 0)
+        while (true)
         {
+            if (enemyController.enemyManager.levelManager.availablePlatforms.Count == 0)
+            {
+                Debug.LogError("Not enough platforms. Please fix!");
+                enemyController.Hit(1000, false);
+                return;
+            }
+
+            Platform pf = enemyController.enemyManager.levelManager.availablePlatforms[Random.Range(0, enemyController.enemyManager.levelManager.availablePlatforms.Count)];
+
+            platform = pf;
+
+            if (pf == currentPlatform)
+            {
+                if (enemyController.enemyManager.levelManager.availablePlatforms.Count == 1)
+                {
+                    Debug.LogError("Not enough platforms. Please fix!");
+                    enemyController.Hit(1000, false);
+                    return;
+                }
+                continue;
+            }
+
+            enemyController.enemyManager.levelManager.availablePlatforms.Remove(pf);
+
+            if (pf) return;
+
             Debug.LogError("Not enough platforms. Please fix!");
-            enemyController.Hit(1000);
+            enemyController.Hit(1000, false);
+            break;
         }
-
-        Platform pf = enemyController.enemyManager.levelManager.availablePlatforms[Random.Range(0, enemyController.enemyManager.levelManager.availablePlatforms.Count)];
-        enemyController.enemyManager.levelManager.availablePlatforms.Remove(pf);
-
-        platform = pf;
-
-        if (pf) return;
-
-        Debug.LogError("Not enough platforms. Please fix!");
-        enemyController.Hit(1000);
     }
 
     private void OnDrawGizmos()
@@ -292,6 +309,6 @@ public class EnemyStateMachine : MonoBehaviour
         isBeingThrown = false;
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
         ChangeState(idleState);
-        enemyController.Hit(fallDamage);
+        enemyController.Hit(fallDamage, true);
     }
 }

@@ -25,7 +25,7 @@ public class EnemyController : MonoBehaviour
         enemyStateMachine.Load();
     }
 
-    public void Hit(int damage)
+    public void Hit(int damage, bool fromPlayer)
     {
         if (enemyStateMachine.isDashing || enemyStateMachine.isBeingHeld) return;
 
@@ -36,7 +36,7 @@ public class EnemyController : MonoBehaviour
         health -= damage;
         enemyManager.levelManager.uiManager.audioManager.PlayEnemyHit();
 
-        if (enemyManager.abilityManager.hasLifesteal)
+        if (fromPlayer && enemyManager.abilityManager.hasLifesteal)
             enemyManager.player.Lifesteal(damage);
 
         // TODO: Knockback code here
@@ -65,7 +65,7 @@ public class EnemyController : MonoBehaviour
 
         enemyStateMachine.currentPlatform = null;
 
-        enemyManager.CheckIfEnd(false, isSummoned);
+        enemyManager.CheckIfEnd(false, isSummoned, fromPlayer ? enemy.healthPotionChance : 0);
     }
 
     private IEnumerator HitEffect()

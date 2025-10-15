@@ -1,13 +1,18 @@
+using System.Numerics;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 public class JumpWalkState : IEnemyState
 {
-    private Platform platform;
     private Vector3 posToGoTo;
-    private Vector3 bridgeToGoTo;
+    private Vector3 otherBridgeToGoTo;
     private Vector3 platformToGoTo;
-    private bool isGoingToPlatform;
     private float speed;
+
+    private bool isGoingToBridge;
+    private bool isGoingToOtherBridge;
+    private bool isGoingToPlatform;
+    private bool reachedPos;
 
     public void UpdateState(EnemyStateMachine controller)
     {
@@ -17,242 +22,130 @@ public class JumpWalkState : IEnemyState
             return;
         }
 
-        if (bridgeToGoTo == Vector3.zero && platformToGoTo == Vector3.zero)
-            CalculatePath(controller);
+        float posDistance = Vector3.Distance(controller.transform.position, posToGoTo);
 
-        Vector3 position = controller.transform.position;
+        if (posDistance <= controller.enemyController.enemy.attackRadius)
+        {
+            if (isGoingToBridge)
+            {
+                reachedPos = true;
+                isGoingToBridge = false;
+                isGoingToOtherBridge = true;
+                isGoingToPlatform = false;
+                CalculateNextPath(controller);
+                return;
+            }
 
-        if (Vector3.Distance(position, bridgeToGoTo) <= controller.enemyController.enemy.attackRadius)
-        {
-            Debug.Log("Reached bridge."); // DEBUGGING
-            bridgeToGoTo = Vector3.zero;
-            isGoingToPlatform = true;
-            posToGoTo = platformToGoTo;
-        }
-        else if (Vector3.Distance(position, platformToGoTo) <= controller.enemyController.enemy.attackRadius)
-        {
-            Debug.Log("Reached platform."); // DEBUGGING
-            isGoingToPlatform = false;
-            CalculatePath(controller);
-        }
-        
-        if (Vector3.Distance(position, platform.middleObj.position) <= controller.enemyController.enemy.attackRadius)
-        {
-            Debug.Log("Reached destination."); // DEBUGGING
-            controller.reachedPlatform = true;
-            controller.ChangeState(controller.jumpState);
-            return;
+            if (isGoingToOtherBridge)
+            {
+                if (controller.currentPlatform == controller.platform)
+                {
+                    reachedPos = true;
+                    isGoingToBridge = false;
+                    isGoingToOtherBridge = false;
+                    isGoingToPlatform = true;
+                }
+                else
+                {
+                    reachedPos = true;
+                    isGoingToBridge = true;
+                    isGoingToOtherBridge = false;
+                    isGoingToPlatform = false;
+                }
+
+                CalculateNextPath(controller);
+                return;
+            }
+
+            if (isGoingToPlatform)
+            {
+                reachedPos = true;
+                isGoingToBridge = false;
+                isGoingToOtherBridge = false;
+                isGoingToPlatform = false;
+
+                if (controller.currentPlatform == controller.platform)
+                {
+                    Debug.Log("Reached destination."); // DEBUGGING
+                    controller.reachedPlatform = true;
+                    controller.ChangeState(controller.jumpState);
+                    return;
+                }
+            }
         }
 
-        controller.transform.position = Vector3.MoveTowards(controller.transform.position, posToGoTo, speed * Time.deltaTime);
+        if (!reachedPos)
+            controller.transform.position = Vector3.MoveTowards(controller.transform.position, posToGoTo, speed * Time.deltaTime);
 
         if (posToGoTo.x < controller.transform.position.x)
             controller.enemyController.spriteRenderer.flipX = true;
         else if (posToGoTo.x > controller.transform.position.x) 
             controller.enemyController.spriteRenderer.flipX = false;
-
-        if (controller.canDash && controller.dashDelay < 0)
-            controller.Dash();
     }
     
     public void OnEnter(EnemyStateMachine controller)
     {
         controller.FindPlatform();
         posToGoTo = Vector3.zero;
-        bridgeToGoTo = Vector3.zero;
+        otherBridgeToGoTo = Vector3.zero;
         platformToGoTo = Vector3.zero;
-        isGoingToPlatform = false;
-        platform = controller.platform;
         speed = controller.enemyController.enemy.speed;
-        CalculatePath(controller);
+        isGoingToBridge = true;
+        isGoingToOtherBridge = false;
+        isGoingToPlatform = false;
+        reachedPos = false;
+        CalculateNextPath(controller);
     }
 
-    private void CalculatePath(EnemyStateMachine controller)
-    {
-        if (isGoingToPlatform || !controller.currentPlatform)
+    private void CalculateNextPath(EnemyStateMachine controller)
+    { 
+        if (isGoingToBridge)
         {
-            Debug.Log("Can't move."); // DEBUGGING
-            return;
-        }
+            BridgePoint toGoTo = null;
 
-        if (platform.middleObj.position == posToGoTo)
-        {
-            Debug.Log("Already going to a platform."); // DEBUGGING
-            isGoingToPlatform = true;
-            return;
-        }
+            foreach (BridgePoint bp in controller.currentPlatform.bridges)
+            {
+                if (bp.otherBridgePoint.isBroken) continue;
 
-        if (controller.currentPlatform == platform)
-        {
-            if (!controller.currentPlatform.isBroken)
-            {
-                Debug.Log("This platform"); // DEBUGGING
-                isGoingToPlatform = true;
-                posToGoTo = platform.middleObj.position;
-                return;
-            }
-            Debug.Log("This platform is unavailable."); // DEBUGGING
-        }
-        if (controller.currentPlatform.platformUp == platform)
-        {
-            if (!controller.currentPlatform.platformUp.isBroken)
-            {
-                Debug.Log("Up."); // DEBUGGING
-                bridgeToGoTo = controller.currentPlatform.bridgeUp.transform.position;
-                platformToGoTo = controller.currentPlatform.platformUp.middleObj.position;
-                isGoingToPlatform = false;
-                posToGoTo = bridgeToGoTo;
-                return;
-            }
-            Debug.Log("Up is unavailable."); // DEBUGGING
-        }
-        if (controller.currentPlatform.platformDown == platform)
-        {
-            if (!controller.currentPlatform.platformDown.isBroken)
-            {
-                Debug.Log("Down."); // DEBUGGING
-                bridgeToGoTo = controller.currentPlatform.bridgeDown.transform.position;
-                platformToGoTo = controller.currentPlatform.platformDown.middleObj.position;
-                isGoingToPlatform = false;
-                posToGoTo = bridgeToGoTo;
-                return;
-            }
-            Debug.Log("Down is unavailable."); // DEBUGGING
-        }
-        if (controller.currentPlatform.platformLeft == platform)
-        {
-            if (!controller.currentPlatform.platformLeft.isBroken)
-            {
-                Debug.Log("Left."); // DEBUGGING
-                bridgeToGoTo = controller.currentPlatform.bridgeLeft.transform.position;
-                platformToGoTo = controller.currentPlatform.platformLeft.middleObj.position;
-                isGoingToPlatform = false;
-                posToGoTo = bridgeToGoTo;
-                return;
-            }
-            Debug.Log("Left is unavailable."); // DEBUGGING
-        }
-        if (controller.currentPlatform.platformRight == platform)
-        {
-            if (!controller.currentPlatform.platformRight.isBroken)
-            {
-                Debug.Log("Right."); // DEBUGGING
-                bridgeToGoTo = controller.currentPlatform.bridgeRight.transform.position;
-                platformToGoTo = controller.currentPlatform.platformRight.middleObj.position;
-                isGoingToPlatform = false;
-                posToGoTo = bridgeToGoTo;
-                return;
-            }
-            Debug.Log("Right is unavailable."); // DEBUGGING
-        }
-        if (controller.currentPlatform.platformUp.platformRight == platform)
-        {
-            if (!controller.currentPlatform.platformUp.platformRight.isBroken)
-            {
-                Debug.Log("Up and Right."); // DEBUGGING
-                bridgeToGoTo = controller.currentPlatform.bridgeUp.transform.position;
-                platformToGoTo = controller.currentPlatform.platformUp.middleObj.position;
-                isGoingToPlatform = false;
-                posToGoTo = bridgeToGoTo;
-                return;
-            }
-            Debug.Log("Up and Right unavailable."); // DEBUGGING
-        }
+                if (bp.otherBridgePoint.platform == controller.platform)
+                {
+                    toGoTo = bp;
+                    break;
+                }
 
-        if (controller.currentPlatform.platformUp.platformLeft == platform)
-        {
-            if (!controller.currentPlatform.platformUp.platformLeft.isBroken)
+                foreach (BridgePoint bp2 in bp.otherBridgePoint.platform.bridges)
+                {
+                    if (bp2.otherBridgePoint.platform != controller.platform) continue;
+
+                    toGoTo = bp;
+                    break;
+                }
+            }
+
+            if (toGoTo == null)
             {
-                Debug.Log("Up and Left."); // DEBUGGING
-                bridgeToGoTo = controller.currentPlatform.bridgeUp.transform.position;
-                platformToGoTo = controller.currentPlatform.platformUp.middleObj.position;
-                isGoingToPlatform = false;
-                posToGoTo = bridgeToGoTo;
+                Debug.Log("Can't find a bridge to go to. Stopping movement.");
+                speed = 0;
+                controller.ChangeState(controller.stunnedState);
                 return;
             }
-            Debug.Log("Up and Left unavailable."); // DEBUGGING
+
+            posToGoTo = toGoTo.bridgeEntrance.position;
+            otherBridgeToGoTo = toGoTo.otherBridgePoint.bridgeEntrance.position;
+            platformToGoTo = toGoTo.otherBridgePoint.platform.middleObj.position;
+            reachedPos = false;
         }
-        if (controller.currentPlatform.platformDown.platformLeft == platform)
+        else if (isGoingToOtherBridge)
         {
-            if (!controller.currentPlatform.platformDown.platformLeft.isBroken)
-            {
-                Debug.Log("Down and Left."); // DEBUGGING
-                bridgeToGoTo = controller.currentPlatform.bridgeDown.transform.position;
-                platformToGoTo = controller.currentPlatform.platformDown.middleObj.position;
-                isGoingToPlatform = false;
-                posToGoTo = bridgeToGoTo;
-                return;
-            }
-            Debug.Log("Down and Left unavailable."); // DEBUGGING
-        }
-        if (controller.currentPlatform.platformDown.platformRight == platform)
-        {
-            if (!controller.currentPlatform.platformDown.platformRight.isBroken)
-            {
-                Debug.Log("Down and Right."); // DEBUGGING
-                bridgeToGoTo = controller.currentPlatform.bridgeDown.transform.position;
-                platformToGoTo = controller.currentPlatform.platformDown.middleObj.position;
-                isGoingToPlatform = false;
-                posToGoTo = bridgeToGoTo;
-                return;
-            }
-            Debug.Log("Down and Right unavailable."); // DEBUGGING
+            posToGoTo = otherBridgeToGoTo;
+            reachedPos = false;
 
         }
-        if (controller.currentPlatform.platformLeft.platformUp == platform)
+        else if (isGoingToPlatform)
         {
-            if (!controller.currentPlatform.platformLeft.platformUp.isBroken)
-            {
-                Debug.Log("Left and Up."); // DEBUGGING
-                bridgeToGoTo = controller.currentPlatform.bridgeLeft.transform.position;
-                platformToGoTo = controller.currentPlatform.platformLeft.middleObj.position;
-                isGoingToPlatform = false;
-                posToGoTo = bridgeToGoTo;
-                return;
-            }
-            Debug.Log("Left and Up unavailable."); // DEBUGGING
+            posToGoTo = platformToGoTo;
+            reachedPos = false;
         }
-        if (controller.currentPlatform.platformLeft.platformDown == platform)
-        {
-            if (!controller.currentPlatform.platformLeft.platformDown.isBroken)
-            {
-                Debug.Log("Left and Down."); // DEBUGGING
-                bridgeToGoTo = controller.currentPlatform.bridgeLeft.transform.position;
-                platformToGoTo = controller.currentPlatform.platformLeft.middleObj.position;
-                isGoingToPlatform = false;
-                posToGoTo = bridgeToGoTo;
-                return;
-            }
-            Debug.Log("Left and Down unavailable."); // DEBUGGING
-        }
-        if (controller.currentPlatform.platformRight.platformUp == platform)
-        {
-            if (!controller.currentPlatform.platformRight.platformUp.isBroken)
-            {
-                Debug.Log("Right and Up."); // DEBUGGING
-                bridgeToGoTo = controller.currentPlatform.bridgeRight.transform.position;
-                platformToGoTo = controller.currentPlatform.platformRight.middleObj.position;
-                isGoingToPlatform = false;
-                posToGoTo = bridgeToGoTo;
-                return;
-            }
-            Debug.Log("Right and Up unavailable."); // DEBUGGING
-        }
-        if (controller.currentPlatform.platformRight.platformDown == platform)
-        {
-            if (!controller.currentPlatform.platformRight.platformDown.isBroken)
-            {
-                Debug.Log("Right and Down."); // DEBUGGING
-                bridgeToGoTo = controller.currentPlatform.bridgeRight.transform.position;
-                platformToGoTo = controller.currentPlatform.platformRight.middleObj.position;
-                isGoingToPlatform = false;
-                posToGoTo = bridgeToGoTo;
-                return;
-            }
-            Debug.Log("Right and Down unavailable."); // DEBUGGING
-        }
-
-        Debug.Log("Nothing is available."); // DEBUGGING
     }
 
     public void OnExit(EnemyStateMachine controller)
@@ -262,9 +155,6 @@ public class JumpWalkState : IEnemyState
 
     public void OnHurt(EnemyStateMachine controller)
     {
-        if (controller.attackType == AttackType.MeleeBlock && controller.canBlock)
-        {
-            controller.ChangeState(controller.blockState);
-        }
+
     }
 }

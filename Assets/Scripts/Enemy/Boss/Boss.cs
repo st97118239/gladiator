@@ -28,4 +28,5 @@ public class Boss : ScriptableObject
     public Enemy enemyToSummon;
     public int enemyAmtToSpawn;
     public bool useAltSlash;
+    public int healthPotionChance;
 }

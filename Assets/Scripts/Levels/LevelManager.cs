@@ -79,11 +79,11 @@ public class LevelManager : MonoBehaviour
             foreach (var enemy in enemyManager.enemies)
             {
                 if (!enemy.isActiveAndEnabled) continue;
-                enemy.Hit(1000);
+                enemy.Hit(1000, false);
             }
 
             if (enemyManager.boss.isActiveAndEnabled)
-                enemyManager.boss.Hit(1000, false);
+                enemyManager.boss.Hit(1000, false, false);
         }
     }
 

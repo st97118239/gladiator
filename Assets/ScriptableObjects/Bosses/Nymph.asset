@@ -37,3 +37,4 @@ MonoBehaviour:
   enemyToSummon: {fileID: 0}
   enemyAmtToSpawn: 0
   useAltSlash: 0
+  healthPotionChance: 100

@@ -84,7 +84,7 @@ public class Root : MonoBehaviour
         if (obj.CompareTag("Player"))
             obj.GetComponent<Player>().PlayerHit(dmg, true, false);
         else if (obj.CompareTag("Enemy"))
-            obj.GetComponent<EnemyController>().Hit(dmg);
+            obj.GetComponent<EnemyController>().Hit(dmg, false);
         else if (obj.CompareTag("Wall"))
             StartReverse();
     }

@@ -48,7 +48,6 @@ public class EnemyManager : MonoBehaviour
     public Color chargeEnemyColor;
 
     [SerializeField] private float spawnDelay;
-    [SerializeField] private int healthPotionDropChance;
 
     private int spawnPosIdx;
 
@@ -246,22 +245,19 @@ public class EnemyManager : MonoBehaviour
         StartCoroutine(summoner.SummonAnim());
     }
 
-    public void CheckIfEnd(bool isBoss, bool isSummoned)
+    public void CheckIfEnd(bool isBoss, bool isSummoned, int potionChance)
     {
         enemyCount--;
+
+        if (player.isDead) return;
 
         if (enemyCount == 0)
             levelManager.WaveFinish();
 
-        if (isBoss)
-            player.GetHealthPotion();
-        else
-        {
-            float dropChance = Random.Range(0, 101);
+        float dropChance = Random.Range(1, 101);
 
-            if (dropChance <= healthPotionDropChance)
-                player.GetHealthPotion();
-        }
+        if (dropChance <= potionChance)
+            player.GetHealthPotion();
 
         if (isSummoned && boss.isActiveAndEnabled) 
             boss.StartSummonCooldown();
