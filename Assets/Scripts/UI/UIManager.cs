@@ -206,7 +206,8 @@ public class UIManager : MonoBehaviour
         switch (possibleAbilities.Count)
         {
             case 0:
-                player.canAttack = true;
+                if (!player.hasAttackCooldown)
+                    player.canAttack = true;
                 player.hasAttackPreview = true;
                 player.movementScript.canMove = true;
                 player.canHeal = true;
@@ -304,7 +305,8 @@ public class UIManager : MonoBehaviour
             card.Reset();
         }
 
-        player.canAttack = true;
+        if (!player.hasAttackCooldown)
+            player.canAttack = true;
         player.hasAttackPreview = true;
         player.movementScript.canMove = true;
         player.canHeal = true;
@@ -334,7 +336,10 @@ public class UIManager : MonoBehaviour
         isPaused = !isPaused;
 
         pauseCanvas.gameObject.SetActive(isPaused);
-        player.canAttack = !isPaused;
+        if (!player.hasAttackCooldown && !isPaused)
+            player.canAttack = true;
+        else
+            player.canAttack = false;
         player.movementScript.canMove = !isPaused;
         Time.timeScale = isPaused ? 0 : 1;
         eventSystem.SetSelectedGameObject(isPaused ? pauseMenuSelectedObj : null);
@@ -466,6 +471,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator WinScreenAnim()
     {
+        player.canAttack = false;
         canPause = false;
         winCanvasGroup.alpha = 1;
         winCanvas.gameObject.SetActive(true);

@@ -30,7 +30,6 @@ public class Discord_Controller : MonoBehaviour
             }
         };
 
-
         activityManager.UpdateActivity(activity, (res) => {});
     }
 

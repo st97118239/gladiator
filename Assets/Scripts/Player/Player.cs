@@ -216,8 +216,7 @@ public class Player : MonoBehaviour
 
         for (float i = 0; i < timer + Time.deltaTime; i += Time.deltaTime)
         {
-            if (Time.timeScale != 0)
-                yield return null;
+            yield return null;
         }
 
         hasAttackCooldown = false;
