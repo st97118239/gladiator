@@ -1157,11 +1157,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3356284463525228826, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5.2911725
       objectReference: {fileID: 0}
     - target: {fileID: 3356284463525228826, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.6139028
       objectReference: {fileID: 0}
     - target: {fileID: 3356284463525228826, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12069,6 +12069,14 @@ PrefabInstance:
       propertyPath: countdownText
       value: 
       objectReference: {fileID: 2033819468}
+    - target: {fileID: 5660054280036448657, guid: d791bdda6678b854b88d1758e0ddd83c, type: 3}
+      propertyPath: playerSpawnPos.x
+      value: 5.2911725
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660054280036448657, guid: d791bdda6678b854b88d1758e0ddd83c, type: 3}
+      propertyPath: playerSpawnPos.y
+      value: -2.6139028
+      objectReference: {fileID: 0}
     - target: {fileID: 5660054280036448657, guid: d791bdda6678b854b88d1758e0ddd83c, type: 3}
       propertyPath: bridePointsParent
       value: 

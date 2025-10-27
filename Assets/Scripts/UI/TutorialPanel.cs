@@ -1,12 +1,16 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class TutorialPanel : MonoBehaviour
 {
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private TMP_Text text;
+    [SerializeField] private Button button;
+    [SerializeField] private float timeUntilEnabled;
 
     private int id;
     private TutorialInfo nextPanel;
@@ -38,7 +42,19 @@ public class TutorialPanel : MonoBehaviour
         nextPanel = givenInfo.nextPanel;
         shouldDisableId = !givenInfo.alwaysShow;
         gameObject.SetActive(true);
+        button.interactable = false;
         eventSystem.SetSelectedGameObject(gameObject);
+        StartCoroutine(EnableButton());
+    }
+
+    private IEnumerator EnableButton()
+    {
+        for (float i = 0; i < timeUntilEnabled; i += Time.unscaledDeltaTime)
+        {
+            yield return null;
+        }
+
+        button.interactable = true;
     }
 
     private void Continue()

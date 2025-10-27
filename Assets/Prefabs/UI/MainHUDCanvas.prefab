@@ -1917,6 +1917,8 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   eventSystem: {fileID: 0}
   text: {fileID: 5726107095426304989}
+  button: {fileID: 3594140193684427440}
+  timeUntilEnabled: 0.5
 --- !u!114 &8541513565845936494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1996,7 +1998,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2190237825044202868}
   m_OnClick:
     m_PersistentCalls:
