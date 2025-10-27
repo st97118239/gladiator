@@ -47,6 +47,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float meleeHitboxDistanceFromPlayer;
     public ContactFilter2D filter;
 
+    [SerializeField] private TutorialInfo healthPotionTutorial;
+    private bool hasGottenPotion;
+
     [SerializeField] private Slider hpSlider;
     [SerializeField] private Animator slashAnimator;
 
@@ -143,6 +146,15 @@ public class Player : MonoBehaviour
     {
         if (healthPotions >= healthPotionCap) return;
 
+        if (!hasGottenPotion)
+        {
+            if (PlayerPrefs.GetInt("Tutorial" + healthPotionTutorial.id) != 1)
+            {
+                uiManager.ShowTutorial(healthPotionTutorial);
+            }
+        }
+
+        hasGottenPotion = true;
         healthPotions++;
         uiManager.UpdateHealthPotions(healthPotions);
     }

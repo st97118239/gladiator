@@ -28,6 +28,7 @@ public class LevelManager : MonoBehaviour
     public List<Puddle> availablePuddles;
     public List<Platform> availablePlatforms;
 
+    [SerializeField] private Vector3 playerSpawnPos;
     [SerializeField] private int levelStartDelay;
     [SerializeField] private int waveStartDelay;
     [SerializeField] private float gameEndDelay;
@@ -66,7 +67,7 @@ public class LevelManager : MonoBehaviour
 
         waveWait = new(waveStartDelay);
         int pos = Random.Range(0, spawnpoints.Count);
-        player.transform.position = spawnpoints[pos].position;
+        player.transform.position = playerSpawnPos;
 
         gameFinishedPanel.SetActive(false);
         StartLevel();
@@ -84,6 +85,11 @@ public class LevelManager : MonoBehaviour
 
             if (enemyManager.boss.isActiveAndEnabled)
                 enemyManager.boss.Hit(1000, false, false);
+        }
+        else if (Input.GetKeyDown(KeyCode.Equals))
+        {
+            PlayerPrefs.DeleteAll();
+            Debug.LogWarning("Removed all PlayerPrefs.");
         }
     }
 
@@ -117,6 +123,7 @@ public class LevelManager : MonoBehaviour
         WaitForSeconds wait1Second = new(1);
 
         countdownBox.SetActive(true);
+        uiManager.waveCounterText.text = (currentWave + 1).ToString();
 
         while (levelStartDelay > 0)
         {
@@ -135,13 +142,15 @@ public class LevelManager : MonoBehaviour
     private void StartWave()
     {
         SetPuddles();
+        if (level.waves[currentWave].tutorialToShow) 
+            uiManager.ShowTutorial(level.waves[currentWave].tutorialToShow);
         enemyManager.SpawnEnemy(level.waves[currentWave]);
         currentWave++;
     }
 
     public void WaveFinish()
     {
-        if (level.waves[currentWave - 1].hasAbilityRoll)
+        if (level.waves[currentWave - 1].abilitySortToRoll != AbilitySort.None)
         {
             uiManager.ShowAbilityMenu();
             return;
@@ -160,6 +169,8 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator NextWave()
     {
+        uiManager.waveCounterText.text = (currentWave + 1).ToString();
+
         yield return waveWait;
 
         StartWave();

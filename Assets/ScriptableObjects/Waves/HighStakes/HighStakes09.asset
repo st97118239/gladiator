@@ -26,5 +26,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6f453b9abb5b9774cabb00fc4ba55a88, type: 2}
   - {fileID: 11400000, guid: 6f453b9abb5b9774cabb00fc4ba55a88, type: 2}
   boss: {fileID: 11400000, guid: 65b93d30e6423ce48b210c8e9deefd36, type: 2}
-  hasAbilityRoll: 0
-  abilitySortsToRoll: 
+  abilitySortToRoll: 4
+  tutorialToShow: {fileID: 0}

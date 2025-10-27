@@ -1807,6 +1807,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3429553943848157117, guid: 65ec8088a355cb744a0c2895748058d4, type: 3}
   m_PrefabInstance: {fileID: 459186808}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &475884331 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8139653761746000713, guid: 0dcdc33831934b24890629c5f8edc8a1, type: 3}
+  m_PrefabInstance: {fileID: 3905527765868393140}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &480939505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3765,6 +3776,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3429553943848157117, guid: 65ec8088a355cb744a0c2895748058d4, type: 3}
   m_PrefabInstance: {fileID: 1011177817}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1017047875 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5427533587721632726, guid: 0dcdc33831934b24890629c5f8edc8a1, type: 3}
+  m_PrefabInstance: {fileID: 3905527765868393140}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b0d9fd97e717e4f92aa5b16ccdf0f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialPanel
 --- !u!1001 &1027463860
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12846,6 +12868,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainHUDCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5427533587721632726, guid: 0dcdc33831934b24890629c5f8edc8a1, type: 3}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 457050416}
+    - target: {fileID: 5427533587721632726, guid: 0dcdc33831934b24890629c5f8edc8a1, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 5741784096604700577}
     - target: {fileID: 7012171528238453492, guid: 0dcdc33831934b24890629c5f8edc8a1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -13731,6 +13761,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 45778386}
     - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
+      propertyPath: tutorialPanel
+      value: 
+      objectReference: {fileID: 1017047875}
+    - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
       propertyPath: victoryCanvas
       value: 
       objectReference: {fileID: 679073911}
@@ -13750,6 +13784,10 @@ PrefabInstance:
       propertyPath: winSelectedObj
       value: 
       objectReference: {fileID: 1709709451}
+    - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
+      propertyPath: waveCounterText
+      value: 
+      objectReference: {fileID: 475884331}
     - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
       propertyPath: deathCanvasGroup
       value: 

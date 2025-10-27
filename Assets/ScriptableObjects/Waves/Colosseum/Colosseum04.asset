@@ -25,3 +25,4 @@ MonoBehaviour:
   boss: {fileID: 0}
   hasAbilityRoll: 0
   abilitySortsToRoll: 
+  tutorialToShow: {fileID: 11400000, guid: 35ad4b93bade1cc488e36e7aaeb2e6b4, type: 2}

@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
     public int thisScene;
     public int nextScene;
     public Image fadePanel;
+    public TutorialPanel tutorialPanel;
+    public TMP_Text waveCounterText;
     public Canvas abilityCanvas;
     public CanvasGroup abilityCanvasGroup;
     public GameObject abilityMenuSelectedObj;
@@ -95,7 +97,7 @@ public class UIManager : MonoBehaviour
         }
         SetVolumeSettings();
 
-        if (levelChangeCurrentLvl == 1)
+        if (levelChangeCurrentLvl == 1 && gameManager)
             gameManager.Reset();
 
         if (isMainGame) return;
@@ -155,30 +157,28 @@ public class UIManager : MonoBehaviour
 
         List<Ability> possibleAbilities = new();
 
-        foreach (AbilitySort sort in levelManager.enemyManager.currentWave.abilitySortsToRoll)
+        switch (levelManager.enemyManager.currentWave.abilitySortToRoll)
         {
-            switch (sort)
-            {
-                default:
-                case AbilitySort.None:
-                    Debug.LogWarning("No abilities to use.");
-                    break;
-                case AbilitySort.Secondary:
-                    possibleAbilities.AddRange(abilityManager.secondaries);
-                    break;
-                case AbilitySort.Power:
-                    possibleAbilities.AddRange(abilityManager.powers);
-                    break;
-                case AbilitySort.Passive:
-                    possibleAbilities.AddRange(abilityManager.passives);
-                    break;
-                case AbilitySort.Random:
-                        possibleAbilities.AddRange(abilityManager.secondaries);
-                        possibleAbilities.AddRange(abilityManager.powers);
-                        possibleAbilities.AddRange(abilityManager.passives);
-                    break;
-            }
+            default:
+            case AbilitySort.None:
+                Debug.LogWarning("No abilities to use.");
+                break;
+            case AbilitySort.Secondary:
+                possibleAbilities.AddRange(abilityManager.secondaries);
+                break;
+            case AbilitySort.Power:
+                possibleAbilities.AddRange(abilityManager.powers);
+                break;
+            case AbilitySort.Passive:
+                possibleAbilities.AddRange(abilityManager.passives);
+                break;
+            case AbilitySort.Random:
+                possibleAbilities.AddRange(abilityManager.secondaries);
+                possibleAbilities.AddRange(abilityManager.powers);
+                possibleAbilities.AddRange(abilityManager.passives);
+                break;
         }
+
 
         foreach (Ability ability in possibleAbilities.ToList())
         {
@@ -247,6 +247,7 @@ public class UIManager : MonoBehaviour
                     possibleAbilities.RemoveAt(idx);
                     card.gameObject.SetActive(true);
                 }
+
                 break;
         }
 
@@ -321,6 +322,12 @@ public class UIManager : MonoBehaviour
 
         if (endWave)
             levelManager.WaveEnd();
+    }
+
+    public void ShowTutorial(TutorialInfo givenTutorial)
+    {
+        if (PlayerPrefs.GetInt("Tutorial" + givenTutorial.id) != 1)
+            tutorialPanel.NewInfo(givenTutorial);
     }
 
     public void PauseMenu()
