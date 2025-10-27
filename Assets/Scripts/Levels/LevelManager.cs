@@ -74,22 +74,16 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Backslash))
-        {
-            foreach (var enemy in enemyManager.enemies)
-            {
-                if (!enemy.isActiveAndEnabled) continue;
-                enemy.Hit(1000, false);
-            }
+        if (!Input.GetKeyDown(KeyCode.Backslash)) return;
 
-            if (enemyManager.boss.isActiveAndEnabled)
-                enemyManager.boss.Hit(1000, false, false);
-        }
-        else if (Input.GetKeyDown(KeyCode.Equals))
+        foreach (var enemy in enemyManager.enemies)
         {
-            PlayerPrefs.DeleteAll();
-            Debug.LogWarning("Removed all PlayerPrefs.");
+            if (!enemy.isActiveAndEnabled) continue;
+            enemy.Hit(1000, false);
         }
+
+        if (enemyManager.boss.isActiveAndEnabled)
+            enemyManager.boss.Hit(1000, false, false);
     }
 
     private void StartLevel()

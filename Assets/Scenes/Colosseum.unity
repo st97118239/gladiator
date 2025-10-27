@@ -7811,10 +7811,6 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 5741784096604700577}
-    - target: {fileID: 6877390665953001638, guid: 0dcdc33831934b24890629c5f8edc8a1, type: 3}
-      propertyPath: cooldownSlider
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7803622468992309111, guid: 0dcdc33831934b24890629c5f8edc8a1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

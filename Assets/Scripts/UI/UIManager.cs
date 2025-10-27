@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -141,6 +142,14 @@ public class UIManager : MonoBehaviour
         }
 
         Cursor.visible = true;
+    }
+
+    private void Update()
+    {
+        if (!Input.GetKeyDown(KeyCode.Equals)) return;
+
+        PlayerPrefs.DeleteAll();
+        Debug.LogWarning("Removed all PlayerPrefs.");
     }
 
     public void ShowAbilityMenu()
