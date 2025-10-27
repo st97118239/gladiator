@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -190,6 +189,7 @@ public class LevelManager : MonoBehaviour
         player.movementScript.canMove = false;
         player.canAttack = false;
         player.hasAttackPreview = false;
+        uiManager.canPause = false;
         player.canHeal = false;
         player.abilityManager.canUseSecondary = false;
         player.abilityManager.canUsePowers = false;

@@ -17,3 +17,4 @@ MonoBehaviour:
   abilityIcon: {fileID: 21300000, guid: 90be4227ba56f6148ac3891d40d6561f, type: 3}
   description: Woosh
   abilitySort: 2
+  tutorial: {fileID: 11400000, guid: 69171d397a9cd8d4fa1ce3091f3b18ee, type: 2}

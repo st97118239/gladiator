@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d94d62a9cf503d4284546523f8eb0d9, type: 3}
-  m_Name: Olympus
+  m_Name: BerserkerRage
   m_EditorClassIdentifier: Assembly-CSharp::TutorialInfo
-  text: You sure have caught the Gods' attention now, Gladiator! Good luck with fighting
-    them.
-  nextPanel: {fileID: 0}
-  id: 400
+  text: You chose the Berserker Rage ability! This ability allows you to get mad
+    and be fast. When using it, you gain more movement and attack speed. You can
+    use this power via E on keyboard, or the Right Joystick Button on controller.
+  nextPanel: {fileID: 11400000, guid: b30734272c9e50c4a8f4be2ca0226614, type: 2}
+  id: 5
   alwaysShow: 0

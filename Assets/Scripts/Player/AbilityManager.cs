@@ -149,6 +149,15 @@ public class AbilityManager : MonoBehaviour
         abilities[currentAbilitySlot] = newAbility;
         uiManager.NewAbility(newAbility, currentAbilitySlot, !startOfGame);
         currentAbilitySlot++;
+
+        StartCoroutine(AbilityTutorial(newAbility.tutorial));
+    }
+
+    private IEnumerator AbilityTutorial(TutorialInfo tutorial)
+    {
+        yield return null;
+
+        uiManager.ShowTutorial(tutorial);
     }
 
     private void SetAbility(Ability newAbility)

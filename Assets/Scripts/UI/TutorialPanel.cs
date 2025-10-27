@@ -10,10 +10,12 @@ public class TutorialPanel : MonoBehaviour, ISubmitHandler
 
     private int id;
     private TutorialInfo nextPanel;
+    private bool shouldDisableId;
 
     public void OnSubmit(BaseEventData eventData)
     {
-        PlayerPrefs.SetInt("Tutorial" + id, 1);
+        if (shouldDisableId)
+            PlayerPrefs.SetInt("Tutorial" + id, 1);
 
         if (nextPanel)
             NewInfo(nextPanel);
@@ -34,6 +36,7 @@ public class TutorialPanel : MonoBehaviour, ISubmitHandler
         id = givenInfo.id;
         text.text = givenInfo.text;
         nextPanel = givenInfo.nextPanel;
+        shouldDisableId = !givenInfo.alwaysShow;
         gameObject.SetActive(true);
         eventSystem.SetSelectedGameObject(gameObject);
     }

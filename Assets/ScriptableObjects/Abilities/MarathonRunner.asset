@@ -17,3 +17,4 @@ MonoBehaviour:
   abilityIcon: {fileID: 21300000, guid: 942e102d9599b7742b8174539ccffd20, type: 3}
   description: sanic
   abilitySort: 3
+  tutorial: {fileID: 11400000, guid: 6f9debcc5214d384791022adc0912499, type: 2}

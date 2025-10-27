@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d94d62a9cf503d4284546523f8eb0d9, type: 3}
-  m_Name: Olympus
+  m_Name: Powers
   m_EditorClassIdentifier: Assembly-CSharp::TutorialInfo
-  text: You sure have caught the Gods' attention now, Gladiator! Good luck with fighting
-    them.
+  text: The ability type you chose is a power. You can only have 2 powers at the
+    same time.
   nextPanel: {fileID: 0}
-  id: 400
-  alwaysShow: 0
+  id: 10
+  alwaysShow: 1

@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d94d62a9cf503d4284546523f8eb0d9, type: 3}
-  m_Name: Olympus
+  m_Name: Lifesteal
   m_EditorClassIdentifier: Assembly-CSharp::TutorialInfo
-  text: You sure have caught the Gods' attention now, Gladiator! Good luck with fighting
-    them.
-  nextPanel: {fileID: 0}
-  id: 400
+  text: You chose the Lifesteal ability! This ability allows you to steal life from
+    your enemies. When you hit an opponent, you regain part of your health depending
+    on the damage you deal.
+  nextPanel: {fileID: 11400000, guid: d9828bd80a7bcd74aa0b7843931f7460, type: 2}
+  id: 7
   alwaysShow: 0

@@ -545,10 +545,6 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 5741784096604700577}
-    - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
-      propertyPath: healthPotionTutorial
-      value: 
-      objectReference: {fileID: 11400000, guid: e31ea92a879770b4881303f66ab8553c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

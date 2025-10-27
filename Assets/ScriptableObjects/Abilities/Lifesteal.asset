@@ -17,3 +17,4 @@ MonoBehaviour:
   abilityIcon: {fileID: 21300000, guid: e16e8755f3f403046932cfc1300b0a42, type: 3}
   description: yoink
   abilitySort: 3
+  tutorial: {fileID: 11400000, guid: 4c1b8ef355df84747b7407aa3ccea4de, type: 2}

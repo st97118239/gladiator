@@ -17,3 +17,4 @@ MonoBehaviour:
   abilityIcon: {fileID: 21300000, guid: 10bb8ced4822dd94a8da313d1e997168, type: 3}
   description: Pew pew
   abilitySort: 1
+  tutorial: {fileID: 11400000, guid: b4f4995b4b27f6343a6a4d38d2b051f0, type: 2}

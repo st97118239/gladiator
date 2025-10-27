@@ -478,6 +478,11 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator WinScreenAnim()
     {
+        for (float i = 0; i < 0.3; i += Time.deltaTime)
+        {
+            yield return null;
+        }
+
         player.canAttack = false;
         canPause = false;
         winCanvasGroup.alpha = 1;

@@ -17,3 +17,4 @@ MonoBehaviour:
   abilityIcon: {fileID: 21300000, guid: 8dc4b81154655b0448485fd91fe86022, type: 3}
   description: RAAAH
   abilitySort: 2
+  tutorial: {fileID: 11400000, guid: 0b0a475fa4e59d24d875c94a462ce228, type: 2}

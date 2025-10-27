@@ -17,3 +17,4 @@ MonoBehaviour:
   abilityIcon: {fileID: 21300000, guid: a343ac4b49803bf448a6c21a4f079ae5, type: 3}
   description: unlimited powah
   abilitySort: 3
+  tutorial: {fileID: 11400000, guid: 22800f8a93483c241b81dd5acf3d82b4, type: 2}
