@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class TutorialPanel : MonoBehaviour, ISubmitHandler
+public class TutorialPanel : MonoBehaviour
 {
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private EventSystem eventSystem;
@@ -11,11 +11,6 @@ public class TutorialPanel : MonoBehaviour, ISubmitHandler
     private int id;
     private TutorialInfo nextPanel;
     private bool shouldDisableId;
-
-    public void OnSubmit(BaseEventData eventData)
-    {
-        Pressed();
-    }
 
     public void Pressed()
     {
