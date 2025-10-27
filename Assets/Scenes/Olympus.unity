@@ -2545,10 +2545,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TotalVIctoryCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 241880069447791717, guid: 79773b415cac1cb4bad88d2997fef800, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6157668375072887179, guid: 79773b415cac1cb4bad88d2997fef800, type: 3}
       propertyPath: onLeftClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
