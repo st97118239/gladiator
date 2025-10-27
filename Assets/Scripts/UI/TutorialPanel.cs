@@ -14,6 +14,11 @@ public class TutorialPanel : MonoBehaviour, ISubmitHandler
 
     public void OnSubmit(BaseEventData eventData)
     {
+        Pressed();
+    }
+
+    public void Pressed()
+    {
         if (shouldDisableId)
             PlayerPrefs.SetInt("Tutorial" + id, 1);
 
