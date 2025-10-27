@@ -158,6 +158,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  healthPotionTutorial: {fileID: 11400000, guid: e31ea92a879770b4881303f66ab8553c, type: 2}
   hpSlider: {fileID: 0}
   slashAnimator: {fileID: 8168928442197132362}
 --- !u!114 &5799873494410771425

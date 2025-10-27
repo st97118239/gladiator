@@ -24,6 +24,7 @@ public class TutorialPanel : MonoBehaviour, ISubmitHandler
     public void NewInfo(TutorialInfo givenInfo)
     {
         Time.timeScale = 0;
+        levelManager.uiManager.canPause = false;
         levelManager.player.movementScript.canMove = false;
         levelManager.player.canAttack = false;
         levelManager.player.hasAttackPreview = false;
@@ -42,6 +43,7 @@ public class TutorialPanel : MonoBehaviour, ISubmitHandler
         eventSystem.SetSelectedGameObject(null);
         gameObject.SetActive(false);
         Time.timeScale = 1;
+        levelManager.uiManager.canPause = true;
         levelManager.player.movementScript.canMove = true;
         levelManager.player.canAttack = true;
         levelManager.player.hasAttackPreview = true;
