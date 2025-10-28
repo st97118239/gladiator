@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -557,9 +556,7 @@ public class UIManager : MonoBehaviour
                 Cursor.visible = true;
             }
             else
-            {
                 StartCoroutine(LoadFade(false, -1, true));
-            }
         }
     }
 

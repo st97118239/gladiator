@@ -68,7 +68,6 @@ public class JumpWalkState : IEnemyState
 
                 if (controller.currentPlatform == controller.platform)
                 {
-                    Debug.Log("Reached destination."); // DEBUGGING
                     controller.reachedPlatform = true;
                     controller.ChangeState(controller.jumpState);
                     return;

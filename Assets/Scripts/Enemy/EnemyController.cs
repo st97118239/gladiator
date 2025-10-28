@@ -39,9 +39,6 @@ public class EnemyController : MonoBehaviour
         if (fromPlayer && enemyManager.abilityManager.hasLifesteal)
             enemyManager.player.Lifesteal(damage);
 
-        // TODO: Knockback code here
-        // We can use rigidbody for knockback maybe
-
         if (gameObject.activeSelf)
             StartCoroutine(HitEffect());
 

@@ -37,7 +37,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject gameManagerPrefab;
 
     private WaitForSeconds waveWait;
-    private float countdown;
 
     private void Awake()
     {
@@ -62,28 +61,11 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.LogWarning("Remember to remove the wave skip!"); // TODO
-
         waveWait = new(waveStartDelay);
-        int pos = Random.Range(0, spawnpoints.Count);
         player.transform.position = playerSpawnPos;
 
         gameFinishedPanel.SetActive(false);
         StartLevel();
-    }
-
-    private void Update()
-    {
-        if (!Input.GetKeyDown(KeyCode.Backslash)) return;
-
-        foreach (var enemy in enemyManager.enemies)
-        {
-            if (!enemy.isActiveAndEnabled) continue;
-            enemy.Hit(1000, false);
-        }
-
-        if (enemyManager.boss.isActiveAndEnabled)
-            enemyManager.boss.Hit(1000, false, false);
     }
 
     private void StartLevel()

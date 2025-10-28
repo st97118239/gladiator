@@ -42,9 +42,6 @@ public class BossController : MonoBehaviour
         if (enemyManager.abilityManager.hasLifesteal)
             enemyManager.player.Lifesteal(damage);
 
-        // TODO: Knockback code here
-        // We can use rigidbody for knockback maybe
-
         StartCoroutine(HitEffect());
 
         if (health > 0) return;

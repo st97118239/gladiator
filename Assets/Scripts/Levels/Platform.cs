@@ -33,8 +33,6 @@ public class Platform : MonoBehaviour
 
     private static readonly int BreakAnim = Animator.StringToHash("Break");
 
-    // TODO platform animation
-
     public void Break()
     {
         isBroken = true;
