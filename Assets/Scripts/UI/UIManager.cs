@@ -551,8 +551,15 @@ public class UIManager : MonoBehaviour
             LoadSceneFade(nextScene);
         else
         {
-            StartCoroutine(ShowTotalVictoryScreen());
-            Cursor.visible = true;
+            if (victoryCanvasGroup)
+            {
+                StartCoroutine(ShowTotalVictoryScreen());
+                Cursor.visible = true;
+            }
+            else
+            {
+                StartCoroutine(LoadFade(false, -1, true));
+            }
         }
     }
 

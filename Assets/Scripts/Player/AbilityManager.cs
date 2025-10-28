@@ -150,7 +150,10 @@ public class AbilityManager : MonoBehaviour
         uiManager.NewAbility(newAbility, currentAbilitySlot, !startOfGame);
         currentAbilitySlot++;
 
-        StartCoroutine(AbilityTutorial(newAbility.tutorial));
+        if (!startOfGame && PlayerPrefs.GetInt("Tutorial" + newAbility.tutorial.id) != 1)
+            StartCoroutine(AbilityTutorial(newAbility.tutorial));
+        else
+            Time.timeScale = 1;
     }
 
     private IEnumerator AbilityTutorial(TutorialInfo tutorial)
