@@ -46,6 +46,15 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         audioManager = FindFirstObjectByType<AudioManager>();
         fadeDelay = new WaitForSeconds(fadeTime);
         scaleDelay = new WaitForSeconds(scaleTime);
+        if (hasImage1) 
+            image1.color = defaultColor;
+        else if (hasImage2)
+            image2.color = defaultColor;
+        else if (hasImage3)
+            image3.color = defaultColor;
+
+        if (hasText)
+            text.color = defaultTextColor;
     }
 
     public Button.ButtonClickedEvent OnLeftClick

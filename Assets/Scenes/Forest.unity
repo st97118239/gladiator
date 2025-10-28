@@ -7628,6 +7628,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1167996236924332102, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: onBackKey.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1885806525}
+    - target: {fileID: 1167996236924332102, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: onBackKey.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseSettings
+      objectReference: {fileID: 0}
     - target: {fileID: 1370483624781589026, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -7643,6 +7651,30 @@ PrefabInstance:
     - target: {fileID: 1534166848323797692, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: UpdateVolumeSettings
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057802816254185292, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: onBackKey.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1885806525}
+    - target: {fileID: 2057802816254185292, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: onBackKey.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseSettings
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810326113486150439, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: onBackKey.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1885806525}
+    - target: {fileID: 2810326113486150439, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: onBackKey.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseSettings
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573130292333089083, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: onBackKey.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1885806525}
+    - target: {fileID: 4573130292333089083, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: onBackKey.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseSettings
       objectReference: {fileID: 0}
     - target: {fileID: 7242814452831854929, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
       propertyPath: m_Pivot.x

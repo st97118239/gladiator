@@ -62,10 +62,11 @@ public class UIManager : MonoBehaviour
     public Canvas quitConfirmCanvas;
     public GameObject quitMenuSelectedObj;
     public GameObject quitMenuBackSelectedObj;
-    public bool isMainGame;
 
+    public bool isMainGame;
     public bool canPause;
     public bool isInMenu;
+    public bool isInSettings;
 
     public AbilitySlot[] abilitySlots;
     [SerializeField] private AbilityCard[] abilityCards;
@@ -341,7 +342,7 @@ public class UIManager : MonoBehaviour
 
     public void PauseMenu()
     {
-        if (!canPause) return;
+        if (!canPause || isInSettings) return;
 
         if (fadePanel.IsActive())
         {
@@ -591,6 +592,7 @@ public class UIManager : MonoBehaviour
         settingsCanvas.gameObject.SetActive(true);
         eventSystem.SetSelectedGameObject(settingsMenuSelectedObj);
         Cursor.lockState = CursorLockMode.None;
+        isInSettings = true;
     }
 
     public void CloseSettings()
@@ -606,6 +608,7 @@ public class UIManager : MonoBehaviour
             mainMenuCanvas.gameObject.SetActive(true);
 
         eventSystem.SetSelectedGameObject(settingsMenuBackSelectedObj);
+        isInSettings = false;
     }
 
     public void BorderTypeSetting(bool shouldRaise)
