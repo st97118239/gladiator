@@ -224,6 +224,7 @@ public class AbilityManager : MonoBehaviour
         player.canHeal = false;
         player.abilityManager.canUsePowers = false;
         player.spriteRenderer.color = player.cooldownColor;
+        player.movementScript.rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     private void ShieldCancel()
@@ -238,6 +239,7 @@ public class AbilityManager : MonoBehaviour
         if (player.hasAttackCooldown) return;
         player.canAttack = true;
         player.spriteRenderer.color = player.defaultColor;
+        player.movementScript.rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     private void Net()

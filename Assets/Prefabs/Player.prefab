@@ -194,7 +194,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f9a2921c7ce89c549a830d947192e25d, type: 2}
   - {fileID: 11400000, guid: f8b9b18524476df43a36365a2fa1febb, type: 2}
   - {fileID: 11400000, guid: 92b8b2cf46ff78f458d5edb8b2893fd5, type: 2}
-  shieldBlockAmt: 60
+  shieldBlockAmt: 80
   crossbowProjectile: {fileID: 11400000, guid: 09480273132878349af4011b042f16d6, type: 2}
   crossbowDamage: 3
   crossbowCooldown: 1

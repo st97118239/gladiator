@@ -748,18 +748,6 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 5741784096604700577}
-    - target: {fileID: 7231804849861089844, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
-      propertyPath: m_Size.x
-      value: 0.29997194
-      objectReference: {fileID: 0}
-    - target: {fileID: 7231804849861089844, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.000014036894
-      objectReference: {fileID: 0}
-    - target: {fileID: 7231804849861089844, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.017354593
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
