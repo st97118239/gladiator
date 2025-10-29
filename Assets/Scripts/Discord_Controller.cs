@@ -6,42 +6,53 @@ public class Discord_Controller : MonoBehaviour
     private Discord.Discord discord;
     private ActivityManager activityManager;
 
+    private bool hasDiscordOn;
+
     private void Awake()
     {
         discord = new Discord.Discord(1427284413942857909, (ulong)Discord.CreateFlags.NoRequireDiscord);
-        activityManager = discord.GetActivityManager();
+
+        hasDiscordOn = discord != null;
+
+        if (hasDiscordOn)
+            activityManager = discord.GetActivityManager();
     }
 
     private void OnDisable()
     {
-        discord?.Dispose();
+        if (hasDiscordOn)
+            discord?.Dispose();
     }
 
     public void MainMenu()
     {
+        if (!hasDiscordOn) return;
+
         Activity activity = new()
         {
             Name = "Gladiator",
             Details = "Staring at the Main Menu",
             Assets =
             {
-                LargeImage = "logo",
+                LargeImage = "logoalt",
                 LargeText = "Main Menu"
             }
         };
 
-        activityManager.UpdateActivity(activity, (res) => {});
+        activityManager.UpdateActivity(activity, (res) => { });
     }
 
     public void Level1()
     {
+        if (!hasDiscordOn) return;
+
         Activity activity = new()
         {
             Name = "Gladiator",
             Details = "Fighting in the Colosseum",
             Assets =
             {
-                LargeImage = "logo",
+                LargeImage = "logoalt",
                 LargeText = "Colosseum"
             }
         };
@@ -51,13 +62,15 @@ public class Discord_Controller : MonoBehaviour
 
     public void Level2()
     {
+        if (!hasDiscordOn) return;
+
         Activity activity = new()
         {
             Name = "Gladiator",
             Details = "Fighting in the Forest",
             Assets =
             {
-                LargeImage = "logo",
+                LargeImage = "logoalt",
                 LargeText = "The Forest"
             }
         };
@@ -67,13 +80,15 @@ public class Discord_Controller : MonoBehaviour
 
     public void Level3()
     {
+        if (!hasDiscordOn) return;
+
         Activity activity = new()
         {
             Name = "Gladiator",
             Details = "Fighting on High Stakes",
             Assets =
             {
-                LargeImage = "logo",
+                LargeImage = "logoalt",
                 LargeText = "High Stakes"
             }
         };
@@ -83,13 +98,15 @@ public class Discord_Controller : MonoBehaviour
 
     public void Level4()
     {
+        if (!hasDiscordOn) return;
+
         Activity activity = new()
         {
             Name = "Gladiator",
             Details = "Fighting on Olympus",
             Assets =
             {
-                LargeImage = "logo",
+                LargeImage = "logoalt",
                 LargeText = "Olympus"
             }
         };
@@ -99,8 +116,6 @@ public class Discord_Controller : MonoBehaviour
 
     private void Update()
     {
-        if (discord == null) return;
-
-        discord.RunCallbacks();
+        discord?.RunCallbacks();
     }
 }

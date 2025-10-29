@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d94d62a9cf503d4284546523f8eb0d9, type: 3}
   m_Name: Dash
   m_EditorClassIdentifier: Assembly-CSharp::TutorialInfo
-  text: You chose the Dash ability! This ability allows you to dash forward. You
-    can use your dash via SHIFT on keyboard, or L2 on controller.
+  text: You chose the Dash ability! This ability allows you to dash forward. While
+    dashing, you're too fast to be hit! You can use your dash via SHIFT on keyboard,
+    or L2 on controller.
   nextPanel: {fileID: 11400000, guid: b30734272c9e50c4a8f4be2ca0226614, type: 2}
   id: 4
   alwaysShow: 0
