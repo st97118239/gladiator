@@ -17,8 +17,10 @@ public class BossWalk : IBossState
 
         if (controller.abilityType == BossAbility.Summon && distance <= controller.bossController.boss.abilityRadius)
         {
+            Debug.Log("Check if can summon"); // DEBUGGING
             if (controller.CanSummon())
             {
+                Debug.Log("Summoning"); // DEBUGGING
                 controller.StartSummonCountdown();
                 return;
             }

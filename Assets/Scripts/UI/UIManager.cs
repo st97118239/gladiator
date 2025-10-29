@@ -487,7 +487,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator WinScreenAnim()
     {
-        for (float i = 0; i < 0.3; i += Time.deltaTime)
+        for (float i = 0; i < 0.3; i += Time.unscaledDeltaTime)
         {
             yield return null;
         }

@@ -137,7 +137,8 @@ public class BossStateMachine : MonoBehaviour
     {
         isReloading = true;
         bossController.spriteRenderer.color = bossController.enemyManager.cooldownEnemyColor;
-        StopCoroutine(AbilityCooldown());
+        if (abilityType != BossAbility.Summon)
+            StopCoroutine(AbilityCooldown());
         abilityDelay = 1;
 
         yield return isExtraAttack
