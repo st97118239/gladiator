@@ -455,9 +455,10 @@ public class UIManager : MonoBehaviour
         StartCoroutine(DeathScreenAnim());
     }
 
-    public void ShowWinScreen()
+    public void ShowWinScreen(bool isLastLevel)
     {
-        Time.timeScale = 0;
+        if (isLastLevel)
+            Time.timeScale = 0;
         StartCoroutine(WinScreenAnim());
     }
 
@@ -487,7 +488,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator WinScreenAnim()
     {
-        for (float i = 0; i < 0.3; i += Time.unscaledDeltaTime)
+        for (float i = 0; i < 0.3; i += Time.deltaTime)
         {
             yield return null;
         }

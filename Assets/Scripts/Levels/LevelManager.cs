@@ -155,7 +155,7 @@ public class LevelManager : MonoBehaviour
     {
         if (!died)
         {
-            uiManager.ShowWinScreen();
+            uiManager.ShowWinScreen(uiManager.levelChangeCurrentLvl == 4);
             if (PlayerPrefs.GetInt("HighestLevelReached") < uiManager.levelChangeCurrentLvl)
                 PlayerPrefs.SetInt("HighestLevelReached", uiManager.levelChangeCurrentLvl);
         }

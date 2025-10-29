@@ -16,7 +16,7 @@ MonoBehaviour:
   enemyType: 6
   attackType: 2
   ability: 0
-  health: 16
+  health: 14
   damage: 3
   speed: 2.7
   attackRadius: 13
