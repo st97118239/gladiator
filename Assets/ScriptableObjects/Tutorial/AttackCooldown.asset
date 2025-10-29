@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: AttackCooldown
   m_EditorClassIdentifier: Assembly-CSharp::TutorialInfo
   text: When you attack, you turn grey for a while. That's your attack cooldown.
-    The same thing applies to your opponents, so try to use that opportunity aganst
+    The same thing applies to your opponents, so try to use that opportunity against
     them!
   nextPanel: {fileID: 0}
   id: 103
+  alwaysShow: 0

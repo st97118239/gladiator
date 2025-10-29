@@ -80,9 +80,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 417027277
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f0d65e3ae44e4c142a068df4b205ed68, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8e99fca5cfa0ae24190d71efd423c35f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,10 +107,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileObj
   isOn: 0
   isPlayerProj: 0
+  isNet: 0
   dmg: 0
   speed: 0
   target: {x: 0, y: 0, z: 0}
   enemy: {fileID: 0}
+  boss: {fileID: 0}
   spriteRenderer: {fileID: 8208541899940622705}
   rigid: {fileID: 5817432547344322974}
   projCollider: {fileID: 340753586850306276}

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d94d62a9cf503d4284546523f8eb0d9, type: 3}
   m_Name: Gladiators
   m_EditorClassIdentifier: Assembly-CSharp::TutorialInfo
-  text: This wave contains Gladiator opponents. These opponents will try to block
+  text: This wave contains a Gladiator opponent. These opponents will try to block
     your attacks, so attack them multiple times quickly to try to catch them off
     guard!
   nextPanel: {fileID: 0}
   id: 106
+  alwaysShow: 0
