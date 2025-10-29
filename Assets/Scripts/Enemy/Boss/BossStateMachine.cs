@@ -105,7 +105,7 @@ public class BossStateMachine : MonoBehaviour
                 abilityPower = bossController.boss.abilityPower;
                 abilityTime = bossController.boss.abilityTime;
                 abilityRadius = bossController.boss.abilityRadius;
-                Invoke(nameof(ResetAbilityCooldown), abilityCooldown / 2);
+                Invoke(nameof(ResetAbilityCooldown), abilityCooldown / 3);
                 break;
         }
 

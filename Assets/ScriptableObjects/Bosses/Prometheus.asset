@@ -27,7 +27,7 @@ MonoBehaviour:
   extraAttackSpeed: 3
   abilityRadius: 10
   abilityTime: 0
-  abilityCooldown: 10
+  abilityCooldown: 3
   abilityPower: 0
   abilityUseChance: 0
   swipeAttackChance: 0
@@ -36,6 +36,6 @@ MonoBehaviour:
   projectile: {fileID: 0}
   singDrawSpeed: 0
   enemyToSummon: {fileID: 11400000, guid: b61740597a5881f4286d5ccee4207b84, type: 2}
-  enemyAmtToSpawn: 2
+  enemyAmtToSpawn: 3
   useAltSlash: 0
   healthPotionChance: 100
