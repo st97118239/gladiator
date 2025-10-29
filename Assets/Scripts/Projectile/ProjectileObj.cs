@@ -109,7 +109,7 @@ public class ProjectileObj : MonoBehaviour
         }
         else if (hit.gameObject.CompareTag("Boss") && isPlayerProj)
         {
-            hit.gameObject.GetComponent<BossController>().Hit(dmg, true, true);
+            hit.gameObject.GetComponent<BossController>().Hit(dmg, true);
             Reset();
         }
         else if (hit.gameObject.CompareTag("Player") && !isPlayerProj)

@@ -117,6 +117,7 @@ MonoBehaviour:
   summonerEnemies: []
   boss: {fileID: 0}
   sirens: []
+  enemyHealthBars: []
   projectiles: []
   nets: []
   roots: []
@@ -127,11 +128,13 @@ MonoBehaviour:
   currentWave: {fileID: 0}
   emptyEnemyPrefab: {fileID: 127359938022708900, guid: 15e0db7888fbe5142b1e892e8959014d, type: 3}
   emptyBossPrefab: {fileID: 127359938022708900, guid: f0f0b1dcad72eb848a74e2563ee7b25e, type: 3}
+  emptyHealthBarPrefab: {fileID: 957420146695208024, guid: 9066c1ae538782749b88fe920b0280db, type: 3}
   emptyProjectilePrefab: {fileID: 127359938022708900, guid: 955a5e66db05eed4a9de4b3046a4dca7, type: 3}
   emptyNetPrefab: {fileID: 6319262482962342408, guid: 703a19aadaa4a2c47a65f9457b41e7f4, type: 3}
   emptyRootPrefab: {fileID: 8327271448520034645, guid: f1fd9ce7d542e1846948b884669aecc0, type: 3}
   emptyLightningStrikePrefab: {fileID: 2846136759016828, guid: 8924e2b0f807ec844bde322abc62956c, type: 3}
   enemyParent: {fileID: 5141242508263261137}
+  healthBarParent: {fileID: 0}
   projectileParent: {fileID: 1607569232705816480}
   enemySpawnIdx: 0
   enemyCount: 0

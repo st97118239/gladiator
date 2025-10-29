@@ -16,6 +16,7 @@ public class EnemyManager : MonoBehaviour
     public List<EnemyController> summonerEnemies;
     public BossController boss;
     public List<EnemyController> sirens;
+    public List<EnemyHealthBar> enemyHealthBars;
     public List<ProjectileObj> projectiles;
     public List<Net> nets;
     public List<Root> roots;
@@ -26,11 +27,13 @@ public class EnemyManager : MonoBehaviour
     public Wave currentWave;
     public GameObject emptyEnemyPrefab;
     public GameObject emptyBossPrefab;
+    public GameObject emptyHealthBarPrefab;
     public GameObject emptyProjectilePrefab;
     public GameObject emptyNetPrefab;
     public GameObject emptyRootPrefab;
     public GameObject emptyLightningStrikePrefab;
     public Transform enemyParent;
+    public Transform healthBarParent;
     public Transform projectileParent;
     public int enemySpawnIdx;
     public int enemyCount;
@@ -92,6 +95,13 @@ public class EnemyManager : MonoBehaviour
         bossObj.SetActive(false);
         boss = bossObj.GetComponent<BossController>();
 
+        for (int i = 0; i < maxEnemyCount + maxSummonerEnemyCount; i++)
+        {
+            GameObject barObj = Instantiate(emptyHealthBarPrefab, Vector3.zero, Quaternion.identity, healthBarParent);
+            barObj.SetActive(false);
+            enemyHealthBars.Add(barObj.GetComponent<EnemyHealthBar>());
+        }
+
         for (int i = 0; i < maxProjectileCount; i++)
         {
             GameObject projObj = Instantiate(emptyProjectilePrefab, Vector3.zero, Quaternion.identity, projectileParent);
@@ -152,7 +162,7 @@ public class EnemyManager : MonoBehaviour
             }
 
             EnemyController enemy = enemies[i];
-            enemy.Load(currentWave.enemies[i], this, false);
+            enemy.Load(currentWave.enemies[i], this, enemyHealthBars[i], false);
             if (enemy.enemy.attackType == AttackType.Sing)
             {
                 sirens.Add(enemy);
@@ -226,7 +236,7 @@ public class EnemyManager : MonoBehaviour
             }
 
             EnemyController enemy = summonerEnemies[i];
-            enemy.Load(enemyToSpawn, this, true);
+            enemy.Load(enemyToSpawn, this, enemyHealthBars[maxEnemyCount - 1 + i], true);
             if (enemy.enemy.attackType == AttackType.Sing)
             {
                 sirens.Add(enemy);
@@ -248,7 +258,7 @@ public class EnemyManager : MonoBehaviour
         StartCoroutine(summoner.SummonAnim());
     }
 
-    public void CheckIfEnd(bool isBoss, bool isSummoned, int potionChance)
+    public void CheckIfEnd(bool isSummoned, int potionChance)
     {
         enemyCount--;
 

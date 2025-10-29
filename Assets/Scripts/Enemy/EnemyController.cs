@@ -14,7 +14,10 @@ public class EnemyController : MonoBehaviour
 
     public bool isClosestSiren;
 
-    public void Load(Enemy givenEnemy, EnemyManager givenManager, bool gotSummoned)
+    private EnemyHealthBar healthBar;
+    private bool hasBeenHit;
+
+    public void Load(Enemy givenEnemy, EnemyManager givenManager, EnemyHealthBar givenHealthBar, bool gotSummoned)
     {
         isSummoned = gotSummoned;
         enemyManager = givenManager;
@@ -22,6 +25,8 @@ public class EnemyController : MonoBehaviour
         health = enemy.health;
         spriteRenderer.sprite = enemy.sprite;
         enemyStateMachine.isReloading = false;
+        healthBar = givenHealthBar;
+        hasBeenHit = false;
         enemyStateMachine.Load();
     }
 
@@ -42,8 +47,17 @@ public class EnemyController : MonoBehaviour
         if (gameObject.activeSelf)
             StartCoroutine(HitEffect());
 
+        if (!hasBeenHit)
+        {
+            healthBar.Set(this);
+            hasBeenHit = true;
+        }
+
+        healthBar.GotHit(health);
+
         if (health > 0) return;
 
+        healthBar.Stop();
         gameObject.SetActive(false);
         transform.position = Vector3.zero;
         spriteRenderer.color = enemyManager.defaultEnemyColor;
@@ -62,7 +76,7 @@ public class EnemyController : MonoBehaviour
 
         enemyStateMachine.currentPlatform = null;
 
-        enemyManager.CheckIfEnd(false, isSummoned, fromPlayer ? enemy.healthPotionChance : 0);
+        enemyManager.CheckIfEnd(isSummoned, fromPlayer ? enemy.healthPotionChance : 0);
     }
 
     private IEnumerator HitEffect()
