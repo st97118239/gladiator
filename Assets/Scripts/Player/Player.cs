@@ -115,7 +115,6 @@ public class Player : MonoBehaviour
         else
         {
             aimDir = aimAction.ReadValue<Vector2>();
-            if (aimDir == Vector3.zero) return;
         }
 
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
