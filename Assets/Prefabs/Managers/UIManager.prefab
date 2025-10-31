@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   player: {fileID: 0}
   abilityManager: {fileID: 0}
+  gameManager: {fileID: 0}
+  audioManager: {fileID: 0}
   eventSystem: {fileID: 0}
   levelManager: {fileID: 0}
   enemyManager: {fileID: 0}
@@ -56,6 +58,8 @@ MonoBehaviour:
   thisScene: 0
   nextScene: 0
   fadePanel: {fileID: 0}
+  tutorialPanel: {fileID: 0}
+  waveCounterText: {fileID: 0}
   abilityCanvas: {fileID: 0}
   abilityCanvasGroup: {fileID: 0}
   abilityMenuSelectedObj: {fileID: 0}
@@ -64,6 +68,9 @@ MonoBehaviour:
   settingsCanvas: {fileID: 0}
   settingsMenuSelectedObj: {fileID: 0}
   settingsMenuBackSelectedObj: {fileID: 0}
+  settingsWindowTypeText: {fileID: 0}
+  settingsSFXVolumeSlider: {fileID: 0}
+  settingsMusicVolumeSlider: {fileID: 0}
   deathCanvas: {fileID: 0}
   deathCanvasGroup: {fileID: 0}
   deathSelectedObj: {fileID: 0}
@@ -76,14 +83,22 @@ MonoBehaviour:
   levelChangeCanvas: {fileID: 0}
   levelChangeCanvasGroup: {fileID: 0}
   levelChangePlayer: {fileID: 0}
+  levelChangePlayerRTransform: {fileID: 0}
   levelChangePlayerSpeed: 0.1
   levelChangeCurrentLvl: 0
+  levelChangePlayerDefaultPos: {x: 0, y: 0}
+  victoryCanvas: {fileID: 0}
+  victoryCanvasGroup: {fileID: 0}
+  victorySelectedObj: {fileID: 0}
   mainMenuCanvas: {fileID: 0}
   mainMenuSelectedObj: {fileID: 0}
   quitConfirmCanvas: {fileID: 0}
   quitMenuSelectedObj: {fileID: 0}
   quitMenuBackSelectedObj: {fileID: 0}
   isMainGame: 1
+  canPause: 0
+  isInMenu: 0
+  isInSettings: 0
   abilitySlots:
   - {fileID: 0}
   - {fileID: 0}
@@ -95,3 +110,5 @@ MonoBehaviour:
   - {fileID: 0}
   confirmButton: {fileID: 0}
   fadePanelTime: 1
+  mainMenuBackgrounds: []
+  uiInput: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

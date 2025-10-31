@@ -6737,6 +6737,42 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 709750792809443937, guid: 96d90240fd5cae44ebdf4b098d6572e4, type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0.7058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 709750792809443937, guid: 96d90240fd5cae44ebdf4b098d6572e4, type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.7058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 709750792809443937, guid: 96d90240fd5cae44ebdf4b098d6572e4, type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 0.7058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 709750792809443937, guid: 96d90240fd5cae44ebdf4b098d6572e4, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 709750792809443937, guid: 96d90240fd5cae44ebdf4b098d6572e4, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 709750792809443937, guid: 96d90240fd5cae44ebdf4b098d6572e4, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 709750792809443937, guid: 96d90240fd5cae44ebdf4b098d6572e4, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 709750792809443937, guid: 96d90240fd5cae44ebdf4b098d6572e4, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 709750792809443937, guid: 96d90240fd5cae44ebdf4b098d6572e4, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 709750792809443937, guid: 96d90240fd5cae44ebdf4b098d6572e4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1885806525}
@@ -6756,6 +6792,18 @@ PrefabInstance:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 1885806525}
+    - target: {fileID: 4105246383247261425, guid: 96d90240fd5cae44ebdf4b098d6572e4, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105246383247261425, guid: 96d90240fd5cae44ebdf4b098d6572e4, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105246383247261425, guid: 96d90240fd5cae44ebdf4b098d6572e4, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7058824
+      objectReference: {fileID: 0}
     - target: {fileID: 4654011656180224346, guid: 96d90240fd5cae44ebdf4b098d6572e4, type: 3}
       propertyPath: uiManager
       value: 
@@ -8595,6 +8643,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1349421769}
+    - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
+      propertyPath: uiInput
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: b91c654db24ba1845af790f7fb38f74e, type: 3}
     - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
       propertyPath: fadePanel
       value: 

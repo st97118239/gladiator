@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -67,6 +68,10 @@ public class UIManager : MonoBehaviour
     public bool isInMenu;
     public bool isInSettings;
 
+    public bool cursorVisibility;
+    public bool isOnKeyboard;
+    public GameObject lastSelectedObj;
+
     public AbilitySlot[] abilitySlots;
     [SerializeField] private AbilityCard[] abilityCards;
     [SerializeField] private Button confirmButton;
@@ -79,6 +84,8 @@ public class UIManager : MonoBehaviour
     private bool hasChosenAbility;
 
     private Coroutine fadeCoroutine;
+
+    private Vector2 mousePos;
 
     private static readonly int Level1 = Animator.StringToHash("Level");
 
@@ -141,11 +148,20 @@ public class UIManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
         }
 
-        Cursor.visible = true;
+        cursorVisibility = true;
+        if (isOnKeyboard)
+            Cursor.visible = cursorVisibility;
     }
 
     private void Update()
     {
+        Vector2 newMousePos = Input.mousePosition;
+
+        if (!isOnKeyboard && mousePos != newMousePos) 
+            OnKeyboardUsed();
+
+        mousePos = newMousePos;
+
         if (!Input.GetKeyDown(KeyCode.Equals)) return;
 
         PlayerPrefs.DeleteAll();
@@ -377,7 +393,9 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator LoadFade(bool shouldReverse, int sceneToLoad, bool shouldQuit)
     {
-        Cursor.visible = false;
+        cursorVisibility = false;
+        if (isOnKeyboard)
+            Cursor.visible = cursorVisibility;
         Cursor.lockState = CursorLockMode.Confined;
         canPause = false;
         fadePanel.gameObject.SetActive(true);
@@ -522,7 +540,9 @@ public class UIManager : MonoBehaviour
         levelChangeCanvasGroup.alpha = 1;
         levelChangePlayerRTransform.anchoredPosition = levelChangePlayerDefaultPos;
         levelChangeCanvas.gameObject.SetActive(true);
-        Cursor.visible = false;
+        cursorVisibility = false;
+        if (isOnKeyboard)
+            Cursor.visible = cursorVisibility;
         Cursor.lockState = CursorLockMode.Confined;
         eventSystem.SetSelectedGameObject(null);
 
@@ -554,7 +574,9 @@ public class UIManager : MonoBehaviour
             if (victoryCanvasGroup)
             {
                 StartCoroutine(ShowTotalVictoryScreen());
-                Cursor.visible = true;
+                cursorVisibility = true;
+                if (isOnKeyboard)
+                    Cursor.visible = cursorVisibility;
             }
             else
                 StartCoroutine(LoadFade(false, -1, true));
@@ -731,5 +753,21 @@ public class UIManager : MonoBehaviour
 #else
             Application.Quit();
 #endif
+    }
+
+    public void OnKeyboardUsed()
+    {
+        if (isOnKeyboard) return;
+        lastSelectedObj = eventSystem.currentSelectedGameObject;
+        isOnKeyboard = true;
+        Cursor.visible = cursorVisibility;
+    }
+
+    public void OnControllerUsed()
+    {
+        if (!isOnKeyboard) return;
+        eventSystem.SetSelectedGameObject(lastSelectedObj);
+        isOnKeyboard = false;
+        Cursor.visible = false;
     }
 }

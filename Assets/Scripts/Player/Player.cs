@@ -105,22 +105,18 @@ public class Player : MonoBehaviour
 
         if (!hasAttackPreview || Time.timeScale == 0) return;
 
-        Vector3 aimDir = Vector3.zero;
+        Vector3 aimDir;
 
-        if (inputActions.devices.HasValue)
+        if (uiManager.isOnKeyboard)
         {
-            var device = inputActions.devices.Value[0];
-
-            if (device.name == "Keyboard")
-            {
-                Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-                mousePos = new Vector3(mousePos.x, mousePos.y, 0);
-                aimDir = (mousePos - transform.position).normalized;
-            }
-            else
-            {
-                aimDir = aimAction.ReadValue<Vector2>();
-            }
+            Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            mousePos = new Vector3(mousePos.x, mousePos.y, 0);
+            aimDir = (mousePos - transform.position).normalized;
+        }
+        else
+        {
+            aimDir = aimAction.ReadValue<Vector2>();
+            if (aimDir == Vector3.zero) return;
         }
 
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
@@ -320,5 +316,15 @@ public class Player : MonoBehaviour
     { 
         abilityManager.gameManager.healthPotions = healthPotions;
         abilityManager.gameManager.health = health;
+    }
+
+    public void OnKeyboardUsed()
+    { 
+        uiManager.OnKeyboardUsed();
+    }
+
+    public void OnControllerUsed()
+    {
+        uiManager.OnControllerUsed();
     }
 }

@@ -447,6 +447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 293706387}
   - component: {fileID: 293706386}
+  - component: {fileID: 293706388}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -521,6 +522,9 @@ MonoBehaviour:
   canPause: 0
   isInMenu: 0
   isInSettings: 0
+  cursorVisibility: 0
+  isOnKeyboard: 0
+  lastSelectedObj: {fileID: 0}
   abilitySlots: []
   abilityCards: []
   confirmButton: {fileID: 0}
@@ -545,6 +549,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &293706388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293706385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &306385295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,7 +1212,7 @@ MonoBehaviour:
   m_text: Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ffe5590abcff22048813900e26de0584, type: 2}
-  m_sharedMaterial: {fileID: 2606865785687522249, guid: ffe5590abcff22048813900e26de0584, type: 2}
+  m_sharedMaterial: {fileID: -6329476424065736522, guid: ffe5590abcff22048813900e26de0584, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11828,7 +11862,7 @@ MonoBehaviour:
   m_text: Confirm
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ffe5590abcff22048813900e26de0584, type: 2}
-  m_sharedMaterial: {fileID: 2606865785687522249, guid: ffe5590abcff22048813900e26de0584, type: 2}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11893,7 +11927,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1106002953
@@ -11966,7 +12000,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ffe5590abcff22048813900e26de0584, type: 2}
-  m_sharedMaterial: {fileID: 2606865785687522249, guid: ffe5590abcff22048813900e26de0584, type: 2}
+  m_sharedMaterial: {fileID: -6329476424065736522, guid: ffe5590abcff22048813900e26de0584, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -16415,7 +16449,7 @@ MonoBehaviour:
   m_text: Settings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ffe5590abcff22048813900e26de0584, type: 2}
-  m_sharedMaterial: {fileID: 2606865785687522249, guid: ffe5590abcff22048813900e26de0584, type: 2}
+  m_sharedMaterial: {fileID: -6329476424065736522, guid: ffe5590abcff22048813900e26de0584, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -16903,7 +16937,7 @@ MonoBehaviour:
   m_text: Quit?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ffe5590abcff22048813900e26de0584, type: 2}
-  m_sharedMaterial: {fileID: 2606865785687522249, guid: ffe5590abcff22048813900e26de0584, type: 2}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -16968,7 +17002,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1921119913
@@ -17116,7 +17150,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ffe5590abcff22048813900e26de0584, type: 2}
-  m_sharedMaterial: {fileID: 2606865785687522249, guid: ffe5590abcff22048813900e26de0584, type: 2}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -17181,7 +17215,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1943721168
@@ -17472,6 +17506,14 @@ PrefabInstance:
       propertyPath: onBackKey.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 293706386}
+    - target: {fileID: 2363310544437783770, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ffe5590abcff22048813900e26de0584, type: 2}
+    - target: {fileID: 2363310544437783770, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2810326113486150439, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
       propertyPath: onBackKey.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -17480,6 +17522,14 @@ PrefabInstance:
       propertyPath: onBackKey.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 293706386}
+    - target: {fileID: 5940682554961723769, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ffe5590abcff22048813900e26de0584, type: 2}
+    - target: {fileID: 5940682554961723769, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7242814452831854929, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -17560,6 +17610,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7680800634915227933, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ffe5590abcff22048813900e26de0584, type: 2}
+    - target: {fileID: 7680800634915227933, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7781752946513844165, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -17567,6 +17625,22 @@ PrefabInstance:
     - target: {fileID: 8498232797739189302, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
       propertyPath: m_Name
       value: SettingsCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8706402246950236023, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ffe5590abcff22048813900e26de0584, type: 2}
+    - target: {fileID: 8706402246950236023, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8877078483526332572, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ffe5590abcff22048813900e26de0584, type: 2}
+    - target: {fileID: 8877078483526332572, guid: 51eae737946e3ef4f8a1c2f3ec745557, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

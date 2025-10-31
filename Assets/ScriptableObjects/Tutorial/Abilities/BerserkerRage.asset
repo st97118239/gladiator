@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TutorialInfo
   text: You chose the Berserker Rage ability! This ability allows you to get mad
     and be fast. When using it, you gain more movement and attack speed. You can
-    use this power via E on keyboard, or the Right Joystick Button on controller.
+    use this power via E on keyboard, or the R3 on controller.
   nextPanel: {fileID: 11400000, guid: b30734272c9e50c4a8f4be2ca0226614, type: 2}
   id: 5
   alwaysShow: 0
