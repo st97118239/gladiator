@@ -46,6 +46,7 @@ public class AbilityManager : MonoBehaviour
     public int powersUnlocked;
     public int passivesUnlocked;
     public bool hasLifesteal;
+    public bool hasSteadyStance;
 
     public bool canUseSecondary;
     public bool canUsePowers;
@@ -531,7 +532,7 @@ public class AbilityManager : MonoBehaviour
 
     private void SteadyStance()
     {
-        player.ArmorPointsChange(steadyStanceArmorPoints);
+        hasSteadyStance = true;
     }
 
     private void MarathonRunner()

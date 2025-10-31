@@ -56,7 +56,6 @@ public class Player : MonoBehaviour
     private int healthPotions;
     private float atkSpeedMultiplier = 1f;
     private int lifestealDrainMultiplier;
-    private int armor;
     private InputAction aimAction;
     private Vector3 gizmoHitboxScale;
 
@@ -258,7 +257,8 @@ public class Player : MonoBehaviour
             if (abilityManager.isBlocking)
                 dmgToDo -= dmgToDo * abilityManager.shieldBlockAmt;
 
-            dmgToDo -= armor;
+            if (abilityManager.hasSteadyStance)
+                dmgToDo -= dmgToDo * abilityManager.steadyStanceArmorPoints;
 
             if (dmgToDo < 0)
                 dmgToDo = 0;
@@ -297,11 +297,6 @@ public class Player : MonoBehaviour
     public void MeleeAtkSpeedChange(float change)
     {
         atkSpeedMultiplier += change;
-    }
-
-    public void ArmorPointsChange(int change)
-    {
-        armor += change;
     }
 
     public void Lifesteal(int healthStolen)

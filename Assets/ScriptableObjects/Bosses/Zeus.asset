@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695f53f935e5d3e46908db68ebbbb862, type: 3}
   m_Name: Zeus
   m_EditorClassIdentifier: Assembly-CSharp::Boss
-  sprite: {fileID: 21300000, guid: e10c1729e8c468840b2cadf24c3f7170, type: 3}
+  sprite: {fileID: 21300000, guid: 7fb5df1c2b04aa749a10bd4ee0d05135, type: 3}
   enemyType: 16
   attackType: 2
   abilityType: 3

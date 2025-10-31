@@ -2271,6 +2271,10 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 5741784096604700577}
+    - target: {fileID: 5799873494410771425, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
+      propertyPath: steadyStanceArmorPoints
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 5928797679792064197, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
       propertyPath: cam
       value: 
@@ -13712,6 +13716,18 @@ PrefabInstance:
       propertyPath: healthBarParent
       value: 
       objectReference: {fileID: 815547075}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: summonEnemyColor.b
+      value: 0.6775098
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: summonEnemyColor.g
+      value: 0.990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: summonEnemyColor.r
+      value: 0.73169255
+      objectReference: {fileID: 0}
     - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
       propertyPath: maxSummonerEnemyCount
       value: 3

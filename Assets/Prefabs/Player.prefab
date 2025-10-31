@@ -214,7 +214,7 @@ MonoBehaviour:
   rageTime: 5
   rageCooldown: 13
   lifestealDrainMultiplier: 2
-  steadyStanceArmorPoints: 2
+  steadyStanceArmorPoints: 25
   marathonRunnerMovementSpeedMultiplier: 0.3
   isBlocking: 0
   isHoldingEnemy: 0
@@ -223,6 +223,7 @@ MonoBehaviour:
   powersUnlocked: 0
   passivesUnlocked: 0
   hasLifesteal: 0
+  hasSteadyStance: 0
   canUseSecondary: 0
   canUsePowers: 0
   gameManager: {fileID: 0}

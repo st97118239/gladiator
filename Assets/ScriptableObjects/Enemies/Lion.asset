@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1cb0c2e1aa06d44aa652cadaea1b264, type: 3}
   m_Name: Lion
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  sprite: {fileID: 21300000, guid: 0f21dbec1cae7df47a90f1cd016947ae, type: 3}
+  sprite: {fileID: 21300000, guid: 7b15500fb3b522d48a8dd02827a64fd6, type: 3}
   enemyType: 0
   attackType: 1
   ability: 0
