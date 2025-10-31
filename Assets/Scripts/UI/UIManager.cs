@@ -4,7 +4,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -91,6 +90,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        isOnKeyboard = true;
         gameManager = FindFirstObjectByType<GameManager>();
 
         if (!gameManager)
@@ -140,7 +140,9 @@ public class UIManager : MonoBehaviour
         if (!isMainGame)
         {
             Cursor.lockState = CursorLockMode.None;
-            eventSystem.SetSelectedGameObject(mainMenuSelectedObj);
+            lastSelectedObj = mainMenuSelectedObj;
+            if (!isOnKeyboard)
+                eventSystem.SetSelectedGameObject(mainMenuSelectedObj);
             isInMenu = true;
         }
         else
@@ -282,7 +284,9 @@ public class UIManager : MonoBehaviour
     {
         abilityCanvasGroup.alpha = 1;
         abilityCanvas.gameObject.SetActive(true);
-        eventSystem.SetSelectedGameObject(abilityMenuSelectedObj);
+        lastSelectedObj = abilityMenuSelectedObj;
+        if (!isOnKeyboard)
+            eventSystem.SetSelectedGameObject(lastSelectedObj);
         abilityMenuSelectedObj.GetComponent<UIButton>().OnSelect(null);
         Cursor.lockState = CursorLockMode.None;
 
@@ -318,6 +322,7 @@ public class UIManager : MonoBehaviour
         if (!hasChosenAbility) return;
 
         abilityCanvas.gameObject.SetActive(false);
+        lastSelectedObj = null;
         eventSystem.SetSelectedGameObject(null);
         Cursor.lockState = CursorLockMode.Confined;
 
@@ -372,7 +377,9 @@ public class UIManager : MonoBehaviour
             player.canAttack = false;
         player.movementScript.canMove = !isPaused;
         Time.timeScale = isPaused ? 0 : 1;
-        eventSystem.SetSelectedGameObject(isPaused ? pauseMenuSelectedObj : null);
+        lastSelectedObj = isPaused ? pauseMenuSelectedObj : null;
+        if (!isOnKeyboard)
+            eventSystem.SetSelectedGameObject(lastSelectedObj);
         Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Confined;
     }
 
@@ -484,7 +491,9 @@ public class UIManager : MonoBehaviour
         deathCanvasGroup.alpha = 1;
         deathCanvas.gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
-        eventSystem.SetSelectedGameObject(deathSelectedObj);
+        lastSelectedObj = deathSelectedObj;
+        if (!isOnKeyboard)
+            eventSystem.SetSelectedGameObject(lastSelectedObj);
 
         yield return null;
 
@@ -514,7 +523,9 @@ public class UIManager : MonoBehaviour
         winCanvasGroup.alpha = 1;
         winCanvas.gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
-        eventSystem.SetSelectedGameObject(winSelectedObj);
+        lastSelectedObj = winSelectedObj;
+        if (!isOnKeyboard)
+            eventSystem.SetSelectedGameObject(lastSelectedObj);
 
         yield return null;
 
@@ -587,7 +598,9 @@ public class UIManager : MonoBehaviour
         victoryCanvasGroup.alpha = 1;
         victoryCanvas.gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
-        eventSystem.SetSelectedGameObject(victorySelectedObj);
+        lastSelectedObj = victorySelectedObj;
+        if (!isOnKeyboard)
+            eventSystem.SetSelectedGameObject(lastSelectedObj);
 
         yield return null;
 
@@ -615,7 +628,9 @@ public class UIManager : MonoBehaviour
 
         BorderTypeSetting(false);
         settingsCanvas.gameObject.SetActive(true);
-        eventSystem.SetSelectedGameObject(settingsMenuSelectedObj);
+        lastSelectedObj = settingsMenuSelectedObj;
+        if (!isOnKeyboard)
+            eventSystem.SetSelectedGameObject(lastSelectedObj);
         Cursor.lockState = CursorLockMode.None;
         isInSettings = true;
     }
@@ -632,7 +647,9 @@ public class UIManager : MonoBehaviour
         else
             mainMenuCanvas.gameObject.SetActive(true);
 
-        eventSystem.SetSelectedGameObject(settingsMenuBackSelectedObj);
+        lastSelectedObj = settingsMenuBackSelectedObj;
+        if (!isOnKeyboard)
+            eventSystem.SetSelectedGameObject(lastSelectedObj);
         isInSettings = false;
     }
 
@@ -715,27 +732,35 @@ public class UIManager : MonoBehaviour
     public void WinMainMenuButton()
     {
         mainMenuConfirmPanel.SetActive(true);
-        eventSystem.SetSelectedGameObject(mainMenuConfirmSelectedObj);
+        lastSelectedObj = mainMenuConfirmSelectedObj;
+        if (!isOnKeyboard)
+            eventSystem.SetSelectedGameObject(lastSelectedObj);
     }
 
     public void WinMainMenuButtonCancel()
     {
         mainMenuConfirmPanel.SetActive(false);
-        eventSystem.SetSelectedGameObject(mainMenuConfirmBackSelectedObj);
+        lastSelectedObj = mainMenuConfirmBackSelectedObj;
+        if (!isOnKeyboard)
+            eventSystem.SetSelectedGameObject(lastSelectedObj);
     }
 
     public void QuitButton()
     {
         mainMenuCanvas.gameObject.SetActive(false);
         quitConfirmCanvas.gameObject.SetActive(true);
-        eventSystem.SetSelectedGameObject(quitMenuSelectedObj);
+        lastSelectedObj = quitMenuSelectedObj;
+        if (!isOnKeyboard)
+            eventSystem.SetSelectedGameObject(lastSelectedObj);
     }
 
     public void CancelQuit()
     {
         mainMenuCanvas.gameObject.SetActive(true);
         quitConfirmCanvas.gameObject.SetActive(false);
-        eventSystem.SetSelectedGameObject(quitMenuBackSelectedObj);
+        lastSelectedObj = quitMenuBackSelectedObj;
+        if (!isOnKeyboard)
+            eventSystem.SetSelectedGameObject(lastSelectedObj);
     }
 
     public void Exit()
@@ -757,6 +782,7 @@ public class UIManager : MonoBehaviour
     {
         if (isOnKeyboard) return;
         lastSelectedObj = eventSystem.currentSelectedGameObject;
+        eventSystem.SetSelectedGameObject(null);
         isOnKeyboard = true;
         Cursor.visible = cursorVisibility;
     }
