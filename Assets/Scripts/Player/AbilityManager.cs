@@ -36,7 +36,7 @@ public class AbilityManager : MonoBehaviour
     public float rageTime;
     public float rageCooldown;
     public int lifestealDrainMultiplier;
-    public int steadyStanceArmorPoints;
+    public float steadyStanceArmorPoints;
     public float marathonRunnerMovementSpeedMultiplier;
 
     public bool isBlocking;

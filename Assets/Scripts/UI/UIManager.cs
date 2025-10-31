@@ -480,8 +480,6 @@ public class UIManager : MonoBehaviour
 
     public void ShowWinScreen(bool isLastLevel)
     {
-        //    if (isLastLevel)
-        //        Time.timeScale = 0;
         StartCoroutine(WinScreenAnim());
     }
 
