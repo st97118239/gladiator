@@ -163,9 +163,7 @@ public class UIManager : MonoBehaviour
         mousePos = newMousePos;
 
         if (!Input.GetKeyDown(KeyCode.Equals)) return;
-
-        PlayerPrefs.DeleteAll();
-        Debug.LogWarning("Removed all PlayerPrefs.");
+        ResetSave();
     }
 
     public void ShowAbilityMenu()
@@ -769,5 +767,12 @@ public class UIManager : MonoBehaviour
         eventSystem.SetSelectedGameObject(lastSelectedObj);
         isOnKeyboard = false;
         Cursor.visible = false;
+    }
+
+    private void ResetSave()
+    {
+        PlayerPrefs.DeleteAll();
+        Debug.LogWarning("Removed all PlayerPrefs.");
+        LoadSceneFade(0);
     }
 }
