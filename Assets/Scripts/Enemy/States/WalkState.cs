@@ -34,11 +34,13 @@ public class WalkState : IEnemyState
     {
         playerTransform = controller.enemyController.enemyManager.player.transform;
         speed = controller.enemyController.enemy.speed;
+        controller.enemyController.animator.SetBool("Walk", true);
     }
 
     public void OnExit(EnemyStateMachine controller)
     {
-
+        controller.enemyController.animator.SetBool("Walk", false);
+        controller.spriteRenderer.sprite = controller.enemyController.enemy.sprite;
     }
 
     public void OnHurt(EnemyStateMachine controller)

@@ -2271,10 +2271,6 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 5741784096604700577}
-    - target: {fileID: 5799873494410771425, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
-      propertyPath: steadyStanceArmorPoints
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 5928797679792064197, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
       propertyPath: cam
       value: 

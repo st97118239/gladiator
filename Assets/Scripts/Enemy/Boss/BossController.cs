@@ -5,6 +5,7 @@ public class BossController : MonoBehaviour
 {
     public EnemyManager enemyManager { get; private set; }
     public BossStateMachine bossStateMachine;
+    public Animator animator;
     public Boss boss;
     public int health;
 
@@ -20,6 +21,12 @@ public class BossController : MonoBehaviour
         boss = givenBoss;
         health = boss.health;
         spriteRenderer.sprite = boss.sprite;
+        animator.runtimeAnimatorController = enemyManager.animations[(int)boss.enemyType];
+        if (!animator)
+        {
+            Hit(10000, false);
+            return;
+        }
         bossStateMachine.Load();
     }
 

@@ -118,11 +118,12 @@ public class RangedBridgeWalkState : IEnemyState
         goToOtherBridge = false;
         goToRangedPoint = false;
         CalculateNextPath(controller);
+        controller.enemyController.animator.SetBool("Walk", true);
     }
 
     public void OnExit(EnemyStateMachine controller)
     {
-
+        controller.enemyController.animator.SetBool("Walk", false);
     }
 
     public void OnHurt(EnemyStateMachine controller)

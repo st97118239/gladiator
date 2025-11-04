@@ -8340,9 +8340,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100525672}
     - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: animations.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
       propertyPath: maxSummonerEnemyCount
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: 'animations.Array.data[0]'
+      value: 
+      objectReference: {fileID: 22100000, guid: 8f9d2a430dfe62948abc075fdfa17ece, type: 2}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: 'animations.Array.data[1]'
+      value: 
+      objectReference: {fileID: 22100000, guid: 5927c3555a1860a4fade00c47c43765d, type: 2}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: 'animations.Array.data[2]'
+      value: 
+      objectReference: {fileID: 22100000, guid: 719268bdf5e2e0a458fa466ec2b8af39, type: 2}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: 'animations.Array.data[3]'
+      value: 
+      objectReference: {fileID: 22100000, guid: 826085cbb0f1a9940b71a238fee06187, type: 2}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: 'animations.Array.data[4]'
+      value: 
+      objectReference: {fileID: 22100000, guid: d8490305fa4b1904f9816dafa6a0ff7a, type: 2}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: 'animations.Array.data[5]'
+      value: 
+      objectReference: {fileID: 22100000, guid: 234c1566dd109fe4b8292fc5d5f0c2f2, type: 2}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: 'animations.Array.data[6]'
+      value: 
+      objectReference: {fileID: 22100000, guid: ac033e2cc68ad2f46b004e991ceb0b61, type: 2}
     - target: {fileID: 5548334227488344643, guid: a8aa08712be39cf49be247240e83a675, type: 3}
       propertyPath: m_Name
       value: EnemyManager

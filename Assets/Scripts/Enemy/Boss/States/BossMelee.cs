@@ -12,6 +12,7 @@ public class BossMelee : IBossState
 
     public void OnEnter(BossStateMachine controller)
     {
+        controller.bossController.animator.SetTrigger("Attack");
         controller.bossController.enemyManager.levelManager.uiManager.audioManager.PlayEnemyAttack();
 
         Vector3 aimDir = (controller.bossController.enemyManager.player.transform.position - controller.transform.position).normalized;

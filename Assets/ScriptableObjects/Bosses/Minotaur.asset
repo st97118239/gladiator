@@ -15,7 +15,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 45e0ce34838afa34a883accc3a490abe, type: 3}
   enemyType: 3
   attackType: 1
-  abilityType: 1
+  abilityType: 0
   bossName: Minotaur
   health: 75
   damage: 10

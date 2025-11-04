@@ -24,6 +24,7 @@ public class EnemyManager : MonoBehaviour
     public List<RangedPoint> rangedPositions;
     public List<Transform> swipePositions;
     public List<BridgePoint> bridgePoints;
+    public AnimatorOverrideController[] animations;
     public Wave currentWave;
     public GameObject emptyEnemyPrefab;
     public GameObject emptyBossPrefab;
