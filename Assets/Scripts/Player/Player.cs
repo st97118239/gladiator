@@ -167,7 +167,7 @@ public class Player : MonoBehaviour
 
     private void OnMelee()
     {
-        if (!canAttack || isDead) return;
+        if (!canAttack || hasAttackCooldown || isDead) return;
 
         Vector3 aimDir = Vector3.zero;
 
@@ -227,9 +227,10 @@ public class Player : MonoBehaviour
 
         hasAttackCooldown = false;
 
+        if (uiManager.canPause) canAttack = true;
+
         if (abilityManager.isBlocking) yield break;
 
-        canAttack = true;
         spriteRenderer.color = defaultColor;
     }
 

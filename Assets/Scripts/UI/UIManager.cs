@@ -478,7 +478,7 @@ public class UIManager : MonoBehaviour
         StartCoroutine(DeathScreenAnim());
     }
 
-    public void ShowWinScreen(bool isLastLevel)
+    public void ShowWinScreen()
     {
         StartCoroutine(WinScreenAnim());
     }

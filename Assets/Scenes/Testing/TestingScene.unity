@@ -7986,7 +7986,7 @@ PrefabInstance:
     - target: {fileID: 5660054280036448657, guid: d791bdda6678b854b88d1758e0ddd83c, type: 3}
       propertyPath: level
       value: 
-      objectReference: {fileID: 11400000, guid: 9457e15af00b2be4ba9e88f02a486aed, type: 2}
+      objectReference: {fileID: 11400000, guid: 33142e5db136d824eab1c80d009a2b47, type: 2}
     - target: {fileID: 5660054280036448657, guid: d791bdda6678b854b88d1758e0ddd83c, type: 3}
       propertyPath: player
       value: 
@@ -8537,11 +8537,11 @@ PrefabInstance:
       objectReference: {fileID: 1729461527}
     - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
       propertyPath: nextScene
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
       propertyPath: thisScene
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
       propertyPath: winCanvas
