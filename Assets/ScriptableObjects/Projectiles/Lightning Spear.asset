@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d1e5fe99c734f43944fecb1e108cf6, type: 3}
   m_Name: Lightning Spear
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  speed: 700
+  speed: 1100
   despawnDelay: 3
   spinSpeed: 0
   sprite: {fileID: 21300000, guid: 0ec4f2a9de822ec4f8fa2727e6e8deed, type: 3}

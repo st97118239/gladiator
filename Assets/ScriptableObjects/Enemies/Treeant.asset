@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1cb0c2e1aa06d44aa652cadaea1b264, type: 3}
-  m_Name: Treant
+  m_Name: Treeant
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   sprite: {fileID: 21300000, guid: 9e50d073568be054d96a21c2f3486c2d, type: 3}
   enemyType: 6

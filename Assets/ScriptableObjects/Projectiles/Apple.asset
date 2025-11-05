@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60d1e5fe99c734f43944fecb1e108cf6, type: 3}
-  m_Name: TreantProj
+  m_Name: Apple
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  speed: 400
+  speed: 700
   despawnDelay: 7
   spinSpeed: 0
   sprite: {fileID: 21300000, guid: 8e99fca5cfa0ae24190d71efd423c35f, type: 3}
