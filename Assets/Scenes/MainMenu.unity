@@ -491,6 +491,7 @@ MonoBehaviour:
   settingsCanvas: {fileID: 6030326723469315857}
   settingsMenuSelectedObj: {fileID: 6030326723469315858}
   settingsMenuBackSelectedObj: {fileID: 319169254}
+  settingsMenuObjects: []
   settingsWindowTypeText: {fileID: 6030326723469315859}
   settingsSFXVolumeSlider: {fileID: 1040605214}
   settingsMusicVolumeSlider: {fileID: 6030326723469315860}
@@ -534,6 +535,7 @@ MonoBehaviour:
   - {fileID: 813597831}
   - {fileID: 1600910681}
   - {fileID: 829681574}
+  playerInput: {fileID: 293706388}
 --- !u!4 &293706387
 Transform:
   m_ObjectHideFlags: 0
