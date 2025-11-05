@@ -154,26 +154,31 @@ public class AudioManager : MonoBehaviour
 
     public void PlayBGMMainMenu()
     {
-        musicAudioSource.PlayOneShot(bgmMainMenu);
+        musicAudioSource.clip = bgmMainMenu;
+        musicAudioSource.Play();
     }
 
     public void PlayBGMColosseum()
     {
-        musicAudioSource.PlayOneShot(bgmColosseum);
+        musicAudioSource.clip = bgmColosseum;
+        musicAudioSource.Play();
     }
 
     public void PlayBGMForest()
     {
-        musicAudioSource.PlayOneShot(bgmForest);
+        musicAudioSource.clip = bgmForest;
+        musicAudioSource.Play();
     }
 
     public void PlayBGMPlatform()
     {
-        musicAudioSource.PlayOneShot(bgmPlatform);
+        musicAudioSource.clip = bgmPlatform;
+        musicAudioSource.Play();
     }
 
     public void PlayBGMOlympus()
     {
-        musicAudioSource.PlayOneShot(bgmOlympus);
+        musicAudioSource.clip = bgmOlympus;
+        musicAudioSource.Play();
     }
 }
