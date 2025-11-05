@@ -71,11 +71,11 @@ MonoBehaviour:
   zeusThunderStrike: {fileID: 8300000, guid: 47b854e77c0d4444da13c205705c2fd0, type: 3}
   buttonHover: {fileID: 8300000, guid: e1b5ef38c02db834d8db3c3b1fc7960d, type: 3}
   buttonSelect: {fileID: 8300000, guid: 31fd12e0eaac8f24e97e2663b7d0d441, type: 3}
-  bgmMainMenu: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
-  bgmColosseum: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
-  bgmForest: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
-  bgmPlatform: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
-  bgmOlympus: {fileID: 8300000, guid: 663559bc105a6d0429af373042e6a505, type: 3}
+  bgmMainMenu: {fileID: 8300000, guid: 1215410a3b343944da7a8b570eb03675, type: 3}
+  bgmColosseum: {fileID: 8300000, guid: 6afc3d0e0fc9b5c4aa3cd513e6181105, type: 3}
+  bgmForest: {fileID: 8300000, guid: 6afc3d0e0fc9b5c4aa3cd513e6181105, type: 3}
+  bgmPlatform: {fileID: 8300000, guid: 6afc3d0e0fc9b5c4aa3cd513e6181105, type: 3}
+  bgmOlympus: {fileID: 8300000, guid: 992f6f457357274499b0c4ee7ce3e6a0, type: 3}
 --- !u!82 &-2599822558263462293
 AudioSource:
   m_ObjectHideFlags: 0
