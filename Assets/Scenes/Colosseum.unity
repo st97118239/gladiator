@@ -8489,7 +8489,7 @@ PrefabInstance:
       objectReference: {fileID: 3905527765868393145}
     - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
       propertyPath: maxEnemyCount
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
       propertyPath: abilityManager
