@@ -205,7 +205,7 @@ MonoBehaviour:
   throwSpeed: 700
   throwTime: 0.3
   throwDamage: 2
-  throwCooldown: 5
+  throwCooldown: 3
   dashSpeed: 500
   dashTime: 0.5
   dashCooldown: 1

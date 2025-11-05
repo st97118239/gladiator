@@ -109,4 +109,10 @@ public class EnemyController : MonoBehaviour
 
         enemyStateMachine.ChangeState(enemyStateMachine.idleState);
     }
+
+    private void OnTriggerEnter2D(Collider2D hit)
+    {
+        if (hit.gameObject.CompareTag("FallTrigger") && enemy.canFall)
+            Hit(10000, false);
+    }
 }

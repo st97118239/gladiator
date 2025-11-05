@@ -25,4 +25,5 @@ public class Enemy : ScriptableObject
     public bool usesBridges;
     public int healthPotionChance;
     public bool canBeHeld;
+    public bool canFall;
 }

@@ -33,4 +33,5 @@ MonoBehaviour:
   useAltSlash: 0
   usesBridges: 1
   healthPotionChance: 30
-  canBeHeld: 0
+  canBeHeld: 1
+  canFall: 1

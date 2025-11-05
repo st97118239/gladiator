@@ -60,18 +60,14 @@ public class Platform : MonoBehaviour
 
         foreach (EnemyController enemy in levelManager.enemyManager.enemies)
         {
-            if (!enemy.isActiveAndEnabled) continue;
-
-            if (enemy.enemyStateMachine.currentPlatform != this) continue;
+            if (!enemy.isActiveAndEnabled || enemy.enemyStateMachine.currentPlatform != this || !enemy.enemy.canFall) continue;
 
             enemiesToKill.Add(enemy);
             enemy.Stun(timeUntilBroken);
         }
 
-        if (levelManager.availablePlatforms.Contains(this))
-        {
+        if (levelManager.availablePlatforms.Contains(this)) 
             levelManager.availablePlatforms.Remove(this);
-        }
 
         Invoke(nameof(FullyBreak), timeUntilBroken);
     }
