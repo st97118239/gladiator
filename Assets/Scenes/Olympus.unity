@@ -2296,10 +2296,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 730426162}
     - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
-      propertyPath: isDead
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
       propertyPath: hpSlider
       value: 
       objectReference: {fileID: 3905527765868393143}
@@ -2311,10 +2307,6 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 5741784096604700577}
-    - target: {fileID: 6138312183256452214, guid: 571033310cb871a45a7f95311f981d4e, type: 3}
-      propertyPath: movementSpeed
-      value: 2000
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13704,6 +13696,10 @@ PrefabInstance:
       propertyPath: bossBarSlider
       value: 
       objectReference: {fileID: 3905527765868393145}
+    - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
+      propertyPath: maxEnemyCount
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 1189122557070007147, guid: a8aa08712be39cf49be247240e83a675, type: 3}
       propertyPath: abilityManager
       value: 
