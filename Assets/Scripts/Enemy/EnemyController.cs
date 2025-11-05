@@ -32,7 +32,7 @@ public class EnemyController : MonoBehaviour
 
     public void Hit(int damage, bool fromPlayer)
     {
-        if (enemyStateMachine.isDashing || enemyStateMachine.isBeingHeld) return;
+        if (enemyStateMachine.isDashing || (enemyStateMachine.isBeingHeld && fromPlayer)) return;
 
         enemyStateMachine.currentState.OnHurt(enemyStateMachine);
 
@@ -112,7 +112,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D hit)
     {
-        if (hit.gameObject.CompareTag("FallTrigger") && enemy.canFall)
+        if (hit.gameObject.CompareTag("FallTrigger") && enemy.canFall) 
             Hit(10000, false);
     }
 }

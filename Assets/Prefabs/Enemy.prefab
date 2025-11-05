@@ -109,7 +109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   enemyStateMachine: {fileID: 8364674737212972923}
-  animator: {fileID: 5819224739044085901}
   enemy: {fileID: 0}
   health: 0
   isSummoned: 0
@@ -222,7 +221,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2935
+    m_Bits: 2934
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

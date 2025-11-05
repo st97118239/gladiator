@@ -312,6 +312,8 @@ public class EnemyStateMachine : MonoBehaviour
     {
         isBeingThrown = false;
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        if (!gameObject.activeSelf) return;
         ChangeState(idleState);
         enemyController.Hit(fallDamage, true);
     }

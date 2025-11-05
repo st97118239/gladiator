@@ -311,7 +311,7 @@ public class AbilityManager : MonoBehaviour
             return;
         }
 
-        Vector3 aimDir = Vector3.zero;
+        Vector3 aimDir;
 
         if (uiManager.isOnKeyboard)
         {
@@ -462,7 +462,7 @@ public class AbilityManager : MonoBehaviour
             if (!cd2d.gameObject.CompareTag("Enemy")) return;
             checkIfFirst = false;
             EnemyStateMachine enemy = cd2d.gameObject.GetComponent<EnemyStateMachine>();
-            if (enemy.enemyController.enemy.canBeHeld)
+            if (enemy.enemyController.enemy.canBeHeld && !enemy.isStunned)
                 enemyHeld = enemy;
         }
 
