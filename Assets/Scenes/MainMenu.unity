@@ -535,7 +535,6 @@ MonoBehaviour:
   - {fileID: 813597831}
   - {fileID: 1600910681}
   - {fileID: 829681574}
-  playerInput: {fileID: 293706388}
 --- !u!4 &293706387
 Transform:
   m_ObjectHideFlags: 0

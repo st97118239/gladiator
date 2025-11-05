@@ -17,8 +17,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f10c73f436ed8e24eb44977c07130e5f, type: 2}
   - {fileID: 11400000, guid: f10c73f436ed8e24eb44977c07130e5f, type: 2}
   - {fileID: 11400000, guid: f10c73f436ed8e24eb44977c07130e5f, type: 2}
-  - {fileID: 11400000, guid: d8134ca7524c6214a849246dda57afd9, type: 2}
-  - {fileID: 11400000, guid: d8134ca7524c6214a849246dda57afd9, type: 2}
+  - {fileID: 11400000, guid: f10c73f436ed8e24eb44977c07130e5f, type: 2}
+  - {fileID: 11400000, guid: f10c73f436ed8e24eb44977c07130e5f, type: 2}
   - {fileID: 11400000, guid: d8134ca7524c6214a849246dda57afd9, type: 2}
   - {fileID: 11400000, guid: d8134ca7524c6214a849246dda57afd9, type: 2}
   - {fileID: 11400000, guid: d8134ca7524c6214a849246dda57afd9, type: 2}
@@ -26,5 +26,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d8134ca7524c6214a849246dda57afd9, type: 2}
   - {fileID: 11400000, guid: 893bf793d93871d4bb6c29ed16259d2c, type: 2}
   boss: {fileID: 0}
-  hasAbilityRoll: 0
-  abilitySortsToRoll: 
+  abilitySortToRoll: 0
+  tutorialToShow: {fileID: 0}
