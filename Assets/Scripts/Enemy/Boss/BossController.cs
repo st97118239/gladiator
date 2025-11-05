@@ -95,6 +95,8 @@ public class BossController : MonoBehaviour
 
     public void Stun(float duration)
     {
+        if (bossStateMachine.isUsingAbility && boss.enemyType == EnemyTypes.Zeus) return;
+
         bossStateMachine.ChangeState(bossStateMachine.stunnedState);
 
         StartCoroutine(StunTime(duration));
