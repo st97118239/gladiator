@@ -80,12 +80,11 @@ public class RangedWalkState : IEnemyState
         speed = controller.enemyController.enemy.speed;
         goToRangedPoint = true;
         CalculateNextPath(controller);
-        controller.enemyController.animator.SetBool("Walk", true);
     }
 
     public void OnExit(EnemyStateMachine controller)
     {
-        controller.enemyController.animator.SetBool("Walk", false);
+
     }
 
     public void OnHurt(EnemyStateMachine controller)

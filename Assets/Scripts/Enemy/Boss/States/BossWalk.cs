@@ -48,12 +48,11 @@ public class BossWalk : IBossState
     {
         player = controller.bossController.enemyManager.player;
         speed = controller.bossController.boss.speed;
-        controller.bossController.animator.SetBool("Walk", true);
     }
 
     public void OnExit(BossStateMachine controller)
     {
-        controller.bossController.animator.SetBool("Walk", false);
+
     }
 
     public void OnHurt(BossStateMachine controller)

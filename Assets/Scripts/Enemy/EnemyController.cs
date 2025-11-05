@@ -5,7 +5,6 @@ public class EnemyController : MonoBehaviour
 {
     public EnemyManager enemyManager { get; private set; }
     public EnemyStateMachine enemyStateMachine;
-    public Animator animator;
     public Enemy enemy;
     public int health;
     public bool isSummoned;
@@ -25,12 +24,6 @@ public class EnemyController : MonoBehaviour
         enemy = givenEnemy;
         health = enemy.health;
         spriteRenderer.sprite = enemy.sprite;
-        animator.runtimeAnimatorController = enemyManager.animations[(int)enemy.enemyType];
-        if (!animator)
-        {
-            Hit(10000, false);
-            return;
-        }
         enemyStateMachine.isReloading = false;
         healthBar = givenHealthBar;
         hasBeenHit = false;

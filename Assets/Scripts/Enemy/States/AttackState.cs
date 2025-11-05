@@ -12,7 +12,6 @@ public class AttackState : IEnemyState
 
     public void OnEnter(EnemyStateMachine controller)
     {
-        controller.enemyController.animator.SetTrigger("Attack");
         Vector3 aimDir = (controller.enemyController.enemyManager.player.transform.position - controller.transform.position).normalized;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         angle -= 90;

@@ -10,7 +10,6 @@ public class RangedAttackState : IEnemyState
     public void OnEnter(EnemyStateMachine controller)
     {
         Attack(controller.enemyController.enemyManager.player, controller.enemyController, controller);
-        controller.enemyController.animator.SetTrigger("Attack");
     }
 
     private static void Attack(Player player, EnemyController enemyController, EnemyStateMachine controller)
