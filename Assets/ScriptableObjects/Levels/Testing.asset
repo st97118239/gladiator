@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Testing
   m_EditorClassIdentifier: Assembly-CSharp::Level
   waves:
-  - {fileID: 11400000, guid: b56f1c5217d0eda4f89055dc539fcb96, type: 2}
+  - {fileID: 11400000, guid: 193b4d086d6f94647a141fc97dcf3837, type: 2}

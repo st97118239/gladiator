@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 using Random = UnityEngine.Random;
 
 public class EnemyStateMachine : MonoBehaviour
@@ -161,6 +162,7 @@ public class EnemyStateMachine : MonoBehaviour
         }
 
         isBlocking = false;
+        spriteRenderer.sprite = enemyController.enemy.sprite;
 
         if (!isBeingHeld)
             ChangeState(idleState);

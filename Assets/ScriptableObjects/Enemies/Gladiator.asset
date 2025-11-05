@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Gladiator
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   sprite: {fileID: 21300000, guid: ea7125e232838e34b83e862f79292fd1, type: 3}
+  blockSprite: {fileID: 21300000, guid: 7139ad1758bab5548acc5116ca41095b, type: 3}
   enemyType: 2
   attackType: 6
   ability: 0

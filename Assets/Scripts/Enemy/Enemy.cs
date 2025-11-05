@@ -4,6 +4,7 @@ using UnityEngine;
 public class Enemy : ScriptableObject
 {
     public Sprite sprite;
+    public Sprite blockSprite;
     public EnemyTypes enemyType;
     public AttackType attackType;
     public EnemyAbility ability;

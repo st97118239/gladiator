@@ -34,6 +34,7 @@ public class UIManager : MonoBehaviour
     public Canvas settingsCanvas;
     public GameObject settingsMenuSelectedObj;
     public GameObject settingsMenuBackSelectedObj;
+    public UIButton[] settingsMenuObjects;
     public TMP_Text settingsWindowTypeText;
     public Slider settingsSFXVolumeSlider;
     public Slider settingsMusicVolumeSlider;
@@ -377,6 +378,13 @@ public class UIManager : MonoBehaviour
             player.canAttack = false;
         player.movementScript.canMove = !isPaused;
         Time.timeScale = isPaused ? 0 : 1;
+        if (isPaused)
+        {
+            foreach (UIButton button in settingsMenuObjects)
+            {
+                button.Reset();
+            }
+        }
         lastSelectedObj = isPaused ? pauseMenuSelectedObj : null;
         if (!isOnKeyboard)
             eventSystem.SetSelectedGameObject(lastSelectedObj);

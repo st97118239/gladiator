@@ -12856,6 +12856,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c31cd14df86208468d06fbf1fd91f3a, type: 3}
+--- !u!114 &729508828062761850 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1152472261161586192, guid: 6c31cd14df86208468d06fbf1fd91f3a, type: 3}
+  m_PrefabInstance: {fileID: 729508828062761849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6303fae825b87448a581fa4c8a669a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButton
+--- !u!114 &729508828062761851 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1687558084876491388, guid: 6c31cd14df86208468d06fbf1fd91f3a, type: 3}
+  m_PrefabInstance: {fileID: 729508828062761849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403410017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6303fae825b87448a581fa4c8a669a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButton
+--- !u!114 &729508828062761852 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9115078830652393760, guid: 6c31cd14df86208468d06fbf1fd91f3a, type: 3}
+  m_PrefabInstance: {fileID: 729508828062761849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6303fae825b87448a581fa4c8a669a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButton
+--- !u!114 &729508828062761853 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4660370510076780234, guid: 6c31cd14df86208468d06fbf1fd91f3a, type: 3}
+  m_PrefabInstance: {fileID: 729508828062761849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501455214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6303fae825b87448a581fa4c8a669a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButton
 --- !u!1001 &1372732826294384324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14054,6 +14098,26 @@ PrefabInstance:
       propertyPath: mainMenuConfirmBackSelectedObj
       value: 
       objectReference: {fileID: 1709709448}
+    - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
+      propertyPath: settingsMenuObjects.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
+      propertyPath: 'settingsMenuObjects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 729508828062761853}
+    - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
+      propertyPath: 'settingsMenuObjects.Array.data[1]'
+      value: 
+      objectReference: {fileID: 729508828062761852}
+    - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
+      propertyPath: 'settingsMenuObjects.Array.data[2]'
+      value: 
+      objectReference: {fileID: 729508828062761851}
+    - target: {fileID: 6454188199763711420, guid: e1e01df994d04804cb10bca66fdd8c9f, type: 3}
+      propertyPath: 'settingsMenuObjects.Array.data[3]'
+      value: 
+      objectReference: {fileID: 729508828062761850}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
